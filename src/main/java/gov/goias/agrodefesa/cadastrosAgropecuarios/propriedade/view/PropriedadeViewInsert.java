@@ -20,7 +20,7 @@ public class PropriedadeViewInsert {
 	}
 
     public static void produtor(String valor){
-        log.debug(Constants.MGS_INSERIDO, valor);
+        log.debug(Constants.MGS_INSERIDO, "PRODUTOR", valor);
         conteiner.produtor.clear();
         conteiner.produtor.sendKeys(valor);
         BrowserDriver.waitForElement(conteiner.produtorAutoComplete).click();

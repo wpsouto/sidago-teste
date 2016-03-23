@@ -19,7 +19,6 @@ public class HomeView {
 	}
 
 	public static void isUserNameCheck(String userName){
-        log.debug("Verificando se o nome do usuario logado esta correto");
         Assert.assertTrue(isUserName(userName));
     }
 
@@ -29,7 +28,7 @@ public class HomeView {
     }
 
     public static void logout(){
-        log.debug(Constants.MGS_SELECIONADO, "LOGOUT");
+        log.debug(Constants.MGS_SELECIONADO, "Logging out");
         container.logout.click();
         BrowserDriver.closeAlert();
     }

@@ -24,7 +24,7 @@ public class PropriedadeViewHome {
     }
 
 	public static void cnpjCpf(String valor){
-        log.debug(Constants.MGS_INSERIDO, "CnpjCpf", valor);
+        log.debug(Constants.MGS_INSERIDO, "CNPJ/CPF", valor);
 		container.cnpjCpf.clear();
 		container.cnpjCpf.sendKeys(valor);
 	}

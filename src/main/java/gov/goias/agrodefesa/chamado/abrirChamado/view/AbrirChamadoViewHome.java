@@ -2,92 +2,92 @@ package gov.goias.agrodefesa.chamado.abrirChamado.view;
 
 import gov.goias.agrodefesa.chamado.abrirChamado.containers.AbrirChamadoPageContainerHome;
 import gov.goias.agrodefesa.utils.BrowserDriver;
+import gov.goias.agrodefesa.utils.Constants;
 import org.junit.Assert;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.PageFactory;
-
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AbrirChamadoViewHome {
-	private static final Logger LOGGER = Logger.getLogger(AbrirChamadoViewHome.class.getName());
+    private static final Logger log = LoggerFactory.getLogger(AbrirChamadoViewHome.class);
 	private static final AbrirChamadoPageContainerHome container = PageFactory.initElements(BrowserDriver.getCurrentDriver(), AbrirChamadoPageContainerHome.class);
 
 	public static void isDisplayedCheck(){
-		LOGGER.info("Verificando a página de Abrir Chamado é exibida");
+        log.debug(Constants.MGS_AGUARDANDO);
 		BrowserDriver.waitForElement(container.home);
 		container.home.isDisplayed();
 	}
 
     public static void incluirRegistro(){
-        LOGGER.info("Exibindo Incluir Registro Abrir Chamado");
+        log.debug(Constants.MGS_SELECIONADO, "INCLUIR REGISTRO");
         BrowserDriver.waitForElement(container.incluirRegistro);
         container.incluirRegistro.click();
     }
 
 	public static void numeroChamado(String valor){
-		LOGGER.info("Inserindo valor no campo Numero Chamado");
+        log.debug(Constants.MGS_INSERIDO, "NUMERO CHAMADO", valor);
 		container.numeroChamado.clear();
         container.numeroChamado.sendKeys(valor);
 	}
 
     public static void pesquisar() {
-		LOGGER.info("Pesquisando");
+        log.debug(Constants.MGS_SELECIONADO, "PESQUISAR");
 		container.form.submit();
 	}
 
 	public static void isDisplayedGridPesquisar(String valor) {
-        LOGGER.info("Validando Pesquisa "+container.gridRow.getText());
+        log.debug(Constants.MGS_AGUARDANDO);
         BrowserDriver.waitForElement(container.gridRow);
         container.gridRow.isDisplayed();
         Assert.assertEquals(valor, container.gridRow.getText());
 	}
 
 	public static void finalizar() {
-		LOGGER.info("Click em grid Confirmar");
+        log.debug(Constants.MGS_SELECIONADO, "OPERACAO FINALIZAR");
 		container.finalizar.click();
 	}
 
     public static void classificacao(String valor) {
-        LOGGER.info("Inserindo valor no campo Classificacao");
+        log.debug(Constants.MGS_INSERIDO, "CLASSIFICACAO", valor);
         container.classificacao.sendKeys(valor);
         BrowserDriver.waitForElement(container.classificacaoAutoComplete);
         container.classificacaoAutoComplete.click();
     }
 
     public static void solicitante(String valor) {
-        LOGGER.info("Inserindo valor no campo Solicitante");
+        log.debug(Constants.MGS_INSERIDO, "SOLICITANTE", valor);
         container.solicitante.sendKeys(valor);
         BrowserDriver.waitForElement(container.solicitanteAutoComplete);
         container.solicitanteAutoComplete.click();
     }
 
     public static void tecnico(String valor) {
-        LOGGER.info("Inserindo valor no campo Tecnico");
+        log.debug(Constants.MGS_INSERIDO, "TECNICO", valor);
         container.tecnico.sendKeys(valor);
         BrowserDriver.waitForElement(container.tecnicoAutoComplete);
         container.tecnicoAutoComplete.click();
     }
 
     public static void lotacao(String valor) {
-        LOGGER.info("Inserindo valor no campo Lotacao");
+        log.debug(Constants.MGS_INSERIDO, "LOTACAO", valor);
         container.lotacao.sendKeys(valor);
         BrowserDriver.waitForElement(container.lotacaoAutoComplete);
         container.lotacaoAutoComplete.click();
     }
 
     public static void suporte(String valor) {
-        LOGGER.info("Inserindo valor no campo Suporte");
-        BrowserDriver.getDropDownOption(container.suporte, valor).click();
+        log.debug(Constants.MGS_INSERIDO, "SUPORTE", valor);
+        BrowserDriver.selectByVisibleText(container.suporte, valor);
     }
 
     public static void contato(String valor) {
-        LOGGER.info("Inserindo valor no Contato");
-        BrowserDriver.getDropDownOption(container.contato, valor).click();
+        log.debug(Constants.MGS_INSERIDO, "CONTATO", valor);
+        BrowserDriver.selectByVisibleText(container.contato, valor);
     }
 
     public static void situacao(String valor) {
-        LOGGER.info("Inserindo valor no Situacao");
-        BrowserDriver.getDropDownOption(container.situacao, valor).click();
+        log.debug(Constants.MGS_INSERIDO, "SITUACAO", valor);
+        BrowserDriver.selectByVisibleText(container.situacao, valor);
     }
 
 }

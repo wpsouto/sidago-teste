@@ -2,6 +2,7 @@ package gov.goias.agrodefesa.cadastrosAgropecuarios.lavoura.view;
 
 import gov.goias.agrodefesa.cadastrosAgropecuarios.lavoura.containers.LavouraPageContainerInsert;
 import gov.goias.agrodefesa.utils.BrowserDriver;
+import gov.goias.agrodefesa.utils.Constants;
 import gov.goias.agrodefesa.utils.Produto;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -14,18 +15,18 @@ public class LavouraViewInsert {
 	private static final LavouraPageContainerInsert conteiner = PageFactory.initElements(BrowserDriver.getCurrentDriver(), LavouraPageContainerInsert.class);
 
     public static void isDisplayedCheck(){
-		log.debug("Verificando - Incluir Registro e exibida");
+        log.debug(Constants.MGS_AGUARDANDO);
 		BrowserDriver.waitForElement(conteiner.home);
 		conteiner.home.isDisplayed();
 	}
 
     public static void listaSefaz(String valor){
-        log.debug("Inserindo {} = {}", "Lista Sefaz", valor);
+        log.debug(Constants.MGS_INSERIDO, "LISTA SEFAZ", valor);
         BrowserDriver.waitForElement(conteiner.listaSefaz).click();
     }
 
     public static void adicionarProduto(Produto produto) {
-        log.debug("Click adicionarEndereco");
+        log.debug(Constants.MGS_SELECIONADO, "ADICIONAR PRODUTO");
         conteiner.adicionarProduto.click();
         BrowserDriver.waitForElement(conteiner.produto);
         BrowserDriver.selectByVisibleText(conteiner.produto, produto.getProduto());
@@ -44,24 +45,24 @@ public class LavouraViewInsert {
     }
 
     public static void sistemaCultivo(String valor){
-        log.debug("Inserindo {} = {}", "sistema cultivo", valor);
+        log.debug(Constants.MGS_INSERIDO, "SISTEMA CULTIVO", valor);
         BrowserDriver.waitForElement(conteiner.sistemaCultivo);
         BrowserDriver.selectByVisibleText(conteiner.sistemaCultivo, valor);
     }
 
     public static void origemSemente(String valor){
-        log.debug("Inserindo {} = {}", "origem semente", valor);
+        log.debug(Constants.MGS_INSERIDO, "ORIGEM SEMENTE", valor);
         BrowserDriver.waitForElement(conteiner.origemSemente);
         BrowserDriver.selectByVisibleText(conteiner.origemSemente, valor);
     }
 
     public static void salvar() {
-        log.debug("Salvando os dados");
+        log.debug(Constants.MGS_SELECIONADO, "SALVAR");
         conteiner.salvar.click();
     }
 
     public static void aviso(String valor) {
-        log.debug("Mensagem de aviso");
+        log.debug(Constants.MGS_MENSAGEM, valor);
         BrowserDriver.waitForElement(conteiner.aviso);
         Assert.assertEquals(conteiner.aviso.getText(), valor);
         conteiner.ok.click();
