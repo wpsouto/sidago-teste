@@ -8,12 +8,13 @@ import org.openqa.selenium.remote.UnreachableBrowserException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 public class BrowserDriver {
-    private static final Logger LOGGER = Logger.getLogger(BrowserDriver.class.getName());
+    private static final Logger log = LoggerFactory.getLogger(BrowserDriver.class);
     private static WebDriver mDriver;
     private static Scenario scenario;
 
@@ -36,9 +37,9 @@ public class BrowserDriver {
         try {
             getCurrentDriver().quit();
             mDriver = null;
-            LOGGER.info("closing the browser");
+            log.debug("Fechando o Browser");
         } catch (UnreachableBrowserException e) {
-            LOGGER.info("cannot close browser: unreachable browser");
+            log.debug("Browser não fechado: unreachable browser");
         }
     }
 
@@ -50,8 +51,7 @@ public class BrowserDriver {
 
     public static void loadPage(String url) {
         getCurrentDriver();
-        LOGGER.info("Directing browser to:" + url);
-        LOGGER.info("try to loadPage [" + url + "]");
+        log.debug("Direcionando o Browser para {}", url);
         getCurrentDriver().get(url);
     }
 
@@ -145,8 +145,5 @@ public class BrowserDriver {
                 .getScreenshotAs(OutputType.BYTES);
         scenario.embed(screenshot, "image/png");
     }
-
-    //Selenium Webdriver - Selecting an item in a tree node
-    //driver.findElements(By.xpath("//span[text()='Child Item One']"))
 }
 

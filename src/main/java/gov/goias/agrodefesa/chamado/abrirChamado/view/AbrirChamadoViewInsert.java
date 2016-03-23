@@ -28,7 +28,7 @@ public class AbrirChamadoViewInsert {
 
     public static void tipoSuporte(String valor) {
         LOGGER.info("Inserindo valor no campo Tipo Suporte");
-        BrowserDriver.getDropDownOption(conteiner.tipoSuporte, valor).click();
+        BrowserDriver.selectByVisibleText(conteiner.tipoSuporte, valor);
     }
 
     public static void classificacao(String valor) {
@@ -40,7 +40,7 @@ public class AbrirChamadoViewInsert {
 
     public static void tipoContato(String valor) {
         LOGGER.info("Inserindo valor no campo Tipo Contato");
-        BrowserDriver.getDropDownOption(conteiner.tipoContato, valor).click();
+        BrowserDriver.selectByVisibleText(conteiner.tipoContato, valor);
     }
 
     public static void problema(String valor) {
@@ -51,7 +51,7 @@ public class AbrirChamadoViewInsert {
 
     public static void adotarChamado(String valor) {
         LOGGER.info("Inserindo valor no campo Adotar Chamado: "+valor);
-        BrowserDriver.getDropDownOption(conteiner.adotarChamado, valor).click();
+        BrowserDriver.selectByVisibleText(conteiner.adotarChamado, valor);
     }
 
     public static void salvar() {

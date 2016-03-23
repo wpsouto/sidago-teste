@@ -8,6 +8,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.safari.SafariDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.io.IOException;
@@ -15,7 +17,8 @@ import java.net.URISyntaxException;
 import java.util.concurrent.TimeUnit;
 
 public class BrowserFactory {
-	
+
+	private static final Logger log = LoggerFactory.getLogger(BrowserFactory.class);
 	private static final String BROWSER_PROP_KEY = "browser";
 	
 	/**
@@ -34,6 +37,8 @@ public class BrowserFactory {
 		}else{
 			browser = Browsers.browserForName(System.getProperty(BROWSER_PROP_KEY));
 		}
+
+		log.info("Inicializando {} Browser..", browser);
 		switch(browser){
 			case CHROME:
 				driver = createChromeDriver();

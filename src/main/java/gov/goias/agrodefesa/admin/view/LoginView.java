@@ -2,23 +2,23 @@ package gov.goias.agrodefesa.admin.view;
 
 import gov.goias.agrodefesa.admin.containers.LoginPageContainer;
 import gov.goias.agrodefesa.utils.BrowserDriver;
+import gov.goias.agrodefesa.utils.Constants;
 import org.openqa.selenium.support.PageFactory;
-
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LoginView {
-	private static final Logger LOGGER = Logger.getLogger(LoginView.class.getName());
+	private static final Logger log = LoggerFactory.getLogger(LoginView.class);
 	private static final LoginPageContainer loginContainer = PageFactory.initElements(BrowserDriver.getCurrentDriver(), LoginPageContainer.class);
 	
 	public static void isDisplayedCheck(){
-		LOGGER.info("Verificando página de login é exibido");
+		log.debug(Constants.MGS_AGUARDANDO);
 		loginContainer.loginHome();
 	}
 	
 	public static void login(String username, String password){
-		LOGGER.info("Fazendo login com nome de usuário:" + username + " senha:" + password);
+        log.info("Fazendo login com nome de usuário: {} senha: {}", username, password);
         loginContainer.login(username,password);
-		LOGGER.info("Login submetido");
 	}
 
 	
