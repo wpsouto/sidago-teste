@@ -1,6 +1,7 @@
 package gov.goias.agrodefesa.utils;
 
 import gov.goias.agrodefesa.constants.Browsers;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,6 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.safari.SafariDriver;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.concurrent.TimeUnit;
@@ -84,9 +86,9 @@ public class BrowserFactory {
 	private static void addAllBrowserSetup(WebDriver driver) {
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.manage().window().setPosition(new Point(0, 0));
-        //java.awt.Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        //Dimension dim = new Dimension((int) screenSize.getWidth(), (int) screenSize.getHeight());
-        //driver.manage().window().setSize(dim);
+        java.awt.Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension dim = new Dimension((int) screenSize.getWidth(), (int) screenSize.getHeight());
+        driver.manage().window().setSize(dim);
 	}
 
 }
