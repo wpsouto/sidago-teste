@@ -9,6 +9,15 @@ Xvfb :99 -ac -screen 0 1024x768x8
 
 ## JENKINS
 
+##### CONFIG
+###### Plugins
+```cmd
+Cucumber-jvm reports
+Git plugin
+Maven Integration plugin
+Xvfb plugin
+Extensible Choice Parameter plugin
+```
 ###### REINICIAR
 ```cmd
 cd /etc/init.d/
@@ -16,7 +25,6 @@ sudo ./jenkins stop
 sudo ./jenkins start
 ```
 
-##### CONFIG
 ###### Xvfb installation
 ![Xvfb installation]
 (https://github.com/wpsouto/sidago-teste/blob/master/.README/xvfb_installation.png)
@@ -57,3 +65,19 @@ Choices:
 
 ![build e parametrizado]
 (https://github.com/wpsouto/sidago-teste/blob/master/.README/build_parametrizado.png)
+
+###### Gerenciador de codigo fonte
+![Git]
+(https://github.com/wpsouto/sidago-teste/blob/master/.README/git.png)
+
+###### Ambiente de build
+![Git]
+(https://github.com/wpsouto/sidago-teste/blob/master/.README/ambiente_build.png)
+
+###### build Maven
+![Git]
+(https://github.com/wpsouto/sidago-teste/blob/master/.README/build_maven.png)
+
+###### Pos Build Cucumber-jvm
+![Git]
+(https://github.com/wpsouto/sidago-teste/blob/master/.README/pos_cucumber.png)
