@@ -53,4 +53,4 @@ Choices:
 There is a feature overview page:
 
 ![feature overview page]
-(https://github.com/damianszczepanik/cucumber-reporting/raw/master/.README/feature-overview.png)
+(https://github.com/wpsouto/sidago-teste/blob/master/.README/build_parametrizado)
