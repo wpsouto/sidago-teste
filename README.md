@@ -5,8 +5,6 @@ sudo apt-get install xvfb x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalab
 
 Xvfb :99 -ac -screen 0 1024x768x8
 
-- Plugins: purge-job-history, xvfb
-
 ## JENKINS
 
 ##### CONFIG
@@ -17,6 +15,7 @@ Git plugin
 Maven Integration plugin
 Xvfb plugin
 Extensible Choice Parameter plugin
+purge-job-history
 ```
 ###### REINICIAR
 ```cmd
