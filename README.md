@@ -16,6 +16,11 @@ sudo ./jenkins stop
 sudo ./jenkins start
 ```
 
+##### CONFIG
+###### Xvfb installation
+![Xvfb installation]
+(https://github.com/wpsouto/sidago-teste/blob/master/.README/xvfb_installation.png)
+
 ##### CRIAR PROJETO
 ###### Build parametrizado
 
@@ -50,7 +55,5 @@ Choices:
 --tags @Produto
 ```
 
-There is a feature overview page:
-
-![feature overview page]
-(https://github.com/wpsouto/sidago-teste/blob/master/.README/build_parametrizado)
+![build e parametrizado]
+(https://github.com/wpsouto/sidago-teste/blob/master/.README/build_parametrizado.png)
