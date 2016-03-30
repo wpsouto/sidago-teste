@@ -9,6 +9,9 @@ public class EmpresaPageContainerEdit {
     @FindBy(how = How.ID, using = "bt_salvarsemenviar")
     public WebElement home;
 
+    @FindBy(how = How.ID, using = "bt_enviarcadastro")
+    public WebElement enviarCadastro;
+
     @FindBy(how = How.ID, using = "bt_salvarsemenviar")
     public WebElement salvar;
 

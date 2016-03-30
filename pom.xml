@@ -9,11 +9,13 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <project.build.sourceencoding>UTF-8</project.build.sourceencoding>
         <java.version>1.8</java.version>
         <junit.version>4.12</junit.version>
         <cucumber.version>1.2.4</cucumber.version>
         <cucumber-reporting.version>2.0.0</cucumber-reporting.version>
         <selenium-java.version>2.52.0</selenium-java.version>
+        <snakeyaml.version>1.17</snakeyaml.version>
         <logback-classic.version>1.1.6</logback-classic.version>
         <maven.compiler.version>3.3</maven.compiler.version>
     </properties>
@@ -61,6 +63,12 @@
             <version>${selenium-java.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>${snakeyaml.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -70,7 +78,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven.compiler.version}</version>
                 <configuration>
-                    <encoding>UTF-8</encoding>
+                    <encoding>${project.build.sourceencoding}</encoding>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                     <compilerArgument>-Werror</compilerArgument>
@@ -88,35 +96,6 @@
                     </includes>
                 </configuration>
             </plugin>
-
-<!--
-            <plugin>
-                <groupId>net.masterthought</groupId>
-                <artifactId>maven-cucumber-reporting</artifactId>
-                <version>${maven.cucumber.reporting.version}</version>
-                <executions>
-                    <execution>
-                        <id>execution</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            &lt;!&ndash;<buildNumber>1</buildNumber>&ndash;&gt;
-                            &lt;!&ndash;<checkBuildResult>true</checkBuildResult>&ndash;&gt;
-                            <cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
-                            <enableFlashCharts>false</enableFlashCharts>
-                            &lt;!&ndash;<missingFails>false</missingFails>&ndash;&gt;
-                            <outputDirectory>${project.build.directory}/cucumber-reports</outputDirectory>
-                            &lt;!&ndash;<pendingFails>false</pendingFails>&ndash;&gt;
-                            <projectName>${project.name}</projectName>
-                            <skippedFails>false</skippedFails>
-                            <undefinedFails>false</undefinedFails>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
--->
         </plugins>
     </build>
 

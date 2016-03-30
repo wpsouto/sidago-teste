@@ -42,6 +42,12 @@ public class EmpresaPageContainerInsert {
     @FindBy(how = How.LINK_TEXT, using = "Adicionar Endereço")
     public WebElement adicionarEndereco;
 
+    @FindBy(how = How.LINK_TEXT, using = "Anexar Documentos")
+    public WebElement anexarDocumentos;
+
+    @FindBy(how = How.LINK_TEXT, using = "Adicionar Anexo")
+    public WebElement adicionarAnexo;
+
     @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Confirmar']")
     public WebElement confirmar;
 
