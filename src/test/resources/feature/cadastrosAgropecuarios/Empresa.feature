@@ -14,4 +14,4 @@ Funcionalidade: Testando as funcionalidade de Empresa
 
     Exemplos:
       | id  | classificacao                                                |
-      |72   |SIE - ENTREPOSTO OVOS                                         |
+      |56   |ABATEDOURO - SIF                                              |
