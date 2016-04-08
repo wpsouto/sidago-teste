@@ -16,8 +16,7 @@ public class NavigationEmpresa implements NavegacaoStrategy {
 
     public NavigationEmpresa() {
         empresa = ResourceFactory.initElements(Empresa.class);
-        empresa.getInformacaoObrigatoria().setCpfCnpj("27721567000103");
-        //empresa.getInformacaoObrigatoria().setCpfCnpj(Generator.cnpj());
+        empresa.getInformacaoObrigatoria().setCpfCnpj(Generator.cnpj());
     }
 
     @Override
