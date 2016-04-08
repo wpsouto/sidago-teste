@@ -5,6 +5,7 @@ package gov.goias.agrodefesa.utils;
  */
 public class NavegacaoType {
     public static final String HTTP_BASE = "http://qa.agrodefesa.go.gov.br/";
+    //public static final String HTTP_BASE = "http://localhost/";
 
     public static final String CHAMADO = "chamado/";
     public static final NavegacaoType ABRIR_CHAMADO;

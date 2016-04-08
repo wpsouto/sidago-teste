@@ -5,7 +5,7 @@ import gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.view.PessoaViewHome;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.view.PessoaViewInsert;
 import gov.goias.agrodefesa.constants.Action;
 import gov.goias.agrodefesa.utils.BrowserDriver;
-import gov.goias.agrodefesa.utils.CNPJGenerator;
+import gov.goias.agrodefesa.utils.Generator;
 import gov.goias.agrodefesa.utils.NavegacaoStrategy;
 import gov.goias.agrodefesa.utils.NavegacaoType;
 
@@ -21,7 +21,7 @@ public class NavigationPessoa implements NavegacaoStrategy {
 
 
     public NavigationPessoa() {
-        this.cnpj = CNPJGenerator.cnpj();
+        this.cnpj = Generator.cnpj();
     }
 
     @Override

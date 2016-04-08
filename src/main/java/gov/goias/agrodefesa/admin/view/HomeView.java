@@ -23,7 +23,7 @@ public class HomeView {
     }
 
     public static boolean isUserName(String userName){
-        log.debug("Verificando se o nome do usuario logado esta correto");
+        log.debug("Verificando se o descricao do usuario logado esta correto");
         return container.homePageTitle.getText().toUpperCase().contains(userName.toUpperCase());
     }
 

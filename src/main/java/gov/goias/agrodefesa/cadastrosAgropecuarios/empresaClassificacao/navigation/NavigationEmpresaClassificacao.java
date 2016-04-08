@@ -5,7 +5,6 @@ import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaClassificacao.view.Emp
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaClassificacao.view.EmpresaClassificacaoViewInsert;
 import gov.goias.agrodefesa.constants.Action;
 import gov.goias.agrodefesa.utils.BrowserDriver;
-import gov.goias.agrodefesa.utils.CNPJGenerator;
 import gov.goias.agrodefesa.utils.NavegacaoStrategy;
 import gov.goias.agrodefesa.utils.NavegacaoType;
 

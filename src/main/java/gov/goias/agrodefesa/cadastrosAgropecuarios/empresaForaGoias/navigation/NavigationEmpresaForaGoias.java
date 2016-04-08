@@ -5,7 +5,7 @@ import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaForaGoias.view.Empresa
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaForaGoias.view.EmpresaForaGoiasViewInsert;
 import gov.goias.agrodefesa.constants.Action;
 import gov.goias.agrodefesa.utils.BrowserDriver;
-import gov.goias.agrodefesa.utils.CNPJGenerator;
+import gov.goias.agrodefesa.utils.Generator;
 import gov.goias.agrodefesa.utils.NavegacaoStrategy;
 import gov.goias.agrodefesa.utils.NavegacaoType;
 
@@ -19,7 +19,7 @@ public class NavigationEmpresaForaGoias implements NavegacaoStrategy {
     private static final String CLASSIFICACAO = "CASA AGROPECUÁRIA - SEMENTES";
 
     public NavigationEmpresaForaGoias() {
-        this.cnpj = CNPJGenerator.cnpj();
+        this.cnpj = Generator.cnpj();
     }
 
     @Override

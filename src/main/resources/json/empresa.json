@@ -1,0 +1,25 @@
+{
+  "informacaoObrigatoria": {
+    "classificacao": {
+      "id": "56",
+      "descricao": "ABATEDOURO - SIF"
+    },
+
+    "qtdAnimaisConfinados": "50",
+    "qtdAnimaisProcessados": "50",
+    "qtdLitrosLeite": "50",
+    "numeroServicoInspecao": "10",
+    "numeroRenasem": "10",
+    "capacidadeAlojamento": "10",
+    "socio": "WEMERSON BARBOSA DA SILVA",
+    "nomeEmpresa": "Teste Automatizado",
+    "nomeFantasia": "Teste Automatizado",
+    "porteEmpresa": "Pequeno Porte"
+  },
+  "informacaoComplementar": {
+    "endereco": {}
+  },
+  "anexarDocumentos": {
+    "anexo": "upload.pdf"
+  }
+}

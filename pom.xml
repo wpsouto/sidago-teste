@@ -15,7 +15,6 @@
         <cucumber.version>1.2.4</cucumber.version>
         <cucumber-reporting.version>2.0.0</cucumber-reporting.version>
         <selenium-java.version>2.52.0</selenium-java.version>
-        <snakeyaml.version>1.17</snakeyaml.version>
         <logback-classic.version>1.1.6</logback-classic.version>
         <maven.compiler.version>3.3</maven.compiler.version>
     </properties>
@@ -61,12 +60,6 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium-java.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.yaml</groupId>
-            <artifactId>snakeyaml</artifactId>
-            <version>${snakeyaml.version}</version>
         </dependency>
 
     </dependencies>

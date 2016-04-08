@@ -48,6 +48,21 @@ public class EmpresaPageContainerInsert {
     @FindBy(how = How.LINK_TEXT, using = "Adicionar Anexo")
     public WebElement adicionarAnexo;
 
+    @FindBy(how = How.ID, using = "div_id_anexo")
+    public WebElement anexo;
+
+    @FindBy(how = How.ID, using = "id_documentorequerido")
+    public WebElement tipoDocumento;
+
+    @FindBy(how = How.ID, using = "dt_vencimento")
+    public WebElement dataVencimento;
+
+    @FindBy(how = How.CSS, using = "a.ui-state-default.ui-state-highlight")
+    public WebElement dataAtual;
+
+    @FindBy(how = How.ID, using = "doc_2016")
+    public WebElement file;
+
     @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Confirmar']")
     public WebElement confirmar;
 

@@ -3,7 +3,7 @@ package gov.goias.agrodefesa.utils;
 /**
  * Created by usuario on 17/03/16.
  */
-public class CNPJGenerator {
+public class Generator {
 
     private static boolean	comPontos	= false;
 
@@ -56,7 +56,7 @@ public class CNPJGenerator {
 
     public static void main(String[] args) {
         //CNPJGenerator gerador = new CNPJGenerator();
-        String cnpj = CNPJGenerator.cnpj();
+        String cnpj = Generator.cnpj();
         System.out.printf("CNPJ: %s \n", cnpj);
     }
 }

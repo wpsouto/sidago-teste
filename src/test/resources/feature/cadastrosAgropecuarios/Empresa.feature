@@ -4,11 +4,14 @@
 
 Funcionalidade: Testando as funcionalidade de Empresa
 
-  Cenário: 1-Fluxo Principal
+  Cenário de Fundo: Preparando o Sistema
     Dado Eu faco login no sistema com o CPF "administrador" USUARIO "Administrador" tela inicial "Empresa"
-    Quando Eu "insiro" um registro de "Empresa"
-    Então Eu recebo a mensagem "inserido" do "Empresa"
-    Quando Eu "altero" um registro de "Empresa"
+
+  Delineacao do Cenario: 2-Fluxo Alternativo -Validar Aprovação de Empresa
+    Quando Eu altero a a Classificao da Empresa para: "<id>" "<classificacao>"
     Então Eu recebo a mensagem "alterado" do "Empresa"
+    Quando Eu aprovo um registro de Empresa
 
-
+    Exemplos:
+      | id  | classificacao                                                |
+      |72   |SIE - ENTREPOSTO OVOS                                         |

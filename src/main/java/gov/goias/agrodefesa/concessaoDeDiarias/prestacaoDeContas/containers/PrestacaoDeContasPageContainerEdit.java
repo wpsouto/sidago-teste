@@ -15,8 +15,10 @@ public class PrestacaoDeContasPageContainerEdit {
     @FindBy(how = How.XPATH, using = "//input[@type='file']")
     public WebElement teste;
 
+/*
     @FindBy(how = How.XPATH, using = "//input[@value='Escolher Arquivos...']")
     public WebElement arquivos;
+*/
 
     @FindBy(how = How.ID, using = "bt_alterar")
     public WebElement salvar;

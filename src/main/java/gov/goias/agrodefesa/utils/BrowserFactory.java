@@ -72,11 +72,9 @@ public class BrowserFactory {
 	private static FirefoxProfile getFirefoxProfile() {
         FirefoxProfile firefoxProfile = new FirefoxProfile();
         try {
-			firefoxProfile.addExtension(FileUtils.getFile("firebug/firebug-2.0.14.xpi"));
+			firefoxProfile.addExtension(FileUtils.getFileFromResource("firebug/firebug-2.0.14.xpi"));
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (URISyntaxException e){
-        	e.printStackTrace();
         }
 
         //See http://getfirebug.com/wiki/index.php/Firebug_Preferences

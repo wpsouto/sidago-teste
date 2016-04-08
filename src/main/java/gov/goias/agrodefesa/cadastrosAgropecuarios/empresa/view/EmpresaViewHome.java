@@ -40,10 +40,19 @@ public class EmpresaViewHome {
 		container.gridRow.isDisplayed();
 	}
 
+	public static String situacaoCadastral() {
+		BrowserDriver.waitForElement(container.gridRow);
+		return container.gridRow.getText();
+	}
+
 	public static void alterar() {
         log.debug(Constants.MGS_SELECIONADO, "ALTERAR");
 		container.alterar.click();
 	}
 
+	public static void aprovar() {
+		log.debug(Constants.MGS_SELECIONADO, "APROVAR");
+		container.aprovar.click();
+	}
 
 }

@@ -65,6 +65,27 @@ public class BrowserDriver {
         return waitForElement(elementToWaitFor, null);
     }
 
+    public static void waitFor(Integer waitTimeInSeconds) {
+        try {
+            Thread.sleep(waitTimeInSeconds*1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void waitForValue(WebElement elementToWaitFor, String value) {
+        waitForValue(elementToWaitFor, value, 10);
+    }
+
+    public static void waitForValue(WebElement elementToWaitFor, String value, Integer waitTimeInSeconds) {
+        if (waitTimeInSeconds == null) {
+            waitTimeInSeconds = 10;
+        }
+
+        WebDriverWait wait = new WebDriverWait(getCurrentDriver(), waitTimeInSeconds);
+        wait.until(ExpectedConditions.textToBePresentInElementValue(elementToWaitFor, value));
+    }
+
     public static WebElement waitForElement(WebElement elementToWaitFor, Integer waitTimeInSeconds) {
         if (waitTimeInSeconds == null) {
             waitTimeInSeconds = 10;
@@ -84,13 +105,13 @@ public class BrowserDriver {
         return webElement != null;
     }
 
+    public static boolean isElementPresent(String ID){
+        return (getCurrentDriver().findElements(By.id(ID)).size() > 0);
+    }
+
     public static void waitForElementIsNotPresent(By locator){
         WebDriverWait wait = new WebDriverWait(getCurrentDriver(), 10);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
-    }
-
-    public static boolean isElementPresent(String ID){
-        return (getCurrentDriver().findElements(By.id(ID)).size() > 0);
     }
 
     public static List<WebElement> getDropDownOptions(WebElement webElement) {
@@ -101,6 +122,11 @@ public class BrowserDriver {
     public static void selectByVisibleText(WebElement webElement, String value) {
         Select select = new Select(webElement);
         select.selectByVisibleText(value);
+    }
+
+    public static void selectByIndex(WebElement webElement, int value) {
+        Select select = new Select(webElement);
+        select.selectByIndex(value);
     }
 
     @Deprecated

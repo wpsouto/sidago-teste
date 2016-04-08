@@ -1,12 +1,6 @@
 package gov.goias.agrodefesa.controleDeBens.almoxarifado;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.yaml.snakeyaml.Yaml;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 /**
  * Created by usuario on 29/03/16.
@@ -60,11 +54,4 @@ public class Almoxarifado {
                 .toString();
     }
 
-    public static void main(String[] args) throws IOException {
-        Yaml yaml = new Yaml();
-
-        InputStream in = Files.newInputStream(Paths.get("/home/usuario/AmbienteTrabalho/temporario/sidago-teste/.yaml/almoxarifado.yml"));
-        Almoxarifado almoxarifado = yaml.loadAs(in, Almoxarifado.class);
-        System.out.println("almoxarifado = " + almoxarifado);
-    }
 }

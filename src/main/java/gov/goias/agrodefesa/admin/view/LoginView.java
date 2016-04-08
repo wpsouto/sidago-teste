@@ -17,7 +17,7 @@ public class LoginView {
 	}
 	
 	public static void login(String username, String password){
-        log.info("Fazendo login com nome de usuário: {} senha: {}", username, password);
+        log.info("Fazendo login com descricao de usuário: {} senha: {}", username, password);
         loginContainer.login(username,password);
 	}
 
