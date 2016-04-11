@@ -13,10 +13,11 @@ import gov.goias.agrodefesa.utils.*;
  */
 public class NavigationEmpresa implements NavegacaoStrategy {
     private Empresa empresa;
+    private boolean alterado= false;
 
     public NavigationEmpresa() {
         empresa = ResourceFactory.initElements(Empresa.class);
-        empresa.getInformacaoObrigatoria().setCpfCnpj(Generator.cnpj());
+        //empresa.getInformacaoObrigatoria().setCpfCnpj(Generator.cnpj());
     }
 
     @Override
@@ -44,24 +45,40 @@ public class NavigationEmpresa implements NavegacaoStrategy {
                 break;
             case EDIT:
                 execAcao(Action.SEARCH);
-                Boolean enviarDocumentos = EmpresaViewHome.situacaoCadastral().contains("Aguardando Envio Cadastro");
-                EmpresaViewHome.alterar();
-                EmpresaViewEdit.isDisplayedCheck();
-                EmpresaViewEdit.anexarDocumentos(empresa.getAnexarDocumentos());
-                if (enviarDocumentos) {
+                alterado = false;
+                if (EmpresaViewHome.situacaoCadastral().contains("Aguardando Envio Cadastro")){
+                    EmpresaViewHome.alterar();
+                    EmpresaViewEdit.isDisplayedCheck();
+                    EmpresaViewEdit.anexarDocumentos(empresa.getAnexarDocumentos());
                     EmpresaViewEdit.enviarCadastro();
-                } else {
-                    EmpresaViewEdit.salvar();
+                    alterado = true;
                 }
                 break;
             case MENSAGEM_INSERT:
                 EmpresaViewInsert.aviso("Registro inserido com sucesso!");
                 break;
             case MENSAGEM_EDIT:
-                EmpresaViewEdit.aviso("Registro alterado com sucesso!");
+                if (alterado) {
+                    EmpresaViewEdit.aviso("Registro alterado com sucesso!");
+                }
                 break;
         }
 
+    }
+
+    public void inserir(String id, String descricao) {
+        empresa.getInformacaoObrigatoria().setCpfCnpj(Generator.cnpj());
+        empresa.getInformacaoObrigatoria().getClassificacao().setId(id);
+        empresa.getInformacaoObrigatoria().getClassificacao().setDescricao(descricao);
+
+        EmpresaViewHome.incluirRegistro();
+        EmpresaViewInsert.isDisplayedCheck();
+        EmpresaViewInsert.documento(empresa.getInformacaoObrigatoria().getCpfCnpj());
+        EmpresaViewInsert.classificacao(empresa.getInformacaoObrigatoria().getClassificacao().getDescricao());
+        EmpresaViewInsert.pesquisar();
+        EmpresaViewInsert.informacaoObrigatoria(empresa.getInformacaoObrigatoria());
+        EmpresaViewInsert.informacaoComplementar();
+        EmpresaViewInsert.salvar();
     }
 
     public void alterar(String id, String descricao) {
@@ -76,13 +93,6 @@ public class NavigationEmpresa implements NavegacaoStrategy {
 
     public void aprovar() {
         execAcao(Action.SEARCH);
-        Boolean enviarDocumentos = EmpresaViewHome.situacaoCadastral().contains("Aguardando Envio Cadastro");
-        if (enviarDocumentos) {
-            execAcao(Action.EDIT);
-            execAcao(Action.MENSAGEM_EDIT);
-            execAcao(Action.SEARCH);
-        }
-
         EmpresaViewHome.aprovar();
         EmpresaViewAprovacao.isDisplayedCheck();
         EmpresaViewAprovacao.validar(empresa.getInformacaoObrigatoria().getClassificacao().getId());

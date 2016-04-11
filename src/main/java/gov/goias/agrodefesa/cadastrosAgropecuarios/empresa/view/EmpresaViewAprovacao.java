@@ -28,12 +28,6 @@ public class EmpresaViewAprovacao {
         Grupo grupo = new Grupo();
         grupo.initialize(Integer.valueOf(id));
 
-        log.debug("Aguardando numero de linhas...");
-        List<WebElement> tr_collection= BrowserDriver.getCurrentDriver().findElements(By.xpath("//*[@id=\"divEdicao\"]/table/tbody/tr"));
-        if (tr_collection.size() == 0 )
-            log.debug("TAG ------", conteiner.home.getText());
-
-        log.debug("Numero de linhas {}", tr_collection.size());
         log.debug(Constants.MGS_SELECIONADO, "TABELA");
         BrowserDriver.waitForElement(conteiner.table);
         String table = conteiner.table.getText();

@@ -7,14 +7,10 @@ Funcionalidade: Testando as funcionalidade de Empresa
   Cenário de Fundo: Preparando o Sistema
     Dado Eu faco login no sistema com o CPF "administrador" USUARIO "Administrador" tela inicial "Empresa"
 
-  Cenario: 1-Fluxo Principal
-    Quando Eu "insiro" um registro de "Empresa"
+  Delineacao do Cenario: 1-Fluxo Principal
+    Quando Eu insiro um registro de Empresa com a Classificacao: "<id>" "<classificacao>"
     Então Eu recebo a mensagem "inserido" do "Empresa"
     Quando Eu "altero" um registro de "Empresa"
-    Então Eu recebo a mensagem "alterado" do "Empresa"
-  
-  Delineacao do Cenario: 2-Fluxo Alternativo -Validar Aprovação de Empresa
-    Quando Eu altero a a Classificao da Empresa para: "<id>" "<classificacao>"
     Então Eu recebo a mensagem "alterado" do "Empresa"
     Quando Eu aprovo um registro de Empresa
 
@@ -45,4 +41,3 @@ Funcionalidade: Testando as funcionalidade de Empresa
       |81   |SIE - INDÚSTRIA DE PRODUTOS NÃO COMESTÍVEIS                   |
       |85   |SIE - LATICÍNIOS                                              |
       |93   |UNIDADE DE RECEBIMENTO EMBALAGENS VAZIAS DE AGROTÓXICOS       |
-

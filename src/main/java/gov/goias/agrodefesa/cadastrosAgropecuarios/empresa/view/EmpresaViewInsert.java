@@ -54,63 +54,64 @@ public class EmpresaViewInsert {
 
         log.debug(Constants.MGS_INSERIDO, "NOME FANTASIA", informacaoObrigatoria.getNomeFantasia());
         conteiner.nomeFantasia.sendKeys(informacaoObrigatoria.getNomeFantasia());
+
+        if (conteiner.porteEmpresa.isDisplayed()){
+            log.debug(Constants.MGS_INSERIDO, "PORTE EMPRESA", informacaoObrigatoria.getPorteEmpresa());
+            BrowserDriver.selectByVisibleText(conteiner.porteEmpresa, informacaoObrigatoria.getPorteEmpresa());
+        }
+
+        if (conteiner.qtdAnimaisConfinados.isDisplayed()){
+            log.debug(Constants.MGS_INSERIDO, "QTD ANIMAIS CONFINADOS", informacaoObrigatoria.getQtdAnimaisConfinados());
+            conteiner.qtdAnimaisConfinados.clear();
+            conteiner.qtdAnimaisConfinados.sendKeys(informacaoObrigatoria.getQtdAnimaisConfinados());
+        }
+
+        if (conteiner.qtdAnimaisProcessados.isDisplayed()){
+            log.debug(Constants.MGS_INSERIDO, "QTD ANIMAIS PROCESSADOS", informacaoObrigatoria.getQtdAnimaisProcessados());
+            conteiner.qtdAnimaisProcessados.clear();
+            conteiner.qtdAnimaisProcessados.sendKeys(informacaoObrigatoria.getQtdAnimaisProcessados());
+        }
+
+        if (conteiner.numeroServicoInspecao.isDisplayed()){
+            log.debug(Constants.MGS_INSERIDO, "NUMERO SERVICO INSPECAO", informacaoObrigatoria.getQtdAnimaisConfinados());
+            conteiner.numeroServicoInspecao.clear();
+            conteiner.numeroServicoInspecao.sendKeys(informacaoObrigatoria.getNumeroServicoInspecao());
+        }
+
+        if (conteiner.capacidadeAlojamento.isDisplayed()){
+            log.debug(Constants.MGS_INSERIDO, "CAPACIDADE ALOJAMENTO", informacaoObrigatoria.getCapacidadeAlojamento());
+            conteiner.capacidadeAlojamento.clear();
+            conteiner.capacidadeAlojamento.sendKeys(informacaoObrigatoria.getCapacidadeAlojamento());
+        }
+
+        if (conteiner.qtdLitrosLeite.isDisplayed()){
+            log.debug(Constants.MGS_INSERIDO, "QTD LISTRO DE LEITE", informacaoObrigatoria.getQtdLitrosLeite());
+            conteiner.qtdLitrosLeite.clear();
+            conteiner.qtdLitrosLeite.sendKeys(informacaoObrigatoria.getQtdLitrosLeite());
+        }
+
+        if (conteiner.numeroRenasem.isDisplayed()){
+            log.debug(Constants.MGS_INSERIDO, "NUMERO RENASEM", informacaoObrigatoria.getNumeroRenasem());
+            conteiner.numeroRenasem.clear();
+            conteiner.numeroRenasem.sendKeys(informacaoObrigatoria.getNumeroRenasem());
+        }
+
+        //BrowserDriver.waitFor(10);
     }
 
     public static void informacaoComplementar(){
+        JavascriptExecutor executor =  ((JavascriptExecutor) BrowserDriver.getCurrentDriver());
+        executor.executeScript("scroll(250, 0)");
+
         log.debug(Constants.MGS_SELECIONADO, "INFORMACAO COMPLEMENTAR");
-        BrowserDriver.waitForElement(conteiner.informacaoComplementar);
+        //BrowserDriver.waitForElement(conteiner.informacaoComplementar);
+        BrowserDriver.waitForClickable(conteiner.informacaoComplementar);
         conteiner.informacaoComplementar.click();
         conteiner.adicionarEndereco.click();
+        BrowserDriver.waitForElement(conteiner.confirmar);
         conteiner.confirmar.click();
         BrowserDriver.waitForElementIsNotPresent(By.id("div_id_endereco"));
     }
-
-/*
-    public static void anexarDocumentos(Empresa.AnexarDocumentos anexarDocumentos) {
-        log.debug(Constants.MGS_SELECIONADO, "ANEXAR DOCUMENTOS");
-        BrowserDriver.waitForElement(conteiner.anexarDocumentos);
-        conteiner.anexarDocumentos.click();
-
-        String fileName = FileUtils.getFileFromResource(anexarDocumentos.getAnexo()).getPath();
-        upload( "ANOTAÇÃO DE RESPONSABILIDADE TÉCNICA (VETERINÁRIO)", fileName);
-        upload( "CARTEIRA DE IDENTIDADE PROFISSIONAL - RT", fileName);
-        upload( "TERMO DE FISCALIZAÇÃO", fileName);
-        upload( "COMPROVANTE DE ENDEREÇO", fileName);
-        upload( "TERMO DE RESPONSABILIDADE - RT", fileName);
-        upload( "COMPROVANTE DE ENDERECO DO RT", fileName);
-        upload( "REQUERIMENTO DE RT", fileName);
-        upload( "CERTIDAO NEGATIVA DE REGISTRO DO RT", fileName);
-        upload( "LAUDO DE VISTORIA - ANIMAL", fileName);
-        upload( "CONTRATO SOCIAL", fileName);
-        upload( "REQUERIMENTO", fileName);
-    }
-*/
-
-    public static void anexarDocumentos(Empresa.AnexarDocumentos anexarDocumentos) {
-        log.debug(Constants.MGS_SELECIONADO, "ANEXAR DOCUMENTOS");
-        BrowserDriver.waitForElement(conteiner.anexarDocumentos);
-        conteiner.anexarDocumentos.click();
-        upload(FileUtils.getFileFromResource(anexarDocumentos.getAnexo()).getPath());
-    }
-
-/*
-    public static void upload(String tipoDocumento, String fileUpload){
-        conteiner.adicionarAnexo.click();
-        BrowserDriver.waitForElement(conteiner.anexo);
-        BrowserDriver.selectByVisibleText(conteiner.tipoDocumento, tipoDocumento);
-        if (conteiner.dataVencimento.isDisplayed()){
-            conteiner.dataVencimento.sendKeys("");
-            conteiner.dataAtual.click();
-        }
-
-        JavascriptExecutor executor =  ((JavascriptExecutor) BrowserDriver.getCurrentDriver());
-        String js = "arguments[0].style.display ='block';";
-        executor.executeScript(js, conteiner.file);
-        conteiner.file.sendKeys(fileUpload);
-        conteiner.confirmar.click();
-        BrowserDriver.waitForElementIsNotPresent(By.id("div_id_anexo"));
-    }
-*/
 
     public static void upload(String fileUpload){
         conteiner.adicionarAnexo.click();

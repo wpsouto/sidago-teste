@@ -30,6 +30,27 @@ public class EmpresaPageContainerInsert {
     @FindBy(how = How.XPATH, using = "//*[@id=\"ui-id-1\"]/li[1]")
     public WebElement socioAutoComplete;
 
+    @FindBy(how = How.ID, using = "nu_capacidadealojamento")
+    public WebElement capacidadeAlojamento;
+
+    @FindBy(how = How.ID, using = "nu_servicoinspecao")
+    public WebElement numeroServicoInspecao;
+
+    @FindBy(how = How.ID, using = "nu_renasem")
+    public WebElement numeroRenasem;
+
+    @FindBy(how = How.ID, using = "nu_litrosleitedia")
+    public WebElement qtdLitrosLeite;
+
+    @FindBy(how = How.ID, using = "nu_animaisprocessadosdia")
+    public WebElement qtdAnimaisProcessados;
+
+    @FindBy(how = How.ID, using = "nu_animaisconfinados")
+    public WebElement qtdAnimaisConfinados;
+
+    @FindBy(how = How.ID, using = "ds_porte")
+    public WebElement porteEmpresa;
+
     @FindBy(how = How.ID, using = "nome")
     public WebElement nomeEmpresa;
 

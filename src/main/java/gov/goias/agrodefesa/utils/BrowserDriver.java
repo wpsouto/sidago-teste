@@ -86,6 +86,19 @@ public class BrowserDriver {
         wait.until(ExpectedConditions.textToBePresentInElementValue(elementToWaitFor, value));
     }
 
+    public static WebElement waitForClickable(WebElement elementToWaitFor) {
+        return waitForClickable(elementToWaitFor, 10);
+    }
+
+    public static WebElement waitForClickable(WebElement elementToWaitFor, Integer waitTimeInSeconds) {
+        if (waitTimeInSeconds == null) {
+            waitTimeInSeconds = 10;
+        }
+
+        WebDriverWait wait = new WebDriverWait(getCurrentDriver(), waitTimeInSeconds);
+        return wait.until(ExpectedConditions.elementToBeClickable(elementToWaitFor));
+    }
+
     public static WebElement waitForElement(WebElement elementToWaitFor, Integer waitTimeInSeconds) {
         if (waitTimeInSeconds == null) {
             waitTimeInSeconds = 10;
