@@ -25,8 +25,9 @@ public class EmpresaViewAprovacao {
         Grupo grupo = new Grupo();
         grupo.initialize(Integer.valueOf(id));
 
-        //BrowserDriver.waitForElement(conteiner.table);
-        String table = conteiner.home.getText();
+        log.debug(Constants.MGS_SELECIONADO, "TABELA");
+        BrowserDriver.waitForElement(conteiner.table);
+        String table = conteiner.table.getText();
         boolean valido;
         Enumeration names = grupo.labels().keys();
         while(names.hasMoreElements()) {
