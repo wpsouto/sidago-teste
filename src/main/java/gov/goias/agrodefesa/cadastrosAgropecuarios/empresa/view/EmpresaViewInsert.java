@@ -4,10 +4,8 @@ import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.Empresa;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.containers.EmpresaPageContainerInsert;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
-import gov.goias.agrodefesa.utils.FileUtils;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -95,53 +93,18 @@ public class EmpresaViewInsert {
             conteiner.numeroRenasem.clear();
             conteiner.numeroRenasem.sendKeys(informacaoObrigatoria.getNumeroRenasem());
         }
-
-        //BrowserDriver.waitFor(10);
     }
 
     public static void informacaoComplementar(){
-        JavascriptExecutor executor =  ((JavascriptExecutor) BrowserDriver.getCurrentDriver());
-        executor.executeScript("scroll(250, 0)");
+        BrowserDriver.scrollUp();
 
         log.debug(Constants.MGS_SELECIONADO, "INFORMACAO COMPLEMENTAR");
-        //BrowserDriver.waitForElement(conteiner.informacaoComplementar);
         BrowserDriver.waitForClickable(conteiner.informacaoComplementar);
         conteiner.informacaoComplementar.click();
         conteiner.adicionarEndereco.click();
         BrowserDriver.waitForElement(conteiner.confirmar);
         conteiner.confirmar.click();
         BrowserDriver.waitForElementIsNotPresent(By.id("div_id_endereco"));
-    }
-
-    public static void upload(String fileUpload){
-        conteiner.adicionarAnexo.click();
-        BrowserDriver.waitForElement(conteiner.tipoDocumento);
-
-        Integer options = BrowserDriver.getDropDownOptions(conteiner.tipoDocumento).size();
-        log.debug("Quantidade de documentos encontrados {}", options);
-
-        for (int i = 1; i < options; i++) {
-            log.debug("Elemento {}", i);
-            BrowserDriver.selectByIndex(conteiner.tipoDocumento, i);
-            if (conteiner.dataVencimento.isDisplayed()) {
-                conteiner.dataVencimento.sendKeys("");
-                conteiner.dataAtual.click();
-            }
-
-            JavascriptExecutor executor =  ((JavascriptExecutor) BrowserDriver.getCurrentDriver());
-            String js = "arguments[0].style.display ='block';";
-            executor.executeScript(js, conteiner.file);
-            conteiner.file.sendKeys(fileUpload);
-            conteiner.confirmar.click();
-
-            BrowserDriver.waitForElementIsNotPresent(By.id("div_id_anexo"));
-
-            if (i != options-1) {
-                executor.executeScript("scroll(250, 0)");
-                conteiner.adicionarAnexo.click();
-                BrowserDriver.waitForElement(conteiner.tipoDocumento);
-            }
-        }
     }
 
     public static void salvar() {

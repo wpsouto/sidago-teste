@@ -73,6 +73,16 @@ public class BrowserDriver {
         }
     }
 
+    public static void scrollUp() {
+        JavascriptExecutor executor =  ((JavascriptExecutor) getCurrentDriver());
+        executor.executeScript("scroll(250, 0)");
+    }
+
+    public static void scrollDown() {
+        JavascriptExecutor executor =  ((JavascriptExecutor) getCurrentDriver());
+        executor.executeScript("scroll(0, 250)");
+    }
+
     public static void waitForValue(WebElement elementToWaitFor, String value) {
         waitForValue(elementToWaitFor, value, 10);
     }
