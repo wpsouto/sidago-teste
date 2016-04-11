@@ -6,7 +6,7 @@ import org.openqa.selenium.support.How;
 
 public class EmpresaPageContainerAprovacao {
 
-    @FindBy(how = How.ID, using = "aprovar")
+    @FindBy(how = How.ID, using = "formEdicao")
     public WebElement home;
 
     @FindBy(how = How.XPATH, using = "//*[@id=\"divEdicao\"]/table")
