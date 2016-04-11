@@ -24,9 +24,13 @@ public class EmpresaPageContainerHome {
     @FindBy(how = How.XPATH, using = "//*[@id=\"grid\"]/form/table/tbody/tr[1]/td[9]/div/ul/li[2]")
     public WebElement alterar;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"grid\"]/form/table/tbody/tr[1]/td[9]/div/ul/li[6]")
+    @FindBy(how = How.CSS, using = "span.ui-icon.ui-icon-comment")
     public WebElement aprovar;
 
+/*
+    @FindBy(how = How.XPATH, using = "//[@id=\"grid\"]/form/table/tbody/tr[1]/td[9]/div/ul/li[6]")
+    public WebElement aprovar;
+*/
 
 
 }

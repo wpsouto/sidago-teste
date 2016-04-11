@@ -24,4 +24,12 @@ public class EmpresaSteps {
         NavigationEmpresa empresa = (NavigationEmpresa) NavegacaoFactory.getNavigator().pageLoad(NavegacaoType.EMPRESA);
         empresa.aprovar();
     }
+
+/*
+    @Quando("^Eu insiro um registro de Empresa com a Classificacao: \"([^\"]*)\" \"([^\"]*)\"$")
+    public void Eu_insiro_um_registro_de_Empresa_com_a_Classificacao(String id, String descricao) {
+        NavigationEmpresa empresa = (NavigationEmpresa) NavegacaoFactory.getNavigator().pageLoad(NavegacaoType.EMPRESA);
+        empresa.inserir(id.trim(), descricao.trim());
+    }
+*/
 }
