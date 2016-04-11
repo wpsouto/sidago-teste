@@ -6,7 +6,7 @@ import org.openqa.selenium.support.How;
 
 public class EmpresaPageContainerAprovacao {
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"divEdicao\"]/table/tbody")
+    @FindBy(how = How.ID, using = "divEdicao")
     public WebElement home;
 
     @FindBy(how = How.XPATH, using = "//*[@id=\"divEdicao\"]/table/tbody")
@@ -16,6 +16,5 @@ public class EmpresaPageContainerAprovacao {
     @FindBy(how = How.ID, using = "aprovar")
     public WebElement aprovar;
 */
-
 
 }

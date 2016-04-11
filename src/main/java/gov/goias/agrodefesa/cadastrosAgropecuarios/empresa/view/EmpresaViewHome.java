@@ -47,11 +47,13 @@ public class EmpresaViewHome {
 
 	public static void alterar() {
         log.debug(Constants.MGS_SELECIONADO, "ALTERAR");
+        BrowserDriver.waitForElement(container.alterar);
 		container.alterar.click();
 	}
 
 	public static void aprovar() {
 		log.debug(Constants.MGS_SELECIONADO, "APROVAR");
+		BrowserDriver.waitForElement(container.aprovar);
 		container.aprovar.click();
 	}
 
