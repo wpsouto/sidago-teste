@@ -12,7 +12,7 @@ Funcionalidade: Testando as funcionalidade de Empresa
     Então Eu recebo a mensagem "inserido" do "Empresa"
     Quando Eu "altero" um registro de "Empresa"
     Então Eu recebo a mensagem "alterado" do "Empresa"
-    Quando Eu aprovo um registro de Empresa
+    Quando Eu "aprovo" um registro de "Empresa"
 
     Exemplos:
       | id  | classificacao                                                |

@@ -17,7 +17,6 @@ public class NavigationEmpresa implements NavegacaoStrategy {
 
     public NavigationEmpresa() {
         empresa = ResourceFactory.initElements(Empresa.class);
-        //empresa.getInformacaoObrigatoria().setCpfCnpj(Generator.cnpj());
     }
 
     @Override
@@ -33,15 +32,12 @@ public class NavigationEmpresa implements NavegacaoStrategy {
                 EmpresaViewHome.pesquisar();
                 EmpresaViewHome.isDisplayedGridPesquisar();
                 break;
-            case INSERT:
-                EmpresaViewHome.incluirRegistro();
-                EmpresaViewInsert.isDisplayedCheck();
-                EmpresaViewInsert.documento(empresa.getInformacaoObrigatoria().getCpfCnpj());
-                EmpresaViewInsert.classificacao(empresa.getInformacaoObrigatoria().getClassificacao().getDescricao());
-                EmpresaViewInsert.pesquisar();
-                EmpresaViewInsert.informacaoObrigatoria(empresa.getInformacaoObrigatoria());
-                EmpresaViewInsert.informacaoComplementar();
-                EmpresaViewInsert.salvar();
+            case APROVO:
+                execAcao(Action.SEARCH);
+                EmpresaViewHome.aprovar();
+                EmpresaViewAprovacao.isDisplayedCheck();
+                EmpresaViewAprovacao.validar(empresa.getInformacaoObrigatoria().getClassificacao().getId());
+                BrowserDriver.screenshot();
                 break;
             case EDIT:
                 execAcao(Action.SEARCH);
@@ -79,24 +75,6 @@ public class NavigationEmpresa implements NavegacaoStrategy {
         EmpresaViewInsert.informacaoObrigatoria(empresa.getInformacaoObrigatoria());
         EmpresaViewInsert.informacaoComplementar();
         EmpresaViewInsert.salvar();
-    }
-
-    public void alterar(String id, String descricao) {
-        execAcao(Action.SEARCH);
-        empresa.getInformacaoObrigatoria().getClassificacao().setId(id);
-        empresa.getInformacaoObrigatoria().getClassificacao().setDescricao(descricao);
-        EmpresaViewHome.alterar();
-        EmpresaViewEdit.isDisplayedCheck();
-        EmpresaViewEdit.informacaoObrigatoria(empresa.getInformacaoObrigatoria());
-        EmpresaViewEdit.salvar();
-    }
-
-    public void aprovar() {
-        execAcao(Action.SEARCH);
-        EmpresaViewHome.aprovar();
-        EmpresaViewAprovacao.isDisplayedCheck();
-        EmpresaViewAprovacao.validar(empresa.getInformacaoObrigatoria().getClassificacao().getId());
-        BrowserDriver.screenshot();
     }
 
     public String getCnpj() {

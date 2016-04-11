@@ -7,6 +7,7 @@ public enum Action {
     SEARCH(new String[]{"pesquiso"}),
     EDIT(new String[]{"altero"}),
     OK(new String[]{"confirmo"}),
+    APROVO(new String[]{"aprovo"}),
     MENSAGEM_OK(new String[]{"confirmado"}),
     MENSAGEM_INSERT(new String[]{"inserido"}),
 	MENSAGEM_EDIT(new String[]{"alterado"});
