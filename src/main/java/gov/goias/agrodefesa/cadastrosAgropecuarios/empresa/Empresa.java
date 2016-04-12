@@ -178,10 +178,4 @@ public class Empresa {
 
     }
 
-
-    public static void main(String[] args) {
-        Empresa empresa = ResourceFactory.initElements(Empresa.class);
-
-        System.out.println("empresa = " + empresa.getInformacaoObrigatoria().getNomeEmpresa());
-    }
 }
