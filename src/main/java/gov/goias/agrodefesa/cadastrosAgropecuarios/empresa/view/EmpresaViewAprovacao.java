@@ -1,5 +1,6 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.view;
 
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity.Empresa;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity.Grupo;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.containers.EmpresaPageContainerAprovacao;
 import gov.goias.agrodefesa.utils.BrowserDriver;
@@ -21,11 +22,16 @@ public class EmpresaViewAprovacao {
 		conteiner.home.isDisplayed();
 	}
 
-    public static void validar(String id) {
+    public static void validar(Empresa empresa){
+        validarLabel(empresa.getInformacaoObrigatoria().getClassificacao().getId());
+        validarValue(empresa);
+    }
+
+    private static void validarLabel(String id) {
+        log.debug(Constants.MGS_SELECIONADO, "VALIDANDO LABEL");
         Grupo grupo = new Grupo();
         grupo.initialize(Integer.valueOf(id));
 
-        log.debug(Constants.MGS_SELECIONADO, "TABELA");
         BrowserDriver.waitForElement(conteiner.table);
         String table = conteiner.table.getText();
         boolean valido;
@@ -36,6 +42,14 @@ public class EmpresaViewAprovacao {
             valido = table.contains(str) == grupo.labels().get(str);
             Assert.assertTrue(String.format("Label %s %s encontrado", str, valido?"":"não"), valido);
         }
+    }
+
+    private static void validarValue(Empresa empresa){
+        String table = conteiner.table.getText();
+        log.debug(Constants.MGS_SELECIONADO, "VALIDANDO VALORES");
+
+        boolean valido = table.contains(empresa.getInformacaoComplementar().geteMail().getEMail());
+        Assert.assertTrue(String.format("Email %s não encontrado", empresa.getInformacaoComplementar().geteMail().getEMail()), valido);
     }
 
 }

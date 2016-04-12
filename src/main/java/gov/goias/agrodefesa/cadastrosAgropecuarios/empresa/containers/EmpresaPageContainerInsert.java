@@ -63,6 +63,15 @@ public class EmpresaPageContainerInsert {
     @FindBy(how = How.LINK_TEXT, using = "Adicionar Endereço")
     public WebElement adicionarEndereco;
 
+    @FindBy(how = How.LINK_TEXT, using = "Adicionar Email")
+    public WebElement adicionarEmail;
+
+    @FindBy(how = How.ID, using = "id_tipoemail")
+    public WebElement tipoEmail;
+
+    @FindBy(how = How.ID, using = "no_email")
+    public WebElement eMail;
+
     @FindBy(how = How.LINK_TEXT, using = "Anexar Documentos")
     public WebElement anexarDocumentos;
 

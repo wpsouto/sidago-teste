@@ -156,10 +156,37 @@ public class Empresa {
 
     public static class InformacaoComplementar {
         private Endereco endereco = new Endereco();
+        private Email eMail = new Email();
+
+        public Email geteMail() {
+            return eMail;
+        }
 
         public void setEndereco(Endereco endereco) {
             this.endereco = endereco;
         }
+
+        public static class Email{
+            private String tipo;
+            private String eMail;
+
+            public String getTipo() {
+                return tipo;
+            }
+
+            public void setTipo(String tipo) {
+                this.tipo = tipo;
+            }
+
+            public String getEMail() {
+                return eMail;
+            }
+
+            public void setEMail(String eMail) {
+                this.eMail = eMail;
+            }
+        }
+
 
     }
 

@@ -36,7 +36,7 @@ public class NavigationEmpresa implements NavegacaoStrategy {
                 execAcao(Action.SEARCH);
                 EmpresaViewHome.aprovar();
                 EmpresaViewAprovacao.isDisplayedCheck();
-                EmpresaViewAprovacao.validar(empresa.getInformacaoObrigatoria().getClassificacao().getId());
+                EmpresaViewAprovacao.validar(empresa);
                 BrowserDriver.screenshot();
                 break;
             case EDIT:
@@ -73,7 +73,7 @@ public class NavigationEmpresa implements NavegacaoStrategy {
         EmpresaViewInsert.classificacao(empresa.getInformacaoObrigatoria().getClassificacao().getDescricao());
         EmpresaViewInsert.pesquisar();
         EmpresaViewInsert.informacaoObrigatoria(empresa.getInformacaoObrigatoria());
-        EmpresaViewInsert.informacaoComplementar();
+        EmpresaViewInsert.informacaoComplementar(empresa.getInformacaoComplementar());
         EmpresaViewInsert.salvar();
     }
 

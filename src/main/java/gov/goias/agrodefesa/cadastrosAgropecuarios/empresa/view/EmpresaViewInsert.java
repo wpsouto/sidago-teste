@@ -95,16 +95,24 @@ public class EmpresaViewInsert {
         }
     }
 
-    public static void informacaoComplementar(){
+    public static void informacaoComplementar(Empresa.InformacaoComplementar informacaoComplementar){
         BrowserDriver.scrollUp();
 
         log.debug(Constants.MGS_SELECIONADO, "INFORMACAO COMPLEMENTAR");
         BrowserDriver.waitForClickable(conteiner.informacaoComplementar);
         conteiner.informacaoComplementar.click();
+
         conteiner.adicionarEndereco.click();
         BrowserDriver.waitForElement(conteiner.confirmar);
         conteiner.confirmar.click();
         BrowserDriver.waitForElementIsNotPresent(By.id("div_id_endereco"));
+
+        conteiner.adicionarEmail.click();
+        BrowserDriver.waitForElement(conteiner.tipoEmail);
+        BrowserDriver.selectByVisibleText(conteiner.tipoEmail, informacaoComplementar.geteMail().getTipo());
+        conteiner.eMail.sendKeys(informacaoComplementar.geteMail().getEMail());
+        conteiner.confirmar.click();
+        BrowserDriver.waitForElementIsNotPresent(By.id("div_id_email"));
     }
 
     public static void salvar() {

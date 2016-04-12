@@ -17,7 +17,11 @@
     "porteEmpresa": "Pequeno Porte"
   },
   "informacaoComplementar": {
-    "endereco": {}
+    "endereco": {},
+    "eMail": {
+      "tipo": "Pessoal",
+      "eMail": "teste@teste.com.br"
+    }
   },
   "anexarDocumentos": {
     "anexo": "upload.pdf"
