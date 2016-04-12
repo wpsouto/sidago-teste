@@ -1,7 +1,5 @@
-package gov.goias.agrodefesa.cadastrosAgropecuarios.empresa;
+package gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity;
 
-
-import gov.goias.agrodefesa.utils.ResourceFactory;
 
 /**
  * Created by usuario on 21/03/16.

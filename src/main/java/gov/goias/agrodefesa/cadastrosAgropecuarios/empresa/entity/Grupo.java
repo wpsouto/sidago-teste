@@ -1,4 +1,4 @@
-package gov.goias.agrodefesa.cadastrosAgropecuarios.empresa;
+package gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity;
 
 import java.util.Hashtable;
 

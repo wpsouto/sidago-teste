@@ -1,18 +1,15 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.view;
 
-import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.Grupo;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity.Grupo;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.containers.EmpresaPageContainerAprovacao;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Enumeration;
-import java.util.List;
 
 public class EmpresaViewAprovacao {
     private static final Logger log = LoggerFactory.getLogger(EmpresaViewAprovacao.class);

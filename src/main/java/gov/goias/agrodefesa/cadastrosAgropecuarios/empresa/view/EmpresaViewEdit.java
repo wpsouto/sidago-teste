@@ -1,6 +1,6 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.view;
 
-import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.Empresa;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity.Empresa;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.containers.EmpresaPageContainerEdit;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
@@ -8,13 +8,9 @@ import gov.goias.agrodefesa.utils.FileUtils;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.List;
 
 public class EmpresaViewEdit {
     private static final Logger log = LoggerFactory.getLogger(EmpresaViewEdit.class);

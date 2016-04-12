@@ -1,6 +1,6 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.navigation;
 
-import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.Empresa;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity.Empresa;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.view.EmpresaViewAprovacao;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.view.EmpresaViewEdit;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.view.EmpresaViewHome;

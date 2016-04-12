@@ -1,4 +1,4 @@
-package gov.goias.agrodefesa.cadastrosAgropecuarios.empresa;
+package gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity;
 
 public enum Classificacao {
 
