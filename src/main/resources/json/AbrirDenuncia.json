@@ -1,0 +1,9 @@
+{
+  "tipoInfracao": "Animal - Abate clandestino",
+  "assunto": "Teste Automatizado",
+
+  "anexarDocumentos": {
+    "anexo": "upload.pdf"
+  }
+
+}

@@ -16,7 +16,7 @@ public class ResourceFactory {
         builder.setPrettyPrinting();
         Gson gson = builder.create();
 
-        File file = FileUtils.getFileFromResource(String.format("json/%s.json", classToProxy.getSimpleName().toLowerCase()));
+        File file = FileUtils.getFileFromResource(String.format("json/%s.json", classToProxy.getSimpleName()));
         Reader reader = null;
         try {
             reader = new InputStreamReader(new FileInputStream(file.getAbsoluteFile()), Charsets.UTF_8);

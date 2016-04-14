@@ -28,7 +28,7 @@ public class NavigationEmpresa implements NavegacaoStrategy {
                 break;
             case SEARCH:
                 EmpresaViewHome.isDisplayedCheck();
-                EmpresaViewHome.documento(this.getCnpj());
+                EmpresaViewHome.documento(empresa.getInformacaoObrigatoria().getCpfCnpj());
                 EmpresaViewHome.pesquisar();
                 EmpresaViewHome.isDisplayedGridPesquisar();
                 break;
@@ -75,10 +75,6 @@ public class NavigationEmpresa implements NavegacaoStrategy {
         EmpresaViewInsert.informacaoObrigatoria(empresa.getInformacaoObrigatoria());
         EmpresaViewInsert.informacaoComplementar(empresa.getInformacaoComplementar());
         EmpresaViewInsert.salvar();
-    }
-
-    public String getCnpj() {
-        return this.empresa.getInformacaoObrigatoria().getCpfCnpj();
     }
 
 }

@@ -4,6 +4,7 @@ import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.UnreachableBrowserException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -79,10 +80,15 @@ public class BrowserDriver {
     }
 
     public static void scrollDown() {
-        JavascriptExecutor executor =  ((JavascriptExecutor) getCurrentDriver());
-        executor.executeScript("scroll(0, 250)");
+        Actions actions = new Actions(getCurrentDriver());
+        actions.keyDown(Keys.CONTROL).sendKeys(Keys.END).perform();
     }
 
+    public static void scroll(WebElement element){
+        JavascriptExecutor js =(JavascriptExecutor)getCurrentDriver();
+        js.executeScript("window.scrollTo(0,"+(element.getLocation().y-200)+")");
+
+    }
     public static void waitForValue(WebElement elementToWaitFor, String value) {
         waitForValue(elementToWaitFor, value, 10);
     }

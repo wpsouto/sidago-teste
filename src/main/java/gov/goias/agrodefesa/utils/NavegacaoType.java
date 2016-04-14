@@ -34,6 +34,9 @@ public class NavegacaoType {
     public static final NavegacaoType PROPRIEDADE;
     public static final NavegacaoType LAVOURA;
 
+    public static final String DENUNCIA = "denuncia/";
+    public static final NavegacaoType ABRIR_DENUNCIA;
+
     private final String key;
     private final String modulo;
     private final String url;
@@ -87,6 +90,9 @@ public class NavegacaoType {
         PESSOA = create("Pessoa", CADASTROS_AGROPECUARIOS, "produtor");
         PROPRIEDADE = create("Propriedade", CADASTROS_AGROPECUARIOS, "propriedade");
         LAVOURA = create("Lavoura", CADASTROS_AGROPECUARIOS, "lavouras");
+
+        //DENUNCIA
+        ABRIR_DENUNCIA = create("Abrir Denúncia", DENUNCIA, "abrir-denuncia");
 
     }
 }

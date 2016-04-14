@@ -1,4 +1,4 @@
-package gov.goias.agrodefesa.utils;
+package gov.goias.agrodefesa.cadastrosAgropecuarios.lavoura.entity;
 
 /**
  * Created by usuario on 21/03/16.

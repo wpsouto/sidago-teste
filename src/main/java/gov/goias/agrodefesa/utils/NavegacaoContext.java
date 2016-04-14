@@ -17,6 +17,7 @@ import gov.goias.agrodefesa.controleDeBens.patrimonio.navigation.NavigationPatri
 import gov.goias.agrodefesa.controleDeBens.tranferencia.navigation.NavigationTransferencia;
 import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.navigation.NavigationIngredienteAtivo;
 import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.navigation.NavigationProduto;
+import gov.goias.agrodefesa.denuncia.abrirDenuncia.navigation.NavigationAbrirDenuncia;
 
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -57,6 +58,10 @@ public class NavegacaoContext {
         _strategies.put(NavegacaoType.PESSOA, new NavigationPessoa());
         _strategies.put(NavegacaoType.PROPRIEDADE, new NavigationPropriedade());
         _strategies.put(NavegacaoType.LAVOURA, new NavigationLavoura());
+
+        //DENUNCIA
+        _strategies.put(NavegacaoType.ABRIR_DENUNCIA, new NavigationAbrirDenuncia());
+
     }
 
     public static NavegacaoStrategy parce(String key) throws IllegalArgumentException{

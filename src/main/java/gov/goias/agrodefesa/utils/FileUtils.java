@@ -11,7 +11,11 @@ public class FileUtils {
             return new File(FileUtils.class.getClassLoader().getResource(resource).toURI());
         } catch (URISyntaxException e) {
             throw new RuntimeException("Could not read resource: " + resource, e);
+        } catch (NullPointerException e) {
+            System.out.println("resource = [" + resource + "]");
+            throw new RuntimeException("Could not read resource: " + resource, e);
         }
+
     }
 
     public static void main(String[] args) throws IOException {

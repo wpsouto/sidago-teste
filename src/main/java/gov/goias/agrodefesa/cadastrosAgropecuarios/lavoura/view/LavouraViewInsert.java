@@ -3,7 +3,7 @@ package gov.goias.agrodefesa.cadastrosAgropecuarios.lavoura.view;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.lavoura.containers.LavouraPageContainerInsert;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
-import gov.goias.agrodefesa.utils.Produto;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.lavoura.entity.Produto;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;

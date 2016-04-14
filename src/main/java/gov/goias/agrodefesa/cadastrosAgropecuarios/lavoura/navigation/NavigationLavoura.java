@@ -7,7 +7,7 @@ import gov.goias.agrodefesa.constants.Action;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.NavegacaoStrategy;
 import gov.goias.agrodefesa.utils.NavegacaoType;
-import gov.goias.agrodefesa.utils.Produto;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.lavoura.entity.Produto;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
