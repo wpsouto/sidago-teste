@@ -36,15 +36,15 @@ public enum Label {
 
     public String descricao;
     public Boolean obrigatorio;
-    public Set classificacao = new HashSet<>();
+    public Set<Integer> classificacao = new HashSet<>();
 
     Label(String[] aliases) {
         this.descricao = aliases[0];
         this.obrigatorio = Boolean.valueOf(aliases[1]);
         if (!this.obrigatorio) {
             String[] str = aliases[2].split("-");
-            for (int i = 0; i < str.length; i++) {
-                classificacao.add(Integer.valueOf(str[i]));
+            for (String s : str){
+                classificacao.add(Integer.valueOf(s));
             }
         }
     }
