@@ -37,6 +37,9 @@ public class NavegacaoType {
     public static final String DENUNCIA = "denuncia/";
     public static final NavegacaoType ABRIR_DENUNCIA;
 
+    public static final String DEFESA_SANITARIA_ANIMAL = "defesa-sanitaria-animal/";
+    public static final NavegacaoType BOLETIM_PRODUCAO;
+
     private final String key;
     private final String modulo;
     private final String url;
@@ -93,6 +96,9 @@ public class NavegacaoType {
 
         //DENUNCIA
         ABRIR_DENUNCIA = create("Abrir Denúncia", DENUNCIA, "abrir-denuncia");
+
+        //DEFESA_SANITARIA_ANIMAL
+        BOLETIM_PRODUCAO = create("Boletim de Produção", DEFESA_SANITARIA_ANIMAL, "boletim-producao");
 
     }
 }

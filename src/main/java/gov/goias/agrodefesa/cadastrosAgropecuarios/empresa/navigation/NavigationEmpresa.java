@@ -16,7 +16,7 @@ public class NavigationEmpresa implements NavegacaoStrategy {
     private boolean alterado= false;
 
     public NavigationEmpresa() {
-        empresa = ResourceFactory.initElements(Empresa.class);
+        empresa = ResourceFactory.load(Empresa.class);
     }
 
     @Override

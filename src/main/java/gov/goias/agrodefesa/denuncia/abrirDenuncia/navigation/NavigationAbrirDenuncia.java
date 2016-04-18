@@ -17,7 +17,7 @@ public class NavigationAbrirDenuncia implements NavegacaoStrategy {
     private AbrirDenuncia entity;
 
     public NavigationAbrirDenuncia() {
-        entity = ResourceFactory.initElements(AbrirDenuncia.class);
+        entity = ResourceFactory.load(AbrirDenuncia.class);
     }
 
     @Override

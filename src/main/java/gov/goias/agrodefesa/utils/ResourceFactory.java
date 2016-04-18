@@ -11,7 +11,7 @@ import java.io.*;
  */
 public class ResourceFactory {
 
-    public static <T> T initElements(Class<T> classToProxy) {
+    public static <T> T load(Class<T> classToProxy) {
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         Gson gson = builder.create();
@@ -25,6 +25,25 @@ public class ResourceFactory {
         }
 
         return gson.fromJson(reader, classToProxy);
+    }
+
+    public static void save(Object object) {
+        GsonBuilder builder = new GsonBuilder();
+        builder.setPrettyPrinting();
+        builder.serializeNulls();
+        Gson gson = builder.create();
+        System.out.println(gson.toJson(object));
+
+        String filePath = ResourceFactory.class.getResource("/json").getPath()+String.format("/%s.json", object.getClass().getSimpleName());
+        try {
+            Writer writer = new OutputStreamWriter(new FileOutputStream(filePath), Charsets.UTF_8);
+            gson.toJson(object, writer);
+            writer.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("Could not read resource: " + object.getClass().getSimpleName(), e);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

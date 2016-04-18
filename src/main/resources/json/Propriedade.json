@@ -1,0 +1,26 @@
+{
+  "pessoa": {
+    "cpfCnpj": null,
+    "pessoaJuridica": {
+      "nomeEmpresa": null,
+      "nomeFantasia": null,
+      "endereco": {
+        "tipoEndereco": null,
+        "endereco": null,
+        "bairro": null,
+        "cep": null,
+        "roteiro": null
+      }
+    }
+  },
+  "endereco": {
+    "tipoEndereco": "Pessoal",
+    "endereco": "TESTE",
+    "bairro": "TESTE",
+    "cep": "74000",
+    "roteiro": "TESTE"
+  },
+  "nomePropriedade": "Teste Automatizado",
+  "tipoContribuinte": "Comerciante",
+  "condicaoPropriedade": "Proprietário Único"
+}

@@ -1,0 +1,18 @@
+{
+  "propriedade": {
+    "pessoa": {
+      "cpfCnpj": null
+    }
+  },
+  "materiaPrimaOrigem": "Destinado a comércio nacional",
+  "totalDeAnimaisAlojados": "10",
+  "monitoramentoDeMicroOrganismos": "Não",
+  "dataInicioDoLote": null,
+  "mortalidadeEstimada": "10",
+  "qtdAnimaisDespescados": "10",
+  "animaisSubmetidosJejum": "Não",
+  "animaisArroacados": "Não",
+  "dataInicioPesca": null,
+  "dataFimPesca": null,
+  "apresentacaoMateriaPrima": "Animais vivos"
+}
