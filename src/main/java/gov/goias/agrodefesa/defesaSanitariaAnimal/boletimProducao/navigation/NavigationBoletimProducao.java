@@ -40,7 +40,6 @@ public class NavigationBoletimProducao implements NavegacaoStrategy {
                 BoletimProducaoViewHome.isDisplayedGridPesquisar();
                 break;
             case INSERT:
-                entity.getPropriedade().getPessoa().setCpfCnpj("51583772000134");
                 if (StringUtils.isEmpty(entity.getPropriedade().getPessoa().getCpfCnpj())){
                     throw new PendingException("Executar teste de Propriedades primeiro...");
                 }
