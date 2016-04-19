@@ -15,7 +15,6 @@ import gov.goias.agrodefesa.utils.ResourceFactory;
  */
 public class NavigationAbrirDenuncia implements NavegacaoStrategy {
     private AbrirDenuncia entity;
-    private AbrirDenunciaViewHome viewHome = new AbrirDenunciaViewHome();
 
     public NavigationAbrirDenuncia() {
         entity = ResourceFactory.load(AbrirDenuncia.class);
@@ -26,16 +25,16 @@ public class NavigationAbrirDenuncia implements NavegacaoStrategy {
         switch (action) {
             case HOME:
                 BrowserDriver.loadPage(NavegacaoType.ABRIR_DENUNCIA.getUrl());
-                viewHome.isDisplayedCheck();
+                AbrirDenunciaViewHome.isDisplayedCheck();
                 break;
             case SEARCH:
-                viewHome.isDisplayedCheck();
-                viewHome.tipoInfracao(entity.getTipoInfracao());
-                viewHome.pesquisar();
-                viewHome.isDisplayedGridPesquisar();
+                AbrirDenunciaViewHome.isDisplayedCheck();
+                AbrirDenunciaViewHome.tipoInfracao(entity.getTipoInfracao());
+                AbrirDenunciaViewHome.pesquisar();
+                AbrirDenunciaViewHome.isDisplayedGridPesquisar();
                 break;
             case INSERT:
-                viewHome.incluirRegistro();
+                AbrirDenunciaViewHome.incluirRegistro();
                 AbrirDenunciaViewInsert.isDisplayedCheck();
                 AbrirDenunciaViewInsert.tipoInfracao(entity.getTipoInfracao());
                 AbrirDenunciaViewInsert.assunto(entity.getAssunto());
@@ -44,7 +43,7 @@ public class NavigationAbrirDenuncia implements NavegacaoStrategy {
                 break;
             case EDIT:
                 execAcao(Action.SEARCH);
-                viewHome.alterar();
+                AbrirDenunciaViewHome.alterar();
                 AbrirDenunciaViewEdit.isDisplayedCheck();
                 AbrirDenunciaViewEdit.salvar();
                 break;

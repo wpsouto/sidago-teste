@@ -1,55 +1,52 @@
 package gov.goias.agrodefesa.denuncia.abrirDenuncia.view;
 
 import gov.goias.agrodefesa.denuncia.abrirDenuncia.containers.AbrirDenunciaPageContainerHome;
-import gov.goias.agrodefesa.padrao.view.BaseView;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
+import org.openqa.selenium.support.PageFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class AbrirDenunciaViewHome extends BaseView {
-    
-    private AbrirDenunciaPageContainerHome containerHome;
-    
-    public AbrirDenunciaViewHome() {
-        super(AbrirDenunciaPageContainerHome.class);
-        this.containerHome = ((AbrirDenunciaPageContainerHome) container);
-    }
+public class AbrirDenunciaViewHome {
+	private static final Logger log = LoggerFactory.getLogger(AbrirDenunciaViewHome.class);
+	private static final AbrirDenunciaPageContainerHome container = PageFactory.initElements(BrowserDriver.getCurrentDriver(), AbrirDenunciaPageContainerHome.class);
 
-    public void isDisplayedCheck(){
+	public static void isDisplayedCheck(){
         log.debug(Constants.MGS_AGUARDANDO);
-		BrowserDriver.waitForElement(containerHome.home);
-        containerHome.home.isDisplayed();
+		BrowserDriver.waitForElement(container.home);
+		container.home.isDisplayed();
 	}
 
-    public void incluirRegistro(){
+    public static void incluirRegistro(){
         log.debug(Constants.MGS_SELECIONADO, "INCLUIR REGISTRO");
-        BrowserDriver.waitForElement(containerHome.incluirRegistro);
-        containerHome.incluirRegistro.click();
+        BrowserDriver.waitForElement(container.incluirRegistro);
+        container.incluirRegistro.click();
     }
 
-	public void tipoInfracao(String valor){
+	public static void tipoInfracao(String valor){
         log.debug(Constants.MGS_INSERIDO, "TIPO INFRACAO", valor);
         BrowserDriver.scrollUp();
-        containerHome.tipoInfracao.sendKeys(valor.split("-")[1].trim());
-        BrowserDriver.waitForElement(containerHome.tipoInfracaoAutoComplete);
-        containerHome.tipoInfracaoAutoComplete.click();
+		container.tipoInfracao.sendKeys(valor.split("-")[1].trim());
+        BrowserDriver.waitForElement(container.tipoInfracaoAutoComplete);
+        container.tipoInfracaoAutoComplete.click();
 	}
 
-    public void pesquisar() {
+    public static void pesquisar() {
         log.debug(Constants.MGS_SELECIONADO, "PESQUISAR");
-        containerHome.pesquisar.click();
+		container.pesquisar.click();
 	}
 
-	public void isDisplayedGridPesquisar() {
+	public static void isDisplayedGridPesquisar() {
         log.debug(Constants.MGS_AGUARDANDO);
-		BrowserDriver.waitForElement(containerHome.gridRow);
-        containerHome.gridRow.isDisplayed();
+		BrowserDriver.waitForElement(container.gridRow);
+		container.gridRow.isDisplayed();
 	}
 
-	public void alterar() {
+	public static void alterar() {
         log.debug(Constants.MGS_SELECIONADO, "ALTERAR");
-        BrowserDriver.waitForElement(containerHome.alterar);
-        BrowserDriver.scroll(containerHome.alterar);
-        containerHome.alterar.click();
+        BrowserDriver.waitForElement(container.alterar);
+        BrowserDriver.scroll(container.alterar);
+        container.alterar.click();
 	}
 
 }
