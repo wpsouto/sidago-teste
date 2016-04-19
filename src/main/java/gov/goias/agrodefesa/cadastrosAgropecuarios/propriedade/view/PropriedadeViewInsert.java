@@ -1,5 +1,6 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.propriedade.view;
 
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity.Endereco;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.propriedade.containers.PropriedadePageContainerInsert;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
@@ -50,15 +51,15 @@ public class PropriedadeViewInsert {
         BrowserDriver.selectByVisibleText(conteiner.condicaoDePropriedade, valor);
     }
 
-    public static void adionarEndereco(String tipoEndereco, String endereco, String bairro, String cep, String roteiro){
+    public static void adionarEndereco(Endereco endereco){
         log.debug(Constants.MGS_INSERIDO, "adionarEndereco");
         conteiner.adicionarEndereco.click();
         BrowserDriver.waitForElement(conteiner.tipoEndereco);
-        BrowserDriver.selectByVisibleText(conteiner.tipoEndereco, tipoEndereco);
-        conteiner.endereco.sendKeys(endereco);
-        conteiner.bairro.sendKeys(bairro);
-        conteiner.cep.sendKeys(cep);
-        conteiner.roteiro.sendKeys(roteiro);
+        BrowserDriver.selectByVisibleText(conteiner.tipoEndereco, endereco.getTipoEndereco());
+        conteiner.endereco.sendKeys(endereco.getEndereco());
+        conteiner.bairro.sendKeys(endereco.getBairro());
+        conteiner.cep.sendKeys(endereco.getCep());
+        conteiner.roteiro.sendKeys(endereco.getRoteiro());
         conteiner.confirmar.click();
         BrowserDriver.waitForElementIsNotPresent(By.id("id_enderecotipo"));
     }

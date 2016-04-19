@@ -89,8 +89,22 @@ public class BrowserDriver {
         js.executeScript("window.scrollTo(0,"+(element.getLocation().y-200)+")");
 
     }
+
     public static void waitForValue(WebElement elementToWaitFor, String value) {
         waitForValue(elementToWaitFor, value, 10);
+    }
+
+    public static void waitForText(WebElement elementToWaitFor, String value) {
+        waitForText(elementToWaitFor, value, 10);
+    }
+
+    public static void waitForText(WebElement elementToWaitFor, String value, Integer waitTimeInSeconds) {
+        if (waitTimeInSeconds == null) {
+            waitTimeInSeconds = 10;
+        }
+
+        WebDriverWait wait = new WebDriverWait(getCurrentDriver(), waitTimeInSeconds);
+        wait.until(ExpectedConditions.textToBePresentInElement(elementToWaitFor, value));
     }
 
     public static void waitForValue(WebElement elementToWaitFor, String value, Integer waitTimeInSeconds) {

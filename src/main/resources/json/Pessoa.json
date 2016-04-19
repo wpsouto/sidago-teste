@@ -1,0 +1,14 @@
+{
+  "cpfCnpj": null,
+  "pessoaJuridica": {
+    "nomeEmpresa": "Teste Automatizado",
+    "nomeFantasia": "Teste Automatizado",
+    "endereco": {
+      "tipoEndereco": "Pessoal",
+      "endereco": null,
+      "bairro": null,
+      "cep": null,
+      "roteiro": null
+    }
+  }
+}
