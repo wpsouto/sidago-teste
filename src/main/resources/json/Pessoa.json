@@ -5,9 +5,10 @@
     "nomeFantasia": "Teste Automatizado",
     "endereco": {
       "tipoEndereco": "Pessoal",
-      "endereco": null,
-      "bairro": null,
-      "cep": null,
+      "endereco": "Teste Automatizado",
+      "bairro": "Teste Automatizado",
+      "complemento": "Teste Automatizado",
+      "cep": "74000000",
       "roteiro": null
     }
   }

@@ -1,4 +1,4 @@
-package gov.goias.agrodefesa.padrao.containers;
+package gov.goias.agrodefesa.base.containers;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,10 +15,7 @@ public class PageContainerHome {
     @FindBy(how = How.ID, using = "bt_pesquisar")
     public WebElement pesquisar;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"grid\"]/form/table/tbody/tr[1]")
-    public WebElement gridRow;
-
-    @FindBy(how = How.CSS, using = "span.ui-icon.ui-icon-pencil")
-    public WebElement alterar;
+    @FindBy(how = How.CSS, using = "#listagemOperacao > #icons > li.ui-state-default.ui-corner-all > span.ui-icon.ui-icon-document")
+    public WebElement document;
 
 }

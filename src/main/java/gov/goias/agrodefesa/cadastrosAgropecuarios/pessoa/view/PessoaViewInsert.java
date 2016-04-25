@@ -1,5 +1,6 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.view;
 
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity.Endereco;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.containers.PessoaPageContainerInsert;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
@@ -42,14 +43,19 @@ public class PessoaViewInsert {
         conteiner.nomeFantasia.sendKeys(valor);
     }
 
-    public static void adicionarEndereco(String tipoEndereco){
+    public static void adicionarEndereco(Endereco endereco){
         log.debug(Constants.MGS_INSERIDO, "ADICIONAR ENDERECO");
         BrowserDriver.waitForElement(conteiner.adicionarEndereco);
         conteiner.adicionarEndereco.click();
         BrowserDriver.waitForElement(conteiner.tipoEndereco);
-        BrowserDriver.selectByVisibleText(conteiner.tipoEndereco, tipoEndereco);
+        BrowserDriver.selectByVisibleText(conteiner.tipoEndereco, endereco.getTipoEndereco());
+        conteiner.endereco.sendKeys(endereco.getEndereco());
+        conteiner.bairro.sendKeys(endereco.getBairro());
+        conteiner.complemento.sendKeys(endereco.getComplemento());
+        conteiner.cep.clear();
+        conteiner.cep.sendKeys(endereco.getCep());
         conteiner.confirmar.click();
-        BrowserDriver.waitForElementIsNotPresent(By.id("id_endereco_tipo"));
+        BrowserDriver.waitForElementIsNotPresent(By.id("div_id_endereco"));
     }
 
     public static void salvar() {

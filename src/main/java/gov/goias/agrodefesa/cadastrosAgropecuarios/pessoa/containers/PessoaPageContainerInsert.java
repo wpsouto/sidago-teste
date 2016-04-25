@@ -27,6 +27,18 @@ public class PessoaPageContainerInsert {
     @FindBy(how = How.ID, using = "id_endereco_tipo")
     public WebElement tipoEndereco;
 
+    @FindBy(how = How.ID, using = "endereco")
+    public WebElement endereco;
+
+    @FindBy(how = How.ID, using = "bairro")
+    public WebElement bairro;
+
+    @FindBy(how = How.ID, using = "complemento")
+    public WebElement complemento;
+
+    @FindBy(how = How.ID, using = "cep")
+    public WebElement cep;
+
     @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Confirmar']")
     public WebElement confirmar;
 

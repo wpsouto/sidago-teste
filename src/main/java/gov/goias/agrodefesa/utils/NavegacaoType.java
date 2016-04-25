@@ -40,6 +40,9 @@ public class NavegacaoType {
     public static final String DEFESA_SANITARIA_ANIMAL = "defesa-sanitaria-animal/";
     public static final NavegacaoType BOLETIM_PRODUCAO;
 
+    public static final String DEFESA_SANITARIA_VEGETAL = "gtv/";
+    public static final NavegacaoType AQUISICAO_MUDAS;
+
     private final String key;
     private final String modulo;
     private final String url;
@@ -99,6 +102,9 @@ public class NavegacaoType {
 
         //DEFESA_SANITARIA_ANIMAL
         BOLETIM_PRODUCAO = create("Boletim de Produção", DEFESA_SANITARIA_ANIMAL, "boletim-producao");
+
+        //DEFESA_SANITARIA_VEGETAL
+        AQUISICAO_MUDAS = create("Autorização para Aquisição de Mudas", DEFESA_SANITARIA_VEGETAL, "autorizacao-aquisicao-mudas");
 
     }
 }

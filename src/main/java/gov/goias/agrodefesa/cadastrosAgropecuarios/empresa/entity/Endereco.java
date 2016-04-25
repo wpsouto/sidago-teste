@@ -8,6 +8,7 @@ public class Endereco {
     private String tipoEndereco;
     private String endereco;
     private String bairro;
+    private String complemento;
     private String cep;
     private String roteiro;
 
@@ -41,6 +42,14 @@ public class Endereco {
 
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
 
     public String getRoteiro() {

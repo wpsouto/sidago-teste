@@ -34,7 +34,7 @@ public class NavigationPessoa implements NavegacaoStrategy {
                 PessoaViewInsert.pesquisar();
                 PessoaViewInsert.nomeEmpresa(pessoa.getPessoaJuridica().getNomeEmpresa());
                 PessoaViewInsert.nomeFantasia(pessoa.getPessoaJuridica().getNomeFantasia());
-                PessoaViewInsert.adicionarEndereco(pessoa.getPessoaJuridica().getEndereco().getTipoEndereco());
+                PessoaViewInsert.adicionarEndereco(pessoa.getPessoaJuridica().getEndereco());
                 BrowserDriver.screenshot();
                 PessoaViewInsert.salvar();
                 break;

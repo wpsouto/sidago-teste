@@ -45,6 +45,9 @@ public class PropriedadePageContainerInsert {
     @FindBy(how = How.ID, using = "no_logradouro")
     public WebElement endereco;
 
+    @FindBy(how = How.ID, using = "ds_complemento")
+    public WebElement complemento;
+
     @FindBy(how = How.ID, using = "ds_roteiro")
     public WebElement roteiro;
 

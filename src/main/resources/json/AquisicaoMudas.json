@@ -1,0 +1,28 @@
+{
+  "pessoa": {
+    "cpfCnpj": null
+  },
+  "observacao": "Teste Automatizado",
+  "situacao": "Aprovado",
+  "registroEnasem": "123456",
+  "emailOrigem": "teste@teste.com",
+  "telefoneOrigem": "62123456789",
+  "tipoDestino": "Produtor Rural",
+  "propriedade": {
+    "pessoa": {
+      "cpfCnpj": null
+    }
+  },
+  "telefoneDestino": "62123456789",
+  "transporte": {
+    "tipoTransporte": "Rodoviário"
+  },
+  "mudas": {
+    "produto": "ABÓBORA",
+    "cultivar": "Kabutiá",
+    "tipoProduto": "Lavoura / ha",
+    "quantidade": 10000,
+    "embalagem": "Fardo",
+    "metodoPropaganda": "Semente"
+  }
+}

@@ -6,6 +6,7 @@ import cucumber.api.java.Before;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.UnreachableBrowserException;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -90,10 +91,6 @@ public class BrowserDriver {
 
     }
 
-    public static void waitForValue(WebElement elementToWaitFor, String value) {
-        waitForValue(elementToWaitFor, value, 10);
-    }
-
     public static void waitForText(WebElement elementToWaitFor, String value) {
         waitForText(elementToWaitFor, value, 10);
     }
@@ -142,12 +139,6 @@ public class BrowserDriver {
         return element.findElement(By.xpath(".."));
     }
 
-    public static boolean isElementPresent(By locator){
-        WebDriverWait wait = new WebDriverWait(getCurrentDriver(), 10);
-        WebElement webElement = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
-        return webElement != null;
-    }
-
     public static boolean isElementPresent(String ID){
         return (getCurrentDriver().findElements(By.id(ID)).size() > 0);
     }
@@ -155,11 +146,6 @@ public class BrowserDriver {
     public static void waitForElementIsNotPresent(By locator){
         WebDriverWait wait = new WebDriverWait(getCurrentDriver(), 10);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
-    }
-
-    public static List<WebElement> getDropDownOptions(WebElement webElement) {
-        Select select = new Select(webElement);
-        return select.getOptions();
     }
 
     public static void selectByVisibleText(WebElement webElement, String value) {
@@ -172,23 +158,19 @@ public class BrowserDriver {
         select.selectByIndex(value);
     }
 
-    @Deprecated
-    public static WebElement getDropDownOption(WebElement webElement, String value) {
-        WebElement option = null;
-        List<WebElement> options = getDropDownOptions(webElement);
-        for (WebElement element : options) {
-            if (element.getText().equalsIgnoreCase(value)) {
-                option = element;
-                break;
+    public static void selectByIndexWait(WebElement webElement, int value) {
+        Select select = new Select(webElement);
+
+        WebDriverWait wait = new WebDriverWait(getCurrentDriver(), 10);
+        wait.until(new ExpectedCondition<Boolean>() {
+            @Override
+            public Boolean apply(WebDriver webDriver) {
+                return select.getOptions().size() > 1;
             }
-/*
-            if (element.getAttribute("value").equalsIgnoreCase(value)) {
-                option = element;
-                break;
-            }
-*/
-        }
-        return option;
+        });
+
+
+        select.selectByIndex(value);
     }
 
     public static void closeAlert() {

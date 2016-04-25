@@ -59,6 +59,7 @@ public class PropriedadeViewInsert {
         conteiner.endereco.sendKeys(endereco.getEndereco());
         conteiner.bairro.sendKeys(endereco.getBairro());
         conteiner.cep.sendKeys(endereco.getCep());
+        conteiner.complemento.sendKeys(endereco.getComplemento());
         conteiner.roteiro.sendKeys(endereco.getRoteiro());
         conteiner.confirmar.click();
         BrowserDriver.waitForElementIsNotPresent(By.id("id_enderecotipo"));

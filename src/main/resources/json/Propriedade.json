@@ -1,26 +1,17 @@
 {
+  "nomePropriedade": "Teste Automatizado",
+  "tipoContribuinte": "Comerciante",
+  "condicaoPropriedade": "Proprietário Único",
+
   "pessoa": {
-    "cpfCnpj": null,
-    "pessoaJuridica": {
-      "nomeEmpresa": null,
-      "nomeFantasia": null,
-      "endereco": {
-        "tipoEndereco": null,
-        "endereco": null,
-        "bairro": null,
-        "cep": null,
-        "roteiro": null
-      }
-    }
+    "cpfCnpj": null
   },
   "endereco": {
     "tipoEndereco": "Pessoal",
     "endereco": "TESTE",
     "bairro": "TESTE",
     "cep": "74000",
+    "complemento": "Teste Automatizado",
     "roteiro": "TESTE"
-  },
-  "nomePropriedade": "Teste Automatizado",
-  "tipoContribuinte": "Comerciante",
-  "condicaoPropriedade": "Proprietário Único"
+  }
 }

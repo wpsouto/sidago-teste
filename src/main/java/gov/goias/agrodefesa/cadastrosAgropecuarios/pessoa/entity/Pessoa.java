@@ -2,6 +2,7 @@ package gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.entity;
 
 
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity.Endereco;
+import gov.goias.agrodefesa.utils.ResourceFactory;
 
 /**
  * Created by usuario on 21/03/16.
@@ -47,6 +48,11 @@ public class Pessoa {
         public Endereco getEndereco() {
             return endereco;
         }
+    }
+
+    public static void main(String[] args) {
+        Pessoa pessoa = new Pessoa();
+        ResourceFactory.save(pessoa);
     }
 
 }

@@ -30,7 +30,4 @@ public class BoletimProducaoPageContainerHome {
     @FindBy(how = How.XPATH, using = "//button[@type='button']")
     public WebElement cancelarBoletimProducao;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"boxDelete\"]/h3[1]")
-    public WebElement mesagem;
-
 }

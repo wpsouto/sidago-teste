@@ -2,7 +2,7 @@
 
 @all @DefesaSanitariaAnimal @BoletimProducao
 
-Funcionalidade: Testando as funcionalidades do Boletim de Producao
+Funcionalidade: Testando as funcionalidades do Boletim de Produção
 
   Cenário de Fundo: Preparando o Sistema
     Dado Eu faco login no sistema com o CPF "administrador" USUARIO "Administrador" tela inicial "Boletim de Produção"

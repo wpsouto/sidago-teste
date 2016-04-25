@@ -18,6 +18,7 @@ import gov.goias.agrodefesa.controleDeBens.tranferencia.navigation.NavigationTra
 import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.navigation.NavigationIngredienteAtivo;
 import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.navigation.NavigationProduto;
 import gov.goias.agrodefesa.defesaSanitariaAnimal.boletimProducao.navigation.NavigationBoletimProducao;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.navigation.NavigationAquisicaoMudas;
 import gov.goias.agrodefesa.denuncia.abrirDenuncia.navigation.NavigationAbrirDenuncia;
 
 import java.util.Enumeration;
@@ -65,6 +66,9 @@ public class NavegacaoContext {
 
         //DEFESA_SANITARIA_ANIMAL
         _strategies.put(NavegacaoType.BOLETIM_PRODUCAO, new NavigationBoletimProducao());
+
+        //DEFESA_SANITARIA_VEGETAL
+        _strategies.put(NavegacaoType.AQUISICAO_MUDAS, new NavigationAquisicaoMudas(NavegacaoType.AQUISICAO_MUDAS));
 
     }
 

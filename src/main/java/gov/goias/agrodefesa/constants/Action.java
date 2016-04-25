@@ -12,6 +12,7 @@ public enum Action {
     MENSAGEM_OK(new String[]{"confirmado"}),
     MENSAGEM_INSERT(new String[]{"inserido"}),
 	MENSAGEM_EDIT(new String[]{"alterado"}),
+    MENSAGEM_APROVO(new String[]{"aprovado"}),
     MENSAGEM_CANCEL(new String[]{"cancelado"});
 
     private String[] aliases;
