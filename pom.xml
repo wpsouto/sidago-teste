@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <project.build.sourceencoding>UTF-8</project.build.sourceencoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
         <junit.version>4.12</junit.version>
         <cucumber.version>1.2.4</cucumber.version>
@@ -71,7 +71,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven.compiler.version}</version>
                 <configuration>
-                    <encoding>${project.build.sourceencoding}</encoding>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                     <compilerArgument>-Werror</compilerArgument>
