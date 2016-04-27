@@ -17,7 +17,23 @@ public class Navegacao {
 
     public void pageLoad(Action action, String key){
         NavegacaoStrategy page = NavegacaoContext.parce(key);
-        page.execAcao(action);
+
+        switch(action){
+            case HOME:
+                page.home();
+                break;
+            case INSERT:
+                page.insert();
+                break;
+            case SEARCH:
+                page.search();
+                break;
+            case EDIT:
+                page.edit();
+                break;
+            default:
+                page.others(action);
+        }
     }
 
     public NavegacaoStrategy pageLoad(NavegacaoType type){

@@ -15,10 +15,17 @@ public class PageContainerInsert  {
     @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Confirmar']")
     public WebElement confirmar;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"aviso\"]/div/p/strong")
-    public WebElement aviso;
-
     @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Ok']")
     public WebElement ok;
+
+    @FindBy(how = How.ID, using = "aviso")
+    public WebElement aviso;
+
+    @FindBy(how = How.LINK_TEXT, using = "Pesquisar")
+    public WebElement pesquisar;
+
+    @FindBy(how = How.LINK_TEXT, using = "Selecionar")
+    public WebElement selecionar;
+
 
 }

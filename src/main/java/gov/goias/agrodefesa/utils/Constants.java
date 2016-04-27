@@ -10,4 +10,8 @@ public abstract class Constants {
     public static final String MGS_SELECIONADO = "Selecionado: {}";
     public static final String MGS_MENSAGEM = "Mensagem: {}";
 
+    public static final String MGS_DEPENDENCIA = "ERRO DE DEPENDENCIA: Adicionar tag %s para teste primeiro...";
+
+    public static final String REGISTRO_INSERIDO_COM_SUCESSO = "Registro inserido com sucesso!";
+    public static final String REGISTRO_ALTERADO_COM_SUCESSO = "Registro alterado com sucesso!";
 }

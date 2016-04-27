@@ -16,24 +16,49 @@ public class NavigationAssinaturaDeDiarias implements NavegacaoStrategy {
         delegacaoDeAtividades = (NavigationDelegacaoDeAtividades) NavegacaoFactory.getNavigator().pageLoad(NavegacaoType.DELEGACAO_DE_ATIVIDADES);
     }
 
+    private void assinar() {
+        AssinaturaDeDiariasViewHome.isDisplayedCheck();
+        AssinaturaDeDiariasViewHome.numeroDaDiaria(delegacaoDeAtividades.getNumeroDiaria());
+        AssinaturaDeDiariasViewHome.pesquisar();
+        AssinaturaDeDiariasViewHome.isDisplayedGridPesquisar();
+        AssinaturaDeDiariasViewHome.informacoesDetalhadas();
+        AssinaturaDeDiariasViewHome.assinar();
+    }
+
     @Override
-    public void execAcao(Action action) {
+    public void home() {
+        BrowserDriver.loadPage(NavegacaoType.ASSINATURA_DE_DIARIAS.getUrl());
+        AssinaturaDeDiariasViewHome.isDisplayedCheck();
+
+    }
+
+    @Override
+    public void insert() {
+
+    }
+
+    @Override
+    public void search() {
+
+    }
+
+    @Override
+    public void edit() {
+
+    }
+
+
+    @Override
+    public void others(Action action) {
         switch(action){
-            case HOME:
-                BrowserDriver.loadPage(NavegacaoType.ASSINATURA_DE_DIARIAS.getUrl());
-                AssinaturaDeDiariasViewHome.isDisplayedCheck();
-                break;
             case OK:
-                AssinaturaDeDiariasViewHome.isDisplayedCheck();
-                AssinaturaDeDiariasViewHome.numeroDaDiaria(delegacaoDeAtividades.getNumeroDiaria());
-                AssinaturaDeDiariasViewHome.pesquisar();
-                AssinaturaDeDiariasViewHome.isDisplayedGridPesquisar();
-                AssinaturaDeDiariasViewHome.informacoesDetalhadas();
-                AssinaturaDeDiariasViewHome.assinar();
+                assinar();
                 break;
             case MENSAGEM_OK:
                 AssinaturaDeDiariasViewHome.confirmar();
                 break;
+            default:
+                throw Action.actionNotFound(action.name());
         }
 
     }

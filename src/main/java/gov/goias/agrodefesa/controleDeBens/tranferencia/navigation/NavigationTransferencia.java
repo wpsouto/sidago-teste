@@ -17,34 +17,57 @@ public class NavigationTransferencia implements NavegacaoStrategy {
         patrimonio = (NavigationPatrimonio) NavegacaoFactory.getNavigator().pageLoad(NavegacaoType.PATRIMONIO);
     }
 
+    private void confirmar() {
+        TransferenciaViewHome.isDisplayedCheck();
+        TransferenciaViewHome.numeroPatrimonio(this.patrimonio.getNumeroPatrimonio());
+        TransferenciaViewHome.pesquisar();
+        TransferenciaViewHome.isDisplayedGridPesquisar();
+        TransferenciaViewHome.confirmar();
+        TransferenciaViewHome.confirmarMsg();
+    }
+
     @Override
-    public void execAcao(Action action) {
+    public void home() {
+        BrowserDriver.loadPage(NavegacaoType.TRANSFERENCIA_BENS.getUrl());
+        TransferenciaViewHome.isDisplayedCheck();
+
+    }
+
+    @Override
+    public void insert() {
+        TransferenciaViewHome.incluirRegistro();
+        TransferenciaViewInsert.isDisplayedCheck();
+        TransferenciaViewInsert.numeroPatrimonio(patrimonio.getNumeroPatrimonio());
+        TransferenciaViewInsert.destino("UOL Goiânia");
+        TransferenciaViewInsert.conservacao("Bom");
+        TransferenciaViewInsert.manutencao("Não");
+        BrowserDriver.screenshot();
+        TransferenciaViewInsert.salvar();
+
+    }
+
+    @Override
+    public void search() {
+
+    }
+
+    @Override
+    public void edit() {
+
+    }
+
+    @Override
+    public void others(Action action) {
         switch (action) {
-            case HOME:
-                BrowserDriver.loadPage(NavegacaoType.TRANSFERENCIA_BENS.getUrl());
-                TransferenciaViewHome.isDisplayedCheck();
-                break;
-            case INSERT:
-                TransferenciaViewHome.incluirRegistro();
-                TransferenciaViewInsert.isDisplayedCheck();
-                TransferenciaViewInsert.numeroPatrimonio(patrimonio.getNumeroPatrimonio());
-                TransferenciaViewInsert.destino("UOL Goiânia");
-                TransferenciaViewInsert.conservacao("Bom");
-                TransferenciaViewInsert.manutencao("Não");
-                BrowserDriver.screenshot();
-                TransferenciaViewInsert.salvar();
-                break;
             case OK:
-                TransferenciaViewHome.isDisplayedCheck();
-                TransferenciaViewHome.numeroPatrimonio(this.patrimonio.getNumeroPatrimonio());
-                TransferenciaViewHome.pesquisar();
-                TransferenciaViewHome.isDisplayedGridPesquisar();
-                TransferenciaViewHome.confirmar();
-                TransferenciaViewHome.confirmarMsg();
+                confirmar();
                 break;
             case MENSAGEM_INSERT:
                 TransferenciaViewInsert.aviso("Registro inserido com sucesso!");
                 break;
+            default:
+                throw Action.actionNotFound(action.name());
+
         }
 
     }

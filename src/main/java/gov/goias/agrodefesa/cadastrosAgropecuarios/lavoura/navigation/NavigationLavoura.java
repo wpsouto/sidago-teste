@@ -32,49 +32,64 @@ public class NavigationLavoura implements NavegacaoStrategy {
     }
 
     @Override
-    public void execAcao(Action action) {
+    public void home() {
+        BrowserDriver.loadPage(NavegacaoType.LAVOURA.getUrl());
+        LavouraViewHome.isDisplayedCheck();
+
+    }
+
+    @Override
+    public void insert() {
+        LavouraViewHome.incluirRegistro();
+        LavouraViewInsert.isDisplayedCheck();
+        LavouraViewInsert.listaSefaz(INSCRICAO_ESTADUAL);
+        LavouraViewInsert.adicionarProduto(new Produto.ProdutoBuilder()
+                .produto(PRODUTO)
+                .cultivar(PRODUTO)
+                .tipoProduto(TIPO_PRODUTO)
+                .estimativaProducao(ESTIMATIVA)
+                .dataPrevistaPlantio(dataAtual)
+                .previsaoInicioColheita(dataAtual)
+                .previsaoFimColheita(dataAtual)
+                .areaPlantada(ESTIMATIVA)
+                .build());
+        LavouraViewInsert.sistemaCultivo(SISTEMA_CULTIVO);
+        LavouraViewInsert.origemSemente(ORIGEM_SEMENTE);
+        BrowserDriver.screenshot();
+        LavouraViewInsert.salvar();
+
+    }
+
+    @Override
+    public void search() {
+        LavouraViewHome.isDisplayedCheck();
+        LavouraViewHome.inscricaoEstadual(INSCRICAO_ESTADUAL);
+        LavouraViewHome.pesquisar();
+        LavouraViewHome.isDisplayedGridPesquisar();
+
+    }
+
+    @Override
+    public void edit() {
+        search();
+        LavouraViewHome.alterar();
+        LavouraViewEdit.isDisplayedCheck();
+        LavouraViewEdit.salvar();
+
+    }
+
+    @Override
+    public void others(Action action) {
         switch (action) {
-            case HOME:
-                BrowserDriver.loadPage(NavegacaoType.LAVOURA.getUrl());
-                LavouraViewHome.isDisplayedCheck();
-                break;
-            case INSERT:
-                LavouraViewHome.incluirRegistro();
-                LavouraViewInsert.isDisplayedCheck();
-                LavouraViewInsert.listaSefaz(INSCRICAO_ESTADUAL);
-                LavouraViewInsert.adicionarProduto(new Produto.ProdutoBuilder()
-                        .produto(PRODUTO)
-                        .cultivar(PRODUTO)
-                        .tipoProduto(TIPO_PRODUTO)
-                        .estimativaProducao(ESTIMATIVA)
-                        .dataPrevistaPlantio(dataAtual)
-                        .previsaoInicioColheita(dataAtual)
-                        .previsaoFimColheita(dataAtual)
-                        .areaPlantada(ESTIMATIVA)
-                        .build());
-                LavouraViewInsert.sistemaCultivo(SISTEMA_CULTIVO);
-                LavouraViewInsert.origemSemente(ORIGEM_SEMENTE);
-                BrowserDriver.screenshot();
-                LavouraViewInsert.salvar();
-                break;
-            case SEARCH:
-                LavouraViewHome.isDisplayedCheck();
-                LavouraViewHome.inscricaoEstadual(INSCRICAO_ESTADUAL);
-                LavouraViewHome.pesquisar();
-                LavouraViewHome.isDisplayedGridPesquisar();
-                break;
-            case EDIT:
-                execAcao(Action.SEARCH);
-                LavouraViewHome.alterar();
-                LavouraViewEdit.isDisplayedCheck();
-                LavouraViewEdit.salvar();
-                break;
             case MENSAGEM_INSERT:
                 LavouraViewInsert.aviso("Registro inserido com sucesso!");
                 break;
             case MENSAGEM_EDIT:
                 LavouraViewEdit.aviso("Registro alterado com sucesso!");
                 break;
+            default:
+                throw Action.actionNotFound(action.name());
+
         }
 
     }

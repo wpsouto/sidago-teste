@@ -19,27 +19,51 @@ public class NavigationPrestacaoDeContas implements NavegacaoStrategy {
         delegacaoDeAtividades = (NavigationDelegacaoDeAtividades) NavegacaoFactory.getNavigator().pageLoad(NavegacaoType.DELEGACAO_DE_ATIVIDADES);
     }
 
+    private void prestarContas() {
+        PrestacaoDeContasViewHome.isDisplayedCheck();
+        PrestacaoDeContasViewHome.numero(delegacaoDeAtividades.getNumeroDiaria());
+        PrestacaoDeContasViewHome.pesquisar();
+        PrestacaoDeContasViewHome.pesquisarCheck();
+        PrestacaoDeContasViewHome.prestarContas();
+        PrestacaoDeContasViewEdit.isDisplayedCheck();
+        PrestacaoDeContasViewEdit.atividade(ATIVIDADES);
+        PrestacaoDeContasViewEdit.upload(PrestacaoDeContasViewEdit.class.getClassLoader().getResource("upload.pdf").getFile());
+        PrestacaoDeContasViewEdit.salvar();
+    }
+
     @Override
-    public void execAcao(Action action) {
+    public void home() {
+        BrowserDriver.loadPage(NavegacaoType.PRESTACAO_DE_CONTAS.getUrl());
+        PrestacaoDeContasViewHome.isDisplayedCheck();
+
+    }
+
+    @Override
+    public void insert() {
+
+    }
+
+    @Override
+    public void search() {
+
+    }
+
+    @Override
+    public void edit() {
+
+    }
+
+    @Override
+    public void others(Action action) {
         switch(action){
-            case HOME:
-                BrowserDriver.loadPage(NavegacaoType.PRESTACAO_DE_CONTAS.getUrl());
-                PrestacaoDeContasViewHome.isDisplayedCheck();
-                break;
             case OK:
-                PrestacaoDeContasViewHome.isDisplayedCheck();
-                PrestacaoDeContasViewHome.numero(delegacaoDeAtividades.getNumeroDiaria());
-                PrestacaoDeContasViewHome.pesquisar();
-                PrestacaoDeContasViewHome.pesquisarCheck();
-                PrestacaoDeContasViewHome.prestarContas();
-                PrestacaoDeContasViewEdit.isDisplayedCheck();
-                PrestacaoDeContasViewEdit.atividade(ATIVIDADES);
-                PrestacaoDeContasViewEdit.upload(PrestacaoDeContasViewEdit.class.getClassLoader().getResource("upload.pdf").getFile());
-                PrestacaoDeContasViewEdit.salvar();
+                prestarContas();
                 break;
             case MENSAGEM_OK:
                 PrestacaoDeContasViewEdit.aviso("Registro alterado com sucesso!");
                 break;
+            default:
+                throw Action.actionNotFound(action.name());
         }
 
     }

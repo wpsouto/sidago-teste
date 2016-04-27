@@ -2,7 +2,7 @@
 
 @all @Denuncia @AbrirDenuncia
 
-Funcionalidade: Testando as funcionalidades do Patrimonio
+Funcionalidade: Testando as funcionalidades do Abrir Denuncia
 
   Cenário de Fundo: Preparando o Sistema
     Dado Eu faco login no sistema com o CPF "administrador" USUARIO "Administrador" tela inicial "Abrir Denúncia"

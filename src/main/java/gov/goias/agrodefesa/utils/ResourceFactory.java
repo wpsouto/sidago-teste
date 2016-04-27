@@ -11,7 +11,7 @@ import java.io.*;
  */
 public class ResourceFactory {
 
-    public static <T> T load(Class<T> classToProxy) {
+    public static <T> T init(Class<T> classToProxy) {
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         Gson gson = builder.create();

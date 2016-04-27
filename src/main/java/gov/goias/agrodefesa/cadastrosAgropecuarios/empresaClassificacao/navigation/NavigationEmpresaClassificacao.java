@@ -18,41 +18,54 @@ public class NavigationEmpresaClassificacao implements NavegacaoStrategy {
     private static final String TIPO_CLASSIFICACAO = "Classificação Simples";
     private static final String ALTERAR = "-ALTERADO";
 
+    @Override
+    public void home() {
+        BrowserDriver.loadPage(NavegacaoType.EMPRESA_CLASSIFICACAO.getUrl());
+        EmpresaClassificacaoViewHome.isDisplayedCheck();
+
+    }
 
     @Override
-    public void execAcao(Action action) {
+    public void insert() {
+        EmpresaClassificacaoViewHome.incluirRegistro();
+        EmpresaClassificacaoViewInsert.isDisplayedCheck();
+        EmpresaClassificacaoViewInsert.tipoClassificacao(TIPO_CLASSIFICACAO);
+        EmpresaClassificacaoViewInsert.classificacao(CLASSIFICACAO);
+        BrowserDriver.screenshot();
+        EmpresaClassificacaoViewInsert.salvar();
+
+    }
+
+    @Override
+    public void search() {
+        EmpresaClassificacaoViewHome.isDisplayedCheck();
+        EmpresaClassificacaoViewHome.classificacao(CLASSIFICACAO);
+        EmpresaClassificacaoViewHome.pesquisar();
+        EmpresaClassificacaoViewHome.isDisplayedGridPesquisar();
+
+    }
+
+    @Override
+    public void edit() {
+        search();
+        EmpresaClassificacaoViewHome.alterar();
+        EmpresaClassificacaoViewEdit.isDisplayedCheck();
+        EmpresaClassificacaoViewHome.classificacao(CLASSIFICACAO);
+        EmpresaClassificacaoViewEdit.salvar();
+
+    }
+
+    @Override
+    public void others(Action action) {
         switch(action){
-            case HOME:
-                BrowserDriver.loadPage(NavegacaoType.EMPRESA_CLASSIFICACAO.getUrl());
-                EmpresaClassificacaoViewHome.isDisplayedCheck();
-                break;
-            case INSERT:
-                EmpresaClassificacaoViewHome.incluirRegistro();
-                EmpresaClassificacaoViewInsert.isDisplayedCheck();
-                EmpresaClassificacaoViewInsert.tipoClassificacao(TIPO_CLASSIFICACAO);
-                EmpresaClassificacaoViewInsert.classificacao(CLASSIFICACAO);
-                BrowserDriver.screenshot();
-                EmpresaClassificacaoViewInsert.salvar();
-                break;
-            case SEARCH:
-                EmpresaClassificacaoViewHome.isDisplayedCheck();
-                EmpresaClassificacaoViewHome.classificacao(CLASSIFICACAO);
-                EmpresaClassificacaoViewHome.pesquisar();
-                EmpresaClassificacaoViewHome.isDisplayedGridPesquisar();
-                break;
-            case EDIT:
-                execAcao(Action.SEARCH);
-                EmpresaClassificacaoViewHome.alterar();
-                EmpresaClassificacaoViewEdit.isDisplayedCheck();
-                EmpresaClassificacaoViewHome.classificacao(CLASSIFICACAO);
-                EmpresaClassificacaoViewEdit.salvar();
-                break;
             case MENSAGEM_INSERT:
                 EmpresaClassificacaoViewInsert.aviso("Registro inserido com sucesso!");
                 break;
             case MENSAGEM_EDIT:
                 EmpresaClassificacaoViewEdit.aviso("Registro alterado com sucesso!");
                 break;
+            default:
+                throw Action.actionNotFound(action.name());
         }
 
     }

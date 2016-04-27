@@ -18,4 +18,8 @@ public class PageContainerHome {
     @FindBy(how = How.CSS, using = "#listagemOperacao > #icons > li.ui-state-default.ui-corner-all > span.ui-icon.ui-icon-document")
     public WebElement document;
 
+    @FindBy(how = How.CSS, using = "#listagemOperacao > #icons > li.ui-state-default.ui-corner-all > span.ui-icon.ui-icon-pencil")
+    public WebElement pencil;
+
+
 }

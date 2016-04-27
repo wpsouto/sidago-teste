@@ -8,7 +8,7 @@ public enum Action {
     EDIT(new String[]{"altero"}),
     CANCEL(new String[]{"cancelo"}),
     OK(new String[]{"confirmo"}),
-    APROVO(new String[]{"aprovo"}),
+    APPROVE(new String[]{"aprovo"}),
     MENSAGEM_OK(new String[]{"confirmado"}),
     MENSAGEM_INSERT(new String[]{"inserido"}),
 	MENSAGEM_EDIT(new String[]{"alterado"}),
@@ -32,7 +32,7 @@ public enum Action {
         throw actionNotFound(actionString);
     }
 
-    private static IllegalArgumentException actionNotFound(String action) {
+    public static IllegalArgumentException actionNotFound(String action) {
         return new IllegalArgumentException(("Invalid Action [" + action + "]"));
     }
 

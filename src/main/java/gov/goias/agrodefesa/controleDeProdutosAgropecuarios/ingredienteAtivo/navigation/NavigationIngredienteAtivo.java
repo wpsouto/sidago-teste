@@ -17,38 +17,53 @@ public class NavigationIngredienteAtivo implements NavegacaoStrategy {
     private static final String ALTERAR = "-ALTERADO";
 
     @Override
-    public void execAcao(Action action) {
+    public void home() {
+        BrowserDriver.loadPage(NavegacaoType.INGREDIENTE_ATIVO.getUrl());
+        IngredienteAtivoViewHome.isDisplayedCheck();
+
+    }
+
+    @Override
+    public void insert() {
+        IngredienteAtivoViewHome.incluirRegistro();
+        IngredienteAtivoViewInsert.isDisplayedCheck();
+        IngredienteAtivoViewInsert.nomeIngrediente(INGREDIENTE);
+        BrowserDriver.screenshot();
+        IngredienteAtivoViewInsert.salvar();
+
+    }
+
+    @Override
+    public void search() {
+        IngredienteAtivoViewHome.isDisplayedCheck();
+        IngredienteAtivoViewHome.ingrediente(INGREDIENTE);
+        IngredienteAtivoViewHome.pesquisar();
+        IngredienteAtivoViewHome.isDisplayedGridPesquisar();
+
+    }
+
+    @Override
+    public void edit() {
+        search();
+        IngredienteAtivoViewHome.alterar();
+        IngredienteAtivoViewEdit.isDisplayedCheck();
+        IngredienteAtivoViewEdit.descricao(INGREDIENTE + ALTERAR);
+        IngredienteAtivoViewEdit.salvar();
+
+    }
+
+    @Override
+    public void others(Action action) {
         switch(action){
-            case HOME:
-                BrowserDriver.loadPage(NavegacaoType.INGREDIENTE_ATIVO.getUrl());
-                IngredienteAtivoViewHome.isDisplayedCheck();
-                break;
-            case INSERT:
-                IngredienteAtivoViewHome.incluirRegistro();
-                IngredienteAtivoViewInsert.isDisplayedCheck();
-                IngredienteAtivoViewInsert.nomeIngrediente(INGREDIENTE);
-                BrowserDriver.screenshot();
-                IngredienteAtivoViewInsert.salvar();
-                break;
-            case SEARCH:
-                IngredienteAtivoViewHome.isDisplayedCheck();
-                IngredienteAtivoViewHome.ingrediente(INGREDIENTE);
-                IngredienteAtivoViewHome.pesquisar();
-                IngredienteAtivoViewHome.isDisplayedGridPesquisar();
-                break;
-            case EDIT:
-                execAcao(Action.SEARCH);
-                IngredienteAtivoViewHome.alterar();
-                IngredienteAtivoViewEdit.isDisplayedCheck();
-                IngredienteAtivoViewEdit.descricao(INGREDIENTE + ALTERAR);
-                IngredienteAtivoViewEdit.salvar();
-                break;
             case MENSAGEM_INSERT:
                 IngredienteAtivoViewInsert.aviso("Registro inserido com sucesso!");
                 break;
             case MENSAGEM_EDIT:
                 IngredienteAtivoViewEdit.aviso("Registro alterado com sucesso!");
                 break;
+            default:
+                throw Action.actionNotFound(action.name());
+
         }
 
     }

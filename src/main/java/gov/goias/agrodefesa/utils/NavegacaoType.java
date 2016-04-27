@@ -42,6 +42,7 @@ public class NavegacaoType {
 
     public static final String DEFESA_SANITARIA_VEGETAL = "gtv/";
     public static final NavegacaoType AQUISICAO_MUDAS;
+    public static final NavegacaoType UNIDADE_CONSOLIDACAO;
 
     private final String key;
     private final String modulo;
@@ -105,6 +106,7 @@ public class NavegacaoType {
 
         //DEFESA_SANITARIA_VEGETAL
         AQUISICAO_MUDAS = create("Autorização para Aquisição de Mudas", DEFESA_SANITARIA_VEGETAL, "autorizacao-aquisicao-mudas");
+        UNIDADE_CONSOLIDACAO = create("Unidade Consolidação", DEFESA_SANITARIA_VEGETAL, "unidade-consolidacao");
 
     }
 }

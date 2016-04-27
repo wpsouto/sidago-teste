@@ -17,42 +17,57 @@ public class NavigationAbrirDenuncia implements NavegacaoStrategy {
     private AbrirDenuncia entity;
 
     public NavigationAbrirDenuncia() {
-        entity = ResourceFactory.load(AbrirDenuncia.class);
+        entity = ResourceFactory.init(AbrirDenuncia.class);
     }
 
     @Override
-    public void execAcao(Action action) {
+    public void home() {
+        BrowserDriver.loadPage(NavegacaoType.ABRIR_DENUNCIA.getUrl());
+        AbrirDenunciaViewHome.isDisplayedCheck();
+
+    }
+
+    @Override
+    public void insert() {
+        AbrirDenunciaViewHome.incluirRegistro();
+        AbrirDenunciaViewInsert.isDisplayedCheck();
+        AbrirDenunciaViewInsert.tipoInfracao(entity.getTipoInfracao());
+        AbrirDenunciaViewInsert.assunto(entity.getAssunto());
+        BrowserDriver.screenshot();
+        AbrirDenunciaViewInsert.salvar();
+
+    }
+
+    @Override
+    public void search() {
+        AbrirDenunciaViewHome.isDisplayedCheck();
+        AbrirDenunciaViewHome.tipoInfracao(entity.getTipoInfracao());
+        AbrirDenunciaViewHome.pesquisar();
+        AbrirDenunciaViewHome.isDisplayedGridPesquisar();
+
+    }
+
+    @Override
+    public void edit() {
+        search();
+        AbrirDenunciaViewHome.alterar();
+        AbrirDenunciaViewEdit.isDisplayedCheck();
+        AbrirDenunciaViewEdit.salvar();
+
+    }
+
+    @Override
+    public void others(Action action) {
         switch (action) {
-            case HOME:
-                BrowserDriver.loadPage(NavegacaoType.ABRIR_DENUNCIA.getUrl());
-                AbrirDenunciaViewHome.isDisplayedCheck();
-                break;
-            case SEARCH:
-                AbrirDenunciaViewHome.isDisplayedCheck();
-                AbrirDenunciaViewHome.tipoInfracao(entity.getTipoInfracao());
-                AbrirDenunciaViewHome.pesquisar();
-                AbrirDenunciaViewHome.isDisplayedGridPesquisar();
-                break;
-            case INSERT:
-                AbrirDenunciaViewHome.incluirRegistro();
-                AbrirDenunciaViewInsert.isDisplayedCheck();
-                AbrirDenunciaViewInsert.tipoInfracao(entity.getTipoInfracao());
-                AbrirDenunciaViewInsert.assunto(entity.getAssunto());
-                BrowserDriver.screenshot();
-                AbrirDenunciaViewInsert.salvar();
-                break;
-            case EDIT:
-                execAcao(Action.SEARCH);
-                AbrirDenunciaViewHome.alterar();
-                AbrirDenunciaViewEdit.isDisplayedCheck();
-                AbrirDenunciaViewEdit.salvar();
-                break;
             case MENSAGEM_INSERT:
                 AbrirDenunciaViewInsert.aviso("Registro inserido com sucesso!");
                 break;
             case MENSAGEM_EDIT:
                 AbrirDenunciaViewEdit.aviso("Registro alterado com sucesso!");
                 break;
+            default:
+                throw Action.actionNotFound(action.name());
+
         }
 
     }

@@ -23,39 +23,53 @@ public class NavigationEmpresaForaGoias implements NavegacaoStrategy {
     }
 
     @Override
-    public void execAcao(Action action) {
+    public void home() {
+        BrowserDriver.loadPage(NavegacaoType.EMPRESA_FORA_GOIAS.getUrl());
+        EmpresaForaGoiasViewHome.isDisplayedCheck();
+
+    }
+
+    @Override
+    public void insert() {
+        EmpresaForaGoiasViewHome.incluirRegistro();
+        EmpresaForaGoiasViewInsert.isDisplayedCheck();
+        EmpresaForaGoiasViewInsert.numeroDocumento(NUMERO_DOCUMENTO);
+        EmpresaForaGoiasViewInsert.pesquisar();
+        EmpresaForaGoiasViewInsert.classificacao(CLASSIFICACAO);
+        BrowserDriver.screenshot();
+        EmpresaForaGoiasViewInsert.salvar();
+
+    }
+
+    @Override
+    public void search() {
+        EmpresaForaGoiasViewHome.isDisplayedCheck();
+        EmpresaForaGoiasViewHome.cnpj(NUMERO_DOCUMENTO);
+        EmpresaForaGoiasViewHome.pesquisar();
+        EmpresaForaGoiasViewHome.isDisplayedGridPesquisar();
+
+    }
+
+    @Override
+    public void edit() {
+        search();
+        EmpresaForaGoiasViewHome.alterar();
+        EmpresaForaGoiasViewEdit.isDisplayedCheck();
+        EmpresaForaGoiasViewEdit.salvar();
+
+    }
+
+    @Override
+    public void others(Action action) {
         switch(action){
-            case HOME:
-                BrowserDriver.loadPage(NavegacaoType.EMPRESA_FORA_GOIAS.getUrl());
-                EmpresaForaGoiasViewHome.isDisplayedCheck();
-                break;
-            case INSERT:
-                EmpresaForaGoiasViewHome.incluirRegistro();
-                EmpresaForaGoiasViewInsert.isDisplayedCheck();
-                EmpresaForaGoiasViewInsert.numeroDocumento(NUMERO_DOCUMENTO);
-                EmpresaForaGoiasViewInsert.pesquisar();
-                EmpresaForaGoiasViewInsert.classificacao(CLASSIFICACAO);
-                BrowserDriver.screenshot();
-                EmpresaForaGoiasViewInsert.salvar();
-                break;
-            case SEARCH:
-                EmpresaForaGoiasViewHome.isDisplayedCheck();
-                EmpresaForaGoiasViewHome.cnpj(NUMERO_DOCUMENTO);
-                EmpresaForaGoiasViewHome.pesquisar();
-                EmpresaForaGoiasViewHome.isDisplayedGridPesquisar();
-                break;
-            case EDIT:
-                execAcao(Action.SEARCH);
-                EmpresaForaGoiasViewHome.alterar();
-                EmpresaForaGoiasViewEdit.isDisplayedCheck();
-                EmpresaForaGoiasViewEdit.salvar();
-                break;
             case MENSAGEM_INSERT:
                 EmpresaForaGoiasViewInsert.aviso("Registro inserido com sucesso!");
                 break;
             case MENSAGEM_EDIT:
                 EmpresaForaGoiasViewEdit.aviso("Registro alterado com sucesso!");
                 break;
+            default:
+                throw Action.actionNotFound(action.name());
         }
 
     }

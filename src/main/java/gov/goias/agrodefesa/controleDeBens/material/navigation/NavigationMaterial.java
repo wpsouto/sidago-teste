@@ -17,41 +17,56 @@ public class NavigationMaterial implements NavegacaoStrategy {
     private static final String ALTERAR = "-ALTERADO";
 
     @Override
-    public void execAcao(Action action) {
+    public void home() {
+        BrowserDriver.loadPage(NavegacaoType.MATERIAL.getUrl());
+        MaterialViewHome.isDisplayedCheck();
+
+    }
+
+    @Override
+    public void insert() {
+        MaterialViewHome.incluirRegistro();
+        MaterialViewInsert.isDisplayedCheck();
+        MaterialViewInsert.nomeMaterial(NOME);
+        MaterialViewInsert.tipoMaterial(TIPO_MATERIAL);
+        MaterialViewInsert.unidadeMedida(UNIDADE_MEDIDA);
+        MaterialViewInsert.estoqueMinimo(ESTOQUE_MINIMO);
+        BrowserDriver.screenshot();
+        MaterialViewInsert.salvar();
+
+    }
+
+    @Override
+    public void search() {
+        MaterialViewHome.isDisplayedCheck();
+        MaterialViewHome.nomeMaterial(NOME);
+        MaterialViewHome.pesquisar();
+        MaterialViewHome.isDisplayedGridPesquisar();
+
+    }
+
+    @Override
+    public void edit() {
+        search();
+        MaterialViewHome.alterar();
+        MaterialViewEdit.isDisplayedCheck();
+        MaterialViewEdit.nomeMaterial(NOME + ALTERAR);
+        MaterialViewEdit.salvar();
+
+    }
+
+    @Override
+    public void others(Action action) {
         switch(action){
-            case HOME:
-                BrowserDriver.loadPage(NavegacaoType.MATERIAL.getUrl());
-                MaterialViewHome.isDisplayedCheck();
-                break;
-            case INSERT:
-                MaterialViewHome.incluirRegistro();
-                MaterialViewInsert.isDisplayedCheck();
-                MaterialViewInsert.nomeMaterial(NOME);
-                MaterialViewInsert.tipoMaterial(TIPO_MATERIAL);
-                MaterialViewInsert.unidadeMedida(UNIDADE_MEDIDA);
-                MaterialViewInsert.estoqueMinimo(ESTOQUE_MINIMO);
-                BrowserDriver.screenshot();
-                MaterialViewInsert.salvar();
-                break;
-            case SEARCH:
-                MaterialViewHome.isDisplayedCheck();
-                MaterialViewHome.nomeMaterial(NOME);
-                MaterialViewHome.pesquisar();
-                MaterialViewHome.isDisplayedGridPesquisar();
-                break;
-            case EDIT:
-                execAcao(Action.SEARCH);
-                MaterialViewHome.alterar();
-                MaterialViewEdit.isDisplayedCheck();
-                MaterialViewEdit.nomeMaterial(NOME + ALTERAR);
-                MaterialViewEdit.salvar();
-                break;
             case MENSAGEM_INSERT:
                 MaterialViewInsert.aviso("Registro inserido com sucesso!");
                 break;
             case MENSAGEM_EDIT:
                 MaterialViewEdit.aviso("Registro alterado com sucesso!");
                 break;
+            default:
+                throw Action.actionNotFound(action.name());
+
         }
 
     }

@@ -4,6 +4,10 @@
 
 Funcionalidade: Testando as funcionalidades do Autorização para Aquisição de Mudas
 
+  PRE-REQUISITOS:
+
+  -Ja ter uma propriedade cadastrada
+
   Cenário de Fundo: Preparando o Sistema
     Dado Eu faco login no sistema com o CPF "administrador" USUARIO "Administrador" tela inicial "Autorização para Aquisição de Mudas"
 

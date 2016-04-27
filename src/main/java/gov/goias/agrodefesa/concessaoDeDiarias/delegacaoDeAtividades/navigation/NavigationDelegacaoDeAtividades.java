@@ -25,47 +25,63 @@ public class NavigationDelegacaoDeAtividades implements NavegacaoStrategy {
     }
 
     @Override
-    public void execAcao(Action action) {
+    public void home() {
+        BrowserDriver.loadPage(NavegacaoType.DELEGACAO_DE_ATIVIDADES.getUrl());
+        DelegacaoDeAtividadesViewHome.isDisplayedCheck();
+
+    }
+
+    @Override
+    public void insert() {
+        DelegacaoDeAtividadesViewHome.incluirRegistro();
+        DelegacaoDeAtividadesViewInsert.isDisplayedCheck();
+        DelegacaoDeAtividadesViewInsert.servidorDesignado("Carla Giovanna Nunes de Farias Leite Coelho");
+        DelegacaoDeAtividadesViewInsert.meioDeTransporte("Automóvel");
+        DelegacaoDeAtividadesViewInsert.adicionarDestino();
+
+        DelegacaoDeAtividadesViewInsert.dataSaida(dataSaida);
+        DelegacaoDeAtividadesViewInsert.dataChegada(dataChegada);
+
+        DelegacaoDeAtividadesViewInsert.descricaoDoServico("Teste Automatizado");
+        DelegacaoDeAtividadesViewInsert.comPernoite("Não");
+        DelegacaoDeAtividadesViewInsert.acompanhaAutoridade("Não");
+        DelegacaoDeAtividadesViewInsert.tipoRecurso("Recurso Próprio");
+        DelegacaoDeAtividadesViewInsert.fonteRecurso("20 - Recurso Próprio");
+        DelegacaoDeAtividadesViewInsert.acao("4001 - Administrativo");
+        DelegacaoDeAtividadesViewInsert.meta("4001 - Administrativo");
+        DelegacaoDeAtividadesViewInsert.realizacao("4001 - Administrativo");
+        DelegacaoDeAtividadesViewInsert.empenho("4001 | Presidência");
+        DelegacaoDeAtividadesViewInsert.salvar();
+
+    }
+
+    @Override
+    public void search() {
+        DelegacaoDeAtividadesViewHome.isDisplayedCheck();
+        DelegacaoDeAtividadesViewHome.nomeDoServidor("Carla Giovanna Nunes de Farias Leite Coelho");
+        DelegacaoDeAtividadesViewHome.dataSaida(dataSaida);
+        DelegacaoDeAtividadesViewHome.dataChegada(dataChegada);
+        DelegacaoDeAtividadesViewHome.pesquisar();
+        DelegacaoDeAtividadesViewHome.pesquisarCheck();
+        numeroDiaria = DelegacaoDeAtividadesViewHome.getNumeroDiaria();
+        BrowserDriver.screenshot();
+
+    }
+
+    @Override
+    public void edit() {
+
+    }
+
+    @Override
+    public void others(Action action) {
         switch(action){
-            case HOME:
-                BrowserDriver.loadPage(NavegacaoType.DELEGACAO_DE_ATIVIDADES.getUrl());
-                DelegacaoDeAtividadesViewHome.isDisplayedCheck();
-                break;
-            case INSERT:
-                DelegacaoDeAtividadesViewHome.incluirRegistro();
-                DelegacaoDeAtividadesViewInsert.isDisplayedCheck();
-                DelegacaoDeAtividadesViewInsert.servidorDesignado("Carla Giovanna Nunes de Farias Leite Coelho");
-                DelegacaoDeAtividadesViewInsert.meioDeTransporte("Automóvel");
-                DelegacaoDeAtividadesViewInsert.adicionarDestino();
-
-                DelegacaoDeAtividadesViewInsert.dataSaida(dataSaida);
-                DelegacaoDeAtividadesViewInsert.dataChegada(dataChegada);
-
-                DelegacaoDeAtividadesViewInsert.descricaoDoServico("Teste Automatizado");
-                DelegacaoDeAtividadesViewInsert.comPernoite("Não");
-                DelegacaoDeAtividadesViewInsert.acompanhaAutoridade("Não");
-                DelegacaoDeAtividadesViewInsert.tipoRecurso("Recurso Próprio");
-                DelegacaoDeAtividadesViewInsert.fonteRecurso("20 - Recurso Próprio");
-                DelegacaoDeAtividadesViewInsert.acao("4001 - Administrativo");
-                DelegacaoDeAtividadesViewInsert.meta("4001 - Administrativo");
-                DelegacaoDeAtividadesViewInsert.realizacao("4001 - Administrativo");
-                DelegacaoDeAtividadesViewInsert.empenho("4001 | Presidência");
-                DelegacaoDeAtividadesViewInsert.salvar();
-                break;
-            case SEARCH:
-                DelegacaoDeAtividadesViewHome.isDisplayedCheck();
-                DelegacaoDeAtividadesViewHome.nomeDoServidor("Carla Giovanna Nunes de Farias Leite Coelho");
-                DelegacaoDeAtividadesViewHome.dataSaida(dataSaida);
-                DelegacaoDeAtividadesViewHome.dataChegada(dataChegada);
-                DelegacaoDeAtividadesViewHome.pesquisar();
-                DelegacaoDeAtividadesViewHome.pesquisarCheck();
-                numeroDiaria = DelegacaoDeAtividadesViewHome.getNumeroDiaria();
-                BrowserDriver.screenshot();
-                break;
             case MENSAGEM_INSERT:
                 DelegacaoDeAtividadesViewInsert.aviso("Registro inserido com sucesso!");
-                execAcao(Action.SEARCH);
+                search();
                 break;
+            default:
+                throw Action.actionNotFound(action.name());
         }
 
     }

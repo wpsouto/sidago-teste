@@ -13,42 +13,51 @@ import gov.goias.agrodefesa.utils.*;
  */
 public class NavigationEmpresa implements NavegacaoStrategy {
     private Empresa empresa;
-    private boolean alterado= false;
+    private boolean alterado = false;
 
     public NavigationEmpresa() {
-        empresa = ResourceFactory.load(Empresa.class);
+        empresa = ResourceFactory.init(Empresa.class);
     }
 
     @Override
-    public void execAcao(Action action) {
+    public void home() {
+        BrowserDriver.loadPage(NavegacaoType.EMPRESA.getUrl());
+        EmpresaViewHome.isDisplayedCheck();
+    }
+
+    @Override
+    public void insert() {
+
+    }
+
+    @Override
+    public void search() {
+        EmpresaViewHome.isDisplayedCheck();
+        EmpresaViewHome.documento(empresa.getInformacaoObrigatoria().getCpfCnpj());
+        EmpresaViewHome.pesquisar();
+        EmpresaViewHome.isDisplayedGridPesquisar();
+
+    }
+
+    @Override
+    public void edit() {
+        search();
+        alterado = false;
+        if (EmpresaViewHome.situacaoCadastral().contains("Aguardando Envio Cadastro")) {
+            EmpresaViewHome.alterar();
+            EmpresaViewEdit.isDisplayedCheck();
+            EmpresaViewEdit.anexarDocumentos(empresa.getAnexarDocumentos());
+            EmpresaViewEdit.enviarCadastro();
+            alterado = true;
+        }
+
+    }
+
+    @Override
+    public void others(Action action) {
         switch (action) {
-            case HOME:
-                BrowserDriver.loadPage(NavegacaoType.EMPRESA.getUrl());
-                EmpresaViewHome.isDisplayedCheck();
-                break;
-            case SEARCH:
-                EmpresaViewHome.isDisplayedCheck();
-                EmpresaViewHome.documento(empresa.getInformacaoObrigatoria().getCpfCnpj());
-                EmpresaViewHome.pesquisar();
-                EmpresaViewHome.isDisplayedGridPesquisar();
-                break;
-            case APROVO:
-                execAcao(Action.SEARCH);
-                EmpresaViewHome.aprovar();
-                EmpresaViewAprovacao.isDisplayedCheck();
-                EmpresaViewAprovacao.validar(empresa);
-                BrowserDriver.screenshot();
-                break;
-            case EDIT:
-                execAcao(Action.SEARCH);
-                alterado = false;
-                if (EmpresaViewHome.situacaoCadastral().contains("Aguardando Envio Cadastro")){
-                    EmpresaViewHome.alterar();
-                    EmpresaViewEdit.isDisplayedCheck();
-                    EmpresaViewEdit.anexarDocumentos(empresa.getAnexarDocumentos());
-                    EmpresaViewEdit.enviarCadastro();
-                    alterado = true;
-                }
+            case APPROVE:
+                aprovar();
                 break;
             case MENSAGEM_INSERT:
                 EmpresaViewInsert.aviso("Registro inserido com sucesso!");
@@ -58,8 +67,18 @@ public class NavigationEmpresa implements NavegacaoStrategy {
                     EmpresaViewEdit.aviso("Registro alterado com sucesso!");
                 }
                 break;
+            default:
+                throw Action.actionNotFound(action.name());
         }
 
+    }
+
+    private void aprovar() {
+        search();
+        EmpresaViewHome.aprovar();
+        EmpresaViewAprovacao.isDisplayedCheck();
+        EmpresaViewAprovacao.validar(empresa);
+        BrowserDriver.screenshot();
     }
 
     public void inserir(String id, String descricao) {

@@ -19,40 +19,54 @@ public class NavigationProduto implements NavegacaoStrategy {
     private static final String UNIDADE_DE_MEDIDA = "Kilo(s)";
 
     @Override
-    public void execAcao(Action action) {
+    public void home() {
+        BrowserDriver.loadPage(NavegacaoType.PRODUTO.getUrl());
+        ProdutoViewHome.isDisplayedCheck();
+
+    }
+
+    @Override
+    public void insert() {
+        ProdutoViewHome.incluirRegistro();
+        ProdutoViewInsert.isDisplayedCheck();
+        ProdutoViewInsert.classificacao(CLASSIFICACAO);
+        ProdutoViewInsert.nomeDoProduto(NOME_DO_PRODUTO);
+        ProdutoViewInsert.adicionarSubprodutoUnidade(UNIDADE_DE_MEDIDA);
+        BrowserDriver.screenshot();
+        ProdutoViewInsert.salvar();
+
+    }
+
+    @Override
+    public void search() {
+        ProdutoViewHome.isDisplayedCheck();
+        ProdutoViewHome.nome(NOME_DO_PRODUTO);
+        ProdutoViewHome.pesquisar();
+        ProdutoViewHome.isDisplayedGridPesquisar();
+
+    }
+
+    @Override
+    public void edit() {
+        search();
+        ProdutoViewHome.alterar();
+        ProdutoViewEdit.isDisplayedCheck();
+        ProdutoViewEdit.nomeDoProduto(NOME_DO_PRODUTO + ALTERAR);
+        ProdutoViewEdit.salvar();
+
+    }
+
+    @Override
+    public void others(Action action) {
         switch(action){
-            case HOME:
-                BrowserDriver.loadPage(NavegacaoType.PRODUTO.getUrl());
-                ProdutoViewHome.isDisplayedCheck();
-                break;
-            case INSERT:
-                ProdutoViewHome.incluirRegistro();
-                ProdutoViewInsert.isDisplayedCheck();
-                ProdutoViewInsert.classificacao(CLASSIFICACAO);
-                ProdutoViewInsert.nomeDoProduto(NOME_DO_PRODUTO);
-                ProdutoViewInsert.adicionarSubprodutoUnidade(UNIDADE_DE_MEDIDA);
-                BrowserDriver.screenshot();
-                ProdutoViewInsert.salvar();
-                break;
-            case SEARCH:
-                ProdutoViewHome.isDisplayedCheck();
-                ProdutoViewHome.nome(NOME_DO_PRODUTO);
-                ProdutoViewHome.pesquisar();
-                ProdutoViewHome.isDisplayedGridPesquisar();
-                break;
-            case EDIT:
-                execAcao(Action.SEARCH);
-                ProdutoViewHome.alterar();
-                ProdutoViewEdit.isDisplayedCheck();
-                ProdutoViewEdit.nomeDoProduto(NOME_DO_PRODUTO + ALTERAR);
-                ProdutoViewEdit.salvar();
-                break;
             case MENSAGEM_INSERT:
                 ProdutoViewInsert.aviso("Registro inserido com sucesso!");
                 break;
             case MENSAGEM_EDIT:
                 ProdutoViewEdit.aviso("Registro alterado com sucesso!");
                 break;
+            default:
+                throw Action.actionNotFound(action.name());
         }
 
     }

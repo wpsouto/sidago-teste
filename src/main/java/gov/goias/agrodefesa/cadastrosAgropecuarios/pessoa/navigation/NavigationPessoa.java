@@ -15,49 +15,60 @@ public class NavigationPessoa implements NavegacaoStrategy {
     private Pessoa pessoa;
 
     public NavigationPessoa() {
-        pessoa = ResourceFactory.load(Pessoa.class);
+        pessoa = ResourceFactory.init(Pessoa.class);
     }
 
     @Override
-    public void execAcao(Action action) {
-        switch(action){
-            case HOME:
-                BrowserDriver.loadPage(NavegacaoType.PESSOA.getUrl());
-                PessoaViewHome.isDisplayedCheck();
-                break;
-            case INSERT:
-                pessoa.setCpfCnpj(Generator.cnpj());
+    public void home() {
+        BrowserDriver.loadPage(NavegacaoType.PESSOA.getUrl());
+        PessoaViewHome.isDisplayedCheck();
+    }
 
-                PessoaViewHome.incluirRegistro();
-                PessoaViewInsert.isDisplayedCheck();
-                PessoaViewInsert.cpfCnpj(pessoa.getCpfCnpj());
-                PessoaViewInsert.pesquisar();
-                PessoaViewInsert.nomeEmpresa(pessoa.getPessoaJuridica().getNomeEmpresa());
-                PessoaViewInsert.nomeFantasia(pessoa.getPessoaJuridica().getNomeFantasia());
-                PessoaViewInsert.adicionarEndereco(pessoa.getPessoaJuridica().getEndereco());
-                BrowserDriver.screenshot();
-                PessoaViewInsert.salvar();
-                break;
-            case SEARCH:
-                PessoaViewHome.isDisplayedCheck();
-                PessoaViewHome.cpfCnpj(pessoa.getCpfCnpj());
-                PessoaViewHome.pesquisar();
-                PessoaViewHome.isDisplayedGridPesquisar();
-                break;
-            case EDIT:
-                execAcao(Action.SEARCH);
-                PessoaViewHome.alterar();
-                PessoaViewEdit.isDisplayedCheck();
-                PessoaViewEdit.salvar();
-                break;
+    @Override
+    public void insert() {
+        pessoa.setCpfCnpj(Generator.cnpj());
+
+        PessoaViewHome.incluirRegistro();
+        PessoaViewInsert.isDisplayedCheck();
+        PessoaViewInsert.cpfCnpj(pessoa.getCpfCnpj());
+        PessoaViewInsert.pesquisar();
+        PessoaViewInsert.nomeEmpresa(pessoa.getPessoaJuridica().getNomeEmpresa());
+        PessoaViewInsert.nomeFantasia(pessoa.getPessoaJuridica().getNomeFantasia());
+        PessoaViewInsert.adicionarEndereco(pessoa.getPessoaJuridica().getEndereco());
+        BrowserDriver.screenshot();
+        PessoaViewInsert.salvar();
+
+    }
+
+    @Override
+    public void search() {
+        PessoaViewHome.isDisplayedCheck();
+        PessoaViewHome.cpfCnpj(pessoa.getCpfCnpj());
+        PessoaViewHome.pesquisar();
+        PessoaViewHome.isDisplayedGridPesquisar();
+    }
+
+    @Override
+    public void edit() {
+        search();
+        PessoaViewHome.alterar();
+        PessoaViewEdit.isDisplayedCheck();
+        PessoaViewEdit.salvar();
+
+    }
+
+    @Override
+    public void others(Action action) {
+        switch(action){
             case MENSAGEM_INSERT:
                 PessoaViewInsert.aviso("Registro inserido com sucesso!");
                 break;
             case MENSAGEM_EDIT:
                 PessoaViewEdit.aviso("Registro alterado com sucesso!");
                 break;
+            default:
+                throw Action.actionNotFound(action.name());
         }
-
     }
 
     public Pessoa getPessoa() {

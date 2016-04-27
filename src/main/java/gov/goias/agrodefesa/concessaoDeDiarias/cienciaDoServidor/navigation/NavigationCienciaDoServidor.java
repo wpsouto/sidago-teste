@@ -16,23 +16,47 @@ public class NavigationCienciaDoServidor implements NavegacaoStrategy {
         delegacaoDeAtividades = (NavigationDelegacaoDeAtividades) NavegacaoFactory.getNavigator().pageLoad(NavegacaoType.DELEGACAO_DE_ATIVIDADES);
     }
 
+    private void darCiencia() {
+        CienciaDoServidorViewHome.isDisplayedCheck();
+        CienciaDoServidorViewHome.numero(delegacaoDeAtividades.getNumeroDiaria());
+        CienciaDoServidorViewHome.pesquisar();
+        CienciaDoServidorViewHome.pesquisarCheck();
+        CienciaDoServidorViewHome.darCiencia();
+    }
+
     @Override
-    public void execAcao(Action action) {
+    public void home() {
+        BrowserDriver.loadPage(NavegacaoType.CIENCIA_DO_SERVIDOR.getUrl());
+        CienciaDoServidorViewHome.isDisplayedCheck();
+
+    }
+
+    @Override
+    public void insert() {
+
+    }
+
+    @Override
+    public void search() {
+
+    }
+
+    @Override
+    public void edit() {
+
+    }
+
+    @Override
+    public void others(Action action) {
         switch(action){
-            case HOME:
-                BrowserDriver.loadPage(NavegacaoType.CIENCIA_DO_SERVIDOR.getUrl());
-                CienciaDoServidorViewHome.isDisplayedCheck();
-                break;
             case OK:
-                CienciaDoServidorViewHome.isDisplayedCheck();
-                CienciaDoServidorViewHome.numero(delegacaoDeAtividades.getNumeroDiaria());
-                CienciaDoServidorViewHome.pesquisar();
-                CienciaDoServidorViewHome.pesquisarCheck();
-                CienciaDoServidorViewHome.darCiencia();
+                darCiencia();
                 break;
             case MENSAGEM_OK:
-                    CienciaDoServidorViewHome.concordar();
+                CienciaDoServidorViewHome.concordar();
                 break;
+            default:
+                throw Action.actionNotFound(action.name());
         }
 
     }
