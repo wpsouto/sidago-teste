@@ -3,7 +3,6 @@ package gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.navigati
 import cucumber.api.PendingException;
 import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
-import gov.goias.agrodefesa.base.navigation.NavigationBaseBuilder;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.entity.Pessoa;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.navigation.NavigationPessoa;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.entity.UnidadeConsolidacao;
