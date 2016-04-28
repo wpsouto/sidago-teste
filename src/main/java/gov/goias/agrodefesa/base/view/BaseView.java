@@ -1,8 +1,6 @@
 package gov.goias.agrodefesa.base.view;
 
-import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.containers.UnidadeConsolidacaoPageContainerHome;
 import gov.goias.agrodefesa.utils.BrowserDriver;
-import gov.goias.agrodefesa.utils.Constants;
 import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +14,7 @@ public class BaseView {
     protected Object container;
     protected Object entity;
 
-    public BaseView(Object entity, Class pageClassToProxy) {
+    public BaseView(Object entity, Class<?> pageClassToProxy) {
         this.container = PageFactory.initElements(BrowserDriver.getCurrentDriver(), pageClassToProxy);
         this.entity = entity;
     }

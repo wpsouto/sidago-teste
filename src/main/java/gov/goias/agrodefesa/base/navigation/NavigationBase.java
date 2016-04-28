@@ -7,19 +7,38 @@ import gov.goias.agrodefesa.constants.Action;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.NavegacaoStrategy;
 import gov.goias.agrodefesa.utils.NavegacaoType;
+import gov.goias.agrodefesa.utils.ResourceFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * Created by usuario on 10/03/16.
  */
-public abstract class NavigationBase implements NavegacaoStrategy {
+public class NavigationBase implements NavegacaoStrategy {
 
+    protected final Logger log = LoggerFactory.getLogger(this.getClass());
+    protected Object entity;
     protected NavegacaoType type;
     protected HomeView home;
     protected InsertView insert;
     protected EditView edit;
 
-    public NavigationBase(NavegacaoType type) {
+    public NavigationBase(NavegacaoType type, Class<?> classToProxy, Class<?> home, Class<?> insert, Class<?> edit) {
+        this.entity = ResourceFactory.init(classToProxy);
         this.type = type;
+        try {
+            this.home = (HomeView) home.getConstructor(Object.class).newInstance(this.entity);
+            this.insert = (InsertView) insert.getConstructor(Object.class).newInstance(this.entity);
+            this.edit = (EditView) edit.getConstructor(Object.class).newInstance(this.entity);
+        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+            throw NavigationBase.error(e);
+        }
+    }
+
+    private static IllegalArgumentException error(Throwable cause) {
+        return new IllegalArgumentException(cause);
     }
 
     @Override
