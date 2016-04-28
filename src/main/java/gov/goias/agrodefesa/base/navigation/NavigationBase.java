@@ -33,12 +33,12 @@ public class NavigationBase implements NavegacaoStrategy {
             this.insert = (InsertView) insert.getConstructor(Object.class).newInstance(this.entity);
             this.edit = (EditView) edit.getConstructor(Object.class).newInstance(this.entity);
         } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-            throw NavigationBase.error(e);
+            throw NavigationBase.error("ERRO AO INSTANCIAR CLASSE BASE", e);
         }
     }
 
-    private static IllegalArgumentException error(Throwable cause) {
-        return new IllegalArgumentException(cause);
+    private static IllegalArgumentException error(String message, Throwable cause) {
+        return new IllegalArgumentException(message, cause);
     }
 
     @Override
