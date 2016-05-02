@@ -1,0 +1,19 @@
+{
+  "propriedade": {
+    "pessoa": {
+      "cpfCnpj": null
+    },
+    "nomePropriedade": null
+  },
+  "tipoTermoFiscalizacao": "Informatizado",
+  "caracterizacaoFiscalizacao": "Vegetal",
+  "identificacao": "Propriedade Rural",
+  "objetivo": {
+    "programa": null,
+    "Objetivo": null,
+    "subObjetivo": null,
+    "produto": null
+  },
+  "situacaoEncontrada": "Teste Automatizado",
+  "orientacoes": "Teste Automatizado"
+}

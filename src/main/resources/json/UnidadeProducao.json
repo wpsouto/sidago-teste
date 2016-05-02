@@ -1,0 +1,28 @@
+{
+  "propriedade": {
+    "pessoa": {
+      "cpfCnpj": null
+    },
+    "nomePropriedade": null
+  },
+  "produto": {
+    "produto": null,
+    "cultivar": null,
+    "tipoProduto": null,
+    "estimativaProducao": null,
+    "dataPrevistaPlantio": null,
+    "previsaoInicioColheita": null,
+    "previsaoFimColheita": null,
+    "areaPlantada": null
+  },
+  "tipoUP": null,
+  "identificacao": null,
+  "sistemaCultivo": null,
+  "origemSemente": null,
+  "areaCertificada": null,
+  "latitude": null,
+  "longitude": null,
+  "localidadeLivro": null,
+  "serieTF": null,
+  "nTF": null
+}

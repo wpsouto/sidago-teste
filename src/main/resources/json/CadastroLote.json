@@ -1,0 +1,14 @@
+{
+  "unidadeConsolidacao": {
+    "pessoa": {
+      "cpfCnpj": null,
+      "pessoaJuridica": {
+        "nomeEmpresa": null,
+        "nomeFantasia": null
+      }
+    }
+  },
+  "produto": "ABÓBORA",
+  "cultivar": "Kabutiá",
+  "tipoProduto": "Área / ha"
+}

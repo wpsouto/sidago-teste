@@ -8,6 +8,7 @@ import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.NavegacaoStrategy;
 import gov.goias.agrodefesa.utils.NavegacaoType;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.lavoura.entity.Produto;
+import gov.goias.agrodefesa.utils.ResourceFactory;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -17,19 +18,10 @@ import java.time.format.DateTimeFormatter;
  */
 public class NavigationLavoura implements NavegacaoStrategy {
 
-    private static String dataAtual;
-    private static final String INSCRICAO_ESTADUAL = "113682832";
+     private static final String INSCRICAO_ESTADUAL = "113682832";
     private static final String SISTEMA_CULTIVO = "Sequeiro";
     private static final String ORIGEM_SEMENTE = "Própria";
-    private static final String PRODUTO = "ALGODÃO";
-    private static final String TIPO_PRODUTO = "Plantas de algodão / ha";
-    private static final String ESTIMATIVA = "100000";
-
-    public NavigationLavoura() {
-        LocalDate dataAtual = LocalDate.now();
-        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        this.dataAtual = dataAtual.format(formatador);
-    }
+    private Produto produto = ResourceFactory.init(Produto.class);
 
     @Override
     public void home() {
@@ -42,17 +34,8 @@ public class NavigationLavoura implements NavegacaoStrategy {
     public void insert() {
         LavouraViewHome.incluirRegistro();
         LavouraViewInsert.isDisplayedCheck();
-        LavouraViewInsert.listaSefaz(INSCRICAO_ESTADUAL);
-        LavouraViewInsert.adicionarProduto(new Produto.ProdutoBuilder()
-                .produto(PRODUTO)
-                .cultivar(PRODUTO)
-                .tipoProduto(TIPO_PRODUTO)
-                .estimativaProducao(ESTIMATIVA)
-                .dataPrevistaPlantio(dataAtual)
-                .previsaoInicioColheita(dataAtual)
-                .previsaoFimColheita(dataAtual)
-                .areaPlantada(ESTIMATIVA)
-                .build());
+        LavouraViewInsert.listaSefaz();
+        LavouraViewInsert.adicionarProduto(produto);
         LavouraViewInsert.sistemaCultivo(SISTEMA_CULTIVO);
         LavouraViewInsert.origemSemente(ORIGEM_SEMENTE);
         BrowserDriver.screenshot();

@@ -54,6 +54,18 @@ public class PropriedadePageContainerInsert {
     @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Confirmar']")
     public WebElement confirmar;
 
+    @FindBy(how = How.LINK_TEXT, using = "Adicionar Responsável Técnico")
+    public WebElement adicionarResponsavelTecnico;
+
+    @FindBy(how = How.ID, using = "div_id_rt")
+    public WebElement homeResponsavelTecnico;
+
+    @FindBy(how = How.ID, using = "nome_rt")
+    public WebElement nomeResponsavelTecnico;
+
+    @FindBy(how = How.XPATH, using = "/html/body/ul[2]/li[1]")
+    public WebElement nomeResponsavelTecnicoAutoComplete;
+
     @FindBy(how = How.ID, using = "bt_inserir")
     public WebElement salvar;
 

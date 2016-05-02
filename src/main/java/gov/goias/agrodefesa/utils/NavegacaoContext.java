@@ -19,8 +19,10 @@ import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.nav
 import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.navigation.NavigationProduto;
 import gov.goias.agrodefesa.defesaSanitariaAnimal.boletimProducao.navigation.NavigationBoletimProducao;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.navigation.NavigationAquisicaoMudas;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.cadastroLote.navigation.NavigationCadastroLote;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.navigation.NavigationUnidadeConsolidacao;
 import gov.goias.agrodefesa.denuncia.abrirDenuncia.navigation.NavigationAbrirDenuncia;
+import gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.navigation.NavigationTermoFiscalizacao;
 
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -71,6 +73,10 @@ public class NavegacaoContext {
         //DEFESA_SANITARIA_VEGETAL
         _strategies.put(NavegacaoType.AQUISICAO_MUDAS, new NavigationAquisicaoMudas(NavegacaoType.AQUISICAO_MUDAS));
         _strategies.put(NavegacaoType.UNIDADE_CONSOLIDACAO, new NavigationUnidadeConsolidacao(NavegacaoType.UNIDADE_CONSOLIDACAO));
+        _strategies.put(NavegacaoType.CADASTRO_LOTE, new NavigationCadastroLote(NavegacaoType.CADASTRO_LOTE));
+
+        //FISCALIZACAO
+        _strategies.put(NavegacaoType.TERMO_FISCALIZACAO, new NavigationTermoFiscalizacao(NavegacaoType.TERMO_FISCALIZACAO));
 
     }
 

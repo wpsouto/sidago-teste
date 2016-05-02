@@ -158,6 +158,19 @@ public class BrowserDriver {
         select.selectByIndex(value);
     }
 
+    public static void waitForSelectOptions(WebElement webElement) {
+        Select select = new Select(webElement);
+
+        WebDriverWait wait = new WebDriverWait(getCurrentDriver(), 10);
+        wait.until(new ExpectedCondition<Boolean>() {
+            @Override
+            public Boolean apply(WebDriver webDriver) {
+                return select.getOptions().size() > 1;
+            }
+        });
+
+    }
+
     public static void selectByIndexWait(WebElement webElement, int value) {
         Select select = new Select(webElement);
 

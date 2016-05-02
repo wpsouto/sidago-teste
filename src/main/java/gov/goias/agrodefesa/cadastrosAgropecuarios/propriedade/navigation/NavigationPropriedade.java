@@ -49,6 +49,7 @@ public class NavigationPropriedade implements NavegacaoStrategy {
         PropriedadeViewInsert.tipoDeContribuinte(propriedade.getTipoContribuinte());
         PropriedadeViewInsert.condicaoDePropriedade(propriedade.getCondicaoPropriedade());
         PropriedadeViewInsert.adionarEndereco(propriedade.getEndereco());
+        PropriedadeViewInsert.adionarResponsavelTecnico(propriedade.getResponsavelTecnico());
         BrowserDriver.screenshot();
         PropriedadeViewInsert.salvar();
 

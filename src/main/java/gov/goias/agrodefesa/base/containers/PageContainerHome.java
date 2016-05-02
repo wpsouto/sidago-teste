@@ -21,5 +21,10 @@ public class PageContainerHome {
     @FindBy(how = How.CSS, using = "#listagemOperacao > #icons > li.ui-state-default.ui-corner-all > span.ui-icon.ui-icon-pencil")
     public WebElement pencil;
 
+    @FindBy(how = How.XPATH, using = "//*[@id=\"grid\"]/form/table/tbody/tr[1]/td[2]")
+    public WebElement serie;
+
+    @FindBy(how = How.XPATH, using = "//*[@id=\"grid\"]/form/table/tbody/tr[1]/td[3]")
+    public WebElement numero;
 
 }

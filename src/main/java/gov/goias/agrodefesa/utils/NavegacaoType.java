@@ -43,6 +43,10 @@ public class NavegacaoType {
     public static final String DEFESA_SANITARIA_VEGETAL = "gtv/";
     public static final NavegacaoType AQUISICAO_MUDAS;
     public static final NavegacaoType UNIDADE_CONSOLIDACAO;
+    public static final NavegacaoType CADASTRO_LOTE;
+
+    public static final String FISCALIZACAO = "fiscalizacao/";
+    public static final NavegacaoType TERMO_FISCALIZACAO;
 
     private final String key;
     private final String modulo;
@@ -107,6 +111,9 @@ public class NavegacaoType {
         //DEFESA_SANITARIA_VEGETAL
         AQUISICAO_MUDAS = create("Autorização para Aquisição de Mudas", DEFESA_SANITARIA_VEGETAL, "autorizacao-aquisicao-mudas");
         UNIDADE_CONSOLIDACAO = create("Unidade Consolidação", DEFESA_SANITARIA_VEGETAL, "unidade-consolidacao");
+        CADASTRO_LOTE = create("Cadastro de Lote", DEFESA_SANITARIA_VEGETAL, "lote");
 
+        //FISCALIZACAO
+        TERMO_FISCALIZACAO = create("Termo de Fiscalização", FISCALIZACAO, "termo-fiscalizacao");
     }
 }

@@ -31,7 +31,9 @@ public class NavigationBase implements NavegacaoStrategy {
         try {
             this.home = (HomeView) home.getConstructor(Object.class).newInstance(this.entity);
             this.insert = (InsertView) insert.getConstructor(Object.class).newInstance(this.entity);
-            this.edit = (EditView) edit.getConstructor(Object.class).newInstance(this.entity);
+            if (edit != null) {
+                this.edit = (EditView) edit.getConstructor(Object.class).newInstance(this.entity);
+            }
         } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
             throw NavigationBase.error("ERRO AO INSTANCIAR CLASSE BASE", e);
         }
@@ -48,27 +50,28 @@ public class NavigationBase implements NavegacaoStrategy {
     }
 
     @Override
-    public void insert(){
+    public void insert() {
         home.incluir();
         insert.builder();
 
     }
 
     @Override
-    public void search(){
+    public void search() {
+        home();
         home.pesquisar();
     }
 
     @Override
-    public void edit(){
+    public void edit() {
         search();
         home.alterar();
         edit.builder();
     }
 
     @Override
-    public void others(Action action){
-        switch(action){
+    public void others(Action action) {
+        switch (action) {
             case MENSAGEM_INSERT:
                 insert.aviso();
                 break;

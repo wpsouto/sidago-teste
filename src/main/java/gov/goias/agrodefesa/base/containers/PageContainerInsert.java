@@ -18,6 +18,9 @@ public class PageContainerInsert  {
     @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Ok']")
     public WebElement ok;
 
+    @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Sim']")
+    public WebElement sim;
+
     @FindBy(how = How.ID, using = "aviso")
     public WebElement aviso;
 

@@ -15,6 +15,7 @@ public class Propriedade {
     private String nomePropriedade;
     private String tipoContribuinte;
     private String condicaoPropriedade;
+    private String responsavelTecnico;
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
@@ -50,6 +51,14 @@ public class Propriedade {
 
     public void setCondicaoPropriedade(String condicaoPropriedade) {
         this.condicaoPropriedade = condicaoPropriedade;
+    }
+
+    public String getResponsavelTecnico() {
+        return responsavelTecnico;
+    }
+
+    public void setResponsavelTecnico(String responsavelTecnico) {
+        this.responsavelTecnico = responsavelTecnico;
     }
 
     public static void main(String[] args) {

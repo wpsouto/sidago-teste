@@ -65,6 +65,17 @@ public class PropriedadeViewInsert {
         BrowserDriver.waitForElementIsNotPresent(By.id("id_enderecotipo"));
     }
 
+    public static void adionarResponsavelTecnico(String valor){
+        log.debug(Constants.MGS_INSERIDO, "ADIONAR RESPONSAVEL TECNICO", valor);
+        conteiner.adicionarResponsavelTecnico.click();
+        BrowserDriver.waitForElement(conteiner.homeResponsavelTecnico);
+        conteiner.nomeResponsavelTecnico.sendKeys(valor);
+        BrowserDriver.waitForElement(conteiner.nomeResponsavelTecnicoAutoComplete);
+        conteiner.nomeResponsavelTecnicoAutoComplete.click();
+        conteiner.confirmar.click();
+        BrowserDriver.waitForElementIsNotPresent(By.id("div_id_rt"));
+    }
+
     public static void salvar() {
         log.debug(Constants.MGS_SELECIONADO, "SALVAR");
         conteiner.salvar.click();

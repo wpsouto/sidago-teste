@@ -20,8 +20,8 @@ public class LavouraViewInsert {
 		conteiner.home.isDisplayed();
 	}
 
-    public static void listaSefaz(String valor){
-        log.debug(Constants.MGS_INSERIDO, "LISTA SEFAZ", valor);
+    public static void listaSefaz(){
+        log.debug(Constants.MGS_SELECIONADO, "LISTA SEFAZ");
         BrowserDriver.waitForElement(conteiner.listaSefaz).click();
     }
 
@@ -33,12 +33,15 @@ public class LavouraViewInsert {
         BrowserDriver.selectByVisibleText(conteiner.cultivar, produto.getCultivar());
         BrowserDriver.selectByVisibleText(conteiner.tipoProduto, produto.getTipoProduto());
         conteiner.estimativaProducao.sendKeys(produto.getEstimativaProducao());
-        conteiner.dataPrevistoPlantio.sendKeys(produto.getDataPrevistaPlantio());
+        conteiner.dataPrevistoPlantio.click();
         conteiner.dataAtual.click();
-        conteiner.previsaoInicioColheita.sendKeys(produto.getPrevisaoInicioColheita());
+        BrowserDriver.waitForElementIsNotPresent(By.cssSelector("a.ui-state-default.ui-state-highlight"));
+        conteiner.previsaoInicioColheita.click();
         conteiner.dataAtual.click();
-        conteiner.previsaoFimColheita.sendKeys(produto.getPrevisaoFimColheita());
+        BrowserDriver.waitForElementIsNotPresent(By.cssSelector("a.ui-state-default.ui-state-highlight"));
+        conteiner.previsaoFimColheita.click();
         conteiner.dataAtual.click();
+        BrowserDriver.waitForElementIsNotPresent(By.cssSelector("a.ui-state-default.ui-state-highlight"));
         conteiner.areaPlantada.sendKeys(produto.getAreaPlantada());
         conteiner.confirmar.click();
         BrowserDriver.waitForElementIsNotPresent(By.id("div_produtos"));
@@ -58,6 +61,7 @@ public class LavouraViewInsert {
 
     public static void salvar() {
         log.debug(Constants.MGS_SELECIONADO, "SALVAR");
+        BrowserDriver.scrollDown();
         conteiner.salvar.click();
     }
 
