@@ -4,7 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class PageContainerHome {
+public class PageContainerHome extends PageContainerBase {
 
     @FindBy(how = How.ID, using = "bt_pesquisar")
     public WebElement home;
@@ -20,11 +20,5 @@ public class PageContainerHome {
 
     @FindBy(how = How.CSS, using = "#listagemOperacao > #icons > li.ui-state-default.ui-corner-all > span.ui-icon.ui-icon-pencil")
     public WebElement pencil;
-
-    @FindBy(how = How.XPATH, using = "//*[@id=\"grid\"]/form/table/tbody/tr[1]/td[2]")
-    public WebElement serie;
-
-    @FindBy(how = How.XPATH, using = "//*[@id=\"grid\"]/form/table/tbody/tr[1]/td[3]")
-    public WebElement numero;
 
 }
