@@ -2,15 +2,15 @@ package gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeProducao.view;
 
 import gov.goias.agrodefesa.base.view.BaseView;
 import gov.goias.agrodefesa.base.view.HomeView;
-import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeProducao.containers.UnidadeConsolidacaoPageContainerHome;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeProducao.containers.UnidadeProducaoPageContainerHome;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeProducao.entity.UnidadeProducao;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
-public class UnidadeConsolidacaoViewHome extends BaseView implements HomeView {
+public class UnidadeProducaoViewHome extends BaseView implements HomeView {
 
-    public UnidadeConsolidacaoViewHome(Object entity) {
-        super(entity, UnidadeConsolidacaoPageContainerHome.class);
+    public UnidadeProducaoViewHome(Object entity) {
+        super(entity, UnidadeProducaoPageContainerHome.class);
     }
 
     private UnidadeProducao getEntity() {
@@ -18,8 +18,8 @@ public class UnidadeConsolidacaoViewHome extends BaseView implements HomeView {
 
     }
 
-    private UnidadeConsolidacaoPageContainerHome getContainer() {
-        return (UnidadeConsolidacaoPageContainerHome) container;
+    private UnidadeProducaoPageContainerHome getContainer() {
+        return (UnidadeProducaoPageContainerHome) container;
 
     }
 
@@ -35,10 +35,8 @@ public class UnidadeConsolidacaoViewHome extends BaseView implements HomeView {
     }
 
     public void pesquisar() {
-        isDisplayedCheck();
-
-       // log.debug(Constants.MGS_INSERIDO, "CNPJ",getEntity().getPessoa().getCpfCnpj());
-        //getContainer().cnpj.sendKeys(getEntity().getPessoa().getCpfCnpj());
+        log.debug(Constants.MGS_INSERIDO, "CPF PRODUTOR", getEntity().getTermoFiscalizacao().getPropriedade().getPessoa().getCpfCnpj());
+        getContainer().cnpjProdutor.sendKeys(getEntity().getTermoFiscalizacao().getPropriedade().getPessoa().getCpfCnpj());
         log.debug(Constants.MGS_SELECIONADO, "PESQUISAR");
         getContainer().pesquisar.click();
 	}

@@ -148,6 +148,23 @@ public class BrowserDriver {
         wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
 
+    public static void waitForElementIsNotPresent(WebElement webElement) {
+        WebDriverWait wait = new WebDriverWait(getCurrentDriver(), 10);
+        wait.until(new ExpectedCondition<Boolean>() {
+            @Override
+            public Boolean apply(WebDriver webDriver) {
+                try {
+                    if(webElement.isDisplayed()) {
+                        return Boolean.valueOf(false);
+                    }
+                } catch (Exception var5) {
+                    ;
+                }
+                return Boolean.valueOf(true);
+            }
+        });
+    }
+
     public static void selectByVisibleText(WebElement webElement, String value) {
         Select select = new Select(webElement);
         select.selectByVisibleText(value);
@@ -168,6 +185,8 @@ public class BrowserDriver {
                 return select.getOptions().size() > 1;
             }
         });
+
+
 
     }
 

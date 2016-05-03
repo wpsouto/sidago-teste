@@ -1,10 +1,11 @@
 package gov.goias.agrodefesa.base.containers;
 
+import gov.goias.agrodefesa.utils.BrowserDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class PageContainerInsert  {
+public class PageContainerInsert extends PageContainerBase {
 
     @FindBy(how = How.ID, using = "bt_inserir")
     public WebElement home;
@@ -14,9 +15,6 @@ public class PageContainerInsert  {
 
     @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Confirmar']")
     public WebElement confirmar;
-
-    @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Ok']")
-    public WebElement ok;
 
     @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Sim']")
     public WebElement sim;
@@ -29,6 +27,5 @@ public class PageContainerInsert  {
 
     @FindBy(how = How.LINK_TEXT, using = "Selecionar")
     public WebElement selecionar;
-
 
 }

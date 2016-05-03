@@ -1,28 +1,29 @@
 {
-  "propriedade": {
-    "pessoa": {
-      "cpfCnpj": null
+  "termoFiscalizacao": {
+    "propriedade": {
+      "pessoa": {
+        "cpfCnpj": null
+      }
     },
-    "nomePropriedade": null
+    "serie": null,
+    "numero": null
   },
   "produto": {
     "produto": null,
     "cultivar": null,
     "tipoProduto": null,
-    "estimativaProducao": null,
+    "estimativaProducao":"10000",
     "dataPrevistaPlantio": null,
     "previsaoInicioColheita": null,
     "previsaoFimColheita": null,
-    "areaPlantada": null
+    "areaPlantada": "10000"
   },
   "tipoUP": null,
-  "identificacao": null,
-  "sistemaCultivo": null,
-  "origemSemente": null,
-  "areaCertificada": null,
-  "latitude": null,
-  "longitude": null,
-  "localidadeLivro": null,
-  "serieTF": null,
-  "nTF": null
+  "identificacao": "Propriedade Rural Comercial",
+  "sistemaCultivo": "Sequeiro",
+  "origemSemente": "Própria",
+  "areaCertificada": "Sim",
+  "latitude": "0000000",
+  "longitude": "0000000",
+  "localidadeLivro": "Teste Automatizado"
 }

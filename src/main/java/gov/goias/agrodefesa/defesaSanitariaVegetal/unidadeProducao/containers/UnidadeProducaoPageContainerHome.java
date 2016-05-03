@@ -5,10 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class UnidadeConsolidacaoPageContainerHome extends PageContainerHome {
+public class UnidadeProducaoPageContainerHome extends PageContainerHome {
 
-    @FindBy(how = How.ID, using = "cnpj")
-    public WebElement cnpj;
+    @FindBy(how = How.ID, using = "cpf_produtor")
+    public WebElement cnpjProdutor;
 
 
 }
