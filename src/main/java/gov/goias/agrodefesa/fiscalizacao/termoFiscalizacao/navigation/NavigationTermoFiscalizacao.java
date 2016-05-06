@@ -20,10 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 public class NavigationTermoFiscalizacao extends NavigationBase {
 
     public NavigationTermoFiscalizacao(NavegacaoType type) {
-        super(type, TermoFiscalizacao.class, TermoFiscalizacaoViewHome.class, TermoFiscalizacaoViewInsert.class, null);
-
-        Propriedade propriedade = ((NavigationPropriedade) NavegacaoFactory.getNavigator().pageLoad(NavegacaoType.PROPRIEDADE)).getPropriedade();
-        getEntity().setPropriedade(propriedade);
+        super(type);
     }
 
     public TermoFiscalizacao getEntity() {
@@ -33,6 +30,11 @@ public class NavigationTermoFiscalizacao extends NavigationBase {
     @Override
     public void insert() {
 
+        Propriedade propriedade = ((NavigationPropriedade) NavegacaoFactory.getNavigator().pageLoad(NavegacaoType.PROPRIEDADE)).getPropriedade();
+        getEntity().setPropriedade(propriedade);
+
+        log.debug(getEntity().getPropriedade().getPessoa().getCpfCnpj());
+        log.debug(String.valueOf(StringUtils.isEmpty(getEntity().getPropriedade().getPessoa().getCpfCnpj())));
         if (StringUtils.isEmpty(getEntity().getPropriedade().getPessoa().getCpfCnpj())) {
             throw new PendingException(String.format(Constants.MGS_DEPENDENCIA, "@Propriedade"));
         }

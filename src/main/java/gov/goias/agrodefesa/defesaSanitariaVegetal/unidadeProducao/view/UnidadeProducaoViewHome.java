@@ -47,5 +47,10 @@ public class UnidadeProducaoViewHome extends BaseView implements HomeView {
         getContainer().pencil.click();
 	}
 
+    @Override
+    public void confirm() {
+
+    }
+
 
 }

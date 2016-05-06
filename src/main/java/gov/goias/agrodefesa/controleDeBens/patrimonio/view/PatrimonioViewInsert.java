@@ -1,65 +1,68 @@
 package gov.goias.agrodefesa.controleDeBens.patrimonio.view;
 
+import gov.goias.agrodefesa.base.view.BaseView;
+import gov.goias.agrodefesa.base.view.InsertView;
 import gov.goias.agrodefesa.controleDeBens.patrimonio.containers.PatrimonioPageContainerInsert;
+import gov.goias.agrodefesa.controleDeBens.patrimonio.entity.Patrimonio;
 import gov.goias.agrodefesa.utils.BrowserDriver;
-import org.junit.Assert;
-import org.openqa.selenium.support.PageFactory;
+import gov.goias.agrodefesa.utils.Constants;
 
-public class PatrimonioViewInsert {
-	private static final PatrimonioPageContainerInsert conteiner = PageFactory.initElements(BrowserDriver.getCurrentDriver(), PatrimonioPageContainerInsert.class);
+public class PatrimonioViewInsert extends BaseView implements InsertView {
 
-	public static void isDisplayedCheck(){
-		BrowserDriver.waitForElement(conteiner.home);
-		conteiner.home.isDisplayed();
-	}
-
-    public static void numeroPatrimonioAgrodefesa(String valor){
-        conteiner.numeroPatrimonioAgrodefesa.clear();
-        conteiner.numeroPatrimonioAgrodefesa.sendKeys(valor);
+    public PatrimonioViewInsert(Object entity) {
+        super(entity, PatrimonioPageContainerInsert.class);
     }
 
-    public static void descricao(String valor){
-        conteiner.descricao.clear();
-        conteiner.descricao.sendKeys(valor);
+    private Patrimonio getEntity() {
+        return (Patrimonio) entity;
     }
 
-    public static void fornecedor(String valor) {
-        conteiner.fornecedor.sendKeys(valor);
-        BrowserDriver.waitForElement(conteiner.fornecedorAutoComplete);
-        conteiner.fornecedorAutoComplete.click();
+    private PatrimonioPageContainerInsert getContainer() {
+        return (PatrimonioPageContainerInsert) container;
     }
 
-    public static void origemRecurso(String valor) {
-        BrowserDriver.selectByVisibleText(conteiner.origemRecurso, valor);
+    public void builder(){
+        log.debug(Constants.MGS_AGUARDANDO);
+        BrowserDriver.waitForElement(getContainer().home);
+
+        log.debug(Constants.MGS_INSERIDO, "NUMERO PATRIMONIO AGRODEFESA", getEntity().getNumeroPatrimonio());
+        getContainer().numeroPatrimonioAgrodefesa.sendKeys(getEntity().getNumeroPatrimonio());
+
+        log.debug(Constants.MGS_INSERIDO, "DESCRICAO", getEntity().getDescricao());
+        getContainer().descricao.sendKeys(getEntity().getDescricao());
+
+        log.debug(Constants.MGS_INSERIDO, "FORNECEDOR", getEntity().getFornecedor());
+        getContainer().fornecedor.sendKeys(getEntity().getFornecedor());
+        BrowserDriver.waitForElement(getContainer().fornecedorAutoComplete);
+        getContainer().fornecedorAutoComplete.click();
+
+        log.debug(Constants.MGS_INSERIDO, "ORIGEM RECURSO", getEntity().getOrigemRecurso());
+        BrowserDriver.selectByVisibleText(getContainer().origemRecurso, getEntity().getOrigemRecurso());
+
+        log.debug(Constants.MGS_INSERIDO, "TIPO AQUISICAO", getEntity().getTipoAquisicao());
+        BrowserDriver.selectByVisibleText(getContainer().tipoAquisicao, getEntity().getTipoAquisicao());
+
+        log.debug(Constants.MGS_INSERIDO, "ESPECIE", getEntity().getEspecie());
+        BrowserDriver.selectByVisibleText(getContainer().especie, getEntity().getEspecie());
+
+        log.debug(Constants.MGS_INSERIDO, "CONSERVACAO", getEntity().getConservacao());
+        BrowserDriver.selectByVisibleText(getContainer().conservacao, getEntity().getConservacao());
+
+        log.debug(Constants.MGS_INSERIDO, "LOTACAO", getEntity().getLotacao());
+        getContainer().lotacao.sendKeys(getEntity().getLotacao());
+        BrowserDriver.waitForElement(getContainer().lotacaoAutoComplete);
+        getContainer().lotacaoAutoComplete.click();
+
+        log.debug(Constants.MGS_SELECIONADO, "SALVAR");
+        BrowserDriver.screenshot();
+        getContainer().salvar.click();
     }
 
-    public static void tipoAquisicao(String valor) {
-        BrowserDriver.selectByVisibleText(conteiner.tipoAquisicao, valor);
+    public void aviso() {
+        log.debug(Constants.MGS_MENSAGEM, Constants.REGISTRO_INSERIDO_COM_SUCESSO);
+        BrowserDriver.waitForText(getContainer().aviso, Constants.REGISTRO_INSERIDO_COM_SUCESSO);
+        getContainer().ok.click();
     }
 
-    public static void especie(String valor) {
-        BrowserDriver.selectByVisibleText(conteiner.especie, valor);
-    }
-
-    public static void conservacao(String valor) {
-        BrowserDriver.selectByVisibleText(conteiner.conservacao, valor);
-    }
-
-    public static void lotacao(String valor) {
-        conteiner.lotacao.sendKeys(valor);
-        BrowserDriver.waitForElement(conteiner.lotacaoAutoComplete);
-        conteiner.lotacaoAutoComplete.click();
-    }
-
-    public static void salvar() {
-        BrowserDriver.waitForElement(conteiner.salvar);
-        conteiner.salvar.click();
-    }
-
-    public static void aviso(String valor) {
-        BrowserDriver.waitForElement(conteiner.aviso);
-        Assert.assertEquals(conteiner.aviso.getText(), valor);
-        conteiner.ok.click();
-    }
 
 }

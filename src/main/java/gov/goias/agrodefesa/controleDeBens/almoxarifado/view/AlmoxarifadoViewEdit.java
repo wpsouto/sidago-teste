@@ -1,32 +1,40 @@
 package gov.goias.agrodefesa.controleDeBens.almoxarifado.view;
 
+import gov.goias.agrodefesa.base.view.BaseView;
+import gov.goias.agrodefesa.base.view.EditView;
 import gov.goias.agrodefesa.controleDeBens.almoxarifado.containers.AlmoxarifadoPageContainerEdit;
 import gov.goias.agrodefesa.utils.BrowserDriver;
-import org.junit.Assert;
-import org.openqa.selenium.support.PageFactory;
+import gov.goias.agrodefesa.utils.Constants;
 
-public class AlmoxarifadoViewEdit {
-	private static final AlmoxarifadoPageContainerEdit conteiner = PageFactory.initElements(BrowserDriver.getCurrentDriver(), AlmoxarifadoPageContainerEdit.class);
+public class AlmoxarifadoViewEdit extends BaseView implements EditView {
 
-	public static void isDisplayedCheck(){
-		BrowserDriver.waitForElement(conteiner.home);
-		conteiner.home.isDisplayed();
-	}
-
-    public static void descricao(String valor){
-        conteiner.descricao.clear();
-        conteiner.descricao.sendKeys(valor);
+    public AlmoxarifadoViewEdit(Object entity) {
+        super(entity, AlmoxarifadoPageContainerEdit.class);
     }
 
-    public static void salvar() {
-        BrowserDriver.waitForElement(conteiner.salvar);
-        conteiner.salvar.click();
+/*
+    private Patrimonio getEntity() {
+        return (Patrimonio) entity;
+    }
+*/
+
+    private AlmoxarifadoPageContainerEdit getContainer() {
+        return (AlmoxarifadoPageContainerEdit) container;
     }
 
-    public static void aviso(String valor) {
-        BrowserDriver.waitForElement(conteiner.aviso);
-        Assert.assertEquals(conteiner.aviso.getText(), valor);
-        conteiner.ok.click();
+    public void builder(){
+        log.debug(Constants.MGS_AGUARDANDO);
+        BrowserDriver.waitForElement(getContainer().home);
+
+        log.debug(Constants.MGS_SELECIONADO, "SALVAR");
+        BrowserDriver.waitForElement(getContainer().salvar);
+        getContainer().salvar.click();
+    }
+
+    public void aviso() {
+        log.debug(Constants.MGS_MENSAGEM, Constants.REGISTRO_ALTERADO_COM_SUCESSO);
+        BrowserDriver.waitForText(getContainer().aviso, Constants.REGISTRO_ALTERADO_COM_SUCESSO);
+        getContainer().ok.click();
     }
 
 }

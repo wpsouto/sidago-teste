@@ -7,12 +7,13 @@ public enum Action {
     SEARCH(new String[]{"pesquiso"}),
     EDIT(new String[]{"altero"}),
     CANCEL(new String[]{"cancelo"}),
-    OK(new String[]{"confirmo"}),
+    CONFIRM(new String[]{"confirmo"}),
     APPROVE(new String[]{"aprovo"}),
-    MENSAGEM_OK(new String[]{"confirmado"}),
+    MENSAGEM_CONFIRM(new String[]{"confirmado"}),
     MENSAGEM_INSERT(new String[]{"inserido"}),
 	MENSAGEM_EDIT(new String[]{"alterado"}),
     MENSAGEM_APROVO(new String[]{"aprovado"}),
+    MENSAGEM_ERRO(new String[]{"erro"}),
     MENSAGEM_CANCEL(new String[]{"cancelado"});
 
     private String[] aliases;

@@ -1,13 +1,11 @@
 package gov.goias.agrodefesa.controleDeBens.material.containers;
 
+import gov.goias.agrodefesa.base.containers.PageContainerInsert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class MaterialInsertPageContainer {
-
-    @FindBy(how = How.ID, using = "tp_material")
-    public WebElement home;
+public class MaterialPageContainerInsert extends PageContainerInsert {
 
     @FindBy(how = How.ID, using = "no_material")
     public WebElement nomeMaterial;
@@ -30,19 +28,7 @@ public class MaterialInsertPageContainer {
     @FindBy(how = How.ID, using = "qt_estoqueminimoestado")
     public WebElement estoqueMinimo;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"caixaSalvar\"]/button[1]")
-    public WebElement limpar;
-
-    @FindBy(how = How.XPATH, using = "//*[@id=\"bt_inserir\"]")
-    public WebElement salvar;
-
-    @FindBy(how = How.XPATH, using = "//*[@id=\"aviso\"]/div/p/strong")
-    public WebElement aviso;
-
-    @FindBy(how = How.XPATH, using = "//*[@id=\"validacao\"]/h3")
+    @FindBy(how = How.ID, using = "validacao")
     public WebElement validacao;
-
-    @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Ok']")
-    public WebElement ok;
 
 }

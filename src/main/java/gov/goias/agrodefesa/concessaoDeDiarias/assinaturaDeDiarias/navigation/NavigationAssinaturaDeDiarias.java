@@ -47,14 +47,19 @@ public class NavigationAssinaturaDeDiarias implements NavegacaoStrategy {
 
     }
 
+    @Override
+    public void confirm() {
+
+    }
+
 
     @Override
     public void others(Action action) {
         switch(action){
-            case OK:
+            case CONFIRM:
                 assinar();
                 break;
-            case MENSAGEM_OK:
+            case MENSAGEM_CONFIRM:
                 AssinaturaDeDiariasViewHome.confirmar();
                 break;
             default:

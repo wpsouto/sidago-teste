@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Created by usuario on 26/04/16.
  */
-public class BaseView {
+public class BaseView  {
 
     protected final Logger log = LoggerFactory.getLogger(this.getClass());
     protected Object container;

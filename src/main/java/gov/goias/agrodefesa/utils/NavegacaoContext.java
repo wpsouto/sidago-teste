@@ -1,43 +1,36 @@
 package gov.goias.agrodefesa.utils;
 
-import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.navigation.NavigationEmpresa;
-import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaClassificacao.navigation.NavigationEmpresaClassificacao;
-import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaForaGoias.navigation.NavigationEmpresaForaGoias;
-import gov.goias.agrodefesa.cadastrosAgropecuarios.lavoura.navigation.NavigationLavoura;
-import gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.navigation.NavigationPessoa;
-import gov.goias.agrodefesa.cadastrosAgropecuarios.propriedade.navigation.NavigationPropriedade;
-import gov.goias.agrodefesa.chamado.abrirChamado.navigation.NavigationAbrirChamado;
-import gov.goias.agrodefesa.concessaoDeDiarias.assinaturaDeDiarias.navigation.NavigationAssinaturaDeDiarias;
-import gov.goias.agrodefesa.concessaoDeDiarias.cienciaDoServidor.navigation.NavigationCienciaDoServidor;
-import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.navigation.NavigationDelegacaoDeAtividades;
-import gov.goias.agrodefesa.concessaoDeDiarias.prestacaoDeContas.navigation.NavigationPrestacaoDeContas;
-import gov.goias.agrodefesa.controleDeBens.almoxarifado.navigation.NavigationAlmoxarifado;
-import gov.goias.agrodefesa.controleDeBens.material.navigation.NavigationMaterial;
-import gov.goias.agrodefesa.controleDeBens.patrimonio.navigation.NavigationPatrimonio;
-import gov.goias.agrodefesa.controleDeBens.tranferencia.navigation.NavigationTransferencia;
-import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.navigation.NavigationIngredienteAtivo;
-import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.navigation.NavigationProduto;
-import gov.goias.agrodefesa.defesaSanitariaAnimal.boletimProducao.navigation.NavigationBoletimProducao;
-import gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.navigation.NavigationAquisicaoMudas;
-import gov.goias.agrodefesa.defesaSanitariaVegetal.cadastroLote.navigation.NavigationCadastroLote;
-import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.navigation.NavigationUnidadeConsolidacao;
-import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeProducao.navigation.NavigationUnidadeProducao;
-import gov.goias.agrodefesa.denuncia.abrirDenuncia.navigation.NavigationAbrirDenuncia;
-import gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.navigation.NavigationTermoFiscalizacao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.List;
 
 /**
  * Created by usuario on 10/03/16.
  */
 public class NavegacaoContext {
 
-    private static Hashtable<NavegacaoType, NavegacaoStrategy> _strategies =
-            new Hashtable<>();
+    protected static final Logger log = LoggerFactory.getLogger(NavegacaoContext.class);
+    private static Hashtable<NavegacaoType, NavegacaoStrategy> _strategies = new Hashtable<>();
+
+    private static List<NavegacaoType> _strategies1 = new ArrayList<>();
 
     static {
 
+        //CONTROLE_BENS
+        _strategies1.add(NavegacaoType.ALMOXARIFADO);
+        _strategies1.add(NavegacaoType.MATERIAL);
+        _strategies1.add(NavegacaoType.PATRIMONIO);
+        _strategies1.add(NavegacaoType.TRANSFERENCIA_BENS);
+
+        //FISCALIZACAO
+        _strategies1.add(NavegacaoType.TERMO_FISCALIZACAO);
+
+/*
         //CONTROLE_BENS
         _strategies.put(NavegacaoType.ALMOXARIFADO, new NavigationAlmoxarifado());
         _strategies.put(NavegacaoType.MATERIAL, new NavigationMaterial());
@@ -79,15 +72,16 @@ public class NavegacaoContext {
         _strategies.put(NavegacaoType.UNIDADE_CONSOLIDACAO, new NavigationUnidadeConsolidacao(NavegacaoType.UNIDADE_CONSOLIDACAO));
         _strategies.put(NavegacaoType.UNIDADE_PRODUCAO, new NavigationUnidadeProducao(NavegacaoType.UNIDADE_PRODUCAO));
         _strategies.put(NavegacaoType.CADASTRO_LOTE, new NavigationCadastroLote(NavegacaoType.CADASTRO_LOTE));
+*/
 
     }
 
-    public static NavegacaoStrategy parce(String key) throws IllegalArgumentException{
+    public static NavegacaoStrategy parce(String key) throws IllegalArgumentException {
 
         Enumeration<NavegacaoType> types = _strategies.keys();
         while (types.hasMoreElements()) {
             NavegacaoType type = types.nextElement();
-            if (type.getKey().equalsIgnoreCase(key)){
+            if (type.getKey().equalsIgnoreCase(key)) {
                 return _strategies.get(type);
             }
         }
@@ -95,12 +89,30 @@ public class NavegacaoContext {
         throw navegacaoType(key);
     }
 
-    public static NavegacaoStrategy parce(NavegacaoType type) throws IllegalArgumentException{
-        return parce(type.getKey());
+    public static NavegacaoStrategy parce1(String key, NavegacaoStrategy strategy) {
+        for (NavegacaoType type : _strategies1) {
+            if (type.getKey().equalsIgnoreCase(key)) {
+                try {
+                    if (strategy != null && type.getNavegacaoStrategy().equals(strategy.getClass())) {
+                        return strategy;
+                    } else {
+                        return (NavegacaoStrategy) (type.getNavegacaoStrategy()).getConstructor(NavegacaoType.class).newInstance(type);
+                    }
+                } catch (InstantiationException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+                    throw NavegacaoContext.error("ERRO AO INSTANCIAR CLASSE STRATEGY", e);
+                }
+            }
+        }
+
+        throw navegacaoType(key);
     }
 
     private static IllegalArgumentException navegacaoType(String type) {
         return new IllegalArgumentException(("Invalid NavegacaoTYpe [" + type + "]"));
+    }
+
+    private static IllegalArgumentException error(String message, Throwable cause) {
+        return new IllegalArgumentException(message, cause);
     }
 
 }

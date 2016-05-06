@@ -45,6 +45,11 @@ public class NavigationAbrirChamado implements NavegacaoStrategy {
 
     }
 
+    @Override
+    public void confirm() {
+
+    }
+
     public void finalizar() {
         AbrirChamadoViewHome.classificacao("Acompanhamento de Acordos");
         AbrirChamadoViewHome.solicitante("WEMERSON DOS REIS COSTA");
@@ -64,13 +69,13 @@ public class NavigationAbrirChamado implements NavegacaoStrategy {
     @Override
     public void others(Action action) {
         switch(action){
-            case OK:
+            case CONFIRM:
                 finalizar();
                 break;
             case MENSAGEM_INSERT:
                 AbrirChamadoViewInsert.aviso("Registro inserido com sucesso!");
                 break;
-            case MENSAGEM_OK:
+            case MENSAGEM_CONFIRM:
                 AbrirChamadoViewFinalizar.confirmar();
                 break;
             default:

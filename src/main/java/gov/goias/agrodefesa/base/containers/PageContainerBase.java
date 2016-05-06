@@ -10,6 +10,9 @@ public class PageContainerBase {
     @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Ok']")
     public WebElement ok;
 
+    @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Confirmar']")
+    public WebElement confirmar;
+
     @FindBy(how = How.CSS, using = "a.ui-state-default.ui-state-highlight")
     private WebElement now;
 

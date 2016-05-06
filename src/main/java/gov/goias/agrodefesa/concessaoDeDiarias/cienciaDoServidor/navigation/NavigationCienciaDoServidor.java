@@ -47,12 +47,17 @@ public class NavigationCienciaDoServidor implements NavegacaoStrategy {
     }
 
     @Override
+    public void confirm() {
+
+    }
+
+    @Override
     public void others(Action action) {
         switch(action){
-            case OK:
+            case CONFIRM:
                 darCiencia();
                 break;
-            case MENSAGEM_OK:
+            case MENSAGEM_CONFIRM:
                 CienciaDoServidorViewHome.concordar();
                 break;
             default:

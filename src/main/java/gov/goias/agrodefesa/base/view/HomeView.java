@@ -9,5 +9,6 @@ public interface HomeView {
     void incluir();
     void pesquisar();
     void alterar();
+    void confirm();
 
 }

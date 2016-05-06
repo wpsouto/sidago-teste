@@ -1,50 +1,57 @@
 package gov.goias.agrodefesa.controleDeBens.almoxarifado.view;
 
+import gov.goias.agrodefesa.base.view.BaseView;
+import gov.goias.agrodefesa.base.view.InsertView;
 import gov.goias.agrodefesa.controleDeBens.almoxarifado.containers.AlmoxarifadoPageContainerInsert;
+import gov.goias.agrodefesa.controleDeBens.almoxarifado.entity.Almoxarifado;
 import gov.goias.agrodefesa.utils.BrowserDriver;
-import org.junit.Assert;
-import org.openqa.selenium.support.PageFactory;
+import gov.goias.agrodefesa.utils.Constants;
 
-public class AlmoxarifadoViewInsert {
-	private static final AlmoxarifadoPageContainerInsert conteiner = PageFactory.initElements(BrowserDriver.getCurrentDriver(), AlmoxarifadoPageContainerInsert.class);
+public class AlmoxarifadoViewInsert extends BaseView implements InsertView {
 
-	public static void isDisplayedCheck(){
-		BrowserDriver.waitForElement(conteiner.home);
-		conteiner.home.isDisplayed();
-	}
-
-    public static void descricao(String valor){
-        conteiner.descricao.clear();
-        conteiner.descricao.sendKeys(valor);
+    public AlmoxarifadoViewInsert(Object entity) {
+        super(entity, AlmoxarifadoPageContainerInsert.class);
     }
 
-    public static void lotacao(String valor) {
-        conteiner.lotacao.sendKeys(valor);
-        BrowserDriver.waitForElement(conteiner.lotacaoAutoComplete);
-        conteiner.lotacaoAutoComplete.click();
+    private Almoxarifado getEntity() {
+        return (Almoxarifado) entity;
     }
 
-    public static void gestor(String valor) {
-        conteiner.gestor.sendKeys(valor);
-        BrowserDriver.waitForElement(conteiner.gestorAutoComplete);
-        conteiner.gestorAutoComplete.click();
+    private AlmoxarifadoPageContainerInsert getContainer() {
+        return (AlmoxarifadoPageContainerInsert) container;
     }
 
-    public static void almoxarifadoPai(String valor) {
-        conteiner.almoxarifadoPai.sendKeys(valor);
-        BrowserDriver.waitForElement(conteiner.almoxarifadoPaiAutoComplete);
-        conteiner.almoxarifadoPaiAutoComplete.click();
+    public void builder(){
+        log.debug(Constants.MGS_AGUARDANDO);
+        BrowserDriver.waitForElement(getContainer().home);
+
+        log.debug(Constants.MGS_INSERIDO, "DESCRICAO", getEntity().getDescricao());
+        getContainer().descricao.sendKeys(getEntity().getDescricao());
+
+        log.debug(Constants.MGS_INSERIDO, "LOTACAO", getEntity().getLotacao());
+        getContainer().lotacao.sendKeys(getEntity().getLotacao());
+        BrowserDriver.waitForElement(getContainer().lotacaoAutoComplete);
+        getContainer().lotacaoAutoComplete.click();
+
+        log.debug(Constants.MGS_INSERIDO, "GESTOR", getEntity().getGestor());
+        getContainer().gestor.sendKeys(getEntity().getGestor());
+        BrowserDriver.waitForElement(getContainer().gestorAutoComplete);
+        getContainer().gestorAutoComplete.click();
+
+        log.debug(Constants.MGS_INSERIDO, "ALMOXARIFADO PAI", getEntity().getAlmoxarifadoPai());
+        getContainer().almoxarifadoPai.sendKeys(getEntity().getAlmoxarifadoPai());
+        BrowserDriver.waitForElement(getContainer().almoxarifadoPaiAutoComplete);
+        getContainer().almoxarifadoPaiAutoComplete.click();
+
+        log.debug(Constants.MGS_SELECIONADO, "SALVAR");
+        BrowserDriver.screenshot();
+        getContainer().salvar.click();
     }
 
-    public static void salvar() {
-        BrowserDriver.waitForElement(conteiner.salvar);
-        conteiner.salvar.click();
-    }
-
-    public static void aviso(String valor) {
-        BrowserDriver.waitForElement(conteiner.aviso);
-        Assert.assertEquals(conteiner.aviso.getText(), valor);
-        conteiner.ok.click();
+    public void aviso() {
+        log.debug(Constants.MGS_MENSAGEM, Constants.REGISTRO_INSERIDO_COM_SUCESSO);
+        BrowserDriver.waitForText(getContainer().aviso, Constants.REGISTRO_INSERIDO_COM_SUCESSO);
+        getContainer().ok.click();
     }
 
 }

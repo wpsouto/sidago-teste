@@ -54,5 +54,10 @@ public class TermoFiscalizacaoViewHome extends BaseView implements HomeView {
 
     }
 
+    @Override
+    public void confirm() {
+
+    }
+
 
 }

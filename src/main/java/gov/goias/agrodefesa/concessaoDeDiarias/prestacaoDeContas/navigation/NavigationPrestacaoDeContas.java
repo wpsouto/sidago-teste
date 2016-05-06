@@ -54,12 +54,17 @@ public class NavigationPrestacaoDeContas implements NavegacaoStrategy {
     }
 
     @Override
+    public void confirm() {
+
+    }
+
+    @Override
     public void others(Action action) {
         switch(action){
-            case OK:
+            case CONFIRM:
                 prestarContas();
                 break;
-            case MENSAGEM_OK:
+            case MENSAGEM_CONFIRM:
                 PrestacaoDeContasViewEdit.aviso("Registro alterado com sucesso!");
                 break;
             default:

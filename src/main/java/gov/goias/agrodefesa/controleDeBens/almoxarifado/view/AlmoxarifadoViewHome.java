@@ -1,43 +1,56 @@
 package gov.goias.agrodefesa.controleDeBens.almoxarifado.view;
 
+import gov.goias.agrodefesa.base.view.BaseView;
+import gov.goias.agrodefesa.base.view.HomeView;
 import gov.goias.agrodefesa.controleDeBens.almoxarifado.containers.AlmoxarifadoPageContainerHome;
+import gov.goias.agrodefesa.controleDeBens.almoxarifado.entity.Almoxarifado;
 import gov.goias.agrodefesa.utils.BrowserDriver;
-import org.openqa.selenium.support.PageFactory;
+import gov.goias.agrodefesa.utils.Constants;
 
-public class AlmoxarifadoViewHome {
-	private static final AlmoxarifadoPageContainerHome container = PageFactory.initElements(BrowserDriver.getCurrentDriver(), AlmoxarifadoPageContainerHome.class);
+public class AlmoxarifadoViewHome extends BaseView implements HomeView {
 
-	public static void isDisplayedCheck(){
-		BrowserDriver.waitForElement(container.home);
-		container.home.isDisplayed();
+	public AlmoxarifadoViewHome(Object entity) {
+		super(entity, AlmoxarifadoPageContainerHome.class);
 	}
 
-    public static void incluirRegistro(){
-        BrowserDriver.waitForElement(container.incluirRegistro);
-        container.incluirRegistro.click();
-    }
-
-	public static void descricao(String valor){
-		container.descricao.clear();
-		container.descricao.sendKeys(valor);
+	private Almoxarifado getEntity() {
+		return (Almoxarifado) entity;
 	}
 
-	public static void lotacao(String valor) {
-        container.lotacao.sendKeys(valor);
-    }
-
-    public static void pesquisar() {
-		container.pesquisar.click();
+	private AlmoxarifadoPageContainerHome getContainer() {
+		return (AlmoxarifadoPageContainerHome) container;
 	}
 
-	public static void isDisplayedGridPesquisar() {
-		BrowserDriver.waitForElement(container.gridRow);
-		container.gridRow.isDisplayed();
+	public void isDisplayedCheck(){
+		log.debug(Constants.MGS_AGUARDANDO);
+		BrowserDriver.waitForElement(getContainer().home);
+		getContainer().home.isDisplayed();
 	}
 
-	public static void alterar() {
-		container.alterar.click();
+	@Override
+	public void incluir(){
+		log.debug(Constants.MGS_SELECIONADO, "INCLUIR REGISTRO");
+		getContainer().incluirRegistro.click();
 	}
 
+	@Override
+	public void pesquisar() {
+		log.debug(Constants.MGS_INSERIDO, "DESCRICAO", getEntity().getDescricao());
+		getContainer().descricao.sendKeys(getEntity().getDescricao());
+		getContainer().lotacao.sendKeys(getEntity().getLotacao());
+		log.debug(Constants.MGS_SELECIONADO, "PESQUISAR");
+		getContainer().pesquisar.click();
+	}
+
+	@Override
+	public void alterar() {
+		log.debug(Constants.MGS_SELECIONADO, "ALTERAR REGISTRO");
+		getContainer().pencil.click();
+	}
+
+	@Override
+	public void confirm() {
+
+	}
 
 }

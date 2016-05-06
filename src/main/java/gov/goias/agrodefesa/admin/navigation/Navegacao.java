@@ -3,22 +3,43 @@ package gov.goias.agrodefesa.admin.navigation;
 import gov.goias.agrodefesa.admin.view.HomeView;
 import gov.goias.agrodefesa.admin.view.LoginView;
 import gov.goias.agrodefesa.constants.Action;
-import gov.goias.agrodefesa.utils.*;
+import gov.goias.agrodefesa.utils.BrowserDriver;
+import gov.goias.agrodefesa.utils.NavegacaoContext;
+import gov.goias.agrodefesa.utils.NavegacaoStrategy;
+import gov.goias.agrodefesa.utils.NavegacaoType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Hashtable;
 
 public class Navegacao {
 
-    //private static final Logger LOGGER = Logger.getLogger(Navigation.class.getName());
-	public static final String PASSWORD = "admin";
+    protected final Logger log = LoggerFactory.getLogger(this.getClass());
+    public static final String PASSWORD = "admin";
+    private static Hashtable<Class<?>, Object> entities = new Hashtable<>();
     public boolean autentaticado;
+    private NavegacaoStrategy page;
 
-	public Navegacao() {
+    public Navegacao() {
         autentaticado = false;
     }
 
-    public void pageLoad(Action action, String key){
-        NavegacaoStrategy page = NavegacaoContext.parce(key);
+    public void addEntity(Object entity) {
+        entities.put(entity.getClass(), entity);
+    }
 
-        switch(action){
+    public Object getEntity(Class<?> classProxy) {
+        return entities.get(classProxy);
+    }
+
+    public boolean existEntity(Class<?> classProxy) {
+        return (getEntity(classProxy) != null);
+    }
+
+    public void pageLoad(Action action, String key) {
+        page = NavegacaoContext.parce1(key, this.page);
+
+        switch (action) {
             case HOME:
                 page.home();
                 break;
@@ -31,38 +52,40 @@ public class Navegacao {
             case EDIT:
                 page.edit();
                 break;
+            case CONFIRM:
+                page.confirm();
+                break;
+
             default:
                 page.others(action);
         }
     }
 
-    public NavegacaoStrategy pageLoad(NavegacaoType type){
-        return NavegacaoContext.parce(type);
+    public NavegacaoStrategy pageLoad(NavegacaoType type) {
+        return  NavegacaoContext.parce1(type.getKey(), this.page);
     }
 
-    private void loginPage(){
-		BrowserDriver.loadPage(NavegacaoType.HTTP_BASE);
-		LoginView.isDisplayedCheck();
-	}
+    private void loginPage() {
+        BrowserDriver.loadPage(NavegacaoType.HTTP_BASE);
+        LoginView.isDisplayedCheck();
+    }
 
-	private void autenticar(String login, String nome) {
-		LoginView.login(login, PASSWORD);
+    private void autenticar(String login, String nome) {
+        LoginView.login(login, PASSWORD);
         HomeView.isDisplayedCheck();
         HomeView.isUserNameCheck(nome);
-	}
+    }
 
     public void login(String CPF, String nome) {
         if (!autentaticado) {
             loginPage();
             autenticar(CPF, nome);
             autentaticado = true;
-        }
-        else {
-           if (!HomeView.isUserName(nome)){
-             autentaticado = false;
-             login(CPF, nome);
-           }
+        } else {
+            if (!HomeView.isUserName(nome)) {
+                autentaticado = false;
+                login(CPF, nome);
+            }
         }
     }
-
 }

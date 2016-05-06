@@ -19,7 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 public class NavigationUnidadeProducao extends NavigationBase {
 
     public NavigationUnidadeProducao(NavegacaoType type) {
-        super(type, UnidadeProducao.class, UnidadeProducaoViewHome.class, UnidadeProducaoViewInsert.class, UnidadeProducaoViewEdit.class);
+        super(type);
     }
 
     public UnidadeProducao getEntity() {

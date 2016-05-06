@@ -1,13 +1,11 @@
-package gov.goias.agrodefesa.controleDeBens.tranferencia.containers;
+package gov.goias.agrodefesa.controleDeBens.transferencia.containers;
 
+import gov.goias.agrodefesa.base.containers.PageContainerInsert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class TransferenciaPageContainerInsert {
-
-    @FindBy(how = How.ID, using = "nome_lotacao")
-    public WebElement home;
+public class TransferenciaPageContainerInsert extends PageContainerInsert{
 
     @FindBy(how = How.ID, using = "nu_patrimonio")
     public WebElement numeroPatrimonio;
@@ -32,14 +30,5 @@ public class TransferenciaPageContainerInsert {
 
     @FindBy(how = How.XPATH, using = "//*[@id=\"ui-id-1\"]/li[1]")
     public WebElement lotacaoAutoComplete;
-
-    @FindBy(how = How.ID, using = "bt_inserir")
-    public WebElement salvar;
-
-    @FindBy(how = How.XPATH, using = "//*[@id=\"aviso\"]/div/p/strong")
-    public WebElement aviso;
-
-    @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Ok']")
-    public WebElement ok;
 
 }

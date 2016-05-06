@@ -1,38 +1,56 @@
 package gov.goias.agrodefesa.controleDeBens.material.view;
 
-import gov.goias.agrodefesa.controleDeBens.material.containers.MaterialHomePageContainer;
+import gov.goias.agrodefesa.base.view.BaseView;
+import gov.goias.agrodefesa.base.view.HomeView;
+import gov.goias.agrodefesa.controleDeBens.material.containers.MaterialPageContainerHome;
+import gov.goias.agrodefesa.controleDeBens.material.entity.Material;
 import gov.goias.agrodefesa.utils.BrowserDriver;
-import org.openqa.selenium.support.PageFactory;
+import gov.goias.agrodefesa.utils.Constants;
 
-public class MaterialViewHome {
-    private static final MaterialHomePageContainer container = PageFactory.initElements(BrowserDriver.getCurrentDriver(), MaterialHomePageContainer.class);
+public class MaterialViewHome extends BaseView implements HomeView {
 
-    public static void isDisplayedCheck() {
-        BrowserDriver.waitForElement(container.home);
-        container.home.isDisplayed();
+    public MaterialViewHome(Object entity) {
+        super(entity, MaterialPageContainerHome.class);
     }
 
-    public static void incluirRegistro() {
-        BrowserDriver.waitForElement(container.incluirRegistro);
-        container.incluirRegistro.click();
+    private Material getEntity() {
+        return (Material) entity;
     }
 
-    public static void nomeMaterial(String valor) {
-        container.nomeMaterial.clear();
-        container.nomeMaterial.sendKeys(valor);
+    private MaterialPageContainerHome getContainer() {
+        return (MaterialPageContainerHome) container;
     }
 
-    public static void pesquisar() {
-        container.pesquisar.click();
+    public void isDisplayedCheck(){
+        log.debug(Constants.MGS_AGUARDANDO);
+        BrowserDriver.waitForElement(getContainer().home);
+        getContainer().home.isDisplayed();
     }
 
-    public static void isDisplayedGridPesquisar() {
-        BrowserDriver.waitForElement(container.gridRow);
-        container.gridRow.isDisplayed();
+    @Override
+    public void incluir(){
+        log.debug(Constants.MGS_SELECIONADO, "INCLUIR REGISTRO");
+        getContainer().incluirRegistro.click();
     }
 
-    public static void alterar() {
-        container.alterar.click();
+    @Override
+    public void pesquisar() {
+        log.debug(Constants.MGS_INSERIDO, "NOME MATERIAL", getEntity().getNome());
+        getContainer().nomeMaterial.sendKeys(getEntity().getNome());
+
+        log.debug(Constants.MGS_SELECIONADO, "PESQUISAR");
+        getContainer().pesquisar.click();
+    }
+
+    @Override
+    public void alterar() {
+        log.debug(Constants.MGS_SELECIONADO, "ALTERAR REGISTRO");
+        getContainer().pencil.click();
+    }
+
+    @Override
+    public void confirm() {
+
     }
 
 }

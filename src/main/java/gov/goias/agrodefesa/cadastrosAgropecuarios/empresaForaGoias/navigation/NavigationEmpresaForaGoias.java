@@ -60,6 +60,11 @@ public class NavigationEmpresaForaGoias implements NavegacaoStrategy {
     }
 
     @Override
+    public void confirm() {
+
+    }
+
+    @Override
     public void others(Action action) {
         switch(action){
             case MENSAGEM_INSERT:

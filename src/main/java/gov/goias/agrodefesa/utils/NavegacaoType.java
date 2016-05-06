@@ -1,5 +1,29 @@
 package gov.goias.agrodefesa.utils;
 
+import gov.goias.agrodefesa.controleDeBens.almoxarifado.entity.Almoxarifado;
+import gov.goias.agrodefesa.controleDeBens.almoxarifado.navigation.NavigationAlmoxarifado;
+import gov.goias.agrodefesa.controleDeBens.almoxarifado.view.AlmoxarifadoViewEdit;
+import gov.goias.agrodefesa.controleDeBens.almoxarifado.view.AlmoxarifadoViewHome;
+import gov.goias.agrodefesa.controleDeBens.almoxarifado.view.AlmoxarifadoViewInsert;
+import gov.goias.agrodefesa.controleDeBens.material.entity.Material;
+import gov.goias.agrodefesa.controleDeBens.material.navigation.NavigationMaterial;
+import gov.goias.agrodefesa.controleDeBens.material.view.MaterialViewEdit;
+import gov.goias.agrodefesa.controleDeBens.material.view.MaterialViewHome;
+import gov.goias.agrodefesa.controleDeBens.material.view.MaterialViewInsert;
+import gov.goias.agrodefesa.controleDeBens.patrimonio.entity.Patrimonio;
+import gov.goias.agrodefesa.controleDeBens.patrimonio.navigation.NavigationPatrimonio;
+import gov.goias.agrodefesa.controleDeBens.patrimonio.view.PatrimonioViewEdit;
+import gov.goias.agrodefesa.controleDeBens.patrimonio.view.PatrimonioViewHome;
+import gov.goias.agrodefesa.controleDeBens.patrimonio.view.PatrimonioViewInsert;
+import gov.goias.agrodefesa.controleDeBens.transferencia.entity.Transferencia;
+import gov.goias.agrodefesa.controleDeBens.transferencia.navigation.NavigationTransferencia;
+import gov.goias.agrodefesa.controleDeBens.transferencia.view.TransferenciaViewHome;
+import gov.goias.agrodefesa.controleDeBens.transferencia.view.TransferenciaViewInsert;
+import gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.entity.TermoFiscalizacao;
+import gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.navigation.NavigationTermoFiscalizacao;
+import gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.view.TermoFiscalizacaoViewHome;
+import gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.view.TermoFiscalizacaoViewInsert;
+
 /**
  * Created by usuario on 10/03/16.
  */
@@ -49,38 +73,12 @@ public class NavegacaoType {
     public static final String FISCALIZACAO = "fiscalizacao/";
     public static final NavegacaoType TERMO_FISCALIZACAO;
 
-    private final String key;
-    private final String modulo;
-    private final String url;
-
-    NavegacaoType(String key, String modulo, String url)  {
-        this.key = key;
-        this.modulo = modulo;
-        this.url = url;
-    }
-
-    private static NavegacaoType create(String key, String modulo, String url) {
-        return new NavegacaoType(key, modulo, url);
-    }
-
-    public String getUrl() {
-        return HTTP_BASE+this.getModulo()+this.url;
-    }
-
-    public String getKey() {
-        return this.key;
-    }
-
-    public String getModulo() {
-        return this.modulo;
-    }
-
     static {
         //CONTROLE_BENS
-        ALMOXARIFADO = create("almoxarifado", CONTROLE_BENS, "almoxarifado");
-        MATERIAL = create("material", CONTROLE_BENS,"material");
-        PATRIMONIO = create("patrimonio", CONTROLE_BENS, "patrimonio");
-        TRANSFERENCIA_BENS = create("transferencia", CONTROLE_BENS, "controle-movimentacao");
+        ALMOXARIFADO = create("almoxarifado", CONTROLE_BENS, "almoxarifado", NavigationAlmoxarifado.class, Almoxarifado.class, AlmoxarifadoViewHome.class, AlmoxarifadoViewInsert.class, AlmoxarifadoViewEdit.class);
+        MATERIAL = create("material", CONTROLE_BENS, "material", NavigationMaterial.class, Material.class, MaterialViewHome.class, MaterialViewInsert.class, MaterialViewEdit.class);
+        PATRIMONIO = create("patrimonio", CONTROLE_BENS, "patrimonio", NavigationPatrimonio.class, Patrimonio.class, PatrimonioViewHome.class, PatrimonioViewInsert.class, PatrimonioViewEdit.class);
+        TRANSFERENCIA_BENS = create("transferencia", CONTROLE_BENS, "controle-movimentacao", NavigationTransferencia.class, Transferencia.class, TransferenciaViewHome.class, TransferenciaViewInsert.class, null);
 
         //CHAMADO
         ABRIR_CHAMADO = create("Abrir Chamado", CHAMADO, "abrir-chamado");
@@ -116,6 +114,85 @@ public class NavegacaoType {
         UNIDADE_PRODUCAO = create("Unidade de Produção", DEFESA_SANITARIA_VEGETAL, "unidade-producao");
 
         //FISCALIZACAO
-        TERMO_FISCALIZACAO = create("Termo de Fiscalização", FISCALIZACAO, "termo-fiscalizacao");
+        TERMO_FISCALIZACAO = create("Termo de Fiscalização", FISCALIZACAO, "termo-fiscalizacao", NavigationTermoFiscalizacao.class, TermoFiscalizacao.class, TermoFiscalizacaoViewHome.class, TermoFiscalizacaoViewInsert.class, null);
+    }
+
+    private final String key;
+    private final String modulo;
+    private final String url;
+    private Class<?> navegacaoStrategy;
+    private Class<?> classToProxy;
+    private Class<?> home;
+    private Class<?> insert;
+    private Class<?> edit;
+
+    NavegacaoType(String key, String modulo, String url) {
+        this.key = key;
+        this.modulo = modulo;
+        this.url = url;
+    }
+
+    NavegacaoType(String key, String modulo, String url, Class<?>... parameters) {
+        this.key = key;
+        this.modulo = modulo;
+        this.url = url;
+        this.navegacaoStrategy = parameters[0];
+        this.classToProxy = parameters[1];
+        this.home = parameters[2];
+        this.insert = parameters[3];
+        this.edit = parameters[4];
+    }
+
+/*
+    NavegacaoType(String key, String modulo, String url, Class<?> navegacaoStrategy, Class<?> classToProxy, Class<?> home, Class<?> insert, Class<?> edit) {
+        this.key = key;
+        this.modulo = modulo;
+        this.url = url;
+        this.navegacaoStrategy = navegacaoStrategy;
+        this.classToProxy = classToProxy;
+        this.home = home;
+        this.insert = insert;
+        this.edit = edit;
+    }
+*/
+
+    private static NavegacaoType create(String key, String modulo, String url) {
+        return new NavegacaoType(key, modulo, url);
+    }
+
+    private static NavegacaoType create(String key, String modulo, String url,Class<?> navegacaoStrategy, Class<?> classToProxy, Class<?> home, Class<?> insert, Class<?> edit) {
+        return new NavegacaoType(key, modulo, url, navegacaoStrategy, classToProxy, home, insert, edit);
+    }
+
+    public String getUrl() {
+        return HTTP_BASE + this.getModulo() + this.url;
+    }
+
+    public String getKey() {
+        return this.key;
+    }
+
+    public String getModulo() {
+        return this.modulo;
+    }
+
+    public Class<?> getClassToProxy() {
+        return classToProxy;
+    }
+
+    public Class<?> getHome() {
+        return home;
+    }
+
+    public Class<?> getInsert() {
+        return insert;
+    }
+
+    public Class<?> getEdit() {
+        return edit;
+    }
+
+    public Class<?> getNavegacaoStrategy() {
+        return navegacaoStrategy;
     }
 }

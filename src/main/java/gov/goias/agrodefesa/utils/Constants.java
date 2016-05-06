@@ -3,7 +3,8 @@ package gov.goias.agrodefesa.utils;
 public abstract class Constants {
 
     /*MENSAGENS DE ERRO*/
-    public static final String ERRO_CAMPO_OBRIGATORIO = "Campo Obrigatório";
+    public static final String MGS_ERRO_VALIDAR_INSERIR = "Ocorreu um erro ao validar a inserção do registro. Observe as mensagens de erro!";
+    public static final String MGS_ERRO_CAMPO_OBRIGATORIO = "Campo Obrigatório";
 
     public static final String MGS_AGUARDANDO = "Aguardando pagina ser exibida";
     public static final String MGS_INSERIDO = "Inserindo: {} = {}";

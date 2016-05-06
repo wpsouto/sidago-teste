@@ -19,7 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 public class NavigationCadastroLote extends NavigationBase {
 
     public NavigationCadastroLote(NavegacaoType type) {
-        super(type, CadastroLote.class, CadastroLoteViewHome.class, CadastroLoteViewInsert.class, CadastroLoteViewEdit.class);
+        super(type);
 
         UnidadeConsolidacao unidadeConsolidacao = ((NavigationUnidadeConsolidacao) NavegacaoFactory.getNavigator().pageLoad(NavegacaoType.UNIDADE_CONSOLIDACAO)).getEntity();
         getEntity().setUnidadeConsolidacao(unidadeConsolidacao);

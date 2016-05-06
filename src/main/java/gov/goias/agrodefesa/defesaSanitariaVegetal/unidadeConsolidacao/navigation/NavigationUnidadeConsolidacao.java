@@ -19,7 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 public class NavigationUnidadeConsolidacao extends NavigationBase {
 
     public NavigationUnidadeConsolidacao(NavegacaoType type) {
-        super(type, UnidadeConsolidacao.class, UnidadeConsolidacaoViewHome.class, UnidadeConsolidacaoViewInsert.class, UnidadeConsolidacaoViewEdit.class);
+        super(type);
 
         Pessoa pessoa = ((NavigationPessoa) NavegacaoFactory.getNavigator().pageLoad(NavegacaoType.PESSOA)).getPessoa();
         getEntity().setPessoa(pessoa);

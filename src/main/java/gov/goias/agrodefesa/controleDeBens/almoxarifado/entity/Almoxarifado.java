@@ -1,9 +1,10 @@
-package gov.goias.agrodefesa.controleDeBens.almoxarifado;
+package gov.goias.agrodefesa.controleDeBens.almoxarifado.entity;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import gov.goias.agrodefesa.utils.ResourceFactory;
 
 /**
- * Created by usuario on 29/03/16.
+ * Created by usuario on 21/03/16.
  */
 public class Almoxarifado {
 
@@ -44,14 +45,9 @@ public class Almoxarifado {
         this.almoxarifadoPai = almoxarifadoPai;
     }
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .append("descricao", descricao)
-                .append("lotacao", lotacao)
-                .append("gestor", gestor)
-                .append("almoxarifadoPai", almoxarifadoPai)
-                .toString();
+    public static void main(String[] args) {
+        Almoxarifado arquivo = new Almoxarifado();
+        ResourceFactory.save(arquivo);
     }
 
 }

@@ -21,4 +21,7 @@ public class PageContainerHome extends PageContainerBase {
     @FindBy(how = How.CSS, using = "#listagemOperacao > #icons > li.ui-state-default.ui-corner-all > span.ui-icon.ui-icon-pencil")
     public WebElement pencil;
 
+    @FindBy(how = How.CSS, using = "#listagemOperacao > #icons > li.ui-state-default.ui-corner-all > span.ui-icon.ui-icon-check")
+    public WebElement check;
+
 }
