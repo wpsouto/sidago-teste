@@ -1,128 +1,127 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.view;
 
-import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity.Empresa;
+import gov.goias.agrodefesa.base.view.BaseViewEditImpl;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.containers.EmpresaPageContainerEdit;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity.Empresa;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 import gov.goias.agrodefesa.utils.FileUtils;
-import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.support.PageFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class EmpresaViewEdit {
-    private static final Logger log = LoggerFactory.getLogger(EmpresaViewEdit.class);
-	private static final EmpresaPageContainerEdit conteiner = PageFactory.initElements(BrowserDriver.getCurrentDriver(), EmpresaPageContainerEdit.class);
+public class EmpresaViewEdit extends BaseViewEditImpl {
 
-	public static void isDisplayedCheck(){
+
+    public EmpresaViewEdit(Object entity) {
+        super(entity, EmpresaPageContainerEdit.class);
+    }
+
+    private Empresa getEntity() {
+        return (Empresa) entity;
+    }
+
+    private EmpresaPageContainerEdit getContainer() {
+        return (EmpresaPageContainerEdit) container;
+    }
+
+
+    @Override
+    public void builder(){
         log.debug(Constants.MGS_AGUARDANDO);
-		BrowserDriver.waitForElement(conteiner.home);
-		conteiner.home.isDisplayed();
-	}
+        BrowserDriver.waitForElement(getContainer().home);
 
-    public static void informacaoObrigatoria(Empresa.InformacaoObrigatoria informacaoObrigatoria){
+        informacaoObrigatoria(getEntity().getInformacaoObrigatoria());
+        anexarDocumentos(getEntity().getAnexarDocumentos());
+
+        log.debug(Constants.MGS_SELECIONADO, "SALVAR");
+        getContainer().enviarCadastro.click();
+    }
+
+
+    public void informacaoObrigatoria(Empresa.InformacaoObrigatoria informacaoObrigatoria){
         log.debug(Constants.MGS_SELECIONADO, "INFORMACAO OBRIGATORIO");
-        BrowserDriver.waitForElement(conteiner.informacaoObrigatoria);
-        conteiner.informacaoObrigatoria.click();
+        BrowserDriver.waitForElement(getContainer().informacaoObrigatoria);
+        getContainer().informacaoObrigatoria.click();
 
         log.debug(Constants.MGS_INSERIDO, "CLASSIFICACAO", informacaoObrigatoria.getClassificacao().getDescricao());
-        BrowserDriver.selectByVisibleText(conteiner.classificacao, informacaoObrigatoria.getClassificacao().getDescricao());
+        BrowserDriver.selectByVisibleText(getContainer().classificacao, informacaoObrigatoria.getClassificacao().getDescricao());
 
         BrowserDriver.waitFor(1);
 
-        if (conteiner.porteEmpresa.isDisplayed()){
+        if (getContainer().porteEmpresa.isDisplayed()){
             log.debug(Constants.MGS_INSERIDO, "PORTE EMPRESA", informacaoObrigatoria.getPorteEmpresa());
-            BrowserDriver.selectByVisibleText(conteiner.porteEmpresa, informacaoObrigatoria.getPorteEmpresa());
+            BrowserDriver.selectByVisibleText(getContainer().porteEmpresa, informacaoObrigatoria.getPorteEmpresa());
         }
 
-        if (conteiner.qtdAnimaisConfinados.isDisplayed()){
+        if (getContainer().qtdAnimaisConfinados.isDisplayed()){
             log.debug(Constants.MGS_INSERIDO, "QTD ANIMAIS CONFINADOS", informacaoObrigatoria.getQtdAnimaisConfinados());
-            conteiner.qtdAnimaisConfinados.clear();
-            conteiner.qtdAnimaisConfinados.sendKeys(informacaoObrigatoria.getQtdAnimaisConfinados());
+            getContainer().qtdAnimaisConfinados.clear();
+            getContainer().qtdAnimaisConfinados.sendKeys(informacaoObrigatoria.getQtdAnimaisConfinados());
         }
 
-        if (conteiner.qtdAnimaisProcessados.isDisplayed()){
+        if (getContainer().qtdAnimaisProcessados.isDisplayed()){
             log.debug(Constants.MGS_INSERIDO, "QTD ANIMAIS PROCESSADOS", informacaoObrigatoria.getQtdAnimaisProcessados());
-            conteiner.qtdAnimaisProcessados.clear();
-            conteiner.qtdAnimaisProcessados.sendKeys(informacaoObrigatoria.getQtdAnimaisProcessados());
+            getContainer().qtdAnimaisProcessados.clear();
+            getContainer().qtdAnimaisProcessados.sendKeys(informacaoObrigatoria.getQtdAnimaisProcessados());
         }
 
-        if (conteiner.numeroServicoInspecao.isDisplayed()){
+        if (getContainer().numeroServicoInspecao.isDisplayed()){
             log.debug(Constants.MGS_INSERIDO, "NUMERO SERVICO INSPECAO", informacaoObrigatoria.getQtdAnimaisConfinados());
-            conteiner.numeroServicoInspecao.clear();
-            conteiner.numeroServicoInspecao.sendKeys(informacaoObrigatoria.getNumeroServicoInspecao());
+            getContainer().numeroServicoInspecao.clear();
+            getContainer().numeroServicoInspecao.sendKeys(informacaoObrigatoria.getNumeroServicoInspecao());
         }
 
-        if (conteiner.capacidadeAlojamento.isDisplayed()){
+        if (getContainer().capacidadeAlojamento.isDisplayed()){
             log.debug(Constants.MGS_INSERIDO, "CAPACIDADE ALOJAMENTO", informacaoObrigatoria.getCapacidadeAlojamento());
-            conteiner.capacidadeAlojamento.clear();
-            conteiner.capacidadeAlojamento.sendKeys(informacaoObrigatoria.getCapacidadeAlojamento());
+            getContainer().capacidadeAlojamento.clear();
+            getContainer().capacidadeAlojamento.sendKeys(informacaoObrigatoria.getCapacidadeAlojamento());
         }
 
-        if (conteiner.qtdLitrosLeite.isDisplayed()){
+        if (getContainer().qtdLitrosLeite.isDisplayed()){
             log.debug(Constants.MGS_INSERIDO, "QTD LISTRO DE LEITE", informacaoObrigatoria.getQtdLitrosLeite());
-            conteiner.qtdLitrosLeite.clear();
-            conteiner.qtdLitrosLeite.sendKeys(informacaoObrigatoria.getQtdLitrosLeite());
+            getContainer().qtdLitrosLeite.clear();
+            getContainer().qtdLitrosLeite.sendKeys(informacaoObrigatoria.getQtdLitrosLeite());
         }
 
-        if (conteiner.numeroRenasem.isDisplayed()){
+        if (getContainer().numeroRenasem.isDisplayed()){
             log.debug(Constants.MGS_INSERIDO, "NUMERO RENASEM", informacaoObrigatoria.getNumeroRenasem());
-            conteiner.numeroRenasem.clear();
-            conteiner.numeroRenasem.sendKeys(informacaoObrigatoria.getNumeroRenasem());
+            getContainer().numeroRenasem.clear();
+            getContainer().numeroRenasem.sendKeys(informacaoObrigatoria.getNumeroRenasem());
         }
 
     }
 
-    public static void anexarDocumentos(Empresa.AnexarDocumentos anexarDocumentos) {
+    public void anexarDocumentos(Empresa.AnexarDocumentos anexarDocumentos) {
         log.debug(Constants.MGS_SELECIONADO, "ANEXAR DOCUMENTOS");
-        BrowserDriver.waitForElement(conteiner.anexarDocumentos);
-        conteiner.anexarDocumentos.click();
-        conteiner.credenciamentoInicial.click();
+        BrowserDriver.waitForElement(getContainer().anexarDocumentos);
+        getContainer().anexarDocumentos.click();
+        getContainer().credenciamentoInicial.click();
         upload(FileUtils.getFileFromResource(anexarDocumentos.getAnexo()).getPath());
     }
 
-    public static void upload(String fileUpload){
-        String[] tiposDoc = conteiner.arquivosFaltantes.getText().replaceAll("\\<.*?>", "").split("\\*");
+    public void upload(String fileUpload){
+        String[] tiposDoc = getContainer().arquivosFaltantes.getText().replaceAll("\\<.*?>", "").split("\\*");
         JavascriptExecutor executor =  ((JavascriptExecutor) BrowserDriver.getCurrentDriver());
 
         for (int i = 1; i < tiposDoc.length; i++) {
             //BrowserDriver.waitForElement(conteiner.adicionarAnexo);
-            executor.executeScript("scroll(250, 0)");
-            conteiner.adicionarAnexo.click();
-            BrowserDriver.waitForElement(conteiner.tipoDocumento);
-            BrowserDriver.selectByVisibleText(conteiner.tipoDocumento, tiposDoc[i].trim());
+            //executor.executeScript("scroll(250, 0)");
+            BrowserDriver.scrollUp();
+            getContainer().adicionarAnexo.click();
+            BrowserDriver.waitForElement(getContainer().tipoDocumento);
+            BrowserDriver.selectByVisibleText(getContainer().tipoDocumento, tiposDoc[i].trim());
 
-            if (conteiner.dataVencimento.isDisplayed()) {
-                conteiner.dataVencimento.sendKeys("");
-                conteiner.dataAtual.click();
+            if (getContainer().dataVencimento.isDisplayed()) {
+                //log.debug(Constants.MGS_SELECIONADO, "DATA VENCIMENTO");
+                getContainer().dataVencimento.sendKeys("");
+                getContainer().now(getContainer().dataVencimento);
             }
 
             String js = "arguments[0].style.display ='block';";
-            executor.executeScript(js, conteiner.file);
-            conteiner.file.sendKeys(fileUpload);
-            conteiner.confirmar.click();
-            BrowserDriver.waitForElementIsNotPresent(By.id("id_documentorequerido"));
+            executor.executeScript(js, getContainer().file);
+            getContainer().file.sendKeys(fileUpload);
+            getContainer().confirmar.click();
+            BrowserDriver.waitForElementIsNotPresent(getContainer().tipoDocumento);
         }
-    }
-
-    public static void salvar() {
-        log.debug(Constants.MGS_SELECIONADO, "SALVAR");
-        BrowserDriver.waitForElement(conteiner.salvar);
-        conteiner.salvar.click();
-    }
-
-    public static void enviarCadastro() {
-        log.debug(Constants.MGS_SELECIONADO, "ENVIAR CADASTRO");
-        conteiner.enviarCadastro.click();
-    }
-
-    public static void aviso(String valor) {
-        log.debug(Constants.MGS_MENSAGEM, valor);
-        BrowserDriver.waitForElement(conteiner.aviso);
-        Assert.assertEquals(conteiner.aviso.getText(), valor);
-        conteiner.ok.click();
     }
 
 
