@@ -1,13 +1,12 @@
 package gov.goias.agrodefesa.controleDeBens.patrimonio.view;
 
-import gov.goias.agrodefesa.base.view.BaseView;
-import gov.goias.agrodefesa.base.view.InsertView;
+import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.controleDeBens.patrimonio.containers.PatrimonioPageContainerInsert;
 import gov.goias.agrodefesa.controleDeBens.patrimonio.entity.Patrimonio;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
-public class PatrimonioViewInsert extends BaseView implements InsertView {
+public class PatrimonioViewInsert extends BaseViewInsertImpl {
 
     public PatrimonioViewInsert(Object entity) {
         super(entity, PatrimonioPageContainerInsert.class);
@@ -21,6 +20,7 @@ public class PatrimonioViewInsert extends BaseView implements InsertView {
         return (PatrimonioPageContainerInsert) container;
     }
 
+    @Override
     public void builder(){
         log.debug(Constants.MGS_AGUARDANDO);
         BrowserDriver.waitForElement(getContainer().home);
@@ -57,12 +57,5 @@ public class PatrimonioViewInsert extends BaseView implements InsertView {
         BrowserDriver.screenshot();
         getContainer().salvar.click();
     }
-
-    public void aviso() {
-        log.debug(Constants.MGS_MENSAGEM, Constants.REGISTRO_INSERIDO_COM_SUCESSO);
-        BrowserDriver.waitForText(getContainer().aviso, Constants.REGISTRO_INSERIDO_COM_SUCESSO);
-        getContainer().ok.click();
-    }
-
 
 }

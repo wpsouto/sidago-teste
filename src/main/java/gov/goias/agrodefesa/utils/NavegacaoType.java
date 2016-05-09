@@ -1,5 +1,14 @@
 package gov.goias.agrodefesa.utils;
 
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity.Empresa;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.navigation.NavigationEmpresa;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.view.EmpresaViewEdit;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.view.EmpresaViewHome;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.view.EmpresaViewInsert;
+import gov.goias.agrodefesa.chamado.abrirChamado.entity.Chamado;
+import gov.goias.agrodefesa.chamado.abrirChamado.navigation.NavigationAbrirChamado;
+import gov.goias.agrodefesa.chamado.abrirChamado.view.AbrirChamadoViewHome;
+import gov.goias.agrodefesa.chamado.abrirChamado.view.AbrirChamadoViewInsert;
 import gov.goias.agrodefesa.controleDeBens.almoxarifado.entity.Almoxarifado;
 import gov.goias.agrodefesa.controleDeBens.almoxarifado.navigation.NavigationAlmoxarifado;
 import gov.goias.agrodefesa.controleDeBens.almoxarifado.view.AlmoxarifadoViewEdit;
@@ -81,7 +90,7 @@ public class NavegacaoType {
         TRANSFERENCIA_BENS = create("transferencia", CONTROLE_BENS, "controle-movimentacao", NavigationTransferencia.class, Transferencia.class, TransferenciaViewHome.class, TransferenciaViewInsert.class, null);
 
         //CHAMADO
-        ABRIR_CHAMADO = create("Abrir Chamado", CHAMADO, "abrir-chamado");
+        ABRIR_CHAMADO = create("Abrir Chamado", CHAMADO, "abrir-chamado", NavigationAbrirChamado.class, Chamado.class, AbrirChamadoViewHome.class, AbrirChamadoViewInsert.class, null);
 
         //CONCESSAO_DE_DIARIAS
         DELEGACAO_DE_ATIVIDADES = create("Delegação de Atividades", CONCESSAO_DE_DIARIAS, "diaria");
@@ -94,7 +103,7 @@ public class NavegacaoType {
         PRODUTO = create("Produto", CONTROLE_DE_PRODUTOS_AGROPECUARIOS, "produto");
 
         //CADASTROS_AGROPECUARIOS
-        EMPRESA = create("Empresa", CADASTROS_AGROPECUARIOS, "empresas");
+        EMPRESA = create("Empresa", CADASTROS_AGROPECUARIOS, "empresas", NavigationEmpresa.class, Empresa.class, EmpresaViewHome.class, EmpresaViewInsert.class, EmpresaViewEdit.class);
         EMPRESA_CLASSIFICACAO = create("Empresa Classificação", CADASTROS_AGROPECUARIOS, "classificacao");
         EMPRESA_FORA_GOIAS = create("Empresa-Fora Goiás", CADASTROS_AGROPECUARIOS, "empresas-fora");
         PESSOA = create("Pessoa", CADASTROS_AGROPECUARIOS, "produtor");

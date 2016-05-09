@@ -6,7 +6,7 @@ import org.openqa.selenium.support.How;
 
 public class HomePageContainer {
 
-	@FindBy(how = How.XPATH, using = "//*[@id=\"cabecalho-identificacao\"]/ul/li[2]")
+    @FindBy(how = How.XPATH, using = "//*[@id=\"cabecalho-identificacao\"]/ul/li[1]")
     public WebElement homePageTitle;
 
     @FindBy(how = How.ID, using = "link_logout")

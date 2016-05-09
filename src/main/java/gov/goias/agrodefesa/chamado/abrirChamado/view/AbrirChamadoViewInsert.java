@@ -1,72 +1,62 @@
 package gov.goias.agrodefesa.chamado.abrirChamado.view;
 
+import gov.goias.agrodefesa.base.view.BaseView;
+import gov.goias.agrodefesa.base.view.InsertView;
 import gov.goias.agrodefesa.chamado.abrirChamado.containers.AbrirChamadoPageContainerInsert;
+import gov.goias.agrodefesa.chamado.abrirChamado.entity.Chamado;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
-import org.junit.Assert;
-import org.openqa.selenium.support.PageFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class AbrirChamadoViewInsert {
-    private static final Logger log = LoggerFactory.getLogger(AbrirChamadoViewInsert.class);
-	private static final AbrirChamadoPageContainerInsert conteiner = PageFactory.initElements(BrowserDriver.getCurrentDriver(), AbrirChamadoPageContainerInsert.class);
+public class AbrirChamadoViewInsert extends BaseView implements InsertView {
 
-	public static void isDisplayedCheck(){
+
+    public AbrirChamadoViewInsert(Object entity) {
+        super(entity, AbrirChamadoPageContainerInsert.class);
+    }
+
+    private Chamado getEntity() {
+        return (Chamado) entity;
+    }
+
+    private AbrirChamadoPageContainerInsert getContainer() {
+        return (AbrirChamadoPageContainerInsert) container;
+    }
+
+    public void builder(){
         log.debug(Constants.MGS_AGUARDANDO);
-		BrowserDriver.waitForElement(conteiner.home);
-		conteiner.home.isDisplayed();
-	}
+        BrowserDriver.waitForElement(getContainer().home);
 
-    public static void solicitante(String valor){
-        log.debug(Constants.MGS_INSERIDO, "SOLICITANTE", valor);
-        conteiner.solicitante.clear();
-        conteiner.solicitante.sendKeys(valor);
-        BrowserDriver.waitForElement(conteiner.solicitanteAutoComplete);
-        conteiner.solicitanteAutoComplete.click();
-    }
+        log.debug(Constants.MGS_INSERIDO, "SOLICITANTE", getEntity().getSolicitante());
+        getContainer().solicitante.sendKeys(getEntity().getSolicitante());
+        BrowserDriver.waitForElement(getContainer().solicitanteAutoComplete);
+        getContainer().solicitanteAutoComplete.click();
 
-    public static void tipoSuporte(String valor) {
-        log.debug(Constants.MGS_INSERIDO, "TIPO SUPORTE", valor);
-        BrowserDriver.selectByVisibleText(conteiner.tipoSuporte, valor);
-    }
+        log.debug(Constants.MGS_INSERIDO, "TIPO SUPORTE", getEntity().getTipoSuporte());
+        BrowserDriver.selectByVisibleText(getContainer().tipoSuporte, getEntity().getTipoSuporte());
 
-    public static void classificacao(String valor) {
-        log.debug(Constants.MGS_INSERIDO, "CLASSIFICACAO", valor);
-        BrowserDriver.waitForElement(conteiner.classificacao);
-        conteiner.classificacao.click();
-        conteiner.classificacaoInput.click();
-    }
+        log.debug(Constants.MGS_INSERIDO, "CLASSIFICACAO", getEntity().getClassificacao());
+        getContainer().classificacao.click();
+        BrowserDriver.waitForElement(getContainer().classificacaoInput);
+        getContainer().classificacaoInput.click();
 
-    public static void tipoContato(String valor) {
-        log.debug(Constants.MGS_INSERIDO, "TIPO CONTATO", valor);
-        BrowserDriver.selectByVisibleText(conteiner.tipoContato, valor);
-    }
+        log.debug(Constants.MGS_INSERIDO, "TIPO CONTATO", getEntity().getTipoContato());
+        BrowserDriver.selectByVisibleText(getContainer().tipoContato, getEntity().getTipoContato());
 
-    public static void problema(String valor) {
-        log.debug(Constants.MGS_INSERIDO, "PROBLEMA", valor);
-        conteiner.problema.clear();
-        conteiner.problema.sendKeys(valor);
-    }
+        log.debug(Constants.MGS_INSERIDO, "PROBLEMA", getEntity().getProblema());
+        getContainer().problema.sendKeys(getEntity().getProblema());
 
-    public static void adotarChamado(String valor) {
-        log.debug(Constants.MGS_INSERIDO, "ADOTAR CHAMADO", valor);
-        BrowserDriver.selectByVisibleText(conteiner.adotarChamado, valor);
-    }
+        log.debug(Constants.MGS_INSERIDO, "ADOTAR CHAMADO", getEntity().getAdotarChamado());
+        BrowserDriver.selectByVisibleText(getContainer().adotarChamado, getEntity().getAdotarChamado());
 
-    public static void salvar() {
         log.debug(Constants.MGS_SELECIONADO, "SALVAR");
-        BrowserDriver.waitForElement(conteiner.salvar);
-        conteiner.salvar.click();
+        BrowserDriver.screenshot();
+        getContainer().salvar.click();
     }
 
-    public static void aviso(String valor) {
-        log.debug(Constants.MGS_MENSAGEM, valor);
-        BrowserDriver.waitForElement(conteiner.aviso);
-        Assert.assertEquals(conteiner.aviso.getText(), valor);
-        conteiner.ok.click();
+    public void aviso() {
+        log.debug(Constants.MGS_MENSAGEM, Constants.REGISTRO_INSERIDO_COM_SUCESSO);
+        BrowserDriver.waitForText(getContainer().aviso, Constants.REGISTRO_INSERIDO_COM_SUCESSO);
+        getContainer().ok.click();
     }
-
-
 
 }

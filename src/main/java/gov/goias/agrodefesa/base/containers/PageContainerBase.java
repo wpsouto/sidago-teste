@@ -17,10 +17,12 @@ public class PageContainerBase {
     private WebElement now;
 
     public void now(WebElement datePicker){
+        //datePicker.clear();
+        //BrowserDriver.waitForElement(datePicker);
         datePicker.click();
-        BrowserDriver.waitForElement(now);
-        now.click();
-        BrowserDriver.waitForElementIsNotPresent(now);
+        BrowserDriver.waitForElement(this.now);
+        this.now.click();
+        BrowserDriver.waitForElementIsNotPresent(this.now);
     }
 
 }

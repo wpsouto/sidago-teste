@@ -15,6 +15,9 @@ public class PageContainerHome extends PageContainerBase {
     @FindBy(how = How.ID, using = "bt_pesquisar")
     public WebElement pesquisar;
 
+    @FindBy(how = How.XPATH, using = "//*[@id=\"grid\"]/form/table/tbody/tr[1]")
+    public WebElement gridRow;
+
     @FindBy(how = How.CSS, using = "#listagemOperacao > #icons > li.ui-state-default.ui-corner-all > span.ui-icon.ui-icon-document")
     public WebElement document;
 
@@ -23,5 +26,8 @@ public class PageContainerHome extends PageContainerBase {
 
     @FindBy(how = How.CSS, using = "#listagemOperacao > #icons > li.ui-state-default.ui-corner-all > span.ui-icon.ui-icon-check")
     public WebElement check;
+
+    @FindBy(how = How.CSS, using = "#listagemOperacao > #icons > li.ui-state-default.ui-corner-all > span.ui-icon.ui-icon-comment")
+    public WebElement comment;
 
 }

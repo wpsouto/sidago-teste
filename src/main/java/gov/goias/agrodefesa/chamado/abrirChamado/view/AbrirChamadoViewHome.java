@@ -1,93 +1,83 @@
 package gov.goias.agrodefesa.chamado.abrirChamado.view;
 
+import gov.goias.agrodefesa.base.view.BaseView;
+import gov.goias.agrodefesa.base.view.HomeView;
 import gov.goias.agrodefesa.chamado.abrirChamado.containers.AbrirChamadoPageContainerHome;
+import gov.goias.agrodefesa.chamado.abrirChamado.entity.Chamado;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
-import org.junit.Assert;
-import org.openqa.selenium.support.PageFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class AbrirChamadoViewHome {
-    private static final Logger log = LoggerFactory.getLogger(AbrirChamadoViewHome.class);
-	private static final AbrirChamadoPageContainerHome container = PageFactory.initElements(BrowserDriver.getCurrentDriver(), AbrirChamadoPageContainerHome.class);
+public class AbrirChamadoViewHome extends BaseView implements HomeView {
 
-	public static void isDisplayedCheck(){
+    public AbrirChamadoViewHome(Object entity) {
+        super(entity, AbrirChamadoPageContainerHome.class);
+    }
+
+    private Chamado getEntity() {
+        return (Chamado) entity;
+    }
+
+    private AbrirChamadoPageContainerHome getContainer() {
+        return (AbrirChamadoPageContainerHome) container;
+    }
+
+    public void isDisplayedCheck(){
         log.debug(Constants.MGS_AGUARDANDO);
-		BrowserDriver.waitForElement(container.home);
-		container.home.isDisplayed();
-	}
+        BrowserDriver.waitForElement(getContainer().home);
+        getContainer().home.isDisplayed();
+    }
 
-    public static void incluirRegistro(){
+    @Override
+    public void incluir(){
         log.debug(Constants.MGS_SELECIONADO, "INCLUIR REGISTRO");
-        BrowserDriver.waitForElement(container.incluirRegistro);
-        container.incluirRegistro.click();
+        getContainer().incluirRegistro.click();
     }
 
-	public static void numeroChamado(String valor){
-        log.debug(Constants.MGS_INSERIDO, "NUMERO CHAMADO", valor);
-		container.numeroChamado.clear();
-        container.numeroChamado.sendKeys(valor);
-	}
+    @Override
+    public void pesquisar() {
+        log.debug(Constants.MGS_INSERIDO, "CLASSIFICACAO", getEntity().getClassificacao());
+        getContainer().classificacao.sendKeys(getEntity().getClassificacao());
+        BrowserDriver.waitForElement(getContainer().classificacaoAutoComplete);
+        getContainer().classificacaoAutoComplete.click();
 
-    public static void pesquisar() {
+        log.debug(Constants.MGS_INSERIDO, "SOLICITANTE", getEntity().getSolicitante());
+        getContainer().solicitante.sendKeys(getEntity().getSolicitante());
+        BrowserDriver.waitForElement(getContainer().solicitanteAutoComplete);
+        getContainer().solicitanteAutoComplete.click();
+
+        log.debug(Constants.MGS_INSERIDO, "TECNICO", getEntity().getTecnico());
+        getContainer().tecnico.sendKeys(getEntity().getTecnico());
+        BrowserDriver.waitForElement(getContainer().tecnicoAutoComplete);
+        getContainer().tecnicoAutoComplete.click();
+
+        log.debug(Constants.MGS_INSERIDO, "SUPORTE", getEntity().getTipoSuporte());
+        BrowserDriver.selectByVisibleText(getContainer().suporte, getEntity().getTipoSuporte());
+
+        log.debug(Constants.MGS_INSERIDO, "CONTATO", getEntity().getTipoContato());
+        BrowserDriver.selectByVisibleText(getContainer().contato, getEntity().getTipoContato());
+
+        log.debug(Constants.MGS_INSERIDO, "SITUACAO", getEntity().getSituacao());
+        BrowserDriver.selectByVisibleText(getContainer().contato, getEntity().getSituacao());
+
         log.debug(Constants.MGS_SELECIONADO, "PESQUISAR");
-		container.form.submit();
-	}
+        BrowserDriver.scrollDown();
+        getContainer().pesquisar.click();
+        BrowserDriver.waitForElement(getContainer().gridNumeroChamado);
 
-	public static void isDisplayedGridPesquisar(String valor) {
-        log.debug(Constants.MGS_AGUARDANDO);
-        BrowserDriver.waitForElement(container.gridRow);
-        container.gridRow.isDisplayed();
-        Assert.assertEquals(valor, container.gridRow.getText());
-	}
+        log.debug(Constants.MGS_INSERIDO, "NUMERO CHAMADO", getContainer().gridNumeroChamado.getText());
+        getEntity().setNumeroChamado(getContainer().gridNumeroChamado.getText());
 
-	public static void finalizar() {
-        log.debug(Constants.MGS_SELECIONADO, "OPERACAO FINALIZAR");
-		container.finalizar.click();
-	}
-
-    public static void classificacao(String valor) {
-        log.debug(Constants.MGS_INSERIDO, "CLASSIFICACAO", valor);
-        container.classificacao.sendKeys(valor);
-        BrowserDriver.waitForElement(container.classificacaoAutoComplete);
-        container.classificacaoAutoComplete.click();
     }
 
-    public static void solicitante(String valor) {
-        log.debug(Constants.MGS_INSERIDO, "SOLICITANTE", valor);
-        container.solicitante.sendKeys(valor);
-        BrowserDriver.waitForElement(container.solicitanteAutoComplete);
-        container.solicitanteAutoComplete.click();
+    @Override
+    public void alterar() {
+
     }
 
-    public static void tecnico(String valor) {
-        log.debug(Constants.MGS_INSERIDO, "TECNICO", valor);
-        container.tecnico.sendKeys(valor);
-        BrowserDriver.waitForElement(container.tecnicoAutoComplete);
-        container.tecnicoAutoComplete.click();
+    @Override
+    public void confirm() {
+
     }
 
-    public static void lotacao(String valor) {
-        log.debug(Constants.MGS_INSERIDO, "LOTACAO", valor);
-        container.lotacao.sendKeys(valor);
-        BrowserDriver.waitForElement(container.lotacaoAutoComplete);
-        container.lotacaoAutoComplete.click();
-    }
-
-    public static void suporte(String valor) {
-        log.debug(Constants.MGS_INSERIDO, "SUPORTE", valor);
-        BrowserDriver.selectByVisibleText(container.suporte, valor);
-    }
-
-    public static void contato(String valor) {
-        log.debug(Constants.MGS_INSERIDO, "CONTATO", valor);
-        BrowserDriver.selectByVisibleText(container.contato, valor);
-    }
-
-    public static void situacao(String valor) {
-        log.debug(Constants.MGS_INSERIDO, "SITUACAO", valor);
-        BrowserDriver.selectByVisibleText(container.situacao, valor);
-    }
 
 }

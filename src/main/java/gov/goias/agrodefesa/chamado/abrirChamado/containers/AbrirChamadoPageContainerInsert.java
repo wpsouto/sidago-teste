@@ -1,13 +1,11 @@
 package gov.goias.agrodefesa.chamado.abrirChamado.containers;
 
+import gov.goias.agrodefesa.base.containers.PageContainerInsert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class AbrirChamadoPageContainerInsert {
-
-    @FindBy(how = How.ID, using = "nome_pessoa")
-    public WebElement home;
+public class AbrirChamadoPageContainerInsert extends PageContainerInsert {
 
     @FindBy(how = How.ID, using = "nome_pessoa")
     public WebElement solicitante;
@@ -33,13 +31,5 @@ public class AbrirChamadoPageContainerInsert {
     @FindBy(how = How.ID, using = "adotar_chamado")
     public WebElement adotarChamado;
 
-    @FindBy(how = How.ID, using = "bt_inserir")
-    public WebElement salvar;
-
-    @FindBy(how = How.XPATH, using = "//*[@id=\"aviso\"]/div/p/strong")
-    public WebElement aviso;
-
-    @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Ok']")
-    public WebElement ok;
 
 }

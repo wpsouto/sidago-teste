@@ -9,6 +9,6 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/feature",//path to the features
         format = {"pretty", "json:target/cucumber/cucumber.json"},//what formatters to use
         glue = {"gov.goias.agrodefesa"},
-        tags = {"@Material"})//what tags to incluse(@)/exclude(@~)
+        tags = {"@Empresa"})//what tags to incluse(@)/exclude(@~)
 public class SidagoTest {
 }

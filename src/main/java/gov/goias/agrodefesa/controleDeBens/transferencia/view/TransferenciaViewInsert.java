@@ -1,13 +1,12 @@
 package gov.goias.agrodefesa.controleDeBens.transferencia.view;
 
-import gov.goias.agrodefesa.base.view.BaseView;
-import gov.goias.agrodefesa.base.view.InsertView;
+import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.controleDeBens.transferencia.containers.TransferenciaPageContainerInsert;
 import gov.goias.agrodefesa.controleDeBens.transferencia.entity.Transferencia;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
-public class TransferenciaViewInsert extends BaseView implements InsertView {
+public class TransferenciaViewInsert extends BaseViewInsertImpl {
 
     public TransferenciaViewInsert(Object entity) {
         super(entity, TransferenciaPageContainerInsert.class);
@@ -47,12 +46,6 @@ public class TransferenciaViewInsert extends BaseView implements InsertView {
         log.debug(Constants.MGS_SELECIONADO, "SALVAR");
         BrowserDriver.screenshot();
         getContainer().salvar.click();
-    }
-
-    public void aviso() {
-        log.debug(Constants.MGS_MENSAGEM, Constants.REGISTRO_INSERIDO_COM_SUCESSO);
-        BrowserDriver.waitForText(getContainer().aviso, Constants.REGISTRO_INSERIDO_COM_SUCESSO);
-        getContainer().ok.click();
     }
 
 }

@@ -1,13 +1,12 @@
 package gov.goias.agrodefesa.controleDeBens.almoxarifado.view;
 
-import gov.goias.agrodefesa.base.view.BaseView;
-import gov.goias.agrodefesa.base.view.InsertView;
+import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.controleDeBens.almoxarifado.containers.AlmoxarifadoPageContainerInsert;
 import gov.goias.agrodefesa.controleDeBens.almoxarifado.entity.Almoxarifado;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
-public class AlmoxarifadoViewInsert extends BaseView implements InsertView {
+public class AlmoxarifadoViewInsert extends BaseViewInsertImpl {
 
     public AlmoxarifadoViewInsert(Object entity) {
         super(entity, AlmoxarifadoPageContainerInsert.class);
@@ -17,10 +16,11 @@ public class AlmoxarifadoViewInsert extends BaseView implements InsertView {
         return (Almoxarifado) entity;
     }
 
-    private AlmoxarifadoPageContainerInsert getContainer() {
+    protected AlmoxarifadoPageContainerInsert getContainer() {
         return (AlmoxarifadoPageContainerInsert) container;
     }
 
+    @Override
     public void builder(){
         log.debug(Constants.MGS_AGUARDANDO);
         BrowserDriver.waitForElement(getContainer().home);
@@ -46,12 +46,6 @@ public class AlmoxarifadoViewInsert extends BaseView implements InsertView {
         log.debug(Constants.MGS_SELECIONADO, "SALVAR");
         BrowserDriver.screenshot();
         getContainer().salvar.click();
-    }
-
-    public void aviso() {
-        log.debug(Constants.MGS_MENSAGEM, Constants.REGISTRO_INSERIDO_COM_SUCESSO);
-        BrowserDriver.waitForText(getContainer().aviso, Constants.REGISTRO_INSERIDO_COM_SUCESSO);
-        getContainer().ok.click();
     }
 
 }

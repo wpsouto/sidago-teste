@@ -1,61 +1,49 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.navigation;
 
+import gov.goias.agrodefesa.base.navigation.NavigationBase;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity.Empresa;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.view.EmpresaViewAprovacao;
-import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.view.EmpresaViewEdit;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.view.EmpresaViewHome;
-import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.view.EmpresaViewInsert;
 import gov.goias.agrodefesa.constants.Action;
-import gov.goias.agrodefesa.utils.*;
+import gov.goias.agrodefesa.utils.Generator;
+import gov.goias.agrodefesa.utils.NavegacaoType;
 
 /**
  * Created by usuario on 10/03/16.
  */
-public class NavigationEmpresa implements NavegacaoStrategy {
-    private Empresa empresa;
-    private boolean alterado = false;
+public class NavigationEmpresa extends NavigationBase {
 
-    public NavigationEmpresa() {
-        empresa = ResourceFactory.init(Empresa.class);
+    private EmpresaViewAprovacao empresaViewAprovacao;
+
+    public NavigationEmpresa(NavegacaoType type) {
+        super(type);
+        empresaViewAprovacao = new EmpresaViewAprovacao(getEntity());
     }
 
-    @Override
-    public void home() {
-        BrowserDriver.loadPage(NavegacaoType.EMPRESA.getUrl());
-        EmpresaViewHome.isDisplayedCheck();
+    public Empresa getEntity() {
+        return (Empresa) entity;
     }
 
-    @Override
-    public void insert() {
-
+    private void aprovar() {
+        ((EmpresaViewHome) home).aprovar();
+        empresaViewAprovacao.builder();
     }
 
-    @Override
-    public void search() {
-        EmpresaViewHome.isDisplayedCheck();
-        EmpresaViewHome.documento(empresa.getInformacaoObrigatoria().getCpfCnpj());
-        EmpresaViewHome.pesquisar();
-        EmpresaViewHome.isDisplayedGridPesquisar();
+    public void inserir(String id, String descricao) {
+        getEntity().getInformacaoObrigatoria().setCpfCnpj(Generator.cnpj());
+        getEntity().getInformacaoObrigatoria().getClassificacao().setId(id);
+        getEntity().getInformacaoObrigatoria().getClassificacao().setDescricao(descricao);
 
+        super.insert();
     }
 
     @Override
     public void edit() {
-        search();
-        alterado = false;
-        if (EmpresaViewHome.situacaoCadastral().contains("Aguardando Envio Cadastro")) {
-            EmpresaViewHome.alterar();
-            EmpresaViewEdit.isDisplayedCheck();
-            EmpresaViewEdit.anexarDocumentos(empresa.getAnexarDocumentos());
-            EmpresaViewEdit.enviarCadastro();
-            alterado = true;
+        super.search();
+        if (getEntity().getAguardandoEnvioCadastro()) {
+            home.alterar();
+            edit.builder();
         }
-
-    }
-
-    @Override
-    public void confirm() {
-
     }
 
     @Override
@@ -64,41 +52,14 @@ public class NavigationEmpresa implements NavegacaoStrategy {
             case APPROVE:
                 aprovar();
                 break;
-            case MENSAGEM_INSERT:
-                EmpresaViewInsert.aviso("Registro inserido com sucesso!");
-                break;
             case MENSAGEM_EDIT:
-                if (alterado) {
-                    EmpresaViewEdit.aviso("Registro alterado com sucesso!");
+                if (getEntity().getAguardandoEnvioCadastro()) {
+                    edit.aviso();
                 }
                 break;
             default:
-                throw Action.actionNotFound(action.name());
+                super.others(action);
         }
-
-    }
-
-    private void aprovar() {
-        search();
-        EmpresaViewHome.aprovar();
-        EmpresaViewAprovacao.isDisplayedCheck();
-        EmpresaViewAprovacao.validar(empresa);
-        BrowserDriver.screenshot();
-    }
-
-    public void inserir(String id, String descricao) {
-        empresa.getInformacaoObrigatoria().setCpfCnpj(Generator.cnpj());
-        empresa.getInformacaoObrigatoria().getClassificacao().setId(id);
-        empresa.getInformacaoObrigatoria().getClassificacao().setDescricao(descricao);
-
-        EmpresaViewHome.incluirRegistro();
-        EmpresaViewInsert.isDisplayedCheck();
-        EmpresaViewInsert.documento(empresa.getInformacaoObrigatoria().getCpfCnpj());
-        EmpresaViewInsert.classificacao(empresa.getInformacaoObrigatoria().getClassificacao().getDescricao());
-        EmpresaViewInsert.pesquisar();
-        EmpresaViewInsert.informacaoObrigatoria(empresa.getInformacaoObrigatoria());
-        EmpresaViewInsert.informacaoComplementar(empresa.getInformacaoComplementar());
-        EmpresaViewInsert.salvar();
     }
 
 }

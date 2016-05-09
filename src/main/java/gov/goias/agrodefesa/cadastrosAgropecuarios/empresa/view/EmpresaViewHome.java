@@ -1,60 +1,43 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.view;
 
+import gov.goias.agrodefesa.base.view.BaseViewHomeImpl;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.containers.EmpresaPageContainerHome;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity.Empresa;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
-import org.openqa.selenium.support.PageFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class EmpresaViewHome {
-	private static final Logger log = LoggerFactory.getLogger(EmpresaViewHome.class);
-	private static final EmpresaPageContainerHome container = PageFactory.initElements(BrowserDriver.getCurrentDriver(), EmpresaPageContainerHome.class);
+public class EmpresaViewHome extends BaseViewHomeImpl {
 
-	public static void isDisplayedCheck(){
-        log.debug(Constants.MGS_AGUARDANDO);
-		BrowserDriver.waitForElement(container.home);
-		container.home.isDisplayed();
-	}
-
-    public static void incluirRegistro(){
-        log.debug(Constants.MGS_SELECIONADO, "INCLUIR REGISTRO");
-        BrowserDriver.waitForElement(container.incluirRegistro);
-        container.incluirRegistro.click();
+    public EmpresaViewHome(Object entity) {
+        super(entity, EmpresaPageContainerHome.class);
     }
 
-	public static void documento(String valor){
-        log.debug(Constants.MGS_INSERIDO, "DOCUMENTO", valor);
-		container.documento.clear();
-		container.documento.sendKeys(valor);
-	}
+    private Empresa getEntity() {
+        return (Empresa) entity;
+    }
 
-    public static void pesquisar() {
+    private EmpresaPageContainerHome getContainer() {
+        return (EmpresaPageContainerHome) container;
+    }
+
+    @Override
+    public void pesquisar() {
+        log.debug(Constants.MGS_INSERIDO, "DOCUMENTO", getEntity().getInformacaoObrigatoria().getCpfCnpj());
+        getContainer().documento.sendKeys(getEntity().getInformacaoObrigatoria().getCpfCnpj());
         log.debug(Constants.MGS_SELECIONADO, "PESQUISAR");
-		container.pesquisar.click();
-	}
+        getContainer().pesquisar.click();
+        BrowserDriver.waitForElement(getContainer().gridRow);
+        getEntity().setAguardandoEnvioCadastro(getContainer().gridRow.getText().contains("Aguardando Envio Cadastro"));
+    }
 
-	public static void isDisplayedGridPesquisar() {
-        log.debug(Constants.MGS_AGUARDANDO);
-		BrowserDriver.waitForElement(container.gridRow);
-		container.gridRow.isDisplayed();
-	}
+    public void aprovar(){
+        if (getEntity().getAguardandoEnvioCadastro()) {
+            pesquisar();
+        }
 
-	public static String situacaoCadastral() {
-		BrowserDriver.waitForElement(container.gridRow);
-		return container.gridRow.getText();
-	}
+        log.debug(Constants.MGS_SELECIONADO, "APROVAR");
+                getContainer().comment.click();
 
-	public static void alterar() {
-        log.debug(Constants.MGS_SELECIONADO, "ALTERAR");
-        BrowserDriver.waitForElement(container.alterar);
-		container.alterar.click();
-	}
-
-	public static void aprovar() {
-		log.debug(Constants.MGS_SELECIONADO, "APROVAR");
-		BrowserDriver.waitForElement(container.aprovar);
-		container.aprovar.click();
-	}
+    }
 
 }

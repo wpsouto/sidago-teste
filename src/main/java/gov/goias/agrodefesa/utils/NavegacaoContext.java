@@ -30,12 +30,12 @@ public class NavegacaoContext {
         //FISCALIZACAO
         _strategies1.add(NavegacaoType.TERMO_FISCALIZACAO);
 
+        //CHAMADO
+        _strategies1.add(NavegacaoType.ABRIR_CHAMADO);
+
+        //CADASTROS_AGROPECUARIOS
+        _strategies1.add(NavegacaoType.EMPRESA);
 /*
-        //CONTROLE_BENS
-        _strategies.put(NavegacaoType.ALMOXARIFADO, new NavigationAlmoxarifado());
-        _strategies.put(NavegacaoType.MATERIAL, new NavigationMaterial());
-        _strategies.put(NavegacaoType.PATRIMONIO, new NavigationPatrimonio());
-        _strategies.put(NavegacaoType.TRANSFERENCIA_BENS, new NavigationTransferencia());
 
         //CONCESSAO_DE_DIARIAS
         _strategies.put(NavegacaoType.DELEGACAO_DE_ATIVIDADES, new NavigationDelegacaoDeAtividades());

@@ -1,13 +1,12 @@
 package gov.goias.agrodefesa.controleDeBens.material.view;
 
-import gov.goias.agrodefesa.base.view.BaseView;
-import gov.goias.agrodefesa.base.view.InsertView;
+import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.controleDeBens.material.containers.MaterialPageContainerInsert;
 import gov.goias.agrodefesa.controleDeBens.material.entity.Material;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
-public class MaterialViewInsert extends BaseView implements InsertView {
+public class MaterialViewInsert extends BaseViewInsertImpl {
 
     public MaterialViewInsert(Object entity) {
         super(entity, MaterialPageContainerInsert.class);
@@ -17,7 +16,7 @@ public class MaterialViewInsert extends BaseView implements InsertView {
         return (Material) entity;
     }
 
-    private MaterialPageContainerInsert getContainer() {
+    protected MaterialPageContainerInsert getContainer() {
         return (MaterialPageContainerInsert) container;
     }
 
@@ -40,12 +39,6 @@ public class MaterialViewInsert extends BaseView implements InsertView {
         log.debug(Constants.MGS_SELECIONADO, "SALVAR");
         BrowserDriver.screenshot();
         getContainer().salvar.click();
-    }
-
-    public void aviso() {
-        log.debug(Constants.MGS_MENSAGEM, Constants.REGISTRO_INSERIDO_COM_SUCESSO);
-        BrowserDriver.waitForText(getContainer().aviso, Constants.REGISTRO_INSERIDO_COM_SUCESSO);
-        getContainer().ok.click();
     }
 
     public void salvarTodosCamposVazios() {

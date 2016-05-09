@@ -1,6 +1,6 @@
 # language: pt
 
-@Chamado @AbrirChamado
+@Chamado @Chamado @AbrirChamado
 
 Funcionalidade: Testando as funcionalidades de Abrir Chamado
 
@@ -10,5 +10,3 @@ Funcionalidade: Testando as funcionalidades de Abrir Chamado
   Cenário: 1-Fluxo Principal
     Quando Eu "insiro" um registro de "Abrir Chamado"
     Então Eu recebo a mensagem "inserido" do "Abrir Chamado"
-    Quando Eu "confirmo" um registro de "Abrir Chamado"
-    Então Eu recebo a mensagem "confirmado" do "Abrir Chamado"

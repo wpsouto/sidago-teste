@@ -1,6 +1,8 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity;
 
 
+import gov.goias.agrodefesa.utils.ResourceFactory;
+
 /**
  * Created by usuario on 21/03/16.
  */
@@ -9,6 +11,7 @@ public class Empresa {
     private InformacaoObrigatoria informacaoObrigatoria = new InformacaoObrigatoria();
     private InformacaoComplementar informacaoComplementar = new InformacaoComplementar();
     private AnexarDocumentos anexarDocumentos = new AnexarDocumentos();
+    private Boolean aguardandoEnvioCadastro;
 
     public InformacaoObrigatoria getInformacaoObrigatoria() {
         return informacaoObrigatoria;
@@ -20,6 +23,14 @@ public class Empresa {
 
     public AnexarDocumentos getAnexarDocumentos() {
         return anexarDocumentos;
+    }
+
+    public Boolean getAguardandoEnvioCadastro() {
+        return aguardandoEnvioCadastro;
+    }
+
+    public void setAguardandoEnvioCadastro(Boolean aguardandoEnvioCadastro) {
+        this.aguardandoEnvioCadastro = aguardandoEnvioCadastro;
     }
 
     public static class InformacaoObrigatoria {
@@ -202,5 +213,11 @@ public class Empresa {
         }
 
     }
+
+    public static void main(String[] args) {
+        Empresa arquivo = new Empresa();
+        ResourceFactory.save(arquivo);
+    }
+
 
 }
