@@ -1,0 +1,12 @@
+{
+  "empresa": {
+    "informacaoObrigatoria": {
+      "cpfCnpj": "12353501000130"
+    }
+  },
+  "classificacao": {
+    "id": null,
+    "descricao": "CASA AGROPECUÁRIA - SEMENTES",
+    "tipo_classificacao": null
+  }
+}

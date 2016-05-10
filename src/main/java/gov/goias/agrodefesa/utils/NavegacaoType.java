@@ -5,6 +5,11 @@ import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.navigation.Navigation
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.view.EmpresaViewEdit;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.view.EmpresaViewHome;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.view.EmpresaViewInsert;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaClassificacao.entity.Classificacao;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaClassificacao.navigation.NavigationEmpresaClassificacao;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaClassificacao.view.EmpresaClassificacaoViewEdit;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaClassificacao.view.EmpresaClassificacaoViewHome;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaClassificacao.view.EmpresaClassificacaoViewInsert;
 import gov.goias.agrodefesa.chamado.abrirChamado.entity.Chamado;
 import gov.goias.agrodefesa.chamado.abrirChamado.navigation.NavigationAbrirChamado;
 import gov.goias.agrodefesa.chamado.abrirChamado.view.AbrirChamadoViewHome;
@@ -104,7 +109,7 @@ public class NavegacaoType {
 
         //CADASTROS_AGROPECUARIOS
         EMPRESA = create("Empresa", CADASTROS_AGROPECUARIOS, "empresas", NavigationEmpresa.class, Empresa.class, EmpresaViewHome.class, EmpresaViewInsert.class, EmpresaViewEdit.class);
-        EMPRESA_CLASSIFICACAO = create("Empresa Classificação", CADASTROS_AGROPECUARIOS, "classificacao");
+        EMPRESA_CLASSIFICACAO = create("Empresa Classificação", CADASTROS_AGROPECUARIOS, "classificacao", NavigationEmpresaClassificacao.class, Classificacao.class, EmpresaClassificacaoViewHome.class, EmpresaClassificacaoViewInsert.class, EmpresaClassificacaoViewEdit.class);
         EMPRESA_FORA_GOIAS = create("Empresa-Fora Goiás", CADASTROS_AGROPECUARIOS, "empresas-fora");
         PESSOA = create("Pessoa", CADASTROS_AGROPECUARIOS, "produtor");
         PROPRIEDADE = create("Propriedade", CADASTROS_AGROPECUARIOS, "propriedade");

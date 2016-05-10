@@ -1,6 +1,7 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity;
 
 
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaClassificacao.entity.Classificacao;
 import gov.goias.agrodefesa.utils.ResourceFactory;
 
 /**
@@ -140,27 +141,6 @@ public class Empresa {
 
         public void setNomeFantasia(String nomeFantasia) {
             this.nomeFantasia = nomeFantasia;
-        }
-
-        public static class Classificacao{
-            private String id;
-            private String descricao;
-
-            public String getId() {
-                return id;
-            }
-
-            public void setId(String id) {
-                this.id = id;
-            }
-
-            public String getDescricao() {
-                return descricao;
-            }
-
-            public void setDescricao(String descricao) {
-                this.descricao = descricao;
-            }
         }
 
     }

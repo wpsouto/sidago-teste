@@ -14,10 +14,4 @@ public class NavigationAbrirChamado extends NavigationBase {
         return (Chamado) entity;
     }
 
-    @Override
-    public void insert() {
-        log.debug("SITUACAOOO {}   ", getEntity().getSolicitante());
-        log.debug("SITUACAOOO {}   ", getEntity().getTipoSuporte());
-        super.insert();
-    }
 }

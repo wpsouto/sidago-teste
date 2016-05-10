@@ -35,6 +35,7 @@ public class NavegacaoContext {
 
         //CADASTROS_AGROPECUARIOS
         _strategies1.add(NavegacaoType.EMPRESA);
+        _strategies1.add(NavegacaoType.EMPRESA_CLASSIFICACAO);
 /*
 
         //CONCESSAO_DE_DIARIAS
