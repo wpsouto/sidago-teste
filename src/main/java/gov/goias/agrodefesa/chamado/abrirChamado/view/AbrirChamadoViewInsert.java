@@ -1,14 +1,12 @@
 package gov.goias.agrodefesa.chamado.abrirChamado.view;
 
-import gov.goias.agrodefesa.base.view.BaseView;
-import gov.goias.agrodefesa.base.view.InsertView;
+import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.chamado.abrirChamado.containers.AbrirChamadoPageContainerInsert;
 import gov.goias.agrodefesa.chamado.abrirChamado.entity.Chamado;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
-public class AbrirChamadoViewInsert extends BaseView implements InsertView {
-
+public class AbrirChamadoViewInsert extends BaseViewInsertImpl {
 
     public AbrirChamadoViewInsert(Object entity) {
         super(entity, AbrirChamadoPageContainerInsert.class);
@@ -22,6 +20,7 @@ public class AbrirChamadoViewInsert extends BaseView implements InsertView {
         return (AbrirChamadoPageContainerInsert) container;
     }
 
+    @Override
     public void builder(){
         log.debug(Constants.MGS_AGUARDANDO);
         BrowserDriver.waitForElement(getContainer().home);
@@ -52,11 +51,4 @@ public class AbrirChamadoViewInsert extends BaseView implements InsertView {
         BrowserDriver.screenshot();
         getContainer().salvar.click();
     }
-
-    public void aviso() {
-        log.debug(Constants.MGS_MENSAGEM, Constants.REGISTRO_INSERIDO_COM_SUCESSO);
-        BrowserDriver.waitForText(getContainer().aviso, Constants.REGISTRO_INSERIDO_COM_SUCESSO);
-        getContainer().ok.click();
-    }
-
 }

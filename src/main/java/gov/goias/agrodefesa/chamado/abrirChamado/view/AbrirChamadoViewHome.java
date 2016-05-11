@@ -1,13 +1,12 @@
 package gov.goias.agrodefesa.chamado.abrirChamado.view;
 
-import gov.goias.agrodefesa.base.view.BaseView;
-import gov.goias.agrodefesa.base.view.HomeView;
+import gov.goias.agrodefesa.base.view.BaseViewHomeImpl;
 import gov.goias.agrodefesa.chamado.abrirChamado.containers.AbrirChamadoPageContainerHome;
 import gov.goias.agrodefesa.chamado.abrirChamado.entity.Chamado;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
-public class AbrirChamadoViewHome extends BaseView implements HomeView {
+public class AbrirChamadoViewHome extends BaseViewHomeImpl {
 
     public AbrirChamadoViewHome(Object entity) {
         super(entity, AbrirChamadoPageContainerHome.class);
@@ -19,18 +18,6 @@ public class AbrirChamadoViewHome extends BaseView implements HomeView {
 
     private AbrirChamadoPageContainerHome getContainer() {
         return (AbrirChamadoPageContainerHome) container;
-    }
-
-    public void isDisplayedCheck(){
-        log.debug(Constants.MGS_AGUARDANDO);
-        BrowserDriver.waitForElement(getContainer().home);
-        getContainer().home.isDisplayed();
-    }
-
-    @Override
-    public void incluir(){
-        log.debug(Constants.MGS_SELECIONADO, "INCLUIR REGISTRO");
-        getContainer().incluirRegistro.click();
     }
 
     @Override
@@ -68,16 +55,5 @@ public class AbrirChamadoViewHome extends BaseView implements HomeView {
         getEntity().setNumeroChamado(getContainer().gridNumeroChamado.getText());
 
     }
-
-    @Override
-    public void alterar() {
-
-    }
-
-    @Override
-    public void confirm() {
-
-    }
-
 
 }

@@ -1,52 +1,68 @@
 package gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.view;
 
+import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.containers.DelegacaoDeAtividadesPageContainerInsert;
+import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.entity.DelegacaoAtividade;
 import gov.goias.agrodefesa.utils.BrowserDriver;
+import gov.goias.agrodefesa.utils.Constants;
 import org.junit.Assert;
 import org.openqa.selenium.support.PageFactory;
 
-public class DelegacaoDeAtividadesViewInsert {
-	private static final DelegacaoDeAtividadesPageContainerInsert container = PageFactory.initElements(BrowserDriver.getCurrentDriver(), DelegacaoDeAtividadesPageContainerInsert.class);
+public class DelegacaoDeAtividadesViewInsert extends BaseViewInsertImpl {
 
-	public static void isDisplayedCheck(){
-		BrowserDriver.waitForElement(container.home);
-		container.home.isDisplayed();
-	}
-
-    public static void servidorDesignado(String valor){
-        container.servidorDesignado.clear();
-        container.servidorDesignado.sendKeys(valor);
-        BrowserDriver.waitForElement(container.servidorDesignadoAutoComplete);
-        container.servidorDesignadoAutoComplete.click();
+    public DelegacaoDeAtividadesViewInsert(Object entity) {
+        super(entity, DelegacaoDeAtividadesPageContainerInsert.class);
     }
 
-    public static void meioDeTransporte(String valor){
-        BrowserDriver.selectByVisibleText(container.meioTransporte, valor);
+    private DelegacaoAtividade getEntity() {
+        return (DelegacaoAtividade) entity;
     }
 
-    public static void adicionarDestino() {
-        container.adicionarDestino();
+    private DelegacaoDeAtividadesPageContainerInsert getContainer() {
+        return (DelegacaoDeAtividadesPageContainerInsert) container;
     }
 
-    public static void dataSaida(String valor) {
-        container.dataSaida.sendKeys(valor);
-        container.dataSaida.clear();
-        container.dataSaida.sendKeys(valor);
+    @Override
+    public void builder(){
+        log.debug(Constants.MGS_AGUARDANDO);
+        BrowserDriver.waitForElement(getContainer().home);
+
+        log.debug(Constants.MGS_INSERIDO, "SERVIDOR DESIGNADO", getEntity().getServidorDesignado());
+        getContainer().servidorDesignado.sendKeys(getEntity().getServidorDesignado());
+        BrowserDriver.waitForElement(getContainer().servidorDesignadoAutoComplete);
+        getContainer().servidorDesignadoAutoComplete.click();
+
+        log.debug(Constants.MGS_INSERIDO, "MEIO TRANSPORTE", getEntity().getMeioDeTransporte());
+        BrowserDriver.selectByVisibleText(getContainer().meioTransporte, getEntity().getMeioDeTransporte());
+
+        log.debug(Constants.MGS_SELECIONADO, "ADICIONAR DESTINO");
+        getContainer().adicionarDestino.click();
+        BrowserDriver.waitForElement(getContainer().adicionarDestinoHome);
+        getContainer().confirmar.click();
+        BrowserDriver.waitForElementIsNotPresent(getContainer().adicionarDestinoHome);
+
+        log.debug(Constants.MGS_INSERIDO, "DATA SAIDA", getEntity().getDataSaida());
+        getContainer().dataSaida.clear();
+        getContainer().dataSaida.sendKeys(getEntity().getDataSaida());
+
+        log.debug(Constants.MGS_INSERIDO, "DATA CHEGADA", getEntity().getDataChegada());
+        getContainer().dataChegada.clear();
+        getContainer().dataChegada.sendKeys(getEntity().getDataChegada());
+
+        log.debug(Constants.MGS_INSERIDO, "DESCRICAO SERVICO", getEntity().getDescricaoDoServico());
+        getContainer().descricaoServico.sendKeys(getEntity().getDescricaoDoServico());
+
+        log.debug(Constants.MGS_INSERIDO, "COM PERNOITE", getEntity().getComPernoite());
+        BrowserDriver.selectByVisibleText(getContainer().acompanhaAutoridade, getEntity().getComPernoite());
+
+        log.debug(Constants.MGS_INSERIDO, "ACOMPANHA AUTORIDADE", getEntity().getAcompanhaAutoridade());
+        BrowserDriver.selectByVisibleText(getContainer().acompanhaAutoridade, getEntity().getAcompanhaAutoridade());
+
+        log.debug(Constants.MGS_SELECIONADO, "SALVAR");
+        BrowserDriver.screenshot();
+        getContainer().salvar.click();
     }
 
-    public static void dataChegada(String valor) {
-        container.dataChegada.sendKeys(valor);
-        container.dataChegada.clear();
-        container.dataChegada.sendKeys(valor);
-    }
-
-    public static void descricaoDoServico(String valor) {
-        container.descricaoServico.sendKeys(valor);
-    }
-
-    public static void comPernoite(String valor) {
-        BrowserDriver.selectByVisibleText(container.comPernoite, valor);
-    }
 
     public static void acompanhaAutoridade(String valor) {
         BrowserDriver.selectByVisibleText(container.acompanhaAutoridade, valor);
