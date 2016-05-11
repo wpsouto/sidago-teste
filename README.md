@@ -1,11 +1,12 @@
 # sidago-teste
 
-## LINUX CONFIG
+## INSTALL
+### LINUX
 sudo apt-get install xvfb x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic x11-apps
 
 Xvfb :99 -ac -screen 0 1024x768x8
 
-## CENTOS
+### CENTOS
 sudo yum install git
 yum install xorg-X11-server-Xvfb
 yum install firefox
