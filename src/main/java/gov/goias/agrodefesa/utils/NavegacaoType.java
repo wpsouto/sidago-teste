@@ -4,8 +4,8 @@ package gov.goias.agrodefesa.utils;
  * Created by usuario on 10/03/16.
  */
 public class NavegacaoType {
-    //public static final String HTTP_BASE = "http://qa.agrodefesa.go.gov.br/";
-    public static final String HTTP_BASE = "http://10.50.1.15/";
+    public static final String HTTP_BASE = "http://qa.agrodefesa.go.gov.br/";
+    //public static final String HTTP_BASE = "http://10.50.1.15/";
 
     public static final String CHAMADO = "chamado/";
     public static final NavegacaoType ABRIR_CHAMADO;
