@@ -5,8 +5,6 @@ import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.containers.
 import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.entity.DelegacaoAtividade;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
-import org.junit.Assert;
-import org.openqa.selenium.support.PageFactory;
 
 public class DelegacaoDeAtividadesViewInsert extends BaseViewInsertImpl {
 
@@ -58,49 +56,27 @@ public class DelegacaoDeAtividadesViewInsert extends BaseViewInsertImpl {
         log.debug(Constants.MGS_INSERIDO, "ACOMPANHA AUTORIDADE", getEntity().getAcompanhaAutoridade());
         BrowserDriver.selectByVisibleText(getContainer().acompanhaAutoridade, getEntity().getAcompanhaAutoridade());
 
+        log.debug(Constants.MGS_INSERIDO, "TIPO RECURSO", getEntity().getTipoRecurso());
+        BrowserDriver.selectByVisibleText(getContainer().tipoRecurso, getEntity().getTipoRecurso());
+
+        log.debug(Constants.MGS_INSERIDO, "FONTE DE RECURSO", getEntity().getFonteRecurso());
+        BrowserDriver.selectByVisibleText(getContainer().fonteDeRecurso, getEntity().getFonteRecurso());
+
+        log.debug(Constants.MGS_INSERIDO, "ACAO", getEntity().getAcao());
+        getContainer().acao.click();
+
+        log.debug(Constants.MGS_INSERIDO, "META", getEntity().getMeta());
+        getContainer().meta.click();
+
+        log.debug(Constants.MGS_INSERIDO, "REALIZACAO", getEntity().getRealizacao());
+        getContainer().realizacao.click();
+
+        log.debug(Constants.MGS_INSERIDO, "EMPENHO", getEntity().getEmpenho());
+        //BrowserDriver.selectByIndexWait();
+
         log.debug(Constants.MGS_SELECIONADO, "SALVAR");
         BrowserDriver.screenshot();
         getContainer().salvar.click();
-    }
-
-
-    public static void acompanhaAutoridade(String valor) {
-        BrowserDriver.selectByVisibleText(container.acompanhaAutoridade, valor);
-    }
-
-    public static void tipoRecurso(String valor) {
-        BrowserDriver.selectByVisibleText(container.tipoRecurso, valor);
-    }
-
-    public static void fonteRecurso(String valor) {
-        BrowserDriver.waitForElement(container.fonteDeRecurso).click();
-    }
-
-    public static void acao(String valor) {
-        BrowserDriver.waitForElement(container.acao).click();
-    }
-
-    public static void meta(String valor) {
-        BrowserDriver.waitForElement(container.meta).click();
-    }
-
-    public static void realizacao(String valor) {
-        BrowserDriver.waitForElement(container.realizacao).click();
-    }
-
-    public static void empenho(String valor) {
-        container.empenho();
-    }
-
-    public static void salvar() {
-        BrowserDriver.waitForElement(container.salvar);
-        container.salvar.click();
-    }
-
-    public static void aviso(String valor) {
-        BrowserDriver.waitForElement(container.aviso);
-        Assert.assertEquals(container.aviso.getText(), valor);
-        container.ok.click();
     }
 
 }
