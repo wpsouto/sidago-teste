@@ -30,4 +30,8 @@ public class PageContainerHome extends PageContainerBase {
     @FindBy(how = How.CSS, using = "#listagemOperacao > #icons > li.ui-state-default.ui-corner-all > span.ui-icon.ui-icon-comment")
     public WebElement comment;
 
+    @FindBy(how = How.CSS, using = "#listagemOperacao > #icons > li.ui-state-default.ui-corner-all > span.ui-icon.ui-icon-close")
+    public WebElement close;
+
+
 }

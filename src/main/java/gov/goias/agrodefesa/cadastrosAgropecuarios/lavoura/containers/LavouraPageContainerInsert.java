@@ -1,10 +1,11 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.lavoura.containers;
 
+import gov.goias.agrodefesa.base.containers.PageContainerInsert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class LavouraPageContainerInsert {
+public class LavouraPageContainerInsert extends PageContainerInsert {
 
     @FindBy(how = How.ID, using = "aviso")
     public WebElement home;
@@ -14,6 +15,9 @@ public class LavouraPageContainerInsert {
 
     @FindBy(how = How.LINK_TEXT, using = "Adicionar Produto")
     public WebElement adicionarProduto;
+
+    @FindBy(how = How.ID, using = "div_produtos")
+    public WebElement adicionarProdutoHome;
 
     @FindBy(how = How.ID, using = "id_produto")
     public WebElement produto;
@@ -26,9 +30,6 @@ public class LavouraPageContainerInsert {
 
     @FindBy(how = How.ID, using = "nu_estimativaproducao")
     public WebElement estimativaProducao;
-
-    @FindBy(how = How.CSS, using = "a.ui-state-default.ui-state-highlight")
-    public WebElement dataAtual;
 
     @FindBy(how = How.ID, using = "dt_plantio")
     public WebElement dataPrevistoPlantio;
@@ -47,17 +48,5 @@ public class LavouraPageContainerInsert {
 
     @FindBy(how = How.ID, using = "id_origemsemente")
     public WebElement origemSemente;
-
-    @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Confirmar']")
-    public WebElement confirmar;
-
-    @FindBy(how = How.ID, using = "bt_inserir")
-    public WebElement salvar;
-
-    @FindBy(how = How.XPATH, using = "//*[@id=\"aviso\"]/div/p/strong")
-    public WebElement aviso;
-
-    @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Ok']")
-    public WebElement ok;
 
 }

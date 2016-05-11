@@ -1,10 +1,11 @@
 package gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.containers;
 
+import gov.goias.agrodefesa.base.containers.PageContainerBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class AquisicaoMudasPageContainerAprovar {
+public class AquisicaoMudasPageContainerAprovar extends PageContainerBase {
 
     @FindBy(how = How.ID, using = "boxDelete")
     public WebElement home;
@@ -17,9 +18,6 @@ public class AquisicaoMudasPageContainerAprovar {
 
     @FindBy(how = How.ID, using = "mensagem")
     public WebElement aviso;
-
-    @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Ok']")
-    public WebElement ok;
 
     @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Salvar']")
     public WebElement salvar;

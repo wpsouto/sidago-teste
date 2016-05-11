@@ -1,25 +1,11 @@
 package gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.containers;
 
+import gov.goias.agrodefesa.base.containers.PageContainerInsert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class AquisicaoMudasPageContainerInsert {
-
-    @FindBy(how = How.ID, using = "bt_inserir")
-    public WebElement home;
-
-    @FindBy(how = How.ID, using = "bt_inserir")
-    public WebElement salvar;
-
-    @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Confirmar']")
-    public WebElement confirmar;
-
-    @FindBy(how = How.XPATH, using = "//*[@id=\"aviso\"]/div/p/strong")
-    public WebElement aviso;
-
-    @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Ok']")
-    public WebElement ok;
+public class AquisicaoMudasPageContainerInsert extends PageContainerInsert {
 
     @FindBy(how = How.ID, using = "pessoaorigem")
     public WebElement cnpjCpfOrigem;
@@ -29,9 +15,6 @@ public class AquisicaoMudasPageContainerInsert {
 
     @FindBy(how = How.ID, using = "boxPesquisar-pessoaorigem")
     public WebElement pesquisarHomeOrigem;
-
-    @FindBy(how = How.LINK_TEXT, using = "Selecionar")
-    public WebElement selecionar;
 
     @FindBy(how = How.ID, using = "nu_registroestabelecimentoorigem")
     public WebElement registroRenasem;

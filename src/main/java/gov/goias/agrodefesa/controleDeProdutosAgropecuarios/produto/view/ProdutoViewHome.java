@@ -1,39 +1,30 @@
 package gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.view;
 
+import gov.goias.agrodefesa.base.view.BaseViewHomeImpl;
 import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.containers.ProdutoPageContainerHome;
-import gov.goias.agrodefesa.utils.BrowserDriver;
-import org.openqa.selenium.support.PageFactory;
+import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.entity.ProdutoaAnimal;
+import gov.goias.agrodefesa.utils.Constants;
 
-public class ProdutoViewHome {
-	private static final ProdutoPageContainerHome container = PageFactory.initElements(BrowserDriver.getCurrentDriver(), ProdutoPageContainerHome.class);
+public class ProdutoViewHome extends BaseViewHomeImpl {
 
-	public static void isDisplayedCheck(){
-		BrowserDriver.waitForElement(container.home);
-		container.home.isDisplayed();
+	public ProdutoViewHome(Object entity) {
+		super(entity, ProdutoPageContainerHome.class);
 	}
 
-    public static void incluirRegistro(){
-        BrowserDriver.waitForElement(container.incluirRegistro);
-        container.incluirRegistro.click();
-    }
-
-	public static void nome(String valor){
-		container.nome.clear();
-		container.nome.sendKeys(valor);
+	private ProdutoaAnimal getEntity() {
+		return (ProdutoaAnimal) entity;
 	}
 
-    public static void pesquisar() {
-		container.pesquisar.click();
+	private ProdutoPageContainerHome getContainer() {
+		return (ProdutoPageContainerHome) container;
 	}
 
-	public static void isDisplayedGridPesquisar() {
-		BrowserDriver.waitForElement(container.gridRow);
-		container.gridRow.isDisplayed();
+	@Override
+	public void pesquisar() {
+		log.debug(Constants.MGS_INSERIDO, "NOME INGREDIENTE", getEntity().getNomeProduto());
+        getContainer().nome.sendKeys(getEntity().getNomeProduto());
+
+		log.debug(Constants.MGS_SELECIONADO, "PESQUISAR");
+		getContainer().pesquisar.click();
 	}
-
-	public static void alterar() {
-		container.alterar.click();
-	}
-
-
 }

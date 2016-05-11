@@ -1,113 +1,48 @@
 package gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.navigation;
 
-import cucumber.api.PendingException;
-import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
+import gov.goias.agrodefesa.base.navigation.NavigationBase;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.propriedade.entity.Propriedade;
-import gov.goias.agrodefesa.cadastrosAgropecuarios.propriedade.navigation.NavigationPropriedade;
 import gov.goias.agrodefesa.constants.Action;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.entity.AquisicaoMudas;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.view.AquisicaoMudasViewAprovacao;
-import gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.view.AquisicaoMudasViewHome;
-import gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.view.AquisicaoMudasViewInsert;
-import gov.goias.agrodefesa.utils.*;
-import org.apache.commons.lang.StringUtils;
+import gov.goias.agrodefesa.utils.NavegacaoType;
 
 /**
  * Created by usuario on 10/03/16.
  */
-public class NavigationAquisicaoMudas implements NavegacaoStrategy {
+public class NavigationAquisicaoMudas extends NavigationBase {
 
-    private AquisicaoMudas entity;
-    private NavegacaoType type;
+    private AquisicaoMudasViewAprovacao viewAprovacao;
 
     public NavigationAquisicaoMudas(NavegacaoType type) {
-        Propriedade propriedade = ((NavigationPropriedade) NavegacaoFactory.getNavigator().pageLoad(NavegacaoType.PROPRIEDADE)).getPropriedade();
-
-        this.type = type;
-        this.entity = ResourceFactory.init(AquisicaoMudas.class);
-        this.entity.setPropriedade(propriedade);
-        this.entity.setPessoa(propriedade.getPessoa());
+        super(type);
+        viewAprovacao = new AquisicaoMudasViewAprovacao(getEntity());
     }
 
     public AquisicaoMudas getEntity() {
-        return entity;
+        return (AquisicaoMudas) entity;
     }
 
-    private void aprovar() {
-        search();
-        AquisicaoMudasViewHome.aprovacao();
-        AquisicaoMudasViewAprovacao.isDisplayedCheck();
-        AquisicaoMudasViewAprovacao.observacao(this.entity.getObservacao());
-        AquisicaoMudasViewAprovacao.situacao(this.entity.getSituacao());
-        AquisicaoMudasViewAprovacao.salvar();
-    }
-
-    @Override
-    public void home() {
-        BrowserDriver.loadPage(type.getUrl());
-        AquisicaoMudasViewHome.isDisplayedCheck();
-
-    }
 
     @Override
     public void insert() {
-        if (StringUtils.isEmpty(this.entity.getPessoa().getCpfCnpj())){
-            throw new PendingException(String.format(Constants.MGS_DEPENDENCIA, "@Propriedade"));
-        }
+        Propriedade propriedade = (Propriedade) dependencia(Propriedade.class, "@Propriedade");
+        getEntity().setPropriedade(propriedade);
 
-        AquisicaoMudasViewHome.incluirRegistro();
-        AquisicaoMudasViewInsert.isDisplayedCheck();
-        AquisicaoMudasViewInsert.cnpjCpfOrigem(this.entity.getPessoa().getCpfCnpj());
-        AquisicaoMudasViewInsert.pesquisar();
-        AquisicaoMudasViewInsert.registroRenasem(this.entity.getRegistroEnasem());
-        AquisicaoMudasViewInsert.eMailOrigem(this.entity.getEmailOrigem());
-        AquisicaoMudasViewInsert.telefoneOrigem(this.entity.getTelefoneOrigem());
-
-        AquisicaoMudasViewInsert.tipoDestino(this.entity.getTipoDestino());
-        AquisicaoMudasViewInsert.cnpjCpfDestino(this.entity.getPropriedade().getPessoa().getCpfCnpj());
-        AquisicaoMudasViewInsert.pesquisarDestino();
-        AquisicaoMudasViewInsert.propriedadeDestino();
-        AquisicaoMudasViewInsert.telefoneDestino(this.entity.getTelefoneDestino());
-        AquisicaoMudasViewInsert.adicionarTransportador(this.entity.getTransporte());
-        AquisicaoMudasViewInsert.adicionarMudas(this.entity.getMudas());
-        BrowserDriver.screenshot();
-        AquisicaoMudasViewInsert.salvar();
-
-    }
-
-    @Override
-    public void search() {
-        AquisicaoMudasViewHome.isDisplayedCheck();
-        AquisicaoMudasViewHome.cpfCnpjOrigem(this.entity.getPessoa().getCpfCnpj());
-        AquisicaoMudasViewHome.pesquisar();
-
-    }
-
-    @Override
-    public void edit() {
-
-    }
-
-    @Override
-    public void confirm() {
-
+        super.insert();
     }
 
     @Override
     public void others(Action action) {
         switch(action){
             case APPROVE:
-                aprovar();
-                break;
-            case MENSAGEM_INSERT:
-                AquisicaoMudasViewInsert.aviso("Registro inserido com sucesso!");
+                viewAprovacao.builder();
                 break;
             case MENSAGEM_APROVO:
-                AquisicaoMudasViewAprovacao.aviso("Pronto! A situação foi atualizada.");
+                viewAprovacao.aviso();
                 break;
             default:
-                throw Action.actionNotFound(action.name());
-
+                super.others(action);
         }
 
     }

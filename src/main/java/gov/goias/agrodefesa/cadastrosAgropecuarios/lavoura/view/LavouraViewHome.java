@@ -1,49 +1,32 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.lavoura.view;
 
+import gov.goias.agrodefesa.base.view.BaseViewHomeImpl;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.lavoura.containers.LavouraPageContainerHome;
-import gov.goias.agrodefesa.utils.BrowserDriver;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.lavoura.entity.Lavoura;
 import gov.goias.agrodefesa.utils.Constants;
-import org.openqa.selenium.support.PageFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class LavouraViewHome {
-	private static final Logger log = LoggerFactory.getLogger(LavouraViewInsert.class);
-	private static final LavouraPageContainerHome container = PageFactory.initElements(BrowserDriver.getCurrentDriver(), LavouraPageContainerHome.class);
+public class LavouraViewHome  extends BaseViewHomeImpl {
 
-	public static void isDisplayedCheck(){
-        log.debug(Constants.MGS_AGUARDANDO);
-		BrowserDriver.waitForElement(container.home);
-		container.home.isDisplayed();
+
+	public LavouraViewHome(Object entity) {
+		super(entity, LavouraPageContainerHome.class);
 	}
 
-    public static void incluirRegistro(){
-        log.debug(Constants.MGS_SELECIONADO, "INCLUIR REGISTRO");
-        BrowserDriver.waitForElement(container.incluirRegistro);
-        container.incluirRegistro.click();
-    }
-
-	public static void inscricaoEstadual(String valor){
-        log.debug(Constants.MGS_INSERIDO, "INCRICAO ESTADUAL", valor);
-		container.inscricaoEstadual.clear();
-		container.inscricaoEstadual.sendKeys(valor);
+	private Lavoura getEntity() {
+		return (Lavoura) entity;
 	}
 
-    public static void pesquisar() {
-        log.debug(Constants.MGS_SELECIONADO, "PESQUISAR");
-		container.pesquisar.click();
+	private LavouraPageContainerHome getContainer() {
+		return (LavouraPageContainerHome) container;
 	}
 
-	public static void isDisplayedGridPesquisar() {
-        log.debug(Constants.MGS_AGUARDANDO);
-		BrowserDriver.waitForElement(container.gridRow);
-		container.gridRow.isDisplayed();
+	@Override
+	public void pesquisar() {
+        log.debug(Constants.MGS_INSERIDO, "INCRICAO ESTADUAL", getEntity().getInscricaoEstadual());
+        getContainer().inscricaoEstadual.clear();
+        getContainer().inscricaoEstadual.sendKeys(getEntity().getInscricaoEstadual());
+
+		log.debug(Constants.MGS_SELECIONADO, "PESQUISAR");
+		getContainer().pesquisar.click();
 	}
-
-	public static void alterar() {
-        log.debug(Constants.MGS_SELECIONADO, "ALTERAR");
-		container.alterar.click();
-	}
-
-
 }

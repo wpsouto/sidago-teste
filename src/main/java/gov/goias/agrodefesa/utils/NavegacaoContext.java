@@ -36,43 +36,34 @@ public class NavegacaoContext {
         //CADASTROS_AGROPECUARIOS
         _strategies1.add(NavegacaoType.EMPRESA);
         _strategies1.add(NavegacaoType.EMPRESA_CLASSIFICACAO);
-/*
+        _strategies1.add(NavegacaoType.EMPRESA_FORA_GOIAS);
+        _strategies1.add(NavegacaoType.PESSOA);
+        _strategies1.add(NavegacaoType.PROPRIEDADE);
+        _strategies1.add(NavegacaoType.LAVOURA);
+
+        //CONTROLE_DE_PRODUTOS_AGROPECUARIOS
+        _strategies1.add(NavegacaoType.INGREDIENTE_ATIVO);
+        _strategies1.add(NavegacaoType.PRODUTO);
+
+        //DEFESA_SANITARIA_ANIMAL
+        _strategies1.add(NavegacaoType.BOLETIM_PRODUCAO);
+
+        //DEFESA_SANITARIA_VEGETAL
+        _strategies1.add(NavegacaoType.AQUISICAO_MUDAS);
+        _strategies1.add(NavegacaoType.UNIDADE_PRODUCAO);
+        _strategies1.add(NavegacaoType.UNIDADE_CONSOLIDACAO);
+        _strategies1.add(NavegacaoType.CADASTRO_LOTE);
+
+        //DENUNCIA
+        _strategies1.add(NavegacaoType.ABRIR_DENUNCIA);
+
+        /*
 
         //CONCESSAO_DE_DIARIAS
         _strategies.put(NavegacaoType.DELEGACAO_DE_ATIVIDADES, new NavigationDelegacaoDeAtividades());
         _strategies.put(NavegacaoType.CIENCIA_DO_SERVIDOR, new NavigationCienciaDoServidor());
         _strategies.put(NavegacaoType.ASSINATURA_DE_DIARIAS, new NavigationAssinaturaDeDiarias());
         _strategies.put(NavegacaoType.PRESTACAO_DE_CONTAS, new NavigationPrestacaoDeContas());
-
-        //CHAMADO
-        _strategies.put(NavegacaoType.ABRIR_CHAMADO, new NavigationAbrirChamado());
-
-        //CONTROLE_DE_PRODUTOS_AGROPECUARIOS
-        _strategies.put(NavegacaoType.INGREDIENTE_ATIVO, new NavigationIngredienteAtivo());
-        _strategies.put(NavegacaoType.PRODUTO, new NavigationProduto());
-
-        //CADASTROS_AGROPECUARIOS
-        _strategies.put(NavegacaoType.EMPRESA, new NavigationEmpresa());
-        _strategies.put(NavegacaoType.EMPRESA_CLASSIFICACAO, new NavigationEmpresaClassificacao());
-        _strategies.put(NavegacaoType.EMPRESA_FORA_GOIAS, new NavigationEmpresaForaGoias());
-        _strategies.put(NavegacaoType.PESSOA, new NavigationPessoa());
-        _strategies.put(NavegacaoType.PROPRIEDADE, new NavigationPropriedade());
-        _strategies.put(NavegacaoType.LAVOURA, new NavigationLavoura());
-
-        //DENUNCIA
-        _strategies.put(NavegacaoType.ABRIR_DENUNCIA, new NavigationAbrirDenuncia());
-
-        //DEFESA_SANITARIA_ANIMAL
-        _strategies.put(NavegacaoType.BOLETIM_PRODUCAO, new NavigationBoletimProducao());
-
-        //FISCALIZACAO
-        _strategies.put(NavegacaoType.TERMO_FISCALIZACAO, new NavigationTermoFiscalizacao(NavegacaoType.TERMO_FISCALIZACAO));
-
-        //DEFESA_SANITARIA_VEGETAL
-        _strategies.put(NavegacaoType.AQUISICAO_MUDAS, new NavigationAquisicaoMudas(NavegacaoType.AQUISICAO_MUDAS));
-        _strategies.put(NavegacaoType.UNIDADE_CONSOLIDACAO, new NavigationUnidadeConsolidacao(NavegacaoType.UNIDADE_CONSOLIDACAO));
-        _strategies.put(NavegacaoType.UNIDADE_PRODUCAO, new NavigationUnidadeProducao(NavegacaoType.UNIDADE_PRODUCAO));
-        _strategies.put(NavegacaoType.CADASTRO_LOTE, new NavigationCadastroLote(NavegacaoType.CADASTRO_LOTE));
 */
 
     }

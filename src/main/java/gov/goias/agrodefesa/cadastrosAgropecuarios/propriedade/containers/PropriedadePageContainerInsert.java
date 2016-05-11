@@ -1,13 +1,11 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.propriedade.containers;
 
+import gov.goias.agrodefesa.base.containers.PageContainerInsert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class PropriedadePageContainerInsert {
-
-    @FindBy(how = How.ID, using = "produtor")
-    public WebElement home;
+public class PropriedadePageContainerInsert extends PageContainerInsert {
 
     @FindBy(how = How.ID, using = "produtor")
     public WebElement produtor;
@@ -16,7 +14,7 @@ public class PropriedadePageContainerInsert {
     public WebElement produtorAutoComplete;
 
     @FindBy(how = How.XPATH, using = "//*[@id=\"pesquisar_cpf_cnpj\"]/img")
-    public WebElement pesquisar;
+    public WebElement pesquisarSEFAZ;
 
     @FindBy(how = How.LINK_TEXT, using = "clique aqui")
     public WebElement cliqueAqui;
@@ -32,6 +30,9 @@ public class PropriedadePageContainerInsert {
 
     @FindBy(how = How.XPATH, using = "//*[@id=\"ulFk\"]/li/span")
     public WebElement adicionarEndereco;
+
+    @FindBy(how = How.ID, using = "div_id_endereco")
+    public WebElement adicionarEnderecoHome;
 
     @FindBy(how = How.ID, using = "id_enderecotipo")
     public WebElement tipoEndereco;
@@ -51,28 +52,16 @@ public class PropriedadePageContainerInsert {
     @FindBy(how = How.ID, using = "ds_roteiro")
     public WebElement roteiro;
 
-    @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Confirmar']")
-    public WebElement confirmar;
-
     @FindBy(how = How.LINK_TEXT, using = "Adicionar Responsável Técnico")
     public WebElement adicionarResponsavelTecnico;
 
     @FindBy(how = How.ID, using = "div_id_rt")
-    public WebElement homeResponsavelTecnico;
+    public WebElement responsavelTecnicoHome;
 
     @FindBy(how = How.ID, using = "nome_rt")
     public WebElement nomeResponsavelTecnico;
 
     @FindBy(how = How.XPATH, using = "/html/body/ul[2]/li[1]")
     public WebElement nomeResponsavelTecnicoAutoComplete;
-
-    @FindBy(how = How.ID, using = "bt_inserir")
-    public WebElement salvar;
-
-    @FindBy(how = How.XPATH, using = "//*[@id=\"aviso\"]/div/p/strong")
-    public WebElement aviso;
-
-    @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Ok']")
-    public WebElement ok;
 
 }

@@ -1,32 +1,36 @@
 package gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.view;
 
+import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.containers.IngredienteAtivoPageContainerInsert;
+import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.entity.Ingrediente;
 import gov.goias.agrodefesa.utils.BrowserDriver;
-import org.junit.Assert;
-import org.openqa.selenium.support.PageFactory;
+import gov.goias.agrodefesa.utils.Constants;
 
-public class IngredienteAtivoViewInsert {
-	private static final IngredienteAtivoPageContainerInsert conteiner = PageFactory.initElements(BrowserDriver.getCurrentDriver(), IngredienteAtivoPageContainerInsert.class);
+public class IngredienteAtivoViewInsert extends BaseViewInsertImpl {
 
-	public static void isDisplayedCheck(){
-		BrowserDriver.waitForElement(conteiner.home);
-		conteiner.home.isDisplayed();
-	}
-
-    public static void nomeIngrediente(String valor){
-        conteiner.nomeIngrediente.clear();
-        conteiner.nomeIngrediente.sendKeys(valor);
+    public IngredienteAtivoViewInsert(Object entity) {
+        super(entity, IngredienteAtivoPageContainerInsert.class);
     }
 
-    public static void salvar() {
-        BrowserDriver.waitForElement(conteiner.salvar);
-        conteiner.salvar.click();
+    private Ingrediente getEntity() {
+        return (Ingrediente) entity;
     }
 
-    public static void aviso(String valor) {
-        BrowserDriver.waitForElement(conteiner.aviso);
-        Assert.assertEquals(conteiner.aviso.getText(), valor);
-        conteiner.ok.click();
+    private IngredienteAtivoPageContainerInsert getContainer() {
+        return (IngredienteAtivoPageContainerInsert) container;
+    }
+
+    @Override
+    public void builder(){
+        log.debug(Constants.MGS_AGUARDANDO);
+        BrowserDriver.waitForElement(getContainer().home);
+
+        log.debug(Constants.MGS_INSERIDO, "PRODUTOR", getEntity().getNome());
+        getContainer().nomeIngrediente.sendKeys(getEntity().getNome());
+
+        log.debug(Constants.MGS_SELECIONADO, "SALVAR");
+        BrowserDriver.screenshot();
+        getContainer().salvar.click();
     }
 
 }

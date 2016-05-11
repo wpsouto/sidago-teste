@@ -1,43 +1,44 @@
 package gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.view;
 
+import gov.goias.agrodefesa.base.view.BaseView;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.containers.AquisicaoMudasPageContainerAprovar;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.entity.AquisicaoMudas;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
-import org.junit.Assert;
-import org.openqa.selenium.support.PageFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class AquisicaoMudasViewAprovacao {
-    private static final Logger log = LoggerFactory.getLogger(AquisicaoMudasViewInsert.class);
-	private static final AquisicaoMudasPageContainerAprovar conteiner = PageFactory.initElements(BrowserDriver.getCurrentDriver(), AquisicaoMudasPageContainerAprovar.class);
+public class AquisicaoMudasViewAprovacao extends BaseView {
 
-	public static void isDisplayedCheck(){
+    public AquisicaoMudasViewAprovacao(Object entity) {
+        super(entity, AquisicaoMudasPageContainerAprovar.class);
+    }
+
+    private AquisicaoMudas getEntity() {
+        return (AquisicaoMudas) entity;
+    }
+
+    private AquisicaoMudasPageContainerAprovar getContainer() {
+        return (AquisicaoMudasPageContainerAprovar) container;
+    }
+
+    public void builder(){
         log.debug(Constants.MGS_AGUARDANDO);
-		BrowserDriver.waitForElement(conteiner.home);
-		conteiner.home.isDisplayed();
-	}
+        BrowserDriver.waitForElement(getContainer().home);
 
-    public static void observacao(String valor) {
-        log.debug(Constants.MGS_INSERIDO, "OBSERVACAO", valor);
-        conteiner.observacao.sendKeys(valor);
-    }
+        log.debug(Constants.MGS_INSERIDO, "OBSERVACAO", getEntity().getObservacao());
+        getContainer().observacao.sendKeys(getEntity().getObservacao());
 
-    public static void situacao(String valor) {
-        log.debug(Constants.MGS_INSERIDO, "SITUACAO", valor);
-        BrowserDriver.selectByVisibleText(conteiner.situacao, valor);
-    }
+        log.debug(Constants.MGS_INSERIDO, "SITUACAO", getEntity().getSituacao());
+        BrowserDriver.selectByVisibleText(getContainer().situacao, getEntity().getSituacao());
 
-    public static void salvar() {
         log.debug(Constants.MGS_SELECIONADO, "SALVAR");
-        conteiner.salvar.click();
+        BrowserDriver.screenshot();
+        getContainer().salvar.click();
     }
 
-    public static void aviso(String valor) {
-        log.debug(Constants.MGS_MENSAGEM, valor);
-        BrowserDriver.waitForText(conteiner.aviso, valor);
-        conteiner.ok.click();
+    public void aviso() {
+        log.debug(Constants.MGS_MENSAGEM, "Pronto! A situação foi atualizada.");
+        BrowserDriver.waitForText(getContainer().aviso, "Pronto! A situação foi atualizada.");
+        getContainer().ok.click();
     }
-
 
 }

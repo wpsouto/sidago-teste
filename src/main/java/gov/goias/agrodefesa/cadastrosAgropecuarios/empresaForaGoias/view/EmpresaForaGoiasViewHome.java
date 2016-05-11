@@ -1,49 +1,31 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.empresaForaGoias.view;
 
+import gov.goias.agrodefesa.base.view.BaseViewHomeImpl;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaForaGoias.containers.EmpresaForaGoiasPageContainerHome;
-import gov.goias.agrodefesa.utils.BrowserDriver;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaForaGoias.entity.EmpresaForaGoias;
 import gov.goias.agrodefesa.utils.Constants;
-import org.openqa.selenium.support.PageFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class EmpresaForaGoiasViewHome {
-	private static final Logger log = LoggerFactory.getLogger(EmpresaForaGoiasViewHome.class);
-	private static final EmpresaForaGoiasPageContainerHome container = PageFactory.initElements(BrowserDriver.getCurrentDriver(), EmpresaForaGoiasPageContainerHome.class);
+public class EmpresaForaGoiasViewHome extends BaseViewHomeImpl {
 
-	public static void isDisplayedCheck(){
-        log.debug(Constants.MGS_AGUARDANDO);
-		BrowserDriver.waitForElement(container.home);
-		container.home.isDisplayed();
+
+	public EmpresaForaGoiasViewHome(Object entity) {
+		super(entity, EmpresaForaGoiasPageContainerHome.class);
 	}
 
-    public static void incluirRegistro(){
-        log.debug(Constants.MGS_SELECIONADO, "INCLUIR REGISTRO");
-        BrowserDriver.waitForElement(container.incluirRegistro);
-        container.incluirRegistro.click();
-    }
-
-	public static void cnpj(String valor){
-        log.debug(Constants.MGS_INSERIDO, "CNPJ", valor);
-		container.cnpj.clear();
-		container.cnpj.sendKeys(valor);
+	private EmpresaForaGoias getEntity() {
+		return (EmpresaForaGoias) entity;
 	}
 
-    public static void pesquisar() {
-        log.debug(Constants.MGS_SELECIONADO, "PESQUISAR");
-		container.pesquisar.click();
+	private EmpresaForaGoiasPageContainerHome getContainer() {
+		return (EmpresaForaGoiasPageContainerHome) container;
 	}
 
-	public static void isDisplayedGridPesquisar() {
-        log.debug(Constants.MGS_AGUARDANDO);
-		BrowserDriver.waitForElement(container.gridRow);
-		container.gridRow.isDisplayed();
+	@Override
+	public void pesquisar() {
+		log.debug(Constants.MGS_INSERIDO, "CLASSIFICACAO", getEntity().getEmpresa().getInformacaoObrigatoria().getCpfCnpj());
+		getContainer().cnpj.sendKeys(getEntity().getEmpresa().getInformacaoObrigatoria().getCpfCnpj());
+		log.debug(Constants.MGS_SELECIONADO, "PESQUISAR");
+		getContainer().pesquisar.click();
 	}
-
-	public static void alterar() {
-        log.debug(Constants.MGS_SELECIONADO, "ALTERAR");
-		container.alterar.click();
-	}
-
 
 }

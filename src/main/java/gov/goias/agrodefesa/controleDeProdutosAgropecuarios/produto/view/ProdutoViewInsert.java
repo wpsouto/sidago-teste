@@ -1,43 +1,47 @@
 package gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.view;
 
+import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.containers.ProdutoPageContainerInsert;
+import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.entity.ProdutoaAnimal;
 import gov.goias.agrodefesa.utils.BrowserDriver;
-import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.PageFactory;
+import gov.goias.agrodefesa.utils.Constants;
 
-public class ProdutoViewInsert {
-	private static final ProdutoPageContainerInsert conteiner = PageFactory.initElements(BrowserDriver.getCurrentDriver(), ProdutoPageContainerInsert.class);
+public class ProdutoViewInsert extends BaseViewInsertImpl {
 
-	public static void isDisplayedCheck(){
-		BrowserDriver.waitForElement(conteiner.home);
-		conteiner.home.isDisplayed();
-	}
-
-    public static void classificacao(String valor){
-        BrowserDriver.selectByVisibleText(conteiner.classificacao, valor);
+    public ProdutoViewInsert(Object entity) {
+        super(entity, ProdutoPageContainerInsert.class);
     }
 
-    public static void nomeDoProduto(String valor){
-        conteiner.nome.clear();
-        conteiner.nome.sendKeys(valor);
+    private ProdutoaAnimal getEntity() {
+        return (ProdutoaAnimal) entity;
     }
 
-    public static void adicionarSubprodutoUnidade(String valor) {
-        conteiner.adicionar.click();
-        BrowserDriver.selectByVisibleText(conteiner.unidadeDeMedida, valor);
-        conteiner.confirmar.click();
+    private ProdutoPageContainerInsert getContainer() {
+        return (ProdutoPageContainerInsert) container;
     }
 
-    public static void salvar() {
-        BrowserDriver.waitForElementIsNotPresent(By.id("id_unidademedida"));
-        conteiner.salvar.click();
-    }
+    @Override
+    public void builder(){
+        log.debug(Constants.MGS_AGUARDANDO);
+        BrowserDriver.waitForElement(getContainer().home);
 
-    public static void aviso(String valor) {
-        BrowserDriver.waitForElement(conteiner.aviso);
-        Assert.assertEquals(conteiner.aviso.getText(), valor);
-        conteiner.ok.click();
-    }
+        log.debug(Constants.MGS_INSERIDO, "CLASSIFICACAO", getEntity().getClassificacao());
+        BrowserDriver.selectByVisibleText(getContainer().classificacao, getEntity().getClassificacao());
 
+        log.debug(Constants.MGS_INSERIDO, "NOME PRODUTO", getEntity().getNomeProduto());
+        getContainer().nome.sendKeys(getEntity().getNomeProduto());
+
+        log.debug(Constants.MGS_SELECIONADO, "ADICIONAR SUBPRODUTO/UNIDADE");
+        getContainer().adicionarSubproduto.click();
+
+        BrowserDriver.waitForElement(getContainer().adicionarSubprodutoHome);
+        log.debug(Constants.MGS_INSERIDO, "UNIDADE DE MEDIDA", getEntity().getUnidadeMedida());
+        BrowserDriver.selectByVisibleText(getContainer().unidadeDeMedida, getEntity().getUnidadeMedida());
+        getContainer().confirmar.click();
+        BrowserDriver.waitForElementIsNotPresent(getContainer().adicionarSubprodutoHome);
+
+        log.debug(Constants.MGS_SELECIONADO, "SALVAR");
+        BrowserDriver.screenshot();
+        getContainer().salvar.click();
+    }
 }

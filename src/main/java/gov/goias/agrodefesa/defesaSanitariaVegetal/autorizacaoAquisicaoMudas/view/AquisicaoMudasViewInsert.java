@@ -1,116 +1,100 @@
 package gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.view;
 
+import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.containers.AquisicaoMudasPageContainerInsert;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.entity.AquisicaoMudas;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
-import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.PageFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class AquisicaoMudasViewInsert {
-    private static final Logger log = LoggerFactory.getLogger(AquisicaoMudasViewInsert.class);
-	private static final AquisicaoMudasPageContainerInsert conteiner = PageFactory.initElements(BrowserDriver.getCurrentDriver(), AquisicaoMudasPageContainerInsert.class);
+public class AquisicaoMudasViewInsert extends BaseViewInsertImpl {
 
-    public static void isDisplayedCheck(){
-		log.debug(Constants.MGS_AGUARDANDO);
-		BrowserDriver.waitForElement(conteiner.home);
-		conteiner.home.isDisplayed();
-	}
-
-    public static void cnpjCpfOrigem(String valor){
-        log.debug(Constants.MGS_INSERIDO, "NOME/CPF/CNPJ", valor);
-        conteiner.cnpjCpfOrigem.sendKeys(valor);
+    public AquisicaoMudasViewInsert(Object entity) {
+        super(entity, AquisicaoMudasPageContainerInsert.class);
     }
 
-    public static void pesquisar() {
+    private AquisicaoMudas getEntity() {
+        return (AquisicaoMudas) entity;
+    }
+
+    private AquisicaoMudasPageContainerInsert getContainer() {
+        return (AquisicaoMudasPageContainerInsert) container;
+    }
+
+    @Override
+    public void builder(){
+        log.debug(Constants.MGS_AGUARDANDO);
+        BrowserDriver.waitForElement(getContainer().home);
+
+        log.debug(Constants.MGS_INSERIDO, "NOME/CPF/CNPJ", getEntity().getPessoa().getCpfCnpj());
+        getContainer().cnpjCpfOrigem.sendKeys(getEntity().getPessoa().getCpfCnpj());
+
         log.debug(Constants.MGS_SELECIONADO, "PESQUISAR");
-        conteiner.pesquisarOrigem.click();
-        BrowserDriver.waitForElement(conteiner.pesquisarHomeOrigem);
-        conteiner.selecionar.click();
-    }
+        getContainer().pesquisarOrigem.click();
+        BrowserDriver.waitForElement(getContainer().pesquisarHomeOrigem);
+        getContainer().selecionar.click();
+        BrowserDriver.waitForElementIsNotPresent(getContainer().pesquisarHomeOrigem);
 
-    public static void registroRenasem(String valor){
-        log.debug(Constants.MGS_INSERIDO, "REGISTRO RENASEM", valor);
-        conteiner.registroRenasem.sendKeys(valor);
-    }
+        log.debug(Constants.MGS_INSERIDO, "REGISTRO RENASEM", getEntity().getRegistroEnasem());
+        getContainer().registroRenasem.sendKeys(getEntity().getRegistroEnasem());
 
-    public static void eMailOrigem(String valor){
-        log.debug(Constants.MGS_INSERIDO, "EMAIL ORIGEM", valor);
-        conteiner.eMailOrigem.sendKeys(valor);
-    }
+        log.debug(Constants.MGS_INSERIDO, "EMAIL ORIGEM", getEntity().getEmailOrigem());
+        getContainer().eMailOrigem.sendKeys(getEntity().getEmailOrigem());
 
-    public static void telefoneOrigem(String valor){
-        log.debug(Constants.MGS_INSERIDO, "TELEFONE ORIGEM", valor);
-        conteiner.telefoneOrigem.clear();
-        conteiner.telefoneOrigem.sendKeys(valor);
-    }
+        log.debug(Constants.MGS_INSERIDO, "TELEFONE ORIGEM", getEntity().getTelefoneOrigem());
+        getContainer().telefoneOrigem.clear();
+        getContainer().telefoneOrigem.sendKeys(getEntity().getTelefoneOrigem());
 
-    public static void tipoDestino(String valor){
-        log.debug(Constants.MGS_INSERIDO, "TIPO DESTINO", valor);
-        BrowserDriver.selectByVisibleText(conteiner.tipoDestino, valor);
-    }
+        log.debug(Constants.MGS_INSERIDO, "TIPO DESTINO", getEntity().getTipoDestino());
+        BrowserDriver.selectByVisibleText(getContainer().tipoDestino, getEntity().getTipoDestino());
 
-    public static void cnpjCpfDestino(String valor){
-        log.debug(Constants.MGS_INSERIDO, "NOME/CPF/CNPJ DESTINO", valor);
-        conteiner.cnpjCpfDestino.sendKeys(valor);
-    }
+        log.debug(Constants.MGS_INSERIDO, "NOME/CPF/CNPJ DESTINO", getEntity().getPropriedade().getPessoa().getCpfCnpj());
+        getContainer().cnpjCpfDestino.sendKeys(getEntity().getPropriedade().getPessoa().getCpfCnpj());
 
-    public static void pesquisarDestino() {
         log.debug(Constants.MGS_SELECIONADO, "PESQUISAR DESTINO");
-        conteiner.pesquisarDestino.click();
-        BrowserDriver.waitForElement(conteiner.pesquisarHomeDestino);
-        conteiner.selecionar.click();
-    }
+        getContainer().pesquisarDestino.click();
+        BrowserDriver.waitForElement(getContainer().pesquisarHomeDestino);
+        getContainer().selecionar.click();
+        BrowserDriver.waitForElementIsNotPresent(getContainer().pesquisarHomeDestino);
 
-    public static void propriedadeDestino() {
         log.debug(Constants.MGS_SELECIONADO, "PESQUISAR DESTINO");
-        BrowserDriver.waitForElement(conteiner.propriedadeDestino).click();
-    }
+        BrowserDriver.waitForElement(getContainer().propriedadeDestino);
+        getContainer().propriedadeDestino.click();
 
-    public static void telefoneDestino(String valor){
-        log.debug(Constants.MGS_INSERIDO, "TELEFONE DESTINO", valor);
-        conteiner.telefoneDestino.clear();
-        conteiner.telefoneDestino.sendKeys(valor);
-    }
+        log.debug(Constants.MGS_INSERIDO, "TELEFONE DESTINO", getEntity().getTelefoneDestino());
+        getContainer().telefoneDestino.clear();
+        getContainer().telefoneDestino.sendKeys(getEntity().getTelefoneDestino());
 
-    public static void adicionarTransportador(AquisicaoMudas.Transporte transporte) {
-        log.debug(Constants.MGS_SELECIONADO, "ADICIONAR TRANSPORTADOR");
-        conteiner.adicionarTransportador.click();
-        BrowserDriver.waitForElement(conteiner.adicionarTransportadorHome);
-        BrowserDriver.selectByVisibleText(conteiner.tipoTransporte, transporte.getTipoTransporte());
-        conteiner.confirmar.click();
-        BrowserDriver.waitForElementIsNotPresent(By.id("div_id_transportador"));
-    }
+        adicionarTransportador();
+        adicionarMudas();
 
-    public static void adicionarMudas(AquisicaoMudas.Mudas mudas) {
-        log.debug(Constants.MGS_SELECIONADO, "ADICIONAR MUDAS");
-        conteiner.adicionarMudas.click();
-        BrowserDriver.waitForElement(conteiner.adicionarMudasHome);
-        BrowserDriver.selectByVisibleText(conteiner.produto, mudas.getProduto());
-        BrowserDriver.waitForElement(conteiner.cultivar).click();
-        BrowserDriver.selectByVisibleText(conteiner.tipoProduto, mudas.getTipoProduto());
-        conteiner.quantidade.clear();
-        conteiner.quantidade.sendKeys(mudas.getQuantidade());
-        BrowserDriver.selectByVisibleText(conteiner.embalagem, mudas.getEmbalagem());
-        BrowserDriver.selectByVisibleText(conteiner.metodoPropagacao, mudas.getMetodoPropaganda());
-        conteiner.confirmar.click();
-        conteiner.confirmar.click();
-        BrowserDriver.waitForElementIsNotPresent(By.id("div_produtos"));
-    }
-
-    public static void salvar() {
         log.debug(Constants.MGS_SELECIONADO, "SALVAR");
-        conteiner.salvar.click();
+        BrowserDriver.screenshot();
+        getContainer().salvar.click();
     }
 
-    public static void aviso(String valor) {
-        log.debug(Constants.MGS_MENSAGEM, valor);
-        BrowserDriver.waitForElement(conteiner.aviso);
-        Assert.assertEquals(conteiner.aviso.getText(), valor);
-        conteiner.ok.click();
+    public void adicionarTransportador() {
+        log.debug(Constants.MGS_SELECIONADO, "ADICIONAR TRANSPORTADOR");
+        getContainer().adicionarTransportador.click();
+        BrowserDriver.waitForElement(getContainer().adicionarTransportadorHome);
+        BrowserDriver.selectByVisibleText(getContainer().tipoTransporte, getEntity().getTransporte().getTipoTransporte());
+        getContainer().confirmar.click();
+        BrowserDriver.waitForElementIsNotPresent(getContainer().adicionarTransportadorHome);
+    }
+
+    public void adicionarMudas() {
+        log.debug(Constants.MGS_SELECIONADO, "ADICIONAR MUDAS");
+        getContainer().adicionarMudas.click();
+        BrowserDriver.waitForElement(getContainer().adicionarMudasHome);
+        BrowserDriver.selectByVisibleText(getContainer().produto, getEntity().getMudas().getProduto());
+        BrowserDriver.waitForElement(getContainer().cultivar).click();
+        BrowserDriver.selectByVisibleText(getContainer().tipoProduto, getEntity().getMudas().getTipoProduto());
+        getContainer().quantidade.clear();
+        getContainer().quantidade.sendKeys(getEntity().getMudas().getQuantidade());
+        BrowserDriver.selectByVisibleText(getContainer().embalagem, getEntity().getMudas().getEmbalagem());
+        BrowserDriver.selectByVisibleText(getContainer().metodoPropagacao, getEntity().getMudas().getMetodoPropaganda());
+        getContainer().confirmar.click();
+        getContainer().confirmar.click();
+        BrowserDriver.waitForElementIsNotPresent(getContainer().adicionarMudasHome);
     }
 
 }

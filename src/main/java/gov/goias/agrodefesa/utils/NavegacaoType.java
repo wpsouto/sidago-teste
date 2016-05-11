@@ -10,6 +10,26 @@ import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaClassificacao.navigati
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaClassificacao.view.EmpresaClassificacaoViewEdit;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaClassificacao.view.EmpresaClassificacaoViewHome;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaClassificacao.view.EmpresaClassificacaoViewInsert;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaForaGoias.entity.EmpresaForaGoias;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaForaGoias.navigation.NavigationEmpresaForaGoias;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaForaGoias.view.EmpresaForaGoiasViewEdit;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaForaGoias.view.EmpresaForaGoiasViewHome;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaForaGoias.view.EmpresaForaGoiasViewInsert;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.lavoura.entity.Lavoura;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.lavoura.navigation.NavigationLavoura;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.lavoura.view.LavouraViewEdit;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.lavoura.view.LavouraViewHome;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.lavoura.view.LavouraViewInsert;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.entity.Pessoa;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.navigation.NavigationPessoa;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.view.PessoaViewEdit;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.view.PessoaViewHome;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.view.PessoaViewInsert;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.propriedade.entity.Propriedade;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.propriedade.navigation.NavigationPropriedade;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.propriedade.view.PropriedadeViewEdit;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.propriedade.view.PropriedadeViewHome;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.propriedade.view.PropriedadeViewInsert;
 import gov.goias.agrodefesa.chamado.abrirChamado.entity.Chamado;
 import gov.goias.agrodefesa.chamado.abrirChamado.navigation.NavigationAbrirChamado;
 import gov.goias.agrodefesa.chamado.abrirChamado.view.AbrirChamadoViewHome;
@@ -33,6 +53,44 @@ import gov.goias.agrodefesa.controleDeBens.transferencia.entity.Transferencia;
 import gov.goias.agrodefesa.controleDeBens.transferencia.navigation.NavigationTransferencia;
 import gov.goias.agrodefesa.controleDeBens.transferencia.view.TransferenciaViewHome;
 import gov.goias.agrodefesa.controleDeBens.transferencia.view.TransferenciaViewInsert;
+import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.entity.Ingrediente;
+import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.navigation.NavigationIngredienteAtivo;
+import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.view.IngredienteAtivoViewEdit;
+import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.view.IngredienteAtivoViewHome;
+import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.view.IngredienteAtivoViewInsert;
+import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.entity.ProdutoaAnimal;
+import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.navigation.NavigationProduto;
+import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.view.ProdutoViewEdit;
+import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.view.ProdutoViewHome;
+import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.view.ProdutoViewInsert;
+import gov.goias.agrodefesa.defesaSanitariaAnimal.boletimProducao.entity.BoletimProducao;
+import gov.goias.agrodefesa.defesaSanitariaAnimal.boletimProducao.navigation.NavigationBoletimProducao;
+import gov.goias.agrodefesa.defesaSanitariaAnimal.boletimProducao.view.BoletimProducaoViewHome;
+import gov.goias.agrodefesa.defesaSanitariaAnimal.boletimProducao.view.BoletimProducaoViewInsert;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.entity.AquisicaoMudas;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.navigation.NavigationAquisicaoMudas;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.view.AquisicaoMudasViewHome;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.view.AquisicaoMudasViewInsert;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.cadastroLote.entity.CadastroLote;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.cadastroLote.navigation.NavigationCadastroLote;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.cadastroLote.view.CadastroLoteViewEdit;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.cadastroLote.view.CadastroLoteViewHome;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.cadastroLote.view.CadastroLoteViewInsert;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.entity.UnidadeConsolidacao;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.navigation.NavigationUnidadeConsolidacao;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.view.UnidadeConsolidacaoViewEdit;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.view.UnidadeConsolidacaoViewHome;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.view.UnidadeConsolidacaoViewInsert;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeProducao.entity.UnidadeProducao;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeProducao.navigation.NavigationUnidadeProducao;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeProducao.view.UnidadeProducaoViewEdit;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeProducao.view.UnidadeProducaoViewHome;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeProducao.view.UnidadeProducaoViewInsert;
+import gov.goias.agrodefesa.denuncia.abrirDenuncia.entity.AbrirDenuncia;
+import gov.goias.agrodefesa.denuncia.abrirDenuncia.navigation.NavigationAbrirDenuncia;
+import gov.goias.agrodefesa.denuncia.abrirDenuncia.view.AbrirDenunciaViewEdit;
+import gov.goias.agrodefesa.denuncia.abrirDenuncia.view.AbrirDenunciaViewHome;
+import gov.goias.agrodefesa.denuncia.abrirDenuncia.view.AbrirDenunciaViewInsert;
 import gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.entity.TermoFiscalizacao;
 import gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.navigation.NavigationTermoFiscalizacao;
 import gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.view.TermoFiscalizacaoViewHome;
@@ -104,28 +162,28 @@ public class NavegacaoType {
         PRESTACAO_DE_CONTAS = create("Prestação de Contas", CONCESSAO_DE_DIARIAS, "prestacao");
 
         //CONTROLE_DE_PRODUTOS_AGROPECUARIOS
-        INGREDIENTE_ATIVO = create("Ingrediente Ativo", CONTROLE_DE_PRODUTOS_AGROPECUARIOS, "ingrediente-ativo");
-        PRODUTO = create("Produto", CONTROLE_DE_PRODUTOS_AGROPECUARIOS, "produto");
+        INGREDIENTE_ATIVO = create("Ingrediente Ativo", CONTROLE_DE_PRODUTOS_AGROPECUARIOS, "ingrediente-ativo", NavigationIngredienteAtivo.class, Ingrediente.class, IngredienteAtivoViewHome.class, IngredienteAtivoViewInsert.class, IngredienteAtivoViewEdit.class);
+        PRODUTO = create("Produto", CONTROLE_DE_PRODUTOS_AGROPECUARIOS, "produto", NavigationProduto.class, ProdutoaAnimal.class, ProdutoViewHome.class, ProdutoViewInsert.class, ProdutoViewEdit.class);
 
         //CADASTROS_AGROPECUARIOS
         EMPRESA = create("Empresa", CADASTROS_AGROPECUARIOS, "empresas", NavigationEmpresa.class, Empresa.class, EmpresaViewHome.class, EmpresaViewInsert.class, EmpresaViewEdit.class);
         EMPRESA_CLASSIFICACAO = create("Empresa Classificação", CADASTROS_AGROPECUARIOS, "classificacao", NavigationEmpresaClassificacao.class, Classificacao.class, EmpresaClassificacaoViewHome.class, EmpresaClassificacaoViewInsert.class, EmpresaClassificacaoViewEdit.class);
-        EMPRESA_FORA_GOIAS = create("Empresa-Fora Goiás", CADASTROS_AGROPECUARIOS, "empresas-fora");
-        PESSOA = create("Pessoa", CADASTROS_AGROPECUARIOS, "produtor");
-        PROPRIEDADE = create("Propriedade", CADASTROS_AGROPECUARIOS, "propriedade");
-        LAVOURA = create("Lavoura", CADASTROS_AGROPECUARIOS, "lavouras");
+        EMPRESA_FORA_GOIAS = create("Empresa-Fora Goiás", CADASTROS_AGROPECUARIOS, "empresas-fora", NavigationEmpresaForaGoias.class, EmpresaForaGoias.class, EmpresaForaGoiasViewHome.class, EmpresaForaGoiasViewInsert.class, EmpresaForaGoiasViewEdit.class);
+        PESSOA = create("Pessoa", CADASTROS_AGROPECUARIOS, "produtor", NavigationPessoa.class, Pessoa.class, PessoaViewHome.class, PessoaViewInsert.class, PessoaViewEdit.class);
+        PROPRIEDADE = create("Propriedade", CADASTROS_AGROPECUARIOS, "propriedade", NavigationPropriedade.class, Propriedade.class, PropriedadeViewHome.class, PropriedadeViewInsert.class, PropriedadeViewEdit.class);
+        LAVOURA = create("Lavoura", CADASTROS_AGROPECUARIOS, "lavouras", NavigationLavoura.class, Lavoura.class, LavouraViewHome.class, LavouraViewInsert.class, LavouraViewEdit.class);
 
         //DENUNCIA
-        ABRIR_DENUNCIA = create("Abrir Denúncia", DENUNCIA, "abrir-denuncia");
+        ABRIR_DENUNCIA = create("Abrir Denúncia", DENUNCIA, "abrir-denuncia", NavigationAbrirDenuncia.class, AbrirDenuncia.class, AbrirDenunciaViewHome.class, AbrirDenunciaViewInsert.class, AbrirDenunciaViewEdit.class);
 
         //DEFESA_SANITARIA_ANIMAL
-        BOLETIM_PRODUCAO = create("Boletim de Produção", DEFESA_SANITARIA_ANIMAL, "boletim-producao");
+        BOLETIM_PRODUCAO = create("Boletim de Produção", DEFESA_SANITARIA_ANIMAL, "boletim-producao", NavigationBoletimProducao.class, BoletimProducao.class, BoletimProducaoViewHome.class, BoletimProducaoViewInsert.class, null);
 
         //DEFESA_SANITARIA_VEGETAL
-        AQUISICAO_MUDAS = create("Autorização para Aquisição de Mudas", DEFESA_SANITARIA_VEGETAL, "autorizacao-aquisicao-mudas");
-        UNIDADE_CONSOLIDACAO = create("Unidade Consolidação", DEFESA_SANITARIA_VEGETAL, "unidade-consolidacao");
-        CADASTRO_LOTE = create("Cadastro de Lote", DEFESA_SANITARIA_VEGETAL, "lote");
-        UNIDADE_PRODUCAO = create("Unidade de Produção", DEFESA_SANITARIA_VEGETAL, "unidade-producao");
+        AQUISICAO_MUDAS = create("Autorização para Aquisição de Mudas", DEFESA_SANITARIA_VEGETAL, "autorizacao-aquisicao-mudas", NavigationAquisicaoMudas.class, AquisicaoMudas.class, AquisicaoMudasViewHome.class, AquisicaoMudasViewInsert.class, null);
+        UNIDADE_CONSOLIDACAO = create("Unidade Consolidação", DEFESA_SANITARIA_VEGETAL, "unidade-consolidacao", NavigationUnidadeConsolidacao.class, UnidadeConsolidacao.class, UnidadeConsolidacaoViewHome.class, UnidadeConsolidacaoViewInsert.class, UnidadeConsolidacaoViewEdit.class);
+        CADASTRO_LOTE = create("Cadastro de Lote", DEFESA_SANITARIA_VEGETAL, "lote", NavigationCadastroLote.class, CadastroLote.class, CadastroLoteViewHome.class, CadastroLoteViewInsert.class, CadastroLoteViewEdit.class);
+        UNIDADE_PRODUCAO = create("Unidade de Produção", DEFESA_SANITARIA_VEGETAL, "unidade-producao", NavigationUnidadeProducao.class, UnidadeProducao.class, UnidadeProducaoViewHome.class, UnidadeProducaoViewInsert.class, UnidadeProducaoViewEdit.class);
 
         //FISCALIZACAO
         TERMO_FISCALIZACAO = create("Termo de Fiscalização", FISCALIZACAO, "termo-fiscalizacao", NavigationTermoFiscalizacao.class, TermoFiscalizacao.class, TermoFiscalizacaoViewHome.class, TermoFiscalizacaoViewInsert.class, null);
@@ -157,25 +215,12 @@ public class NavegacaoType {
         this.edit = parameters[4];
     }
 
-/*
-    NavegacaoType(String key, String modulo, String url, Class<?> navegacaoStrategy, Class<?> classToProxy, Class<?> home, Class<?> insert, Class<?> edit) {
-        this.key = key;
-        this.modulo = modulo;
-        this.url = url;
-        this.navegacaoStrategy = navegacaoStrategy;
-        this.classToProxy = classToProxy;
-        this.home = home;
-        this.insert = insert;
-        this.edit = edit;
-    }
-*/
-
     private static NavegacaoType create(String key, String modulo, String url) {
         return new NavegacaoType(key, modulo, url);
     }
 
-    private static NavegacaoType create(String key, String modulo, String url,Class<?> navegacaoStrategy, Class<?> classToProxy, Class<?> home, Class<?> insert, Class<?> edit) {
-        return new NavegacaoType(key, modulo, url, navegacaoStrategy, classToProxy, home, insert, edit);
+    private static NavegacaoType create(String key, String modulo, String url, Class<?>... parameters) {
+        return new NavegacaoType(key, modulo, url, parameters);
     }
 
     public String getUrl() {
