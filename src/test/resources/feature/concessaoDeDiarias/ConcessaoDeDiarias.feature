@@ -1,6 +1,6 @@
 # language: pt
 
-@all @ConcessaoDeDiarias
+# @all @ConcessaoDeDiarias
 
 Funcionalidade: Testando o Fluxo Principal de Concessao De Diarias
 

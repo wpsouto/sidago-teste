@@ -18,7 +18,7 @@ public class NavigationAssinaturaDeDiarias implements NavegacaoStrategy {
 
     private void assinar() {
         AssinaturaDeDiariasViewHome.isDisplayedCheck();
-        AssinaturaDeDiariasViewHome.numeroDaDiaria(delegacaoDeAtividades.getNumeroDiaria());
+        //AssinaturaDeDiariasViewHome.numeroDaDiaria(delegacaoDeAtividades.getNumeroDiaria());
         AssinaturaDeDiariasViewHome.pesquisar();
         AssinaturaDeDiariasViewHome.isDisplayedGridPesquisar();
         AssinaturaDeDiariasViewHome.informacoesDetalhadas();

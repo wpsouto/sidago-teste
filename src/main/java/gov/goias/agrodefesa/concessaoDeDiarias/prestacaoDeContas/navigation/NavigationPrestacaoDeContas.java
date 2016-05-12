@@ -21,7 +21,7 @@ public class NavigationPrestacaoDeContas implements NavegacaoStrategy {
 
     private void prestarContas() {
         PrestacaoDeContasViewHome.isDisplayedCheck();
-        PrestacaoDeContasViewHome.numero(delegacaoDeAtividades.getNumeroDiaria());
+        //PrestacaoDeContasViewHome.numero(delegacaoDeAtividades.getNumeroDiaria());
         PrestacaoDeContasViewHome.pesquisar();
         PrestacaoDeContasViewHome.pesquisarCheck();
         PrestacaoDeContasViewHome.prestarContas();

@@ -8,6 +8,9 @@ import org.openqa.selenium.support.How;
 public class PessoaPageContainerInsert extends PageContainerInsert {
 
     @FindBy(how = How.ID, using = "cpf_cnpj")
+    public WebElement home;
+
+    @FindBy(how = How.ID, using = "cpf_cnpj")
     public WebElement cpfCnpj;
 
     @FindBy(how = How.XPATH, using = "//*[@id=\"div-cpf-lupa\"]/div[2]/a/img")

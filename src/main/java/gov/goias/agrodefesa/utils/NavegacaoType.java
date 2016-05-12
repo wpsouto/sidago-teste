@@ -34,6 +34,10 @@ import gov.goias.agrodefesa.chamado.abrirChamado.entity.Chamado;
 import gov.goias.agrodefesa.chamado.abrirChamado.navigation.NavigationAbrirChamado;
 import gov.goias.agrodefesa.chamado.abrirChamado.view.AbrirChamadoViewHome;
 import gov.goias.agrodefesa.chamado.abrirChamado.view.AbrirChamadoViewInsert;
+import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.entity.DelegacaoAtividade;
+import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.navigation.NavigationDelegacaoDeAtividades;
+import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.view.DelegacaoDeAtividadesViewHome;
+import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.view.DelegacaoDeAtividadesViewInsert;
 import gov.goias.agrodefesa.controleDeBens.almoxarifado.entity.Almoxarifado;
 import gov.goias.agrodefesa.controleDeBens.almoxarifado.navigation.NavigationAlmoxarifado;
 import gov.goias.agrodefesa.controleDeBens.almoxarifado.view.AlmoxarifadoViewEdit;
@@ -156,7 +160,7 @@ public class NavegacaoType {
         ABRIR_CHAMADO = create("Abrir Chamado", CHAMADO, "abrir-chamado", NavigationAbrirChamado.class, Chamado.class, AbrirChamadoViewHome.class, AbrirChamadoViewInsert.class, null);
 
         //CONCESSAO_DE_DIARIAS
-        DELEGACAO_DE_ATIVIDADES = create("Delegação de Atividades", CONCESSAO_DE_DIARIAS, "diaria");
+        DELEGACAO_DE_ATIVIDADES = create("Delegação de Atividades", CONCESSAO_DE_DIARIAS, "diaria", NavigationDelegacaoDeAtividades.class, DelegacaoAtividade.class, DelegacaoDeAtividadesViewHome.class, DelegacaoDeAtividadesViewInsert.class, null);
         CIENCIA_DO_SERVIDOR = create("Ciência do Servidor", CONCESSAO_DE_DIARIAS, "ciencia");
         ASSINATURA_DE_DIARIAS = create("Assinatura de Diárias", CONCESSAO_DE_DIARIAS, "assinar/assinar");
         PRESTACAO_DE_CONTAS = create("Prestação de Contas", CONCESSAO_DE_DIARIAS, "prestacao");

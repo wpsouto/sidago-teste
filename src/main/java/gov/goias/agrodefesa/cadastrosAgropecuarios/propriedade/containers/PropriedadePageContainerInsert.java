@@ -8,6 +8,9 @@ import org.openqa.selenium.support.How;
 public class PropriedadePageContainerInsert extends PageContainerInsert {
 
     @FindBy(how = How.ID, using = "produtor")
+    public WebElement home;
+
+    @FindBy(how = How.ID, using = "produtor")
     public WebElement produtor;
 
     @FindBy(how = How.XPATH, using = "//*[@id=\"ui-id-1\"]/li[1]")

@@ -18,7 +18,7 @@ public class NavigationCienciaDoServidor implements NavegacaoStrategy {
 
     private void darCiencia() {
         CienciaDoServidorViewHome.isDisplayedCheck();
-        CienciaDoServidorViewHome.numero(delegacaoDeAtividades.getNumeroDiaria());
+        //CienciaDoServidorViewHome.numero(delegacaoDeAtividades.getNumeroDiaria());
         CienciaDoServidorViewHome.pesquisar();
         CienciaDoServidorViewHome.pesquisarCheck();
         CienciaDoServidorViewHome.darCiencia();

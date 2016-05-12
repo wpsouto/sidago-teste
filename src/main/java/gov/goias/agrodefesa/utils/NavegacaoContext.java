@@ -57,6 +57,9 @@ public class NavegacaoContext {
         //DENUNCIA
         _strategies1.add(NavegacaoType.ABRIR_DENUNCIA);
 
+        //CONCESSAO_DE_DIARIAS
+        _strategies1.add(NavegacaoType.DELEGACAO_DE_ATIVIDADES);
+
         /*
 
         //CONCESSAO_DE_DIARIAS
