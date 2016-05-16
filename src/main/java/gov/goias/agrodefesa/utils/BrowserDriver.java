@@ -6,7 +6,6 @@ import cucumber.api.java.Before;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.UnreachableBrowserException;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -21,8 +20,6 @@ public class BrowserDriver {
     public synchronized static WebDriver getCurrentDriver() {
         if (mDriver == null) {
             try {
-                mDriver = BrowserFactory.getBrowser();
-            } catch (UnreachableBrowserException e) {
                 mDriver = BrowserFactory.getBrowser();
             } catch (WebDriverException e) {
                 mDriver = BrowserFactory.getBrowser();
@@ -55,11 +52,13 @@ public class BrowserDriver {
         getCurrentDriver().get(url);
     }
 
+/*
     public static void reopenAndLoadPage(String url) {
         mDriver = null;
         getCurrentDriver();
         loadPage(url);
     }
+*/
 
     public static WebElement waitForElement(WebElement elementToWaitFor) {
         return waitForElement(elementToWaitFor, null);
@@ -118,9 +117,9 @@ public class BrowserDriver {
         return wait.until(ExpectedConditions.visibilityOf(elementToWaitFor));
     }
 
-    public static WebElement getParent(WebElement element) {
+/*    public static WebElement getParent(WebElement element) {
         return element.findElement(By.xpath(".."));
-    }
+    }*/
 
     public static boolean isElementPresent(String ID){
         return (getCurrentDriver().findElements(By.id(ID)).size() > 0);
@@ -128,18 +127,15 @@ public class BrowserDriver {
 
     public static void waitForElementIsNotPresent(WebElement webElement) {
         WebDriverWait wait = new WebDriverWait(getCurrentDriver(), 10);
-        wait.until(new ExpectedCondition<Boolean>() {
-            @Override
-            public Boolean apply(WebDriver webDriver) {
-                try {
-                    if(webElement.isDisplayed()) {
-                        return Boolean.valueOf(false);
-                    }
-                } catch (Exception var5) {
-                    ;
+        wait.until((WebDriver webDriver) -> {
+            try {
+                if(webElement.isDisplayed()) {
+                    return false;
                 }
-                return Boolean.valueOf(true);
+            } catch (Exception var5) {
+                return true;
             }
+            return true;
         });
     }
 
@@ -167,12 +163,7 @@ public class BrowserDriver {
         Select select = new Select(webElement);
 
         WebDriverWait wait = new WebDriverWait(getCurrentDriver(), 10);
-        wait.until(new ExpectedCondition<Boolean>() {
-            @Override
-            public Boolean apply(WebDriver webDriver) {
-                return select.getOptions().size() > 1;
-            }
-        });
+        wait.until((WebDriver webDriver) -> select.getOptions().size() > 1);
     }
 
     public static void uploadFile(WebElement webElement) {
