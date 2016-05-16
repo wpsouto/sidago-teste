@@ -37,7 +37,7 @@ public class Navegacao {
     }
 
     public void pageLoad(Action action, String key) {
-        page = NavegacaoContext.parce1(key, this.page);
+        page = NavegacaoContext.parce(key, this.page);
 
         switch (action) {
             case HOME:
@@ -62,7 +62,7 @@ public class Navegacao {
     }
 
     public NavegacaoStrategy pageLoad(NavegacaoType type) {
-        return  NavegacaoContext.parce1(type.getKey(), this.page);
+        return  NavegacaoContext.parce(type.getKey(), this.page);
     }
 
     private void loginPage() {

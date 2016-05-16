@@ -62,7 +62,7 @@ public class NavegacaoContext {
 
     }
 
-    public static NavegacaoStrategy parce1(String key, NavegacaoStrategy strategy) {
+    public static NavegacaoStrategy parce(String key, NavegacaoStrategy strategy) {
         for (NavegacaoType type : _strategies) {
             if (type.getKey().equalsIgnoreCase(key)) {
                 try {
