@@ -31,35 +31,14 @@ public class TermoFiscalizacaoPageContainerInsert extends PageContainerInsert {
     @FindBy(how = How.ID, using = "id_programafiscalizacao")
     public WebElement programa;
 
-    @FindBy(how = How.ID, using = "id_programafiscalizacao_chzn_o_1")
-    public WebElement programaAutoComplete;
-
     @FindBy(how = How.ID, using = "id_objetivofiscalizacao")
-    public WebElement objetivoID;
-
-    @FindBy(how = How.ID, using = "id_objetivofiscalizacao_chzn")
-    public WebElement objetivoCHZN;
-
-    @FindBy(how = How.ID, using = "id_objetivofiscalizacao_chzn_o_1")
-    public WebElement objetivoAutoComplete;
+    public WebElement objetivo;
 
     @FindBy(how = How.ID, using = "id_subobjetivofiscalizacao")
-    public WebElement suObjetivoID;
-
-    @FindBy(how = How.ID, using = "id_subobjetivofiscalizacao_chzn")
-    public WebElement subObjetivoCHZN;
-
-    @FindBy(how = How.ID, using = "id_subobjetivofiscalizacao_chzn_o_1")
-    public WebElement subObjetivoAutoComplete;
+    public WebElement suObjetivo;
 
     @FindBy(how = How.ID, using = "id_produto")
-    public WebElement produtoID;
-
-    @FindBy(how = How.ID, using = "id_produto_chzn")
-    public WebElement produtoCHZN;
-
-    @FindBy(how = How.ID, using = "id_produto_chzn_o_1")
-    public WebElement produtoAutoComplete;
+    public WebElement produto;
 
     @FindBy(how = How.ID, using = "ds_historicosituacao")
     public WebElement situacaoEncontrada;

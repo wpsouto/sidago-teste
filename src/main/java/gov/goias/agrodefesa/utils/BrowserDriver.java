@@ -173,9 +173,7 @@ public class BrowserDriver {
     }
 
     public static void uploadFile(WebElement webElement) {
-        JavascriptExecutor executor =  ((JavascriptExecutor) BrowserDriver.getCurrentDriver());
-        String js = "arguments[0].style.display ='block';";
-        executor.executeScript(js, webElement);
+        changeDisplay(webElement);
         webElement.sendKeys(FileUtils.getFileFromResource("upload.pdf").getPath());
     }
 

@@ -51,16 +51,16 @@ public class TermoFiscalizacaoViewInsert extends BaseViewInsertImpl {
         BrowserDriver.waitForSelectByVisibleText(getContainer().programa, getEntity().getObjetivo().getPrograma());
 
         log.debug(Constants.MGS_INSERIDO, "OBJETIVO", getEntity().getObjetivo().getObjetivo());
-        BrowserDriver.changeDisplay(getContainer().objetivoID);
-        BrowserDriver.waitForSelectByVisibleText(getContainer().objetivoID, getEntity().getObjetivo().getObjetivo());
+        BrowserDriver.changeDisplay(getContainer().objetivo);
+        BrowserDriver.waitForSelectByVisibleText(getContainer().objetivo, getEntity().getObjetivo().getObjetivo());
 
         log.debug(Constants.MGS_INSERIDO, "SUBOBJETIVO", getEntity().getObjetivo().getSubObjetivo());
-        BrowserDriver.changeDisplay(getContainer().suObjetivoID);
-        BrowserDriver.waitForSelectByVisibleText(getContainer().suObjetivoID, getEntity().getObjetivo().getSubObjetivo());
+        BrowserDriver.changeDisplay(getContainer().suObjetivo);
+        BrowserDriver.waitForSelectByVisibleText(getContainer().suObjetivo, getEntity().getObjetivo().getSubObjetivo());
 
         log.debug(Constants.MGS_INSERIDO, "PRODUTO", getEntity().getObjetivo().getProduto());
-        BrowserDriver.changeDisplay(getContainer().produtoID);
-        BrowserDriver.waitForSelectByVisibleText(getContainer().produtoID, getEntity().getObjetivo().getProduto());
+        BrowserDriver.changeDisplay(getContainer().produto);
+        BrowserDriver.waitForSelectByVisibleText(getContainer().produto, getEntity().getObjetivo().getProduto());
 
         log.debug(Constants.MGS_SELECIONADO, "CONFIRMAR");
         getContainer().confirmar.click();
