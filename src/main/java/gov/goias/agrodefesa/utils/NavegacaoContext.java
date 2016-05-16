@@ -5,8 +5,6 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Hashtable;
 import java.util.List;
 
 /**
@@ -15,71 +13,57 @@ import java.util.List;
 public class NavegacaoContext {
 
     protected static final Logger log = LoggerFactory.getLogger(NavegacaoContext.class);
-    private static Hashtable<NavegacaoType, NavegacaoStrategy> _strategies = new Hashtable<>();
 
-    private static List<NavegacaoType> _strategies1 = new ArrayList<>();
+    private static List<NavegacaoType> _strategies = new ArrayList<>();
 
     static {
 
         //CONTROLE_BENS
-        _strategies1.add(NavegacaoType.ALMOXARIFADO);
-        _strategies1.add(NavegacaoType.MATERIAL);
-        _strategies1.add(NavegacaoType.PATRIMONIO);
-        _strategies1.add(NavegacaoType.TRANSFERENCIA_BENS);
+        _strategies.add(NavegacaoType.ALMOXARIFADO);
+        _strategies.add(NavegacaoType.MATERIAL);
+        _strategies.add(NavegacaoType.PATRIMONIO);
+        _strategies.add(NavegacaoType.TRANSFERENCIA_BENS);
 
         //FISCALIZACAO
-        _strategies1.add(NavegacaoType.TERMO_FISCALIZACAO);
+        _strategies.add(NavegacaoType.TERMO_FISCALIZACAO);
 
         //CHAMADO
-        _strategies1.add(NavegacaoType.ABRIR_CHAMADO);
+        _strategies.add(NavegacaoType.ABRIR_CHAMADO);
 
         //CADASTROS_AGROPECUARIOS
-        _strategies1.add(NavegacaoType.EMPRESA);
-        _strategies1.add(NavegacaoType.EMPRESA_CLASSIFICACAO);
-        _strategies1.add(NavegacaoType.EMPRESA_FORA_GOIAS);
-        _strategies1.add(NavegacaoType.PESSOA);
-        _strategies1.add(NavegacaoType.PROPRIEDADE);
-        _strategies1.add(NavegacaoType.LAVOURA);
+        _strategies.add(NavegacaoType.EMPRESA);
+        _strategies.add(NavegacaoType.EMPRESA_CLASSIFICACAO);
+        _strategies.add(NavegacaoType.EMPRESA_FORA_GOIAS);
+        _strategies.add(NavegacaoType.PESSOA);
+        _strategies.add(NavegacaoType.PROPRIEDADE);
+        _strategies.add(NavegacaoType.LAVOURA);
 
         //CONTROLE_DE_PRODUTOS_AGROPECUARIOS
-        _strategies1.add(NavegacaoType.INGREDIENTE_ATIVO);
-        _strategies1.add(NavegacaoType.PRODUTO);
+        _strategies.add(NavegacaoType.INGREDIENTE_ATIVO);
+        _strategies.add(NavegacaoType.PRODUTO);
 
         //DEFESA_SANITARIA_ANIMAL
-        _strategies1.add(NavegacaoType.BOLETIM_PRODUCAO);
+        _strategies.add(NavegacaoType.BOLETIM_PRODUCAO);
 
         //DEFESA_SANITARIA_VEGETAL
-        _strategies1.add(NavegacaoType.AQUISICAO_MUDAS);
-        _strategies1.add(NavegacaoType.UNIDADE_PRODUCAO);
-        _strategies1.add(NavegacaoType.UNIDADE_CONSOLIDACAO);
-        _strategies1.add(NavegacaoType.CADASTRO_LOTE);
+        _strategies.add(NavegacaoType.AQUISICAO_MUDAS);
+        _strategies.add(NavegacaoType.UNIDADE_PRODUCAO);
+        _strategies.add(NavegacaoType.UNIDADE_CONSOLIDACAO);
+        _strategies.add(NavegacaoType.CADASTRO_LOTE);
 
         //DENUNCIA
-        _strategies1.add(NavegacaoType.ABRIR_DENUNCIA);
+        _strategies.add(NavegacaoType.ABRIR_DENUNCIA);
 
         //CONCESSAO_DE_DIARIAS
-        _strategies1.add(NavegacaoType.DELEGACAO_DE_ATIVIDADES);
-        _strategies1.add(NavegacaoType.CIENCIA_DO_SERVIDOR);
-        _strategies1.add(NavegacaoType.ASSINATURA_DE_DIARIAS);
-        _strategies1.add(NavegacaoType.PRESTACAO_DE_CONTAS);
+        _strategies.add(NavegacaoType.DELEGACAO_DE_ATIVIDADES);
+        _strategies.add(NavegacaoType.CIENCIA_DO_SERVIDOR);
+        _strategies.add(NavegacaoType.ASSINATURA_DE_DIARIAS);
+        _strategies.add(NavegacaoType.PRESTACAO_DE_CONTAS);
 
-    }
-
-    public static NavegacaoStrategy parce(String key) throws IllegalArgumentException {
-
-        Enumeration<NavegacaoType> types = _strategies.keys();
-        while (types.hasMoreElements()) {
-            NavegacaoType type = types.nextElement();
-            if (type.getKey().equalsIgnoreCase(key)) {
-                return _strategies.get(type);
-            }
-        }
-
-        throw navegacaoType(key);
     }
 
     public static NavegacaoStrategy parce1(String key, NavegacaoStrategy strategy) {
-        for (NavegacaoType type : _strategies1) {
+        for (NavegacaoType type : _strategies) {
             if (type.getKey().equalsIgnoreCase(key)) {
                 try {
                     if (strategy != null && type.getNavegacaoStrategy().equals(strategy.getClass())) {
