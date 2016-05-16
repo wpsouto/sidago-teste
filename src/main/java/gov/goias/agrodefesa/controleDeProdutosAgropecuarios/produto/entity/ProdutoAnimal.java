@@ -5,7 +5,7 @@ import gov.goias.agrodefesa.utils.ResourceFactory;
 /**
  * Created by usuario on 21/03/16.
  */
-public class ProdutoaAnimal {
+public class ProdutoAnimal {
 
     private String classificacao;
     private String nomeProduto;
@@ -36,7 +36,7 @@ public class ProdutoaAnimal {
     }
 
     public static void main(String[] args) {
-        ProdutoaAnimal produto = new ProdutoaAnimal();
+        ProdutoAnimal produto = new ProdutoAnimal();
         ResourceFactory.save(produto);
     }
 

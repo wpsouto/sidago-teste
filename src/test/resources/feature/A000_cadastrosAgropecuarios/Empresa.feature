@@ -1,6 +1,6 @@
 # language: pt
 
-#@all @CadastrosAgropecuarios @Empresa
+@all @CadastrosAgropecuarios @Empresa
 
 Funcionalidade: Testando as funcionalidade de Empresa
 

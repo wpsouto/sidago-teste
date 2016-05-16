@@ -9,10 +9,10 @@
   "caracterizacaoFiscalizacao": "Vegetal",
   "identificacao": "Propriedade Rural",
   "objetivo": {
-    "programa": null,
-    "Objetivo": null,
-    "subObjetivo": null,
-    "produto": null
+    "programa": "Programa de Agrotóxicos",
+    "objetivo": "Fiscalizaçao / Agrotóxicos",
+    "subObjetivo": "Aplicação",
+    "produto": "ABÓBORA"
   },
   "situacaoEncontrada": "Teste Automatizado",
   "orientacoes": "Teste Automatizado"

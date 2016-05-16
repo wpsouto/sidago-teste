@@ -1,9 +1,7 @@
 package gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.entity;
 
 
-import gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.entity.Pessoa;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.propriedade.entity.Propriedade;
-import gov.goias.agrodefesa.utils.ResourceFactory;
 
 /**
  * Created by usuario on 21/03/16.
@@ -94,7 +92,7 @@ public class TermoFiscalizacao {
 
     public class Objetivo {
         private String programa;
-        private String Objetivo;
+        private String objetivo;
         private String subObjetivo;
         private String produto;
 
@@ -107,11 +105,11 @@ public class TermoFiscalizacao {
         }
 
         public String getObjetivo() {
-            return Objetivo;
+            return objetivo;
         }
 
         public void setObjetivo(String objetivo) {
-            Objetivo = objetivo;
+            this.objetivo = objetivo;
         }
 
         public String getSubObjetivo() {
@@ -129,11 +127,6 @@ public class TermoFiscalizacao {
         public void setProduto(String produto) {
             this.produto = produto;
         }
-    }
-
-    public static void main(String[] args) {
-        TermoFiscalizacao arquivo = new TermoFiscalizacao();
-        ResourceFactory.save(arquivo);
     }
 
 }

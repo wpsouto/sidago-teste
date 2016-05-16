@@ -1,7 +1,7 @@
 package gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.navigation;
 
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
-import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.entity.ProdutoaAnimal;
+import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.entity.ProdutoAnimal;
 import gov.goias.agrodefesa.utils.NavegacaoType;
 
 /**
@@ -13,8 +13,8 @@ public class NavigationProduto extends NavigationBase {
         super(type);
     }
 
-    public ProdutoaAnimal getEntity() {
-        return (ProdutoaAnimal) entity;
+    public ProdutoAnimal getEntity() {
+        return (ProdutoAnimal) entity;
     }
 
 }

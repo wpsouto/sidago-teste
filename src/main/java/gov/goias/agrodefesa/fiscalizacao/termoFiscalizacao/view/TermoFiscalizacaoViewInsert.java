@@ -45,29 +45,22 @@ public class TermoFiscalizacaoViewInsert extends BaseViewInsertImpl {
         getContainer().adicionarObjetivos.click();
         BrowserDriver.waitForElement(getContainer().homeAdicionarObjetivos);
 
-        log.debug(Constants.MGS_INSERIDO, "PROGRAMA");
-        BrowserDriver.waitForElement(getContainer().programa);
-        getContainer().programa.click();
-        BrowserDriver.waitForElement(getContainer().programaAutoComplete);
-        getContainer().programaAutoComplete.click();
+        BrowserDriver.scrollUp();
+        log.debug(Constants.MGS_INSERIDO, "PROGRAMA", getEntity().getObjetivo().getPrograma());
+        BrowserDriver.changeDisplay(getContainer().programa);
+        BrowserDriver.waitForSelectByVisibleText(getContainer().programa, getEntity().getObjetivo().getPrograma());
 
-        log.debug(Constants.MGS_INSERIDO, "OBJETIVO");
-        BrowserDriver.waitForSelectOptions(getContainer().objetivoID);
-        getContainer().objetivoCHZN.click();
-        BrowserDriver.waitForClickable(getContainer().objetivoAutoComplete);
-        getContainer().objetivoAutoComplete.click();
+        log.debug(Constants.MGS_INSERIDO, "OBJETIVO", getEntity().getObjetivo().getObjetivo());
+        BrowserDriver.changeDisplay(getContainer().objetivoID);
+        BrowserDriver.waitForSelectByVisibleText(getContainer().objetivoID, getEntity().getObjetivo().getObjetivo());
 
-        log.debug(Constants.MGS_INSERIDO, "SUBOBJETIVO");
-        BrowserDriver.waitForSelectOptions(getContainer().suObjetivoID);
-        getContainer().subObjetivoCHZN.click();
-        BrowserDriver.waitForElement(getContainer().subObjetivoAutoComplete);
-        getContainer().subObjetivoAutoComplete.click();
+        log.debug(Constants.MGS_INSERIDO, "SUBOBJETIVO", getEntity().getObjetivo().getSubObjetivo());
+        BrowserDriver.changeDisplay(getContainer().suObjetivoID);
+        BrowserDriver.waitForSelectByVisibleText(getContainer().suObjetivoID, getEntity().getObjetivo().getSubObjetivo());
 
-        log.debug(Constants.MGS_INSERIDO, "PRODUTO");
-        BrowserDriver.waitForSelectOptions(getContainer().produtoID);
-        getContainer().produtoCHZN.click();
-        BrowserDriver.waitForElement(getContainer().produtoAutoComplete);
-        getContainer().produtoAutoComplete.click();
+        log.debug(Constants.MGS_INSERIDO, "PRODUTO", getEntity().getObjetivo().getProduto());
+        BrowserDriver.changeDisplay(getContainer().produtoID);
+        BrowserDriver.waitForSelectByVisibleText(getContainer().produtoID, getEntity().getObjetivo().getProduto());
 
         log.debug(Constants.MGS_SELECIONADO, "CONFIRMAR");
         getContainer().confirmar.click();

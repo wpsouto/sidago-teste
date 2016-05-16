@@ -69,7 +69,7 @@ import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.nav
 import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.view.IngredienteAtivoViewEdit;
 import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.view.IngredienteAtivoViewHome;
 import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.view.IngredienteAtivoViewInsert;
-import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.entity.ProdutoaAnimal;
+import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.entity.ProdutoAnimal;
 import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.navigation.NavigationProduto;
 import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.view.ProdutoViewEdit;
 import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.view.ProdutoViewHome;
@@ -174,7 +174,7 @@ public class NavegacaoType {
 
         //CONTROLE_DE_PRODUTOS_AGROPECUARIOS
         INGREDIENTE_ATIVO = create("Ingrediente Ativo", CONTROLE_DE_PRODUTOS_AGROPECUARIOS, "ingrediente-ativo", NavigationIngredienteAtivo.class, Ingrediente.class, IngredienteAtivoViewHome.class, IngredienteAtivoViewInsert.class, IngredienteAtivoViewEdit.class);
-        PRODUTO = create("Produto", CONTROLE_DE_PRODUTOS_AGROPECUARIOS, "produto", NavigationProduto.class, ProdutoaAnimal.class, ProdutoViewHome.class, ProdutoViewInsert.class, ProdutoViewEdit.class);
+        PRODUTO = create("Produto", CONTROLE_DE_PRODUTOS_AGROPECUARIOS, "produto", NavigationProduto.class, ProdutoAnimal.class, ProdutoViewHome.class, ProdutoViewInsert.class, ProdutoViewEdit.class);
 
         //CADASTROS_AGROPECUARIOS
         EMPRESA = create("Empresa", CADASTROS_AGROPECUARIOS, "empresas", NavigationEmpresa.class, Empresa.class, EmpresaViewHome.class, EmpresaViewInsert.class, EmpresaViewEdit.class);

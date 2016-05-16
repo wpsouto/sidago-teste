@@ -2,7 +2,7 @@ package gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.view;
 
 import gov.goias.agrodefesa.base.view.BaseViewHomeImpl;
 import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.containers.ProdutoPageContainerHome;
-import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.entity.ProdutoaAnimal;
+import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.entity.ProdutoAnimal;
 import gov.goias.agrodefesa.utils.Constants;
 
 public class ProdutoViewHome extends BaseViewHomeImpl {
@@ -11,8 +11,8 @@ public class ProdutoViewHome extends BaseViewHomeImpl {
 		super(entity, ProdutoPageContainerHome.class);
 	}
 
-	private ProdutoaAnimal getEntity() {
-		return (ProdutoaAnimal) entity;
+	private ProdutoAnimal getEntity() {
+		return (ProdutoAnimal) entity;
 	}
 
 	private ProdutoPageContainerHome getContainer() {

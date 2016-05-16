@@ -28,7 +28,7 @@ public class TermoFiscalizacaoPageContainerInsert extends PageContainerInsert {
     @FindBy(how = How.ID, using = "div_id_termoobjetivofiscalizacao")
     public WebElement homeAdicionarObjetivos;
 
-    @FindBy(how = How.ID, using = "id_programafiscalizacao_chzn")
+    @FindBy(how = How.ID, using = "id_programafiscalizacao")
     public WebElement programa;
 
     @FindBy(how = How.ID, using = "id_programafiscalizacao_chzn_o_1")

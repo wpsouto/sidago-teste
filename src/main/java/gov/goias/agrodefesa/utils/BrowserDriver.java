@@ -159,11 +159,17 @@ public class BrowserDriver {
         selectByIndex(webElement, index);
     }
 
-    public static void waitForSelectOptions(WebElement webElement) {
+    private static void waitForSelectOptions(WebElement webElement) {
         Select select = new Select(webElement);
 
         WebDriverWait wait = new WebDriverWait(getCurrentDriver(), 10);
         wait.until((WebDriver webDriver) -> select.getOptions().size() > 1);
+    }
+
+    public static void changeDisplay(WebElement webElement) {
+        JavascriptExecutor executor =  ((JavascriptExecutor) BrowserDriver.getCurrentDriver());
+        String js = "arguments[0].style.display ='block';";
+        executor.executeScript(js, webElement);
     }
 
     public static void uploadFile(WebElement webElement) {
