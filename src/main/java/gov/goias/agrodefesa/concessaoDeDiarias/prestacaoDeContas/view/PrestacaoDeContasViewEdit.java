@@ -1,37 +1,38 @@
 package gov.goias.agrodefesa.concessaoDeDiarias.prestacaoDeContas.view;
 
+import gov.goias.agrodefesa.base.view.BaseViewEditImpl;
+import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.entity.DelegacaoAtividade;
 import gov.goias.agrodefesa.concessaoDeDiarias.prestacaoDeContas.containers.PrestacaoDeContasPageContainerEdit;
 import gov.goias.agrodefesa.utils.BrowserDriver;
-import org.junit.Assert;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.support.PageFactory;
+import gov.goias.agrodefesa.utils.Constants;
 
-public class PrestacaoDeContasViewEdit {
-	private static final PrestacaoDeContasPageContainerEdit container = PageFactory.initElements(BrowserDriver.getCurrentDriver(), PrestacaoDeContasPageContainerEdit.class);
+public class PrestacaoDeContasViewEdit extends BaseViewEditImpl {
 
-	public static void isDisplayedCheck(){
-		BrowserDriver.waitForElement(container.home);
-		container.home.isDisplayed();
-	}
-
-    public static void atividade(String valor){
-        container.atividades.sendKeys(valor);
+    public PrestacaoDeContasViewEdit(Object entity) {
+        super(entity, PrestacaoDeContasPageContainerEdit.class);
     }
 
-    public static void upload(String fileUpload){
-        JavascriptExecutor executor =  ((JavascriptExecutor) BrowserDriver.getCurrentDriver());
-        String js = "arguments[0].style.display ='block';";
-        executor.executeScript(js, container.teste);
-        container.teste.sendKeys(fileUpload.toString());
+    private DelegacaoAtividade getEntity() {
+        return (DelegacaoAtividade) entity;
     }
 
-    public static void salvar() {
-        container.salvar.click();
+    private PrestacaoDeContasPageContainerEdit getContainer() {
+        return (PrestacaoDeContasPageContainerEdit) container;
     }
 
-    public static void aviso(String valor) {
-        BrowserDriver.waitForElement(container.aviso);
-        Assert.assertEquals(container.aviso.getText(), valor);
+    @Override
+    public void builder() {
+        log.debug(Constants.MGS_AGUARDANDO);
+        BrowserDriver.waitForElement(getContainer().home);
+
+        log.debug(Constants.MGS_INSERIDO, "ATIVIDADES DESENVOLVIDAS", getEntity().getAtividades());
+        getContainer().atividades.sendKeys(getEntity().getAtividades());
+
+        BrowserDriver.uploadFile(getContainer().upload);
+
+        log.debug(Constants.MGS_SELECIONADO, "SALVAR");
+        getContainer().salvar.click();
     }
+
 
 }

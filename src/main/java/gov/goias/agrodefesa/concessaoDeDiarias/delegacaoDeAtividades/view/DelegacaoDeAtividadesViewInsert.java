@@ -51,7 +51,7 @@ public class DelegacaoDeAtividadesViewInsert extends BaseViewInsertImpl {
         getContainer().descricaoServico.sendKeys(getEntity().getDescricaoDoServico());
 
         log.debug(Constants.MGS_INSERIDO, "COM PERNOITE", getEntity().getComPernoite());
-        BrowserDriver.selectByVisibleText(getContainer().acompanhaAutoridade, getEntity().getComPernoite());
+        BrowserDriver.selectByVisibleText(getContainer().comPernoite, getEntity().getComPernoite());
 
         log.debug(Constants.MGS_INSERIDO, "ACOMPANHA AUTORIDADE", getEntity().getAcompanhaAutoridade());
         BrowserDriver.selectByVisibleText(getContainer().acompanhaAutoridade, getEntity().getAcompanhaAutoridade());
@@ -63,16 +63,16 @@ public class DelegacaoDeAtividadesViewInsert extends BaseViewInsertImpl {
         BrowserDriver.selectByVisibleText(getContainer().fonteDeRecurso, getEntity().getFonteRecurso());
 
         log.debug(Constants.MGS_INSERIDO, "ACAO", getEntity().getAcao());
-        getContainer().acao.click();
+        BrowserDriver.waitForSelectByVisibleText(getContainer().acao, getEntity().getAcao());
 
         log.debug(Constants.MGS_INSERIDO, "META", getEntity().getMeta());
-        getContainer().meta.click();
+        BrowserDriver.waitForSelectByVisibleText(getContainer().meta, getEntity().getMeta());
 
         log.debug(Constants.MGS_INSERIDO, "REALIZACAO", getEntity().getRealizacao());
-        getContainer().realizacao.click();
+        BrowserDriver.waitForSelectByVisibleText(getContainer().realizacao, getEntity().getRealizacao());
 
         log.debug(Constants.MGS_INSERIDO, "EMPENHO", getEntity().getEmpenho());
-        //BrowserDriver.selectByIndexWait();
+        BrowserDriver.waitForSelectByVisibleText(getContainer().empenho, getEntity().getEmpenho());
 
         log.debug(Constants.MGS_SELECIONADO, "SALVAR");
         BrowserDriver.screenshot();

@@ -59,15 +59,9 @@ public class NavegacaoContext {
 
         //CONCESSAO_DE_DIARIAS
         _strategies1.add(NavegacaoType.DELEGACAO_DE_ATIVIDADES);
-
-        /*
-
-        //CONCESSAO_DE_DIARIAS
-        _strategies.put(NavegacaoType.DELEGACAO_DE_ATIVIDADES, new NavigationDelegacaoDeAtividades());
-        _strategies.put(NavegacaoType.CIENCIA_DO_SERVIDOR, new NavigationCienciaDoServidor());
-        _strategies.put(NavegacaoType.ASSINATURA_DE_DIARIAS, new NavigationAssinaturaDeDiarias());
-        _strategies.put(NavegacaoType.PRESTACAO_DE_CONTAS, new NavigationPrestacaoDeContas());
-*/
+        _strategies1.add(NavegacaoType.CIENCIA_DO_SERVIDOR);
+        _strategies1.add(NavegacaoType.ASSINATURA_DE_DIARIAS);
+        _strategies1.add(NavegacaoType.PRESTACAO_DE_CONTAS);
 
     }
 

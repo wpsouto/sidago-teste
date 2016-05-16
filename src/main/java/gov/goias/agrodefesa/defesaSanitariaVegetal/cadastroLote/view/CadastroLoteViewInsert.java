@@ -37,10 +37,10 @@ public class CadastroLoteViewInsert extends BaseViewInsertImpl {
         BrowserDriver.selectByVisibleText(getContainer().produto, getEntity().getProduto());
 
         log.debug(Constants.MGS_INSERIDO, "CULTIVAR", getEntity().getCultivar());
-        BrowserDriver.selectByIndexWait(getContainer().cultivar, 2);
+        BrowserDriver.waitForSelectByIndex(getContainer().cultivar, 2);
 
         log.debug(Constants.MGS_INSERIDO, "TIPO DE PRODUTO/UNIDADE", getEntity().getTipoProduto());
-        BrowserDriver.selectByIndexWait(getContainer().tipoProduto, 2);
+        BrowserDriver.waitForSelectByIndex(getContainer().tipoProduto, 2);
 
         log.debug(Constants.MGS_SELECIONADO, "SALVAR");
         BrowserDriver.screenshot();

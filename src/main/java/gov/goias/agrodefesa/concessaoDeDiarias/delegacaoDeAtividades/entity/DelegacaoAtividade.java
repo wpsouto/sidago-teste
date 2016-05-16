@@ -22,6 +22,15 @@ public class DelegacaoAtividade {
     private String meta;
     private String realizacao;
     private String empenho;
+    private String atividades;
+
+    public String getAtividades() {
+        return atividades;
+    }
+
+    public void setAtividades(String atividades) {
+        this.atividades = atividades;
+    }
 
     public String getNumeroDiaria() {
         return numeroDiaria;

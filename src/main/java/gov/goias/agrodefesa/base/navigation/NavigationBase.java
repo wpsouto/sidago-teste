@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Optional;
 
 /**
  * Created by usuario on 10/03/16.
@@ -25,11 +26,16 @@ public class NavigationBase implements NavegacaoStrategy {
     protected EditView edit;
 
     public NavigationBase(NavegacaoType type) {
-        this.entity = ResourceFactory.init(type.getClassToProxy());
         this.type = type;
+        this.entity = ResourceFactory.init(type.getClassToProxy());
+
         try {
             this.home = (HomeView) type.getHome().getConstructor(Object.class).newInstance(this.entity);
-            this.insert = (InsertView) type.getInsert().getConstructor(Object.class).newInstance(this.entity);
+
+            if (type.getInsert() != null) {
+                this.insert = (InsertView) type.getInsert().getConstructor(Object.class).newInstance(this.entity);
+            }
+
             if (type.getEdit() != null) {
                 this.edit = (EditView) type.getEdit().getConstructor(Object.class).newInstance(this.entity);
             }
@@ -53,6 +59,9 @@ public class NavigationBase implements NavegacaoStrategy {
     }
 */
 
+    private static IllegalArgumentException error(String message, Throwable cause) {
+        return new IllegalArgumentException(message, cause);
+    }
 
     protected Object dependencia(Class entityClass, String tag) {
         Object object = NavegacaoFactory.getNavigator().getEntity(entityClass);
@@ -62,10 +71,6 @@ public class NavigationBase implements NavegacaoStrategy {
         }
 
         return object;
-    }
-
-    private static IllegalArgumentException error(String message, Throwable cause) {
-        return new IllegalArgumentException(message, cause);
     }
 
     @Override

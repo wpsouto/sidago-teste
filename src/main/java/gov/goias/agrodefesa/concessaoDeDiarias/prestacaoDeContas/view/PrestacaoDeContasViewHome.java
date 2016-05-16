@@ -1,36 +1,39 @@
 package gov.goias.agrodefesa.concessaoDeDiarias.prestacaoDeContas.view;
 
+import gov.goias.agrodefesa.base.view.BaseViewHomeImpl;
+import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.entity.DelegacaoAtividade;
 import gov.goias.agrodefesa.concessaoDeDiarias.prestacaoDeContas.containers.PrestacaoDeContasPageContainerHome;
 import gov.goias.agrodefesa.utils.BrowserDriver;
-import org.junit.Assert;
-import org.openqa.selenium.support.PageFactory;
+import gov.goias.agrodefesa.utils.Constants;
 
-import java.util.logging.Logger;
+public class PrestacaoDeContasViewHome extends BaseViewHomeImpl {
 
-public class PrestacaoDeContasViewHome {
-	private static final PrestacaoDeContasPageContainerHome container = PageFactory.initElements(BrowserDriver.getCurrentDriver(), PrestacaoDeContasPageContainerHome.class);
-
-	public static void isDisplayedCheck(){
-		BrowserDriver.waitForElement(container.home);
-		container.home.isDisplayed();
-	}
-
-    public static void numero(String valor){
-        container.numeroDaDiaria.sendKeys(valor);
+    public PrestacaoDeContasViewHome(Object entity) {
+        super(entity, PrestacaoDeContasPageContainerHome.class);
     }
 
-    public static void pesquisar() {
-        container.pesquisar.click();
+    private DelegacaoAtividade getEntity() {
+        return (DelegacaoAtividade) entity;
     }
 
-    public static void pesquisarCheck() {
-        BrowserDriver.waitForElement(container.gridNumero);
-        container.gridNumero.isDisplayed();
-        Assert.assertEquals(container.numeroDaDiaria.getAttribute("value"), container.gridNumero.getText());
+    private PrestacaoDeContasPageContainerHome getContainer() {
+        return (PrestacaoDeContasPageContainerHome) container;
     }
 
-    public static void prestarContas() {
-        container.gridPrestarContas.click();
+    @Override
+    public void pesquisar() {
+        log.debug(Constants.MGS_INSERIDO, "NUMERO", getEntity().getNumeroDiaria());
+        getContainer().numeroDaDiaria.sendKeys(getEntity().getNumeroDiaria());
+
+        log.debug(Constants.MGS_SELECIONADO, "PESQUISAR");
+        getContainer().pesquisar.click();
+    }
+
+    @Override
+    public void alterar() {
+        log.debug(Constants.MGS_SELECIONADO, "FAZER PRESTAÇÃO DE CONTAS");
+        BrowserDriver.waitForText(getContainer().gridRow, getEntity().getNumeroDiaria());
+        getContainer().pencil.click();
     }
 
 }

@@ -1,71 +1,37 @@
 package gov.goias.agrodefesa.concessaoDeDiarias.assinaturaDeDiarias.navigation;
 
-import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
+import gov.goias.agrodefesa.base.navigation.NavigationBase;
 import gov.goias.agrodefesa.concessaoDeDiarias.assinaturaDeDiarias.view.AssinaturaDeDiariasViewHome;
-import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.navigation.NavigationDelegacaoDeAtividades;
+import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.entity.DelegacaoAtividade;
 import gov.goias.agrodefesa.constants.Action;
-import gov.goias.agrodefesa.utils.BrowserDriver;
-import gov.goias.agrodefesa.utils.NavegacaoStrategy;
 import gov.goias.agrodefesa.utils.NavegacaoType;
 
-public class NavigationAssinaturaDeDiarias implements NavegacaoStrategy {
+public class NavigationAssinaturaDeDiarias extends NavigationBase {
 
-    private NavigationDelegacaoDeAtividades delegacaoDeAtividades;
-
-    public NavigationAssinaturaDeDiarias() {
-        delegacaoDeAtividades = (NavigationDelegacaoDeAtividades) NavegacaoFactory.getNavigator().pageLoad(NavegacaoType.DELEGACAO_DE_ATIVIDADES);
+    public NavigationAssinaturaDeDiarias(NavegacaoType type) {
+        super(type);
     }
 
-    private void assinar() {
-        AssinaturaDeDiariasViewHome.isDisplayedCheck();
-        //AssinaturaDeDiariasViewHome.numeroDaDiaria(delegacaoDeAtividades.getNumeroDiaria());
-        AssinaturaDeDiariasViewHome.pesquisar();
-        AssinaturaDeDiariasViewHome.isDisplayedGridPesquisar();
-        AssinaturaDeDiariasViewHome.informacoesDetalhadas();
-        AssinaturaDeDiariasViewHome.assinar();
-    }
-
-    @Override
-    public void home() {
-        BrowserDriver.loadPage(NavegacaoType.ASSINATURA_DE_DIARIAS.getUrl());
-        AssinaturaDeDiariasViewHome.isDisplayedCheck();
-
-    }
-
-    @Override
-    public void insert() {
-
-    }
-
-    @Override
-    public void search() {
-
-    }
-
-    @Override
-    public void edit() {
-
+    public DelegacaoAtividade getEntity() {
+        return (DelegacaoAtividade) entity;
     }
 
     @Override
     public void confirm() {
-
+        DelegacaoAtividade delegacaoAtividade = (DelegacaoAtividade) dependencia(DelegacaoAtividade.class, "@DelegacaoDeAtividade");
+        getEntity().setNumeroDiaria(delegacaoAtividade.getNumeroDiaria());
+        super.confirm();
     }
-
 
     @Override
     public void others(Action action) {
         switch(action){
-            case CONFIRM:
-                assinar();
-                break;
             case MENSAGEM_CONFIRM:
-                AssinaturaDeDiariasViewHome.confirmar();
+                ((AssinaturaDeDiariasViewHome)  home).aviso();
                 break;
             default:
-                throw Action.actionNotFound(action.name());
+                super.others(action);
         }
-
     }
 
 }

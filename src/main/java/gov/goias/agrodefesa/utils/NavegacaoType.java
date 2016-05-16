@@ -34,10 +34,17 @@ import gov.goias.agrodefesa.chamado.abrirChamado.entity.Chamado;
 import gov.goias.agrodefesa.chamado.abrirChamado.navigation.NavigationAbrirChamado;
 import gov.goias.agrodefesa.chamado.abrirChamado.view.AbrirChamadoViewHome;
 import gov.goias.agrodefesa.chamado.abrirChamado.view.AbrirChamadoViewInsert;
+import gov.goias.agrodefesa.concessaoDeDiarias.assinaturaDeDiarias.navigation.NavigationAssinaturaDeDiarias;
+import gov.goias.agrodefesa.concessaoDeDiarias.assinaturaDeDiarias.view.AssinaturaDeDiariasViewHome;
+import gov.goias.agrodefesa.concessaoDeDiarias.cienciaDoServidor.navigation.NavigationCienciaDoServidor;
+import gov.goias.agrodefesa.concessaoDeDiarias.cienciaDoServidor.view.CienciaDoServidorViewHome;
 import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.entity.DelegacaoAtividade;
 import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.navigation.NavigationDelegacaoDeAtividades;
 import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.view.DelegacaoDeAtividadesViewHome;
 import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.view.DelegacaoDeAtividadesViewInsert;
+import gov.goias.agrodefesa.concessaoDeDiarias.prestacaoDeContas.navigation.NavigationPrestacaoDeContas;
+import gov.goias.agrodefesa.concessaoDeDiarias.prestacaoDeContas.view.PrestacaoDeContasViewEdit;
+import gov.goias.agrodefesa.concessaoDeDiarias.prestacaoDeContas.view.PrestacaoDeContasViewHome;
 import gov.goias.agrodefesa.controleDeBens.almoxarifado.entity.Almoxarifado;
 import gov.goias.agrodefesa.controleDeBens.almoxarifado.navigation.NavigationAlmoxarifado;
 import gov.goias.agrodefesa.controleDeBens.almoxarifado.view.AlmoxarifadoViewEdit;
@@ -161,9 +168,9 @@ public class NavegacaoType {
 
         //CONCESSAO_DE_DIARIAS
         DELEGACAO_DE_ATIVIDADES = create("Delegação de Atividades", CONCESSAO_DE_DIARIAS, "diaria", NavigationDelegacaoDeAtividades.class, DelegacaoAtividade.class, DelegacaoDeAtividadesViewHome.class, DelegacaoDeAtividadesViewInsert.class, null);
-        CIENCIA_DO_SERVIDOR = create("Ciência do Servidor", CONCESSAO_DE_DIARIAS, "ciencia");
-        ASSINATURA_DE_DIARIAS = create("Assinatura de Diárias", CONCESSAO_DE_DIARIAS, "assinar/assinar");
-        PRESTACAO_DE_CONTAS = create("Prestação de Contas", CONCESSAO_DE_DIARIAS, "prestacao");
+        CIENCIA_DO_SERVIDOR = create("Ciência do Servidor", CONCESSAO_DE_DIARIAS, "ciencia", NavigationCienciaDoServidor.class, DelegacaoAtividade.class, CienciaDoServidorViewHome.class, null, null);
+        ASSINATURA_DE_DIARIAS = create("Assinatura de Diárias", CONCESSAO_DE_DIARIAS, "assinar/assinar", NavigationAssinaturaDeDiarias.class, DelegacaoAtividade.class, AssinaturaDeDiariasViewHome.class, null, null);
+        PRESTACAO_DE_CONTAS = create("Prestação de Contas", CONCESSAO_DE_DIARIAS, "prestacao", NavigationPrestacaoDeContas.class, DelegacaoAtividade.class, PrestacaoDeContasViewHome.class, null, PrestacaoDeContasViewEdit.class);
 
         //CONTROLE_DE_PRODUTOS_AGROPECUARIOS
         INGREDIENTE_ATIVO = create("Ingrediente Ativo", CONTROLE_DE_PRODUTOS_AGROPECUARIOS, "ingrediente-ativo", NavigationIngredienteAtivo.class, Ingrediente.class, IngredienteAtivoViewHome.class, IngredienteAtivoViewInsert.class, IngredienteAtivoViewEdit.class);
