@@ -2,7 +2,7 @@ package gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.view;
 
 import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.containers.ProdutoPageContainerInsert;
-import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.entity.ProdutoaAnimal;
+import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.entity.ProdutoAnimal;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
@@ -12,8 +12,8 @@ public class ProdutoViewInsert extends BaseViewInsertImpl {
         super(entity, ProdutoPageContainerInsert.class);
     }
 
-    private ProdutoaAnimal getEntity() {
-        return (ProdutoaAnimal) entity;
+    private ProdutoAnimal getEntity() {
+        return (ProdutoAnimal) entity;
     }
 
     private ProdutoPageContainerInsert getContainer() {
