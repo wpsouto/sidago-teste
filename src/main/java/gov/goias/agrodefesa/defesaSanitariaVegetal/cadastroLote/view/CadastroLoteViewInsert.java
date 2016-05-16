@@ -1,13 +1,12 @@
 package gov.goias.agrodefesa.defesaSanitariaVegetal.cadastroLote.view;
 
-import gov.goias.agrodefesa.base.view.BaseView;
-import gov.goias.agrodefesa.base.view.InsertView;
+import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.cadastroLote.containers.CadastroLotePageContainerInsert;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.cadastroLote.entity.CadastroLote;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
-public class CadastroLoteViewInsert extends BaseView implements InsertView {
+public class CadastroLoteViewInsert extends BaseViewInsertImpl {
 
     public CadastroLoteViewInsert(Object entity) {
         super(entity, CadastroLotePageContainerInsert.class);
@@ -23,6 +22,7 @@ public class CadastroLoteViewInsert extends BaseView implements InsertView {
 
     }
     
+    @Override
     public void builder(){
         log.debug(Constants.MGS_AGUARDANDO);
         BrowserDriver.waitForElement(getContainer().home);
@@ -37,21 +37,14 @@ public class CadastroLoteViewInsert extends BaseView implements InsertView {
         BrowserDriver.selectByVisibleText(getContainer().produto, getEntity().getProduto());
 
         log.debug(Constants.MGS_INSERIDO, "CULTIVAR", getEntity().getCultivar());
-        BrowserDriver.selectByIndexWait(getContainer().cultivar, 2);
+        BrowserDriver.waitForSelectByIndex(getContainer().cultivar, 2);
 
         log.debug(Constants.MGS_INSERIDO, "TIPO DE PRODUTO/UNIDADE", getEntity().getTipoProduto());
-        BrowserDriver.selectByIndexWait(getContainer().tipoProduto, 2);
+        BrowserDriver.waitForSelectByIndex(getContainer().tipoProduto, 2);
 
         log.debug(Constants.MGS_SELECIONADO, "SALVAR");
         BrowserDriver.screenshot();
         getContainer().salvar.click();
     }
-
-    public void aviso() {
-        log.debug(Constants.MGS_MENSAGEM, Constants.REGISTRO_INSERIDO_COM_SUCESSO);
-        BrowserDriver.waitForText(getContainer().aviso, Constants.REGISTRO_INSERIDO_COM_SUCESSO);
-        getContainer().ok.click();
-    }
-
 
 }

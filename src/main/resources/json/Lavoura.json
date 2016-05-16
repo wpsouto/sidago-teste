@@ -1,0 +1,15 @@
+{
+  "inscricaoEstadual": "113682832",
+  "sistemaCultivo": "Sequeiro",
+  "origemSemente": "Própria",
+  "produto": {
+    "produto": "ALGODÃO",
+    "cultivar": "ALGODÃO",
+    "tipoProduto": "Plantas de algodão / ha",
+    "estimativaProducao": "10000",
+    "dataPrevistaPlantio": null,
+    "previsaoInicioColheita": null,
+    "previsaoFimColheita": null,
+    "areaPlantada": "10000"
+  }
+}

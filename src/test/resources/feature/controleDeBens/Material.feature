@@ -14,4 +14,4 @@ Funcionalidade: Testando as funcionalidades do Material
 
   Cenario: 2-Fluxo Alternativo -Todos os campos em branco
     Quando Eu insiro um novo registro de Material em branco
-    Então Recebo a mensagem de Validacao
+    Então Eu recebo a mensagem "erro" do "Material"

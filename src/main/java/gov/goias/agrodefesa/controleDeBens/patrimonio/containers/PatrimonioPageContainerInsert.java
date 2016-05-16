@@ -1,13 +1,11 @@
 package gov.goias.agrodefesa.controleDeBens.patrimonio.containers;
 
+import gov.goias.agrodefesa.base.containers.PageContainerInsert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class PatrimonioPageContainerInsert {
-
-    @FindBy(how = How.ID, using = "ds_patrimonio")
-    public WebElement home;
+public class PatrimonioPageContainerInsert extends PageContainerInsert {
 
     @FindBy(how = How.ID, using = "num_patrimonio")
     public WebElement numeroPatrimonioAgrodefesa;
@@ -62,15 +60,5 @@ public class PatrimonioPageContainerInsert {
 
     @FindBy(how = How.XPATH, using = "//*[@id=\"ui-id-1\"]/li[1]")
     public WebElement lotacaoAutoComplete;
-
-    @FindBy(how = How.ID, using = "bt_inserir")
-    public WebElement salvar;
-
-    @FindBy(how = How.XPATH, using = "//*[@id=\"aviso\"]/div/p/strong")
-    public WebElement aviso;
-
-    @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Ok']")
-    public WebElement ok;
-
 
 }

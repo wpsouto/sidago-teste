@@ -1,39 +1,31 @@
 package gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.view;
 
+import gov.goias.agrodefesa.base.view.BaseViewHomeImpl;
 import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.containers.IngredienteAtivoPageContainerHome;
-import gov.goias.agrodefesa.utils.BrowserDriver;
-import org.openqa.selenium.support.PageFactory;
+import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.entity.Ingrediente;
+import gov.goias.agrodefesa.utils.Constants;
 
-public class IngredienteAtivoViewHome {
-	private static final IngredienteAtivoPageContainerHome container = PageFactory.initElements(BrowserDriver.getCurrentDriver(), IngredienteAtivoPageContainerHome.class);
+public class IngredienteAtivoViewHome extends BaseViewHomeImpl {
 
-	public static void isDisplayedCheck(){
-		BrowserDriver.waitForElement(container.home);
-		container.home.isDisplayed();
+	public IngredienteAtivoViewHome(Object entity) {
+		super(entity, IngredienteAtivoPageContainerHome.class);
 	}
 
-    public static void incluirRegistro(){
-        BrowserDriver.waitForElement(container.incluirRegistro);
-        container.incluirRegistro.click();
-    }
-
-	public static void ingrediente(String valor){
-		container.ingrediente.clear();
-		container.ingrediente.sendKeys(valor);
+	private Ingrediente getEntity() {
+		return (Ingrediente) entity;
 	}
 
-    public static void pesquisar() {
-		container.pesquisar.click();
+	private IngredienteAtivoPageContainerHome getContainer() {
+		return (IngredienteAtivoPageContainerHome) container;
 	}
 
-	public static void isDisplayedGridPesquisar() {
-		BrowserDriver.waitForElement(container.gridRow);
-		container.gridRow.isDisplayed();
-	}
+	@Override
+	public void pesquisar() {
+		log.debug(Constants.MGS_INSERIDO, "NOME INGREDIENTE", getEntity().getNome());
+        getContainer().ingrediente.sendKeys(getEntity().getNome());
 
-	public static void alterar() {
-		container.alterar.click();
+		log.debug(Constants.MGS_SELECIONADO, "PESQUISAR");
+		getContainer().pesquisar.click();
 	}
-
 
 }

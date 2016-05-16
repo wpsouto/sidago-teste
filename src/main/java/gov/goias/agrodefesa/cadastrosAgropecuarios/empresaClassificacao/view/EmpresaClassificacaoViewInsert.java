@@ -1,44 +1,38 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.empresaClassificacao.view;
 
+import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaClassificacao.containers.EmpresaClassificacaoPageContainerInsert;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaClassificacao.entity.Classificacao;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
-import org.junit.Assert;
-import org.openqa.selenium.support.PageFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class EmpresaClassificacaoViewInsert {
-    private static final Logger log = LoggerFactory.getLogger(EmpresaClassificacaoViewInsert.class);
-	private static final EmpresaClassificacaoPageContainerInsert conteiner = PageFactory.initElements(BrowserDriver.getCurrentDriver(), EmpresaClassificacaoPageContainerInsert.class);
+public class EmpresaClassificacaoViewInsert extends BaseViewInsertImpl {
 
-	public static void isDisplayedCheck(){
+    public EmpresaClassificacaoViewInsert(Object entity) {
+        super(entity, EmpresaClassificacaoPageContainerInsert.class);
+    }
+
+    private Classificacao getEntity() {
+        return (Classificacao) entity;
+    }
+
+    private EmpresaClassificacaoPageContainerInsert getContainer() {
+        return (EmpresaClassificacaoPageContainerInsert) container;
+    }
+
+    @Override
+    public void builder(){
         log.debug(Constants.MGS_AGUARDANDO);
-		BrowserDriver.waitForElement(conteiner.home);
-		conteiner.home.isDisplayed();
-	}
+        BrowserDriver.waitForElement(getContainer().home);
 
-    public static void tipoClassificacao(String valor){
-        log.debug(Constants.MGS_INSERIDO, "TIPO CLASSIFICACAO", valor);
-        BrowserDriver.selectByVisibleText(conteiner.tipoClassificacao, valor);
-    }
+        log.debug(Constants.MGS_INSERIDO, "TIPO CLASSIFICACAO", getEntity().getTipo_classificacao());
+        BrowserDriver.selectByVisibleText(getContainer().tipoClassificacao, getEntity().getTipo_classificacao());
 
-    public static void classificacao(String valor){
-        log.debug(Constants.MGS_INSERIDO, "CLASSIFICACAO", valor);
-        conteiner.classificacao.clear();
-        conteiner.classificacao.sendKeys(valor);
-    }
+        log.debug(Constants.MGS_INSERIDO, "CLASSIFICACAO", getEntity().getDescricao());
+        getContainer().classificacao.sendKeys(getEntity().getDescricao());
 
-    public static void salvar() {
         log.debug(Constants.MGS_SELECIONADO, "SALVAR");
-        conteiner.salvar.click();
+        BrowserDriver.screenshot();
+        getContainer().salvar.click();
     }
-
-    public static void aviso(String valor) {
-        log.debug(Constants.MGS_MENSAGEM, valor);
-        BrowserDriver.waitForElement(conteiner.aviso);
-        Assert.assertEquals(conteiner.aviso.getText(), valor);
-        conteiner.ok.click();
-    }
-
 }

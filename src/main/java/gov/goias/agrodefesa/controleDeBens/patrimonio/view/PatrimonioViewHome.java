@@ -1,46 +1,33 @@
 package gov.goias.agrodefesa.controleDeBens.patrimonio.view;
 
+import gov.goias.agrodefesa.base.view.BaseViewHomeImpl;
 import gov.goias.agrodefesa.controleDeBens.patrimonio.containers.PatrimonioPageContainerHome;
+import gov.goias.agrodefesa.controleDeBens.patrimonio.entity.Patrimonio;
 import gov.goias.agrodefesa.utils.BrowserDriver;
-import org.junit.Assert;
-import org.openqa.selenium.support.PageFactory;
+import gov.goias.agrodefesa.utils.Constants;
 
-public class PatrimonioViewHome {
-	private static final PatrimonioPageContainerHome container = PageFactory.initElements(BrowserDriver.getCurrentDriver(), PatrimonioPageContainerHome.class);
+public class PatrimonioViewHome extends BaseViewHomeImpl {
 
-	public static void isDisplayedCheck(){
-		BrowserDriver.waitForElement(container.home);
-		container.home.isDisplayed();
-	}
-
-    public static void incluirRegistro(){
-        BrowserDriver.waitForElement(container.incluirRegistro);
-        container.incluirRegistro.click();
+    public PatrimonioViewHome(Object entity) {
+        super(entity, PatrimonioPageContainerHome.class);
     }
 
-	public static void numeroPatrimonio(String valor){
-		container.numeroPatrimonio.clear();
-		container.numeroPatrimonio.sendKeys(valor);
-
-	}
-
-    public static void lotacao(String valor) {
-        container.lotacao.sendKeys(valor);
+    private Patrimonio getEntity() {
+        return (Patrimonio) entity;
     }
 
-    public static void pesquisar() {
-		container.pesquisar.click();
-	}
+    private PatrimonioPageContainerHome getContainer() {
+        return (PatrimonioPageContainerHome) container;
+    }
 
-	public static void isDisplayedGridPesquisar() {
-		BrowserDriver.waitForElement(container.gridRow);
-		container.gridRow.isDisplayed();
-        Assert.assertEquals(container.numeroPatrimonio.getAttribute("value"), container.gridRow.getText());
-	}
-
-	public static void alterarRegistro() {
-		container.alterar.click();
-	}
-
+    @Override
+    public void pesquisar() {
+        log.debug(Constants.MGS_INSERIDO, "NUMERO PATRIMONIO", getEntity().getNumeroPatrimonio());
+        getContainer().numeroPatrimonio.sendKeys(getEntity().getNumeroPatrimonio());
+        BrowserDriver.waitForElement(getContainer().numeroPatrimonioAutoComplete);
+        getContainer().numeroPatrimonioAutoComplete.click();
+        log.debug(Constants.MGS_SELECIONADO, "PESQUISAR");
+        getContainer().pesquisar.click();
+    }
 
 }

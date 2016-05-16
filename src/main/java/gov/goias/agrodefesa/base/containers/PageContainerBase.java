@@ -10,14 +10,22 @@ public class PageContainerBase {
     @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Ok']")
     public WebElement ok;
 
+    @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Confirmar']")
+    public WebElement confirmar;
+
+    @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Concordo']")
+    public WebElement concordo;
+
     @FindBy(how = How.CSS, using = "a.ui-state-default.ui-state-highlight")
     private WebElement now;
 
     public void now(WebElement datePicker){
+        //datePicker.clear();
+        //BrowserDriver.waitForElement(datePicker);
         datePicker.click();
-        BrowserDriver.waitForElement(now);
-        now.click();
-        BrowserDriver.waitForElementIsNotPresent(now);
+        BrowserDriver.waitForElement(this.now);
+        this.now.click();
+        BrowserDriver.waitForElementIsNotPresent(this.now);
     }
 
 }

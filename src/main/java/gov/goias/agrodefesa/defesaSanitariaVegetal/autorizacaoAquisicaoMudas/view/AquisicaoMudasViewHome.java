@@ -1,41 +1,38 @@
 package gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.view;
 
+import gov.goias.agrodefesa.base.view.BaseViewHomeImpl;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.containers.AquisicaoMudasPageContainerHome;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.entity.AquisicaoMudas;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
-import org.openqa.selenium.support.PageFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class AquisicaoMudasViewHome {
-	private static final Logger log = LoggerFactory.getLogger(AquisicaoMudasViewInsert.class);
-	private static final AquisicaoMudasPageContainerHome container = PageFactory.initElements(BrowserDriver.getCurrentDriver(), AquisicaoMudasPageContainerHome.class);
+public class AquisicaoMudasViewHome extends BaseViewHomeImpl {
 
-	public static void isDisplayedCheck(){
-		log.debug(Constants.MGS_AGUARDANDO);
-		BrowserDriver.waitForElement(container.home);
-		container.home.isDisplayed();
+	public AquisicaoMudasViewHome(Object entity) {
+		super(entity, AquisicaoMudasPageContainerHome.class);
 	}
 
-    public static void incluirRegistro(){
-        log.debug(Constants.MGS_SELECIONADO, "INCLUIR REGISTRO");
-        container.incluirRegistro.click();
-    }
-
-	public static void cpfCnpjOrigem(String valor) {
-		log.debug(Constants.MGS_INSERIDO, "CPF CNPJ ORIGEM", valor);
-		container.cpfCnpjOrigem.sendKeys(valor);
+	private AquisicaoMudas getEntity() {
+		return (AquisicaoMudas) entity;
 	}
 
-    public static void pesquisar() {
-        log.debug(Constants.MGS_SELECIONADO, "PESQUISAR");
-		container.pesquisar.click();
+	private AquisicaoMudasPageContainerHome getContainer() {
+		return (AquisicaoMudasPageContainerHome) container;
 	}
 
-	public static void aprovacao() {
-		log.debug(Constants.MGS_AGUARDANDO);
-		BrowserDriver.waitForElement(container.aprovar);
-		container.aprovar.click();
+	@Override
+	public void pesquisar() {
+        log.debug(Constants.MGS_INSERIDO, "CPF CNPJ ORIGEM", getEntity().getPessoa().getCpfCnpj());
+        getContainer().cpfCnpjOrigem.sendKeys(getEntity().getPessoa().getCpfCnpj());
+
+		log.debug(Constants.MGS_SELECIONADO, "PESQUISAR");
+		getContainer().pesquisar.click();
+	}
+
+	public void aprovacao() {
+		log.debug(Constants.MGS_SELECIONADO, "APROVAR");
+		BrowserDriver.waitForElement(getContainer().document);
+		getContainer().document.click();
 	}
 
 

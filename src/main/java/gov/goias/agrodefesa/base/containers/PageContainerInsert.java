@@ -13,9 +13,6 @@ public class PageContainerInsert extends PageContainerBase {
     @FindBy(how = How.ID, using = "bt_inserir")
     public WebElement salvar;
 
-    @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Confirmar']")
-    public WebElement confirmar;
-
     @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Sim']")
     public WebElement sim;
 

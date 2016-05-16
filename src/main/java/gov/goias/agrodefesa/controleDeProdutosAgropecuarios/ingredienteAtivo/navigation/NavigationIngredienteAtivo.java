@@ -1,71 +1,20 @@
 package gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.navigation;
 
-import gov.goias.agrodefesa.constants.Action;
-import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.view.IngredienteAtivoViewEdit;
-import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.view.IngredienteAtivoViewHome;
-import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.view.IngredienteAtivoViewInsert;
-import gov.goias.agrodefesa.utils.BrowserDriver;
-import gov.goias.agrodefesa.utils.NavegacaoStrategy;
+import gov.goias.agrodefesa.base.navigation.NavigationBase;
+import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.entity.Ingrediente;
 import gov.goias.agrodefesa.utils.NavegacaoType;
 
 /**
  * Created by usuario on 10/03/16.
  */
-public class NavigationIngredienteAtivo implements NavegacaoStrategy {
+public class NavigationIngredienteAtivo extends NavigationBase {
 
-    private static final String INGREDIENTE = "Teste Automatizado";
-    private static final String ALTERAR = "-ALTERADO";
-
-    @Override
-    public void home() {
-        BrowserDriver.loadPage(NavegacaoType.INGREDIENTE_ATIVO.getUrl());
-        IngredienteAtivoViewHome.isDisplayedCheck();
-
+    public NavigationIngredienteAtivo(NavegacaoType type) {
+        super(type);
     }
 
-    @Override
-    public void insert() {
-        IngredienteAtivoViewHome.incluirRegistro();
-        IngredienteAtivoViewInsert.isDisplayedCheck();
-        IngredienteAtivoViewInsert.nomeIngrediente(INGREDIENTE);
-        BrowserDriver.screenshot();
-        IngredienteAtivoViewInsert.salvar();
-
-    }
-
-    @Override
-    public void search() {
-        IngredienteAtivoViewHome.isDisplayedCheck();
-        IngredienteAtivoViewHome.ingrediente(INGREDIENTE);
-        IngredienteAtivoViewHome.pesquisar();
-        IngredienteAtivoViewHome.isDisplayedGridPesquisar();
-
-    }
-
-    @Override
-    public void edit() {
-        search();
-        IngredienteAtivoViewHome.alterar();
-        IngredienteAtivoViewEdit.isDisplayedCheck();
-        IngredienteAtivoViewEdit.descricao(INGREDIENTE + ALTERAR);
-        IngredienteAtivoViewEdit.salvar();
-
-    }
-
-    @Override
-    public void others(Action action) {
-        switch(action){
-            case MENSAGEM_INSERT:
-                IngredienteAtivoViewInsert.aviso("Registro inserido com sucesso!");
-                break;
-            case MENSAGEM_EDIT:
-                IngredienteAtivoViewEdit.aviso("Registro alterado com sucesso!");
-                break;
-            default:
-                throw Action.actionNotFound(action.name());
-
-        }
-
+    public Ingrediente getEntity() {
+        return (Ingrediente) entity;
     }
 
 }

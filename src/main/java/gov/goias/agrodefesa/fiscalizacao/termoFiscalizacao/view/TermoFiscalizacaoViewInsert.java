@@ -1,14 +1,12 @@
 package gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.view;
 
-import gov.goias.agrodefesa.base.view.BaseView;
-import gov.goias.agrodefesa.base.view.InsertView;
+import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.containers.TermoFiscalizacaoPageContainerInsert;
 import gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.entity.TermoFiscalizacao;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
-import org.openqa.selenium.By;
 
-public class TermoFiscalizacaoViewInsert extends BaseView implements InsertView {
+public class TermoFiscalizacaoViewInsert extends BaseViewInsertImpl {
 
     public TermoFiscalizacaoViewInsert(Object entity) {
         super(entity, TermoFiscalizacaoPageContainerInsert.class);
@@ -73,7 +71,7 @@ public class TermoFiscalizacaoViewInsert extends BaseView implements InsertView 
 
         log.debug(Constants.MGS_SELECIONADO, "CONFIRMAR");
         getContainer().confirmar.click();
-        BrowserDriver.waitForElementIsNotPresent(By.id("div_id_termoobjetivofiscalizacao"));
+        BrowserDriver.waitForElementIsNotPresent(getContainer().homeAdicionarObjetivos);
 
         log.debug(Constants.MGS_INSERIDO, "SITUACAO ENCONTRADA", getEntity().getSituacaoEncontrada());
         getContainer().situacaoEncontrada.sendKeys(getEntity().getSituacaoEncontrada());
@@ -85,12 +83,6 @@ public class TermoFiscalizacaoViewInsert extends BaseView implements InsertView 
         BrowserDriver.screenshot();
         getContainer().salvar.click();
         getContainer().sim.click();
-    }
-
-    public void aviso() {
-        log.debug(Constants.MGS_MENSAGEM, Constants.REGISTRO_INSERIDO_COM_SUCESSO);
-        BrowserDriver.waitForText(getContainer().aviso, Constants.REGISTRO_INSERIDO_COM_SUCESSO);
-        getContainer().ok.click();
     }
 
 }

@@ -1,74 +1,61 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.lavoura.view;
 
+import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.lavoura.containers.LavouraPageContainerInsert;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.lavoura.entity.Lavoura;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
-import gov.goias.agrodefesa.cadastrosAgropecuarios.lavoura.entity.Produto;
-import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.PageFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class LavouraViewInsert {
-    private static final Logger log = LoggerFactory.getLogger(LavouraViewInsert.class);
-	private static final LavouraPageContainerInsert conteiner = PageFactory.initElements(BrowserDriver.getCurrentDriver(), LavouraPageContainerInsert.class);
+public class LavouraViewInsert  extends BaseViewInsertImpl {
 
-    public static void isDisplayedCheck(){
+    public LavouraViewInsert(Object entity) {
+        super(entity, LavouraPageContainerInsert.class);
+    }
+
+    private Lavoura getEntity() {
+        return (Lavoura) entity;
+    }
+
+    private LavouraPageContainerInsert getContainer() {
+        return (LavouraPageContainerInsert) container;
+    }
+
+    @Override
+    public void builder(){
         log.debug(Constants.MGS_AGUARDANDO);
-		BrowserDriver.waitForElement(conteiner.home);
-		conteiner.home.isDisplayed();
-	}
+        BrowserDriver.waitForElement(getContainer().home);
 
-    public static void listaSefaz(){
         log.debug(Constants.MGS_SELECIONADO, "LISTA SEFAZ");
-        BrowserDriver.waitForElement(conteiner.listaSefaz).click();
-    }
+        BrowserDriver.waitForElement(getContainer().listaSefaz);
+        getContainer().listaSefaz.click();
 
-    public static void adicionarProduto(Produto produto) {
-        log.debug(Constants.MGS_SELECIONADO, "ADICIONAR PRODUTO");
-        conteiner.adicionarProduto.click();
-        BrowserDriver.waitForElement(conteiner.produto);
-        BrowserDriver.selectByVisibleText(conteiner.produto, produto.getProduto());
-        BrowserDriver.selectByVisibleText(conteiner.cultivar, produto.getCultivar());
-        BrowserDriver.selectByVisibleText(conteiner.tipoProduto, produto.getTipoProduto());
-        conteiner.estimativaProducao.sendKeys(produto.getEstimativaProducao());
-        conteiner.dataPrevistoPlantio.click();
-        conteiner.dataAtual.click();
-        BrowserDriver.waitForElementIsNotPresent(By.cssSelector("a.ui-state-default.ui-state-highlight"));
-        conteiner.previsaoInicioColheita.click();
-        conteiner.dataAtual.click();
-        BrowserDriver.waitForElementIsNotPresent(By.cssSelector("a.ui-state-default.ui-state-highlight"));
-        conteiner.previsaoFimColheita.click();
-        conteiner.dataAtual.click();
-        BrowserDriver.waitForElementIsNotPresent(By.cssSelector("a.ui-state-default.ui-state-highlight"));
-        conteiner.areaPlantada.sendKeys(produto.getAreaPlantada());
-        conteiner.confirmar.click();
-        BrowserDriver.waitForElementIsNotPresent(By.id("div_produtos"));
-    }
+        adicionarProduto();
 
-    public static void sistemaCultivo(String valor){
-        log.debug(Constants.MGS_INSERIDO, "SISTEMA CULTIVO", valor);
-        BrowserDriver.waitForElement(conteiner.sistemaCultivo);
-        BrowserDriver.selectByVisibleText(conteiner.sistemaCultivo, valor);
-    }
+        log.debug(Constants.MGS_INSERIDO, "SISTEMA CULTIVO", getEntity().getSistemaCultivo());
+        BrowserDriver.selectByVisibleText(getContainer().sistemaCultivo, getEntity().getSistemaCultivo());
 
-    public static void origemSemente(String valor){
-        log.debug(Constants.MGS_INSERIDO, "ORIGEM SEMENTE", valor);
-        BrowserDriver.waitForElement(conteiner.origemSemente);
-        BrowserDriver.selectByVisibleText(conteiner.origemSemente, valor);
-    }
+        log.debug(Constants.MGS_INSERIDO, "ORIGEM SEMENTE", getEntity().getOrigemSemente());
+        BrowserDriver.selectByVisibleText(getContainer().origemSemente, getEntity().getOrigemSemente());
 
-    public static void salvar() {
         log.debug(Constants.MGS_SELECIONADO, "SALVAR");
-        BrowserDriver.scrollDown();
-        conteiner.salvar.click();
+        BrowserDriver.screenshot();
+        getContainer().salvar.click();
     }
 
-    public static void aviso(String valor) {
-        log.debug(Constants.MGS_MENSAGEM, valor);
-        BrowserDriver.waitForElement(conteiner.aviso);
-        Assert.assertEquals(conteiner.aviso.getText(), valor);
-        conteiner.ok.click();
+
+    public void adicionarProduto() {
+        log.debug(Constants.MGS_SELECIONADO, "ADICIONAR PRODUTO");
+        getContainer().adicionarProduto.click();
+        BrowserDriver.waitForElement(getContainer().adicionarProdutoHome);
+        BrowserDriver.selectByVisibleText(getContainer().produto, getEntity().getProduto().getProduto());
+        BrowserDriver.selectByVisibleText(getContainer().cultivar, getEntity().getProduto().getCultivar());
+        BrowserDriver.selectByVisibleText(getContainer().tipoProduto, getEntity().getProduto().getTipoProduto());
+        getContainer().estimativaProducao.sendKeys(getEntity().getProduto().getEstimativaProducao());
+        getContainer().now(getContainer().dataPrevistoPlantio);
+        getContainer().now(getContainer().previsaoInicioColheita);
+        getContainer().now(getContainer().previsaoFimColheita);
+        getContainer().areaPlantada.sendKeys(getEntity().getProduto().getAreaPlantada());
+        getContainer().confirmar.click();
+        BrowserDriver.waitForElementIsNotPresent(getContainer().adicionarProdutoHome);
     }
 }

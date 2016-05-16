@@ -1,12 +1,17 @@
 # sidago-teste
 
-## LINUX CONFIG
+## INSTALL
+### LINUX
 sudo apt-get install xvfb x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic x11-apps
 
 Xvfb :99 -ac -screen 0 1024x768x8
 
-## JENKINS
+### CENTOS
+sudo yum install git
+yum install xorg-X11-server-Xvfb
+yum install firefox
 
+## JENKINS
 ##### CONFIG
 ###### Plugins
 ```cmd
@@ -40,24 +45,40 @@ Description:
 Escolha um modulo para o Teste Automatizado
 
 Choices:
----------MODULOS---------------------------
 --tags @all
---tags @CadastrosAgropecuarios
---tags @Chamado
---tags @ConcessaoDeDiarias
---tags @ControleDeBens
---tags @ControleDeProdutosAgropecuarios
----------APLICATIVOS------------------------
+.
+........................FISCALIZACAO
+--tags @TermoFiscalizacao
+.
+........................DEFESA SANITARIA VEGETAL
+--tags @UnidadeProducao
+--tags @UnidadeConsolidacao
+--tags @AquisicaoMudas
+.
+........................DEFESA SANITARIA ANIMAL
+--tags @BoletimProducao
+.
+........................DENUNCIA
+--tags @AbrirDenuncia
+.
+........................CADASTROS AGROPECUARIOS
+--tags @Pessoa
 --tags @Propriedade
 --tags @Empresa
 --tags @EmpresaClassificacao
 --tags @EmpresaForaGoias
 --tags @Lavoura
+.
+........................CHAMADO
 --tags @AbrirChamado
+.
+........................CONTROLE DE BENS
 --tags @Almoxarifado
 --tags @Material
 --tags @Patrimonio
 --tags @TransferenciaDeBens
+.
+........................CONTROLE DE PRODUTOS AGROPECUARIOS
 --tags @IngredienteAtivo
 --tags @Produto
 ```

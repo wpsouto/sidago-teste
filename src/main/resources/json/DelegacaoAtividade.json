@@ -1,0 +1,17 @@
+{
+  "numeroDiaria": null,
+  "servidorDesignado": "Carla Giovanna Nunes de Farias Leite Coelho",
+  "meioDeTransporte": "Automóvel",
+  "dataSaida": null,
+  "dataChegada": null,
+  "descricaoDoServico": "Teste Automatizado",
+  "comPernoite": "Não",
+  "acompanhaAutoridade": "Não",
+  "tipoRecurso": "Recurso Próprio",
+  "fonteRecurso": "20 - Recurso Próprio",
+  "acao": "4001 - Administrativo",
+  "meta": "4001 - Administrativo",
+  "realizacao": "4001 - Administrativo.",
+  "empenho": "4001 | Presidência",
+  "atividades": "Teste Automatizado"
+}

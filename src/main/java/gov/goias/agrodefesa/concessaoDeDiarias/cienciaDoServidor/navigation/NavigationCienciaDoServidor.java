@@ -1,64 +1,23 @@
 package gov.goias.agrodefesa.concessaoDeDiarias.cienciaDoServidor.navigation;
 
-import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
-import gov.goias.agrodefesa.concessaoDeDiarias.cienciaDoServidor.view.CienciaDoServidorViewHome;
-import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.navigation.NavigationDelegacaoDeAtividades;
-import gov.goias.agrodefesa.constants.Action;
-import gov.goias.agrodefesa.utils.BrowserDriver;
-import gov.goias.agrodefesa.utils.NavegacaoStrategy;
+import gov.goias.agrodefesa.base.navigation.NavigationBase;
+import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.entity.DelegacaoAtividade;
 import gov.goias.agrodefesa.utils.NavegacaoType;
 
-public class NavigationCienciaDoServidor implements NavegacaoStrategy {
+public class NavigationCienciaDoServidor extends NavigationBase {
 
-    private NavigationDelegacaoDeAtividades delegacaoDeAtividades;
-
-    public NavigationCienciaDoServidor() {
-        delegacaoDeAtividades = (NavigationDelegacaoDeAtividades) NavegacaoFactory.getNavigator().pageLoad(NavegacaoType.DELEGACAO_DE_ATIVIDADES);
+    public NavigationCienciaDoServidor(NavegacaoType type) {
+        super(type);
     }
 
-    private void darCiencia() {
-        CienciaDoServidorViewHome.isDisplayedCheck();
-        CienciaDoServidorViewHome.numero(delegacaoDeAtividades.getNumeroDiaria());
-        CienciaDoServidorViewHome.pesquisar();
-        CienciaDoServidorViewHome.pesquisarCheck();
-        CienciaDoServidorViewHome.darCiencia();
+    public DelegacaoAtividade getEntity() {
+        return (DelegacaoAtividade) entity;
     }
 
     @Override
-    public void home() {
-        BrowserDriver.loadPage(NavegacaoType.CIENCIA_DO_SERVIDOR.getUrl());
-        CienciaDoServidorViewHome.isDisplayedCheck();
-
+    public void confirm() {
+        DelegacaoAtividade delegacaoAtividade = (DelegacaoAtividade) dependencia(DelegacaoAtividade.class, "@DelegacaoDeAtividade");
+        getEntity().setNumeroDiaria(delegacaoAtividade.getNumeroDiaria());
+        super.confirm();
     }
-
-    @Override
-    public void insert() {
-
-    }
-
-    @Override
-    public void search() {
-
-    }
-
-    @Override
-    public void edit() {
-
-    }
-
-    @Override
-    public void others(Action action) {
-        switch(action){
-            case OK:
-                darCiencia();
-                break;
-            case MENSAGEM_OK:
-                CienciaDoServidorViewHome.concordar();
-                break;
-            default:
-                throw Action.actionNotFound(action.name());
-        }
-
-    }
-
 }

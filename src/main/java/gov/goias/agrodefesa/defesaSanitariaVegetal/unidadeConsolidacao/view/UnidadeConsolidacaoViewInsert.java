@@ -1,13 +1,12 @@
 package gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.view;
 
-import gov.goias.agrodefesa.base.view.BaseView;
-import gov.goias.agrodefesa.base.view.InsertView;
+import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.containers.UnidadeConsolidacaoPageContainerInsert;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.entity.UnidadeConsolidacao;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
-public class UnidadeConsolidacaoViewInsert extends BaseView implements InsertView {
+public class UnidadeConsolidacaoViewInsert extends BaseViewInsertImpl {
 
     public UnidadeConsolidacaoViewInsert(Object entity) {
         super(entity, UnidadeConsolidacaoPageContainerInsert.class);
@@ -23,6 +22,7 @@ public class UnidadeConsolidacaoViewInsert extends BaseView implements InsertVie
 
     }
     
+    @Override
     public void builder(){
         log.debug(Constants.MGS_AGUARDANDO);
         BrowserDriver.waitForElement(getContainer().home);
@@ -58,12 +58,6 @@ public class UnidadeConsolidacaoViewInsert extends BaseView implements InsertVie
         log.debug(Constants.MGS_SELECIONADO, "SALVAR");
         BrowserDriver.screenshot();
         getContainer().salvar.click();
-    }
-
-    public void aviso() {
-        log.debug(Constants.MGS_MENSAGEM, Constants.REGISTRO_INSERIDO_COM_SUCESSO);
-        BrowserDriver.waitForText(getContainer().aviso, Constants.REGISTRO_INSERIDO_COM_SUCESSO);
-        getContainer().ok.click();
     }
 
 }

@@ -1,91 +1,85 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.propriedade.view;
 
-import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity.Endereco;
+import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.propriedade.containers.PropriedadePageContainerInsert;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.propriedade.entity.Propriedade;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
-import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.PageFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class PropriedadeViewInsert {
-    private static final Logger log = LoggerFactory.getLogger(PropriedadeViewInsert.class);
-	private static final PropriedadePageContainerInsert conteiner = PageFactory.initElements(BrowserDriver.getCurrentDriver(), PropriedadePageContainerInsert.class);
+public class PropriedadeViewInsert  extends BaseViewInsertImpl {
 
-    public static void isDisplayedCheck(){
-		log.debug(Constants.MGS_AGUARDANDO);
-		BrowserDriver.waitForElement(conteiner.home);
-		conteiner.home.isDisplayed();
-	}
-
-    public static void produtor(String valor){
-        log.debug(Constants.MGS_INSERIDO, "PRODUTOR", valor);
-        conteiner.produtor.clear();
-        conteiner.produtor.sendKeys(valor);
-        BrowserDriver.waitForElement(conteiner.produtorAutoComplete).click();
+    public PropriedadeViewInsert(Object entity) {
+        super(entity, PropriedadePageContainerInsert.class);
     }
 
-    public static void pesquisar() {
+    private Propriedade getEntity() {
+        return (Propriedade) entity;
+    }
+
+    private PropriedadePageContainerInsert getContainer() {
+        return (PropriedadePageContainerInsert) container;
+    }
+
+    @Override
+    public void builder(){
+        log.debug(Constants.MGS_AGUARDANDO);
+        BrowserDriver.waitForElement(getContainer().home);
+
+        log.debug(Constants.MGS_INSERIDO, "PRODUTOR", getEntity().getPessoa().getCpfCnpj());
+        getContainer().produtor.clear();
+        getContainer().produtor.sendKeys(getEntity().getPessoa().getCpfCnpj());
+        BrowserDriver.waitForElement(getContainer().produtorAutoComplete);
+        getContainer().produtorAutoComplete.click();
+
         log.debug(Constants.MGS_SELECIONADO, "PESQUISAR");
-        conteiner.pesquisar.click();
-        BrowserDriver.waitForElement(conteiner.cliqueAqui);
-        conteiner.cliqueAqui.click();
-    }
+        getContainer().pesquisarSEFAZ.click();
 
-    public static void nomePropriedade(String valor){
-        log.debug(Constants.MGS_INSERIDO, "Nome Propriedade", valor);
-        BrowserDriver.waitForElement(conteiner.nomePropriedade);
-        conteiner.nomePropriedade.clear();
-        conteiner.nomePropriedade.sendKeys(valor);
-    }
+        log.debug(Constants.MGS_SELECIONADO, "CLIQUE AQUI");
+        BrowserDriver.waitForElement(getContainer().cliqueAqui);
+        getContainer().cliqueAqui.click();
 
-    public static void tipoDeContribuinte(String valor){
-        log.debug(Constants.MGS_INSERIDO, "Tipo de Contribuinte", valor);
-        BrowserDriver.selectByVisibleText(conteiner.tipoDeContribuinte, valor);
-    }
+        log.debug(Constants.MGS_INSERIDO, "NOME PROPRIEDADE", getEntity().getNomePropriedade());
+        BrowserDriver.waitForElement(getContainer().nomePropriedade);
+        getContainer().nomePropriedade.sendKeys(getEntity().getNomePropriedade());
 
-    public static void condicaoDePropriedade(String valor){
-        log.debug(Constants.MGS_INSERIDO, "condicao de propriedade", valor);
-        BrowserDriver.selectByVisibleText(conteiner.condicaoDePropriedade, valor);
-    }
+        log.debug(Constants.MGS_INSERIDO, "TIPO DE CONTRIBUINTE", getEntity().getTipoContribuinte());
+        BrowserDriver.selectByVisibleText(getContainer().tipoDeContribuinte, getEntity().getTipoContribuinte());
 
-    public static void adionarEndereco(Endereco endereco){
-        log.debug(Constants.MGS_INSERIDO, "adionarEndereco");
-        conteiner.adicionarEndereco.click();
-        BrowserDriver.waitForElement(conteiner.tipoEndereco);
-        BrowserDriver.selectByVisibleText(conteiner.tipoEndereco, endereco.getTipoEndereco());
-        conteiner.endereco.sendKeys(endereco.getEndereco());
-        conteiner.bairro.sendKeys(endereco.getBairro());
-        conteiner.cep.sendKeys(endereco.getCep());
-        conteiner.complemento.sendKeys(endereco.getComplemento());
-        conteiner.roteiro.sendKeys(endereco.getRoteiro());
-        conteiner.confirmar.click();
-        BrowserDriver.waitForElementIsNotPresent(By.id("id_enderecotipo"));
-    }
+        log.debug(Constants.MGS_INSERIDO, "CONDICAO DE PROPRIEDADE", getEntity().getCondicaoPropriedade());
+        BrowserDriver.selectByVisibleText(getContainer().condicaoDePropriedade, getEntity().getCondicaoPropriedade());
 
-    public static void adionarResponsavelTecnico(String valor){
-        log.debug(Constants.MGS_INSERIDO, "ADIONAR RESPONSAVEL TECNICO", valor);
-        conteiner.adicionarResponsavelTecnico.click();
-        BrowserDriver.waitForElement(conteiner.homeResponsavelTecnico);
-        conteiner.nomeResponsavelTecnico.sendKeys(valor);
-        BrowserDriver.waitForElement(conteiner.nomeResponsavelTecnicoAutoComplete);
-        conteiner.nomeResponsavelTecnicoAutoComplete.click();
-        conteiner.confirmar.click();
-        BrowserDriver.waitForElementIsNotPresent(By.id("div_id_rt"));
-    }
-
-    public static void salvar() {
+        adionarEndereco();
+        adionarResponsavelTecnico();
         log.debug(Constants.MGS_SELECIONADO, "SALVAR");
-        conteiner.salvar.click();
+        BrowserDriver.screenshot();
+        getContainer().salvar.click();
     }
 
-    public static void aviso(String valor) {
-        log.debug(Constants.MGS_MENSAGEM, valor);
-        BrowserDriver.waitForElement(conteiner.aviso);
-        Assert.assertEquals(conteiner.aviso.getText(), valor);
-        conteiner.ok.click();
+    public void adionarEndereco(){
+        log.debug(Constants.MGS_SELECIONADO, "ADIONAR ENDERECO");
+        getContainer().adicionarEndereco.click();
+        BrowserDriver.waitForElement(getContainer().adicionarEnderecoHome);
+        BrowserDriver.selectByVisibleText(getContainer().tipoEndereco, getEntity().getEndereco().getTipoEndereco());
+        getContainer().endereco.sendKeys(getEntity().getEndereco().getEndereco());
+        getContainer().bairro.sendKeys(getEntity().getEndereco().getBairro());
+        getContainer().cep.sendKeys(getEntity().getEndereco().getCep());
+        getContainer().complemento.sendKeys(getEntity().getEndereco().getComplemento());
+        getContainer().roteiro.sendKeys(getEntity().getEndereco().getRoteiro());
+        getContainer().confirmar.click();
+        BrowserDriver.waitForElementIsNotPresent(getContainer().adicionarEnderecoHome);
+    }
+
+    public void adionarResponsavelTecnico(){
+        log.debug(Constants.MGS_SELECIONADO, "ADICIONAR RESPONSAVEL TECNICO");
+        getContainer().adicionarResponsavelTecnico.click();
+        BrowserDriver.waitForElement(getContainer().responsavelTecnicoHome);
+
+        log.debug(Constants.MGS_INSERIDO, "NOME RESPONSAVEL TECNICO", getEntity().getResponsavelTecnico());
+        getContainer().nomeResponsavelTecnico.sendKeys(getEntity().getResponsavelTecnico());
+        BrowserDriver.waitForElement(getContainer().nomeResponsavelTecnicoAutoComplete);
+        getContainer().nomeResponsavelTecnicoAutoComplete.click();
+        getContainer().confirmar.click();
+        BrowserDriver.waitForElementIsNotPresent(getContainer().responsavelTecnicoHome);
     }
 
 }

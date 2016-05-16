@@ -1,6 +1,8 @@
 package gov.goias.agrodefesa.denuncia.abrirDenuncia.view;
 
+import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.denuncia.abrirDenuncia.containers.AbrirDenunciaPageContainerInsert;
+import gov.goias.agrodefesa.denuncia.abrirDenuncia.entity.AbrirDenuncia;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 import org.junit.Assert;
@@ -8,37 +10,37 @@ import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class AbrirDenunciaViewInsert {
-    private static final Logger log = LoggerFactory.getLogger(AbrirDenunciaViewInsert.class);
-	private static final AbrirDenunciaPageContainerInsert conteiner = PageFactory.initElements(BrowserDriver.getCurrentDriver(), AbrirDenunciaPageContainerInsert.class);
+public class AbrirDenunciaViewInsert extends BaseViewInsertImpl {
 
-	public static void isDisplayedCheck(){
+    public AbrirDenunciaViewInsert(Object entity) {
+        super(entity, AbrirDenunciaPageContainerInsert.class);
+    }
+
+    private AbrirDenuncia getEntity() {
+        return (AbrirDenuncia) entity;
+    }
+
+    private AbrirDenunciaPageContainerInsert getContainer() {
+        return (AbrirDenunciaPageContainerInsert) container;
+    }
+
+
+    @Override
+    public void builder(){
         log.debug(Constants.MGS_AGUARDANDO);
-		BrowserDriver.waitForElement(conteiner.home);
-		conteiner.home.isDisplayed();
-	}
+        BrowserDriver.waitForElement(getContainer().home);
+        getContainer().home.isDisplayed();
 
-    public static void tipoInfracao(String valor){
-        log.debug(Constants.MGS_INSERIDO, "TIPO INFRACAO", valor);
-        BrowserDriver.selectByVisibleText(conteiner.tipoInfracao, valor);
-    }
+        log.debug(Constants.MGS_INSERIDO, "TIPO INFRACAO", getEntity().getTipoInfracao());
+        BrowserDriver.selectByVisibleText(getContainer().tipoInfracao, getEntity().getTipoInfracao());
 
-    public static void assunto(String valor){
-        log.debug(Constants.MGS_INSERIDO, "ASSUNTO", valor);
-        conteiner.assunto.clear();
-        conteiner.assunto.sendKeys(valor);
-    }
+        log.debug(Constants.MGS_INSERIDO, "ASSUNTO", getEntity().getAssunto());
+        getContainer().assunto.clear();
+        getContainer().assunto.sendKeys(getEntity().getAssunto());
 
-    public static void salvar() {
         log.debug(Constants.MGS_SELECIONADO, "SALVAR");
-        conteiner.salvar.click();
-    }
-
-    public static void aviso(String valor) {
-        log.debug(Constants.MGS_MENSAGEM, valor);
-        BrowserDriver.waitForElement(conteiner.aviso);
-        Assert.assertEquals(conteiner.aviso.getText(), valor);
-        conteiner.ok.click();
+        BrowserDriver.screenshot();
+        getContainer().salvar.click();
     }
 
 }

@@ -1,6 +1,8 @@
 package gov.goias.agrodefesa.concessaoDeDiarias.assinaturaDeDiarias.view;
 
+import gov.goias.agrodefesa.base.view.BaseViewHomeImpl;
 import gov.goias.agrodefesa.concessaoDeDiarias.assinaturaDeDiarias.containers.AssinaturaDeDiariasPageContainerHome;
+import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.entity.DelegacaoAtividade;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 import org.junit.Assert;
@@ -8,50 +10,50 @@ import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class AssinaturaDeDiariasViewHome {
-    private static final Logger log = LoggerFactory.getLogger(AssinaturaDeDiariasViewHome.class);
-	private static final AssinaturaDeDiariasPageContainerHome container = PageFactory.initElements(BrowserDriver.getCurrentDriver(), AssinaturaDeDiariasPageContainerHome.class);
+public class AssinaturaDeDiariasViewHome extends BaseViewHomeImpl {
 
-	public static void isDisplayedCheck(){
-        log.debug(Constants.MGS_AGUARDANDO);
-		BrowserDriver.waitForElement(container.home);
-		container.home.isDisplayed();
-	}
-
-    public static void numeroDaDiaria(String valor) {
-        log.debug(Constants.MGS_INSERIDO, "NUMERO DA DIARIA", valor);
-        container.numeroDaDiaria.sendKeys(valor);
+    public AssinaturaDeDiariasViewHome(Object entity) {
+        super(entity, AssinaturaDeDiariasPageContainerHome.class);
     }
 
-    public static void pesquisar() {
+    private DelegacaoAtividade getEntity() {
+        return (DelegacaoAtividade) entity;
+    }
+
+    private AssinaturaDeDiariasPageContainerHome getContainer() {
+        return (AssinaturaDeDiariasPageContainerHome) container;
+    }
+
+    @Override
+    public void pesquisar() {
+        log.debug(Constants.MGS_INSERIDO, "NUMERO", getEntity().getNumeroDiaria());
+        getContainer().numeroDaDiaria.sendKeys(getEntity().getNumeroDiaria());
+
         log.debug(Constants.MGS_SELECIONADO, "PESQUISAR");
-        container.pesquisar.click();
+        getContainer().pesquisar.click();
     }
 
-    public static void isDisplayedGridPesquisar() {
-        log.debug(Constants.MGS_AGUARDANDO);
-        BrowserDriver.waitForElement(container.gridNumero);
-        container.gridNumero.isDisplayed();
-        Assert.assertEquals(container.numeroDaDiaria.getAttribute("value"), container.gridNumero.getText());
-    }
-
-    public static void informacoesDetalhadas() {
+    @Override
+    public void confirm() {
         log.debug(Constants.MGS_SELECIONADO, "OPERACAO INFORMACOES DETALHADAS");
-        BrowserDriver.waitForElement(container.gridInformacoesDetalhadas);
-        container.gridInformacoesDetalhadas.click();
+        BrowserDriver.waitForText(getContainer().gridRow, getEntity().getNumeroDiaria());
+        getContainer().gridInformacoesDetalhadas.click();
+
+        log.debug(Constants.MGS_SELECIONADO, "ASSINAR DIARIA");
+        BrowserDriver.waitForElement(getContainer().assinarHome);
+        getContainer().assinar.click();
+
+        log.debug(Constants.MGS_SELECIONADO, "OK");
+        BrowserDriver.waitForElement(getContainer().ok);
+        getContainer().ok.click();
+
     }
 
-    public static void assinar(){
-        log.debug(Constants.MGS_SELECIONADO, "ASSINAR");
-        BrowserDriver.waitForElement(container.assinar);
-        container.assinar.click();
-    }
-
-    public static void confirmar(){
+    public void aviso(){
         log.debug(Constants.MGS_SELECIONADO, "OPERACAO CONFIRMAR");
-        BrowserDriver.waitForElement(container.confirmar);
-        container.confirmar.click();
+        BrowserDriver.closeAlert();//waitForText(getContainer().assinarHome, "Diária assinada com sucesso.");
     }
+
 
 }
 

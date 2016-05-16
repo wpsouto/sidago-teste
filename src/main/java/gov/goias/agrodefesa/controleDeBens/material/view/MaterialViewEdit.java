@@ -1,32 +1,17 @@
 package gov.goias.agrodefesa.controleDeBens.material.view;
 
-import gov.goias.agrodefesa.controleDeBens.material.containers.MaterialEditPageContainer;
-import gov.goias.agrodefesa.utils.BrowserDriver;
-import org.junit.Assert;
-import org.openqa.selenium.support.PageFactory;
+import gov.goias.agrodefesa.base.view.BaseViewEditImpl;
+import gov.goias.agrodefesa.controleDeBens.material.containers.MaterialPageContainerEdit;
 
-public class MaterialViewEdit {
-	private static final MaterialEditPageContainer conteiner = PageFactory.initElements(BrowserDriver.getCurrentDriver(), MaterialEditPageContainer.class);
+public class MaterialViewEdit extends BaseViewEditImpl {
 
-	public static void isDisplayedCheck(){
-		BrowserDriver.waitForElement(conteiner.home);
-		conteiner.home.isDisplayed();
-	}
-
-    public static void nomeMaterial(String valor){
-        conteiner.nomeMaterial.clear();
-        conteiner.nomeMaterial.sendKeys(valor);
+    public MaterialViewEdit(Object entity) {
+        super(entity, MaterialPageContainerEdit.class);
     }
 
-    public static void salvar() {
-        BrowserDriver.waitForElement(conteiner.salvar);
-        conteiner.salvar.click();
+    protected MaterialPageContainerEdit getContainer() {
+        return (MaterialPageContainerEdit) container;
     }
 
-    public static void aviso(String valor) {
-        BrowserDriver.waitForElement(conteiner.aviso);
-        Assert.assertEquals(conteiner.aviso.getText(), valor);
-        conteiner.ok.click();
-    }
 
 }

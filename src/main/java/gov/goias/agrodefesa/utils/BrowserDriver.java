@@ -13,8 +13,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
-
 public class BrowserDriver {
     private static final Logger log = LoggerFactory.getLogger(BrowserDriver.class);
     private static WebDriver mDriver;
@@ -85,12 +83,6 @@ public class BrowserDriver {
         actions.keyDown(Keys.CONTROL).sendKeys(Keys.END).perform();
     }
 
-    public static void scroll(WebElement element){
-        JavascriptExecutor js =(JavascriptExecutor)getCurrentDriver();
-        js.executeScript("window.scrollTo(0,"+(element.getLocation().y-200)+")");
-
-    }
-
     public static void waitForText(WebElement elementToWaitFor, String value) {
         waitForText(elementToWaitFor, value, 10);
     }
@@ -102,15 +94,6 @@ public class BrowserDriver {
 
         WebDriverWait wait = new WebDriverWait(getCurrentDriver(), waitTimeInSeconds);
         wait.until(ExpectedConditions.textToBePresentInElement(elementToWaitFor, value));
-    }
-
-    public static void waitForValue(WebElement elementToWaitFor, String value, Integer waitTimeInSeconds) {
-        if (waitTimeInSeconds == null) {
-            waitTimeInSeconds = 10;
-        }
-
-        WebDriverWait wait = new WebDriverWait(getCurrentDriver(), waitTimeInSeconds);
-        wait.until(ExpectedConditions.textToBePresentInElementValue(elementToWaitFor, value));
     }
 
     public static WebElement waitForClickable(WebElement elementToWaitFor) {
@@ -143,11 +126,6 @@ public class BrowserDriver {
         return (getCurrentDriver().findElements(By.id(ID)).size() > 0);
     }
 
-    public static void waitForElementIsNotPresent(By locator){
-        WebDriverWait wait = new WebDriverWait(getCurrentDriver(), 10);
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
-    }
-
     public static void waitForElementIsNotPresent(WebElement webElement) {
         WebDriverWait wait = new WebDriverWait(getCurrentDriver(), 10);
         wait.until(new ExpectedCondition<Boolean>() {
@@ -170,9 +148,19 @@ public class BrowserDriver {
         select.selectByVisibleText(value);
     }
 
+    public static void waitForSelectByVisibleText(WebElement webElement, String value) {
+        waitForSelectOptions(webElement);
+        selectByVisibleText(webElement, value);
+    }
+
     public static void selectByIndex(WebElement webElement, int value) {
         Select select = new Select(webElement);
         select.selectByIndex(value);
+    }
+
+    public static void waitForSelectByIndex(WebElement webElement, int index) {
+        waitForSelectOptions(webElement);
+        selectByIndex(webElement, index);
     }
 
     public static void waitForSelectOptions(WebElement webElement) {
@@ -185,24 +173,13 @@ public class BrowserDriver {
                 return select.getOptions().size() > 1;
             }
         });
-
-
-
     }
 
-    public static void selectByIndexWait(WebElement webElement, int value) {
-        Select select = new Select(webElement);
-
-        WebDriverWait wait = new WebDriverWait(getCurrentDriver(), 10);
-        wait.until(new ExpectedCondition<Boolean>() {
-            @Override
-            public Boolean apply(WebDriver webDriver) {
-                return select.getOptions().size() > 1;
-            }
-        });
-
-
-        select.selectByIndex(value);
+    public static void uploadFile(WebElement webElement) {
+        JavascriptExecutor executor =  ((JavascriptExecutor) BrowserDriver.getCurrentDriver());
+        String js = "arguments[0].style.display ='block';";
+        executor.executeScript(js, webElement);
+        webElement.sendKeys(FileUtils.getFileFromResource("upload.pdf").getPath());
     }
 
     public static void closeAlert() {

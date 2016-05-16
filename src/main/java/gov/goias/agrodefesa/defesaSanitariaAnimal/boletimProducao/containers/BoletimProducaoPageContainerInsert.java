@@ -1,28 +1,20 @@
 package gov.goias.agrodefesa.defesaSanitariaAnimal.boletimProducao.containers;
 
+import gov.goias.agrodefesa.base.containers.PageContainerInsert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class BoletimProducaoPageContainerInsert {
+public class BoletimProducaoPageContainerInsert extends PageContainerInsert {
 
-    @FindBy(how = How.ID, using = "bt_inserir")
-    public WebElement home;
-
-    @FindBy(how = How.LINK_TEXT, using = "Pesquisar")
-    public WebElement pesquisar;
+    @FindBy(how = How.ID, using = "div_pesquisar_propriedade")
+    public WebElement propriedadeHome;
 
     @FindBy(how = How.ID, using = "cnpjcpf")
     public WebElement cnpjCpf;
 
     @FindBy(how = How.LINK_TEXT, using = "Realizar Pesquisa")
     public WebElement realizarPesquisa;
-
-    @FindBy(how = How.LINK_TEXT, using = "Selecionar")
-    public WebElement selecionar;
-
-    @FindBy(how = How.CSS, using = "a.ui-state-default.ui-state-highlight")
-    public WebElement now;
 
     @FindBy(how = How.ID, using = "materia_prima")
     public WebElement materiaPrimaOrigem;
@@ -56,14 +48,5 @@ public class BoletimProducaoPageContainerInsert {
 
     @FindBy(how = How.ID, using = "apresentacao_materia_prima")
     public WebElement apresentacaoMateriaPrima;
-
-    @FindBy(how = How.ID, using = "bt_inserir")
-    public WebElement salvar;
-
-    @FindBy(how = How.XPATH, using = "//*[@id=\"aviso\"]/div/p/strong")
-    public WebElement aviso;
-
-    @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Ok']")
-    public WebElement ok;
 
 }

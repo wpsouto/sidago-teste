@@ -1,13 +1,12 @@
 package gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.view;
 
-import gov.goias.agrodefesa.base.view.BaseView;
-import gov.goias.agrodefesa.base.view.HomeView;
+import gov.goias.agrodefesa.base.view.BaseViewHomeImpl;
 import gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.containers.TermoFiscalizacaoPageContainerHome;
 import gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.entity.TermoFiscalizacao;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
-public class TermoFiscalizacaoViewHome extends BaseView implements HomeView {
+public class TermoFiscalizacaoViewHome extends BaseViewHomeImpl {
 
     public TermoFiscalizacaoViewHome(Object entity) {
         super(entity, TermoFiscalizacaoPageContainerHome.class);
@@ -23,18 +22,6 @@ public class TermoFiscalizacaoViewHome extends BaseView implements HomeView {
 
     }
 
-    public void isDisplayedCheck(){
-		log.debug(Constants.MGS_AGUARDANDO);
-		BrowserDriver.waitForElement(getContainer().home);
-        getContainer().home.isDisplayed();
-	}
-
-    @Override
-    public void incluir(){
-        log.debug(Constants.MGS_SELECIONADO, "INCLUIR REGISTRO");
-        getContainer().incluirRegistro.click();
-    }
-
     @Override
     public void pesquisar() {
         log.debug(Constants.MGS_INSERIDO, "DATA CRIACAO");
@@ -48,11 +35,5 @@ public class TermoFiscalizacaoViewHome extends BaseView implements HomeView {
         getEntity().setNumero(getContainer().numero.getText());
 
 	}
-
-    @Override
-    public void alterar() {
-
-    }
-
 
 }

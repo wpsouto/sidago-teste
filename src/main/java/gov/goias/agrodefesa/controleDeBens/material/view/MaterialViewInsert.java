@@ -1,66 +1,55 @@
 package gov.goias.agrodefesa.controleDeBens.material.view;
 
-import gov.goias.agrodefesa.controleDeBens.material.containers.MaterialInsertPageContainer;
+import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
+import gov.goias.agrodefesa.controleDeBens.material.containers.MaterialPageContainerInsert;
+import gov.goias.agrodefesa.controleDeBens.material.entity.Material;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
-import org.junit.Assert;
-import org.openqa.selenium.support.PageFactory;
 
-public class MaterialViewInsert {
-	private static final MaterialInsertPageContainer conteiner = PageFactory.initElements(BrowserDriver.getCurrentDriver(), MaterialInsertPageContainer.class);
+public class MaterialViewInsert extends BaseViewInsertImpl {
 
-    public static void isDisplayedCheck(){
-		BrowserDriver.waitForElement(conteiner.tipoMaterial);
-		conteiner.home.isDisplayed();
-	}
-
-    public static void nomeMaterial(String valor){
-        conteiner.nomeMaterial.clear();
-        conteiner.nomeMaterial.sendKeys(valor);
+    public MaterialViewInsert(Object entity) {
+        super(entity, MaterialPageContainerInsert.class);
     }
 
-    public static void checkErroNomeMaterial(){
-        BrowserDriver.waitForElement(conteiner.nomeMaterialErro);
-        Assert.assertEquals(conteiner.nomeMaterialErro.getText(), Constants.ERRO_CAMPO_OBRIGATORIO);
+    private Material getEntity() {
+        return (Material) entity;
     }
 
-    public static void tipoMaterial(String valor) {
-        BrowserDriver.selectByVisibleText(conteiner.tipoMaterial, valor);
+    protected MaterialPageContainerInsert getContainer() {
+        return (MaterialPageContainerInsert) container;
     }
 
-    public static void checkErroTipoMaterial(){
-        BrowserDriver.waitForElement(conteiner.tipoMaterialErro);
-        Assert.assertEquals(conteiner.tipoMaterialErro.getText(), Constants.ERRO_CAMPO_OBRIGATORIO);
+    public void builder(){
+        log.debug(Constants.MGS_AGUARDANDO);
+        BrowserDriver.waitForElement(getContainer().home);
+
+        log.debug(Constants.MGS_INSERIDO, "NOME MATERIAL", getEntity().getNome());
+        getContainer().nomeMaterial.sendKeys(getEntity().getNome());
+
+        log.debug(Constants.MGS_INSERIDO, "TIPO MATERIAL", getEntity().getTipoMaterial());
+        BrowserDriver.selectByVisibleText(getContainer().tipoMaterial, getEntity().getTipoMaterial());
+
+        log.debug(Constants.MGS_INSERIDO, "UNIDADE MEDIDA", getEntity().getUnidadeMedida());
+        BrowserDriver.selectByVisibleText(getContainer().unidadeMedida, getEntity().getUnidadeMedida());
+
+        log.debug(Constants.MGS_INSERIDO, "ESTOQUE MINIMO", getEntity().getEstoqueMinimo());
+        getContainer().estoqueMinimo.sendKeys(getEntity().getEstoqueMinimo());
+
+        log.debug(Constants.MGS_SELECIONADO, "SALVAR");
+        BrowserDriver.screenshot();
+        getContainer().salvar.click();
     }
 
-    public static void unidadeMedida(String valor) {
-        BrowserDriver.selectByVisibleText(conteiner.unidadeMedida, valor);
-    }
+    public void salvarTodosCamposVazios() {
+        getContainer().salvar.click();
+        BrowserDriver.screenshot();
 
-    public static void checkErroUniadeMedida(){
-        BrowserDriver.waitForElement(conteiner.unidadeMedidaErro);
-        Assert.assertEquals(conteiner.unidadeMedidaErro.getText(), Constants.ERRO_CAMPO_OBRIGATORIO);
-    }
-
-    public static void estoqueMinimo(String valor) {
-        conteiner.estoqueMinimo.clear();
-        conteiner.estoqueMinimo.sendKeys(valor);
-    }
-
-    public static void salvar() {
-        BrowserDriver.waitForElement(conteiner.salvar);
-        conteiner.salvar.click();
-    }
-
-    public static void aviso(String valor) {
-        BrowserDriver.waitForElement(conteiner.aviso);
-        Assert.assertEquals(conteiner.aviso.getText(), valor);
-        conteiner.ok.click();
-    }
-
-    public static void validacao(String valor) {
-        BrowserDriver.waitForElement(conteiner.validacao);
-        Assert.assertEquals(conteiner.validacao.getText(), valor);
+        BrowserDriver.waitForText(getContainer().validacao, Constants.MGS_ERRO_VALIDAR_INSERIR);
+        getContainer().ok.click();
+        BrowserDriver.waitForText(getContainer().nomeMaterialErro, Constants.MGS_ERRO_CAMPO_OBRIGATORIO);
+        BrowserDriver.waitForText(getContainer().tipoMaterialErro, Constants.MGS_ERRO_CAMPO_OBRIGATORIO);
+        BrowserDriver.waitForText(getContainer().unidadeMedidaErro, Constants.MGS_ERRO_CAMPO_OBRIGATORIO);
     }
 
 }

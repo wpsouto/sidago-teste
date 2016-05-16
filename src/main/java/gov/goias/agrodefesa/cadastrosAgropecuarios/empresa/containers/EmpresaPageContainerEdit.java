@@ -1,11 +1,12 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.containers;
 
+import gov.goias.agrodefesa.base.containers.PageContainerEdit;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class EmpresaPageContainerEdit {
+public class EmpresaPageContainerEdit extends PageContainerEdit {
 
     @FindBy(how = How.ID, using = "bt_salvarsemenviar")
     public WebElement home;
@@ -55,14 +56,8 @@ public class EmpresaPageContainerEdit {
     @FindBy(how = How.ID, using = "dt_vencimento")
     public WebElement dataVencimento;
 
-    @FindBy(how = How.CSS, using = "a.ui-state-default.ui-state-highlight")
-    public WebElement dataAtual;
-
     @FindBy(how = How.ID, using = "doc_2016")
     public WebElement file;
-
-    @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Confirmar']")
-    public WebElement confirmar;
 
     @FindBy(how = How.ID, using = "bt_enviarcadastro")
     public WebElement enviarCadastro;
@@ -70,10 +65,5 @@ public class EmpresaPageContainerEdit {
     @FindBy(how = How.ID, using = "bt_salvarsemenviar")
     public WebElement salvar;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"aviso\"]/div/p/strong")
-    public WebElement aviso;
-
-    @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Ok']")
-    public WebElement ok;
 
 }

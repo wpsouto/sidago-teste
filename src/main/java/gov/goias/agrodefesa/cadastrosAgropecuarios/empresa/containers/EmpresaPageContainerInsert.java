@@ -1,10 +1,11 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.containers;
 
+import gov.goias.agrodefesa.base.containers.PageContainerInsert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class EmpresaPageContainerInsert {
+public class EmpresaPageContainerInsert extends PageContainerInsert {
 
     @FindBy(how = How.ID, using = "cnpj")
     public WebElement home;
@@ -16,7 +17,7 @@ public class EmpresaPageContainerInsert {
     public WebElement classificacao;
 
     @FindBy(how = How.XPATH, using = "//*[@id=\"divEdicao\"]/fieldset/div[2]/div[2]/img")
-    public WebElement pesquisar;
+    public WebElement pesquisarEmpresa;
 
     @FindBy(how = How.LINK_TEXT, using = "clique aqui")
     public WebElement cliqueAqui;
@@ -60,8 +61,14 @@ public class EmpresaPageContainerInsert {
     @FindBy(how = How.LINK_TEXT, using = "Informação Complementar")
     public WebElement informacaoComplementar;
 
+    @FindBy(how = How.ID, using = "div_id_endereco")
+    public WebElement enderecoHome;
+
     @FindBy(how = How.LINK_TEXT, using = "Adicionar Endereço")
     public WebElement adicionarEndereco;
+
+    @FindBy(how = How.ID, using = "div_id_email")
+    public WebElement emailHome;
 
     @FindBy(how = How.LINK_TEXT, using = "Adicionar Email")
     public WebElement adicionarEmail;
@@ -87,22 +94,7 @@ public class EmpresaPageContainerInsert {
     @FindBy(how = How.ID, using = "dt_vencimento")
     public WebElement dataVencimento;
 
-    @FindBy(how = How.CSS, using = "a.ui-state-default.ui-state-highlight")
-    public WebElement dataAtual;
-
     @FindBy(how = How.ID, using = "doc_2016")
     public WebElement file;
-
-    @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Confirmar']")
-    public WebElement confirmar;
-
-    @FindBy(how = How.ID, using = "bt_inserir")
-    public WebElement salvar;
-
-    @FindBy(how = How.XPATH, using = "//*[@id=\"aviso\"]/div/p/strong")
-    public WebElement aviso;
-
-    @FindBy(how = How.XPATH, using = "//button[@type='button']/span[text()='Ok']")
-    public WebElement ok;
 
 }

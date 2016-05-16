@@ -1,73 +1,60 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.view;
 
-import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity.Endereco;
+import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.containers.PessoaPageContainerInsert;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.entity.Pessoa;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
-import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.PageFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class PessoaViewInsert {
-    private static final Logger log = LoggerFactory.getLogger(PessoaViewInsert.class);
-	private static final PessoaPageContainerInsert conteiner = PageFactory.initElements(BrowserDriver.getCurrentDriver(), PessoaPageContainerInsert.class);
+public class PessoaViewInsert  extends BaseViewInsertImpl {
 
-	public static void isDisplayedCheck(){
+    public PessoaViewInsert(Object entity) {
+        super(entity, PessoaPageContainerInsert.class);
+    }
+
+    private Pessoa getEntity() {
+        return (Pessoa) entity;
+    }
+
+    private PessoaPageContainerInsert getContainer() {
+        return (PessoaPageContainerInsert) container;
+    }
+
+    @Override
+    public void builder(){
         log.debug(Constants.MGS_AGUARDANDO);
-		BrowserDriver.waitForElement(conteiner.home);
-		conteiner.home.isDisplayed();
-	}
+        BrowserDriver.waitForElement(getContainer().home);
 
-    public static void cpfCnpj(String valor){
-        log.debug(Constants.MGS_INSERIDO, "CPF/CNPJ", valor);
-        conteiner.cpfCnpj.clear();
-        conteiner.cpfCnpj.sendKeys(valor);
-    }
+        log.debug(Constants.MGS_INSERIDO, "CPF/CNPJ", getEntity().getCpfCnpj());
+        getContainer().cpfCnpj.clear();
+        getContainer().cpfCnpj.sendKeys(getEntity().getCpfCnpj());
 
-    public static void pesquisar() {
         log.debug(Constants.MGS_SELECIONADO, "PESQUISAR");
-        conteiner.pesquisar.click();
-    }
+        getContainer().pesquisarSEFAZ.click();
 
-    public static void nomeEmpresa(String valor){
-        log.debug(Constants.MGS_INSERIDO, "NOME EMPRESA", valor);
-        BrowserDriver.waitForElement(conteiner.nomeEmpresa);
-        conteiner.nomeEmpresa.sendKeys(valor);
-    }
+        log.debug(Constants.MGS_INSERIDO, "NOME EMPRESA", getEntity().getPessoaJuridica().getNomeEmpresa());
+        BrowserDriver.waitForElement(getContainer().nomeEmpresa);
+        getContainer().nomeEmpresa.sendKeys(getEntity().getPessoaJuridica().getNomeEmpresa());
 
-    public static void nomeFantasia(String valor){
-        log.debug(Constants.MGS_INSERIDO, "NOME FANTASIA", valor);
-        BrowserDriver.waitForElement(conteiner.nomeFantasia);
-        conteiner.nomeFantasia.sendKeys(valor);
-    }
+        log.debug(Constants.MGS_INSERIDO, "NOME FANTASIA", getEntity().getPessoaJuridica().getNomeFantasia());
+        BrowserDriver.waitForElement(getContainer().nomeFantasia);
+        getContainer().nomeFantasia.sendKeys(getEntity().getPessoaJuridica().getNomeFantasia());
 
-    public static void adicionarEndereco(Endereco endereco){
-        log.debug(Constants.MGS_INSERIDO, "ADICIONAR ENDERECO");
-        BrowserDriver.waitForElement(conteiner.adicionarEndereco);
-        conteiner.adicionarEndereco.click();
-        BrowserDriver.waitForElement(conteiner.tipoEndereco);
-        BrowserDriver.selectByVisibleText(conteiner.tipoEndereco, endereco.getTipoEndereco());
-        conteiner.endereco.sendKeys(endereco.getEndereco());
-        conteiner.bairro.sendKeys(endereco.getBairro());
-        conteiner.complemento.sendKeys(endereco.getComplemento());
-        conteiner.cep.clear();
-        conteiner.cep.sendKeys(endereco.getCep());
-        conteiner.confirmar.click();
-        BrowserDriver.waitForElementIsNotPresent(By.id("div_id_endereco"));
-    }
+        log.debug(Constants.MGS_SELECIONADO, "ADICIONAR ENDERECO");
+        getContainer().adicionarEndereco.click();
+        BrowserDriver.waitForElement(getContainer().adicionarEnderecoHome);
+        BrowserDriver.selectByVisibleText(getContainer().tipoEndereco, getEntity().getPessoaJuridica().getEndereco().getTipoEndereco());
+        getContainer().endereco.sendKeys(getEntity().getPessoaJuridica().getEndereco().getEndereco());
+        getContainer().bairro.sendKeys(getEntity().getPessoaJuridica().getEndereco().getBairro());
+        getContainer().complemento.sendKeys(getEntity().getPessoaJuridica().getEndereco().getComplemento());
+        getContainer().cep.clear();
+        getContainer().cep.sendKeys(getEntity().getPessoaJuridica().getEndereco().getCep());
+        getContainer().confirmar.click();
+        BrowserDriver.waitForElementIsNotPresent(getContainer().adicionarEnderecoHome);
 
-    public static void salvar() {
         log.debug(Constants.MGS_SELECIONADO, "SALVAR");
-        conteiner.salvar.click();
-    }
-
-    public static void aviso(String valor) {
-        log.debug(Constants.MGS_MENSAGEM, valor);
-        BrowserDriver.waitForElement(conteiner.aviso);
-        Assert.assertEquals(conteiner.aviso.getText(), valor);
-        conteiner.ok.click();
+        BrowserDriver.screenshot();
+        getContainer().salvar.click();
     }
 
 }

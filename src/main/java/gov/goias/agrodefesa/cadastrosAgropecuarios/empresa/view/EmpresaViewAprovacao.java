@@ -1,39 +1,49 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.view;
 
+import gov.goias.agrodefesa.base.view.BaseViewEditImpl;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.containers.EmpresaPageContainerAprovacao;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity.Empresa;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity.Grupo;
-import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.containers.EmpresaPageContainerAprovacao;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 import org.junit.Assert;
-import org.openqa.selenium.support.PageFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Enumeration;
 
-public class EmpresaViewAprovacao {
-    private static final Logger log = LoggerFactory.getLogger(EmpresaViewAprovacao.class);
-	private static final EmpresaPageContainerAprovacao conteiner = PageFactory.initElements(BrowserDriver.getCurrentDriver(), EmpresaPageContainerAprovacao.class);
+public class EmpresaViewAprovacao extends BaseViewEditImpl {
 
-	public static void isDisplayedCheck(){
-        log.debug(Constants.MGS_AGUARDANDO);
-		BrowserDriver.waitForElement(conteiner.home);
-		conteiner.home.isDisplayed();
-	}
 
-    public static void validar(Empresa empresa){
-        validarLabel(empresa.getInformacaoObrigatoria().getClassificacao().getId());
-        validarValue(empresa);
+    public EmpresaViewAprovacao(Object entity) {
+        super(entity, EmpresaPageContainerAprovacao.class);
     }
 
-    private static void validarLabel(String id) {
+    private Empresa getEntity() {
+        return (Empresa) entity;
+    }
+
+    private EmpresaPageContainerAprovacao getContainer() {
+        return (EmpresaPageContainerAprovacao) container;
+    }
+
+
+    @Override
+    public void builder(){
+        log.debug(Constants.MGS_AGUARDANDO);
+        BrowserDriver.waitForElement(getContainer().home);
+
+        validarLabel();
+        validarValue();
+        BrowserDriver.screenshot();
+    }
+
+
+    private void validarLabel() {
         log.debug(Constants.MGS_SELECIONADO, "VALIDANDO LABEL");
         Grupo grupo = new Grupo();
-        grupo.initialize(Integer.valueOf(id));
+        grupo.initialize(Integer.valueOf(getEntity().getInformacaoObrigatoria().getClassificacao().getId()));
 
-        BrowserDriver.waitForElement(conteiner.table);
-        String table = conteiner.table.getText();
+        BrowserDriver.waitForElement(getContainer().table);
+        String table = getContainer().table.getText();
         boolean valido;
         Enumeration names = grupo.labels().keys();
         while(names.hasMoreElements()) {
@@ -44,12 +54,12 @@ public class EmpresaViewAprovacao {
         }
     }
 
-    private static void validarValue(Empresa empresa){
-        String table = conteiner.table.getText();
+    private void validarValue(){
+        String table = getContainer().table.getText();
         log.debug(Constants.MGS_SELECIONADO, "VALIDANDO VALORES");
 
-        boolean valido = table.contains(empresa.getInformacaoComplementar().geteMail().getEMail());
-        Assert.assertTrue(String.format("Email %s não encontrado", empresa.getInformacaoComplementar().geteMail().getEMail()), valido);
+        boolean valido = table.contains(getEntity().getInformacaoComplementar().geteMail().getEMail());
+        Assert.assertTrue(String.format("Email %s não encontrado", getEntity().getInformacaoComplementar().geteMail().getEMail()), valido);
     }
 
 }

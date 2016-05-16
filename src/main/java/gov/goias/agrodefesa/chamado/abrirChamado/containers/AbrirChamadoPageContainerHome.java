@@ -1,13 +1,11 @@
 package gov.goias.agrodefesa.chamado.abrirChamado.containers;
 
+import gov.goias.agrodefesa.base.containers.PageContainerHome;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class AbrirChamadoPageContainerHome {
-
-    @FindBy(how = How.ID, using = "nu_chamado")
-    public WebElement home;
+public class AbrirChamadoPageContainerHome extends PageContainerHome {
 
     @FindBy(how = How.ID, using = "nu_chamado")
     public WebElement numeroChamado;
@@ -45,25 +43,10 @@ public class AbrirChamadoPageContainerHome {
     @FindBy(how = How.ID, using = "situacao")
     public WebElement situacao;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"icons\"]/li[1]/span")
-    public WebElement incluirRegistro;
-
-    @FindBy(how = How.ID, using = "bt_limparpesquisa")
-    public WebElement limpar;
-
-    @FindBy(how = How.ID, using = "bt_pesquisar")
-    public WebElement pesquisar;
-
     @FindBy(how = How.ID, using = "formPesquisar")
     public WebElement form;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"grid\"]/form/table/tbody/tr[1]/td[7]")
-    public WebElement gridRow;
-
-    @FindBy(how = How.XPATH, using = "//*[@id=\"grid\"]/form/table/tbody/tr[1]/td[10]/div/ul/li[6]")
-    public WebElement finalizar;
-
-    @FindBy(how = How.XPATH, using = "/html/body/div[4]/div[11]/div/button[1]/span")
-    public WebElement confirmarMsg;
+    @FindBy(how = How.XPATH, using = "//*[@id=\"grid\"]/form/table/tbody/tr[1]/td[2]")
+    public WebElement gridNumeroChamado;
 
 }

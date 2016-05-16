@@ -1,5 +1,6 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.view;
 
+import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity.Empresa;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.containers.EmpresaPageContainerInsert;
 import gov.goias.agrodefesa.utils.BrowserDriver;
@@ -10,121 +11,120 @@ import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class EmpresaViewInsert {
-    private static final Logger log = LoggerFactory.getLogger(EmpresaViewInsert.class);
-	private static final EmpresaPageContainerInsert conteiner = PageFactory.initElements(BrowserDriver.getCurrentDriver(), EmpresaPageContainerInsert.class);
+public class EmpresaViewInsert extends BaseViewInsertImpl {
 
-	public static void isDisplayedCheck(){
+    public EmpresaViewInsert(Object entity) {
+        super(entity, EmpresaPageContainerInsert.class);
+    }
+
+    private Empresa getEntity() {
+        return (Empresa) entity;
+    }
+
+    private EmpresaPageContainerInsert getContainer() {
+        return (EmpresaPageContainerInsert) container;
+    }
+
+    @Override
+    public void builder(){
         log.debug(Constants.MGS_AGUARDANDO);
-		BrowserDriver.waitForElement(conteiner.home);
-		conteiner.home.isDisplayed();
-	}
+        BrowserDriver.waitForElement(getContainer().home);
 
-    public static void documento(String valor){
-        log.debug(Constants.MGS_INSERIDO, "DOCUMENTO", valor);
-        conteiner.documento.clear();
-        conteiner.documento.sendKeys(valor);
-    }
+        log.debug(Constants.MGS_INSERIDO, "DOCUMENTO", getEntity().getInformacaoObrigatoria().getCpfCnpj());
+        getContainer().documento.clear();
+        getContainer().documento.sendKeys(getEntity().getInformacaoObrigatoria().getCpfCnpj());
 
-    public static void classificacao(String valor){
-        log.debug(Constants.MGS_INSERIDO, "CLASSIFICACAO", valor);
-        BrowserDriver.selectByVisibleText(conteiner.classificacao, valor);
-    }
+        log.debug(Constants.MGS_INSERIDO, "CLASSIFICACAO", getEntity().getInformacaoObrigatoria().getClassificacao());
+        BrowserDriver.selectByVisibleText(getContainer().classificacao, getEntity().getInformacaoObrigatoria().getClassificacao().getDescricao());
 
-    public static void pesquisar() {
         log.debug(Constants.MGS_SELECIONADO, "PESQUISAR");
-        conteiner.pesquisar.click();
-        BrowserDriver.waitForElement(conteiner.cliqueAqui);
-        conteiner.cliqueAqui.click();
+        getContainer().pesquisarEmpresa.click();
+        BrowserDriver.waitForElement(getContainer().cliqueAqui);
+        getContainer().cliqueAqui.click();
+
+        informacaoObrigatoria(getEntity().getInformacaoObrigatoria());
+        informacaoComplementar(getEntity().getInformacaoComplementar());
+
+        log.debug(Constants.MGS_SELECIONADO, "SALVAR");
+        BrowserDriver.screenshot();
+        getContainer().salvar.click();
     }
 
-    public static void informacaoObrigatoria(Empresa.InformacaoObrigatoria informacaoObrigatoria){
+    private void informacaoObrigatoria(Empresa.InformacaoObrigatoria informacaoObrigatoria){
         log.debug(Constants.MGS_SELECIONADO, "INFORMACAO OBRIGATORIA");
-        BrowserDriver.waitForElement(conteiner.informacaoObrigatoria);
-        conteiner.informacaoObrigatoria.click();
+        BrowserDriver.waitForElement(getContainer().informacaoObrigatoria);
+        getContainer().informacaoObrigatoria.click();
 
-        conteiner.socio.sendKeys(informacaoObrigatoria.getSocio());
-        BrowserDriver.waitForElement(conteiner.socioAutoComplete);
-        conteiner.socioAutoComplete.click();
+        getContainer().socio.sendKeys(informacaoObrigatoria.getSocio());
+        BrowserDriver.waitForElement(getContainer().socioAutoComplete);
+        getContainer().socioAutoComplete.click();
 
         log.debug(Constants.MGS_INSERIDO, "NOME DA EMPRESA", informacaoObrigatoria.getNomeEmpresa());
-        conteiner.nomeEmpresa.sendKeys(informacaoObrigatoria.getNomeEmpresa());
+        getContainer().nomeEmpresa.sendKeys(informacaoObrigatoria.getNomeEmpresa());
 
         log.debug(Constants.MGS_INSERIDO, "NOME FANTASIA", informacaoObrigatoria.getNomeFantasia());
-        conteiner.nomeFantasia.sendKeys(informacaoObrigatoria.getNomeFantasia());
+        getContainer().nomeFantasia.sendKeys(informacaoObrigatoria.getNomeFantasia());
 
-        if (conteiner.porteEmpresa.isDisplayed()){
+        if (getContainer().porteEmpresa.isDisplayed()){
             log.debug(Constants.MGS_INSERIDO, "PORTE EMPRESA", informacaoObrigatoria.getPorteEmpresa());
-            BrowserDriver.selectByVisibleText(conteiner.porteEmpresa, informacaoObrigatoria.getPorteEmpresa());
+            BrowserDriver.selectByVisibleText(getContainer().porteEmpresa, informacaoObrigatoria.getPorteEmpresa());
         }
 
-        if (conteiner.qtdAnimaisConfinados.isDisplayed()){
+        if (getContainer().qtdAnimaisConfinados.isDisplayed()){
             log.debug(Constants.MGS_INSERIDO, "QTD ANIMAIS CONFINADOS", informacaoObrigatoria.getQtdAnimaisConfinados());
-            conteiner.qtdAnimaisConfinados.clear();
-            conteiner.qtdAnimaisConfinados.sendKeys(informacaoObrigatoria.getQtdAnimaisConfinados());
+            getContainer().qtdAnimaisConfinados.clear();
+            getContainer().qtdAnimaisConfinados.sendKeys(informacaoObrigatoria.getQtdAnimaisConfinados());
         }
 
-        if (conteiner.qtdAnimaisProcessados.isDisplayed()){
+        if (getContainer().qtdAnimaisProcessados.isDisplayed()){
             log.debug(Constants.MGS_INSERIDO, "QTD ANIMAIS PROCESSADOS", informacaoObrigatoria.getQtdAnimaisProcessados());
-            conteiner.qtdAnimaisProcessados.clear();
-            conteiner.qtdAnimaisProcessados.sendKeys(informacaoObrigatoria.getQtdAnimaisProcessados());
+            getContainer().qtdAnimaisProcessados.clear();
+            getContainer().qtdAnimaisProcessados.sendKeys(informacaoObrigatoria.getQtdAnimaisProcessados());
         }
 
-        if (conteiner.numeroServicoInspecao.isDisplayed()){
+        if (getContainer().numeroServicoInspecao.isDisplayed()){
             log.debug(Constants.MGS_INSERIDO, "NUMERO SERVICO INSPECAO", informacaoObrigatoria.getQtdAnimaisConfinados());
-            conteiner.numeroServicoInspecao.clear();
-            conteiner.numeroServicoInspecao.sendKeys(informacaoObrigatoria.getNumeroServicoInspecao());
+            getContainer().numeroServicoInspecao.clear();
+            getContainer().numeroServicoInspecao.sendKeys(informacaoObrigatoria.getNumeroServicoInspecao());
         }
 
-        if (conteiner.capacidadeAlojamento.isDisplayed()){
+        if (getContainer().capacidadeAlojamento.isDisplayed()){
             log.debug(Constants.MGS_INSERIDO, "CAPACIDADE ALOJAMENTO", informacaoObrigatoria.getCapacidadeAlojamento());
-            conteiner.capacidadeAlojamento.clear();
-            conteiner.capacidadeAlojamento.sendKeys(informacaoObrigatoria.getCapacidadeAlojamento());
+            getContainer().capacidadeAlojamento.clear();
+            getContainer().capacidadeAlojamento.sendKeys(informacaoObrigatoria.getCapacidadeAlojamento());
         }
 
-        if (conteiner.qtdLitrosLeite.isDisplayed()){
+        if (getContainer().qtdLitrosLeite.isDisplayed()){
             log.debug(Constants.MGS_INSERIDO, "QTD LISTRO DE LEITE", informacaoObrigatoria.getQtdLitrosLeite());
-            conteiner.qtdLitrosLeite.clear();
-            conteiner.qtdLitrosLeite.sendKeys(informacaoObrigatoria.getQtdLitrosLeite());
+            getContainer().qtdLitrosLeite.clear();
+            getContainer().qtdLitrosLeite.sendKeys(informacaoObrigatoria.getQtdLitrosLeite());
         }
 
-        if (conteiner.numeroRenasem.isDisplayed()){
+        if (getContainer().numeroRenasem.isDisplayed()){
             log.debug(Constants.MGS_INSERIDO, "NUMERO RENASEM", informacaoObrigatoria.getNumeroRenasem());
-            conteiner.numeroRenasem.clear();
-            conteiner.numeroRenasem.sendKeys(informacaoObrigatoria.getNumeroRenasem());
+            getContainer().numeroRenasem.clear();
+            getContainer().numeroRenasem.sendKeys(informacaoObrigatoria.getNumeroRenasem());
         }
     }
 
-    public static void informacaoComplementar(Empresa.InformacaoComplementar informacaoComplementar){
+    public void informacaoComplementar(Empresa.InformacaoComplementar informacaoComplementar){
         BrowserDriver.scrollUp();
 
         log.debug(Constants.MGS_SELECIONADO, "INFORMACAO COMPLEMENTAR");
-        BrowserDriver.waitForClickable(conteiner.informacaoComplementar);
-        conteiner.informacaoComplementar.click();
+        BrowserDriver.waitForClickable(getContainer().informacaoComplementar);
+        getContainer().informacaoComplementar.click();
 
-        conteiner.adicionarEndereco.click();
-        BrowserDriver.waitForElement(conteiner.confirmar);
-        conteiner.confirmar.click();
-        BrowserDriver.waitForElementIsNotPresent(By.id("div_id_endereco"));
+        getContainer().adicionarEndereco.click();
+        BrowserDriver.waitForElement(getContainer().enderecoHome);
+        getContainer().confirmar.click();
+        BrowserDriver.waitForElementIsNotPresent(getContainer().enderecoHome);
 
-        conteiner.adicionarEmail.click();
-        BrowserDriver.waitForElement(conteiner.tipoEmail);
-        BrowserDriver.selectByVisibleText(conteiner.tipoEmail, informacaoComplementar.geteMail().getTipo());
-        conteiner.eMail.sendKeys(informacaoComplementar.geteMail().getEMail());
-        conteiner.confirmar.click();
-        BrowserDriver.waitForElementIsNotPresent(By.id("div_id_email"));
-    }
-
-    public static void salvar() {
-        log.debug(Constants.MGS_SELECIONADO, "SALVAR");
-        conteiner.salvar.click();
-    }
-
-    public static void aviso(String valor) {
-        log.debug(Constants.MGS_MENSAGEM, valor);
-        BrowserDriver.waitForElement(conteiner.aviso);
-        Assert.assertEquals(conteiner.aviso.getText(), valor);
-        conteiner.ok.click();
+        getContainer().adicionarEmail.click();
+        BrowserDriver.waitForElement(getContainer().emailHome);
+        BrowserDriver.selectByVisibleText(getContainer().tipoEmail, informacaoComplementar.geteMail().getTipo());
+        getContainer().eMail.sendKeys(informacaoComplementar.geteMail().getEMail());
+        getContainer().confirmar.click();
+        BrowserDriver.waitForElementIsNotPresent(getContainer().emailHome);
     }
 
 }
