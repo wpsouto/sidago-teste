@@ -1,9 +1,10 @@
 package gov.goias.agrodefesa.concessaoDeDiarias.prestacaoDeContas.navigation;
 
+import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
-import gov.goias.agrodefesa.base.view.BaseViewHomeImpl;
 import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.entity.DelegacaoAtividade;
-import gov.goias.agrodefesa.concessaoDeDiarias.prestacaoDeContas.containers.PrestacaoDeContasPageContainerHome;
+import gov.goias.agrodefesa.constants.Action;
+import gov.goias.agrodefesa.utils.Constants;
 import gov.goias.agrodefesa.utils.NavegacaoType;
 
 public class NavigationPrestacaoDeContas extends NavigationBase {
@@ -17,10 +18,16 @@ public class NavigationPrestacaoDeContas extends NavigationBase {
     }
 
     @Override
-    public void edit() {
-        DelegacaoAtividade delegacaoAtividade = (DelegacaoAtividade) dependencia(DelegacaoAtividade.class, "@DelegacaoDeAtividade");
-        getEntity().setNumeroDiaria(delegacaoAtividade.getNumeroDiaria());
+    public void dependency() {
+        super.dependency();
+        log.debug(Constants.MGS_DEPENDENCIA, NavegacaoType.DELEGACAO_DE_ATIVIDADES.getKey());
 
-        super.edit();
+        if (!NavegacaoFactory.getNavigator().existEntity(DelegacaoAtividade.class)) {
+            NavegacaoFactory.getNavigator().pageLoad(Action.HOME, NavegacaoType.DELEGACAO_DE_ATIVIDADES.getKey());
+            NavegacaoFactory.getNavigator().pageLoad(Action.INSERT, NavegacaoType.DELEGACAO_DE_ATIVIDADES.getKey());
+            NavegacaoFactory.getNavigator().pageLoad(Action.MENSAGEM_INSERT, NavegacaoType.DELEGACAO_DE_ATIVIDADES.getKey());
+            NavegacaoFactory.getNavigator().pageLoad(Action.SEARCH, NavegacaoType.DELEGACAO_DE_ATIVIDADES.getKey());
+        }
     }
+
 }

@@ -1,10 +1,13 @@
 package gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.navigation;
 
+import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
-import gov.goias.agrodefesa.cadastrosAgropecuarios.propriedade.entity.Propriedade;
 import gov.goias.agrodefesa.constants.Action;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.entity.AquisicaoMudas;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.view.AquisicaoMudasViewAprovacao;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.view.AquisicaoMudasViewHome;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeProducao.entity.UnidadeProducao;
+import gov.goias.agrodefesa.utils.Constants;
 import gov.goias.agrodefesa.utils.NavegacaoType;
 
 /**
@@ -25,17 +28,25 @@ public class NavigationAquisicaoMudas extends NavigationBase {
 
 
     @Override
-    public void insert() {
-        Propriedade propriedade = (Propriedade) dependencia(Propriedade.class, "@Propriedade");
-        getEntity().setPropriedade(propriedade);
+    public void dependency() {
+        super.dependency();
+        log.debug(Constants.MGS_DEPENDENCIA, NavegacaoType.UNIDADE_PRODUCAO.getKey());
 
-        super.insert();
+        if (!NavegacaoFactory.getNavigator().existEntity(UnidadeProducao.class)) {
+            NavegacaoFactory.getNavigator().pageLoad(Action.HOME, NavegacaoType.UNIDADE_PRODUCAO.getKey());
+            NavegacaoFactory.getNavigator().pageLoad(Action.INSERT, NavegacaoType.UNIDADE_PRODUCAO.getKey());
+            NavegacaoFactory.getNavigator().pageLoad(Action.MENSAGEM_INSERT, NavegacaoType.UNIDADE_PRODUCAO.getKey());
+        }
+
+        getEntity().setUnidadeProducao((UnidadeProducao) NavegacaoFactory.getNavigator().getEntity(UnidadeProducao.class));
     }
 
     @Override
     public void others(Action action) {
         switch(action){
             case APPROVE:
+                search();
+                ((AquisicaoMudasViewHome) home).aprovacao();
                 viewAprovacao.builder();
                 break;
             case MENSAGEM_APROVO:

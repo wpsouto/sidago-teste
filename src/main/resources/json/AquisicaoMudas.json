@@ -1,6 +1,13 @@
 {
-  "pessoa": {
-    "cpfCnpj": null
+  "unidadeProducao": {
+    "termoFiscalizacao": {
+      "propriedade": {
+        "pessoa": {
+          "cpfCnpj": null
+        }
+
+      }
+    }
   },
   "observacao": "Teste Automatizado",
   "situacao": "Aprovado",
@@ -8,11 +15,6 @@
   "emailOrigem": "teste@teste.com",
   "telefoneOrigem": "62123456789",
   "tipoDestino": "Produtor Rural",
-  "propriedade": {
-    "pessoa": {
-      "cpfCnpj": null
-    }
-  },
   "telefoneDestino": "62123456789",
   "transporte": {
     "tipoTransporte": "Rodoviário"

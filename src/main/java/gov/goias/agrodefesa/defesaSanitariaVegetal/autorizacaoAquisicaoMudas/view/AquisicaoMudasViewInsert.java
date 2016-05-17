@@ -25,8 +25,8 @@ public class AquisicaoMudasViewInsert extends BaseViewInsertImpl {
         log.debug(Constants.MGS_AGUARDANDO);
         BrowserDriver.waitForElement(getContainer().home);
 
-        log.debug(Constants.MGS_INSERIDO, "NOME/CPF/CNPJ", getEntity().getPessoa().getCpfCnpj());
-        getContainer().cnpjCpfOrigem.sendKeys(getEntity().getPessoa().getCpfCnpj());
+        log.debug(Constants.MGS_INSERIDO, "NOME/CPF/CNPJ", getEntity().getUnidadeProducao().getTermoFiscalizacao().getPropriedade().getPessoa().getCpfCnpj());
+        getContainer().cnpjCpfOrigem.sendKeys(getEntity().getUnidadeProducao().getTermoFiscalizacao().getPropriedade().getPessoa().getCpfCnpj());
 
         log.debug(Constants.MGS_SELECIONADO, "PESQUISAR");
         getContainer().pesquisarOrigem.click();
@@ -47,8 +47,8 @@ public class AquisicaoMudasViewInsert extends BaseViewInsertImpl {
         log.debug(Constants.MGS_INSERIDO, "TIPO DESTINO", getEntity().getTipoDestino());
         BrowserDriver.selectByVisibleText(getContainer().tipoDestino, getEntity().getTipoDestino());
 
-        log.debug(Constants.MGS_INSERIDO, "NOME/CPF/CNPJ DESTINO", getEntity().getPropriedade().getPessoa().getCpfCnpj());
-        getContainer().cnpjCpfDestino.sendKeys(getEntity().getPropriedade().getPessoa().getCpfCnpj());
+        log.debug(Constants.MGS_INSERIDO, "NOME/CPF/CNPJ DESTINO", getEntity().getUnidadeProducao().getTermoFiscalizacao().getPropriedade().getPessoa().getCpfCnpj());
+        getContainer().cnpjCpfDestino.sendKeys(getEntity().getUnidadeProducao().getTermoFiscalizacao().getPropriedade().getPessoa().getCpfCnpj());
 
         log.debug(Constants.MGS_SELECIONADO, "PESQUISAR DESTINO");
         getContainer().pesquisarDestino.click();
@@ -77,6 +77,7 @@ public class AquisicaoMudasViewInsert extends BaseViewInsertImpl {
         getContainer().adicionarTransportador.click();
         BrowserDriver.waitForElement(getContainer().adicionarTransportadorHome);
         BrowserDriver.selectByVisibleText(getContainer().tipoTransporte, getEntity().getTransporte().getTipoTransporte());
+        getContainer().confirmar.click();
         getContainer().confirmar.click();
         BrowserDriver.waitForElementIsNotPresent(getContainer().adicionarTransportadorHome);
     }

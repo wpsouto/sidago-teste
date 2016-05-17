@@ -4,6 +4,9 @@
 
 Funcionalidade: Testando as funcionalidades do Transferencia de Bens
 
+  Dependencias:
+    -Patrimonio
+
   Cenário de Fundo: Preparando o Sistema
     Dado Eu faco login no sistema com o CPF "administrador" USUARIO "Administrador" tela inicial "Transferencia"
 

@@ -46,6 +46,7 @@ public class TransferenciaViewInsert extends BaseViewInsertImpl {
         log.debug(Constants.MGS_SELECIONADO, "SALVAR");
         BrowserDriver.screenshot();
         getContainer().salvar.click();
+        getContainer().salvar.click();
     }
 
 }

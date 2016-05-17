@@ -1,12 +1,14 @@
 package gov.goias.agrodefesa.base.navigation;
 
-import cucumber.api.PendingException;
 import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
 import gov.goias.agrodefesa.base.view.EditView;
 import gov.goias.agrodefesa.base.view.HomeView;
 import gov.goias.agrodefesa.base.view.InsertView;
 import gov.goias.agrodefesa.constants.Action;
-import gov.goias.agrodefesa.utils.*;
+import gov.goias.agrodefesa.utils.BrowserDriver;
+import gov.goias.agrodefesa.utils.NavegacaoStrategy;
+import gov.goias.agrodefesa.utils.NavegacaoType;
+import gov.goias.agrodefesa.utils.ResourceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,20 +43,12 @@ public class NavigationBase implements NavegacaoStrategy {
         } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
             throw NavigationBase.error("ERRO AO INSTANCIAR CLASSE BASE", e);
         }
+
+        dependency();
     }
 
     private static IllegalArgumentException error(String message, Throwable cause) {
         return new IllegalArgumentException(message, cause);
-    }
-
-    protected Object dependencia(Class entityClass, String tag) {
-        Object object = NavegacaoFactory.getNavigator().getEntity(entityClass);
-
-        if (object == null) {
-            throw new PendingException(String.format(Constants.MGS_DEPENDENCIA, tag));
-        }
-
-        return object;
     }
 
     @Override
@@ -86,6 +80,11 @@ public class NavigationBase implements NavegacaoStrategy {
     public void confirm() {
         search();
         home.confirm();
+    }
+
+    @Override
+    public void dependency() {
+        log.debug("Verificando Dependencias");
     }
 
     @Override

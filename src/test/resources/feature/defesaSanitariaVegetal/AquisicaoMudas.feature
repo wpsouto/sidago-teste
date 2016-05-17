@@ -6,7 +6,7 @@ Funcionalidade: Testando as funcionalidades do Autorização para Aquisição de
 
   PRE-REQUISITOS:
 
-  -Ja ter uma propriedade cadastrada
+  -Ja ter uma Unidade de Producao cadastrada
 
   Cenário de Fundo: Preparando o Sistema
     Dado Eu faco login no sistema com o CPF "administrador" USUARIO "Administrador" tela inicial "Autorização para Aquisição de Mudas"

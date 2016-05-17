@@ -4,6 +4,9 @@
 
 Funcionalidade: Testando as funcionalidade de Propriedade
 
+  Dependencias:
+    -Pessoa
+
   Cenário: 1-Fluxo Principal
     Dado Eu faco login no sistema com o CPF "administrador" USUARIO "Administrador" tela inicial "Propriedade"
     Quando Eu "insiro" um registro de "Propriedade"

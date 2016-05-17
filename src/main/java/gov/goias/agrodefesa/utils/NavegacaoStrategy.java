@@ -11,5 +11,6 @@ public interface NavegacaoStrategy {
     void search();
     void edit();
     void confirm();
+    void dependency();
     void others(Action action);
 }

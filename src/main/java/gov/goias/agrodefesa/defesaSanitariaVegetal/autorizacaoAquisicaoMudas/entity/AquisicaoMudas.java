@@ -4,6 +4,7 @@ package gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.en
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity.Endereco;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.entity.Pessoa;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.propriedade.entity.Propriedade;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeProducao.entity.UnidadeProducao;
 import gov.goias.agrodefesa.utils.ResourceFactory;
 
 /**
@@ -11,25 +12,23 @@ import gov.goias.agrodefesa.utils.ResourceFactory;
  */
 public class AquisicaoMudas {
 
-    private Pessoa pessoa = new Pessoa();
+    private UnidadeProducao unidadeProducao = new UnidadeProducao();
     private String registroEnasem;
     private String emailOrigem;
     private String telefoneOrigem;
     private String observacao;
     private String situacao;
-
     private String tipoDestino;
-    private Propriedade propriedade = new Propriedade();
     private String telefoneDestino;
     private Transporte transporte = new Transporte();
     private Mudas mudas = new Mudas();
 
-    public Pessoa getPessoa() {
-        return pessoa;
+    public UnidadeProducao getUnidadeProducao() {
+        return unidadeProducao;
     }
 
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public void setUnidadeProducao(UnidadeProducao unidadeProducao) {
+        this.unidadeProducao = unidadeProducao;
     }
 
     public String getRegistroEnasem() {
@@ -62,14 +61,6 @@ public class AquisicaoMudas {
 
     public void setTipoDestino(String tipoDestino) {
         this.tipoDestino = tipoDestino;
-    }
-
-    public Propriedade getPropriedade() {
-        return propriedade;
-    }
-
-    public void setPropriedade(Propriedade propriedade) {
-        this.propriedade = propriedade;
     }
 
     public String getTelefoneDestino() {

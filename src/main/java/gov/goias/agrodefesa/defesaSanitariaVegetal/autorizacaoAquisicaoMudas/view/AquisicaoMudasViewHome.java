@@ -22,8 +22,8 @@ public class AquisicaoMudasViewHome extends BaseViewHomeImpl {
 
 	@Override
 	public void pesquisar() {
-        log.debug(Constants.MGS_INSERIDO, "CPF CNPJ ORIGEM", getEntity().getPessoa().getCpfCnpj());
-        getContainer().cpfCnpjOrigem.sendKeys(getEntity().getPessoa().getCpfCnpj());
+        log.debug(Constants.MGS_INSERIDO, "CPF CNPJ ORIGEM", getEntity().getUnidadeProducao().getTermoFiscalizacao().getPropriedade().getPessoa().getCpfCnpj());
+		getContainer().cpfCnpjOrigem.sendKeys(getEntity().getUnidadeProducao().getTermoFiscalizacao().getPropriedade().getPessoa().getCpfCnpj());
 
 		log.debug(Constants.MGS_SELECIONADO, "PESQUISAR");
 		getContainer().pesquisar.click();

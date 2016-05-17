@@ -10,9 +10,9 @@ import java.util.List;
 public class JenkinsReport {
 
     public static void main(String[] args) {
-        File reportOutputDirectory = new File("/home/usuario/AmbienteTrabalho/temporario/sidago-teste/target/cucumber-reporting");
+        File reportOutputDirectory = new File("/home/wemerson/Trabalho/IdeaProjects/sidago-teste/target/cucumber-reporting");
         List<String> jsonFiles = new ArrayList<>();
-        jsonFiles.add("/home/usuario/AmbienteTrabalho/temporario/sidago-teste/target/cucumber/cucumber.json");
+        jsonFiles.add("/home/wemerson/Trabalho/IdeaProjects/sidago-teste/target/cucumber/cucumber.json");
         //jsonFiles.add("cucumber-report-2.json");
 
         String jenkinsBasePath = "http://localhost:8080/";

@@ -1,8 +1,11 @@
 package gov.goias.agrodefesa.financeiro.dare.navigation;
 
+import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
+import gov.goias.agrodefesa.constants.Action;
 import gov.goias.agrodefesa.financeiro.dare.entity.UnidadeProducao;
 import gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.entity.TermoFiscalizacao;
+import gov.goias.agrodefesa.utils.Constants;
 import gov.goias.agrodefesa.utils.NavegacaoType;
 
 /**
@@ -19,11 +22,18 @@ public class NavigationUnidadeProducao extends NavigationBase {
     }
 
     @Override
-    public void insert() {
-        TermoFiscalizacao termoFiscalizacao = (TermoFiscalizacao) dependencia(TermoFiscalizacao.class, "@TermoFiscalizacao");
-        getEntity().setTermoFiscalizacao(termoFiscalizacao);
+    public void dependency() {
+        super.dependency();
+        log.debug(Constants.MGS_DEPENDENCIA, NavegacaoType.TERMO_FISCALIZACAO.getKey());
 
-        super.insert();
+        if (!NavegacaoFactory.getNavigator().existEntity(TermoFiscalizacao.class)) {
+            NavegacaoFactory.getNavigator().pageLoad(Action.HOME, NavegacaoType.TERMO_FISCALIZACAO.getKey());
+            NavegacaoFactory.getNavigator().pageLoad(Action.INSERT, NavegacaoType.TERMO_FISCALIZACAO.getKey());
+            NavegacaoFactory.getNavigator().pageLoad(Action.MENSAGEM_INSERT, NavegacaoType.TERMO_FISCALIZACAO.getKey());
+            NavegacaoFactory.getNavigator().pageLoad(Action.SEARCH, NavegacaoType.TERMO_FISCALIZACAO.getKey());
+        }
+
+        getEntity().setTermoFiscalizacao((TermoFiscalizacao) NavegacaoFactory.getNavigator().getEntity(TermoFiscalizacao.class));
     }
 
 }
