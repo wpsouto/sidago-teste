@@ -18,7 +18,6 @@ public class NavigationTermoFiscalizacao extends NavigationBase {
         return (TermoFiscalizacao) entity;
     }
 
-
     @Override
     public void insert() {
         Propriedade propriedade = (Propriedade) dependencia(Propriedade.class, "@Propriedade");
