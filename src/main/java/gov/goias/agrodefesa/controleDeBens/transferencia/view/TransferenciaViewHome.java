@@ -33,6 +33,7 @@ public class TransferenciaViewHome extends BaseViewHomeImpl {
     @Override
     public void confirm() {
         log.debug(Constants.MGS_SELECIONADO, "CONFIRMAR REGISTRO");
+        BrowserDriver.scrollDown();
         BrowserDriver.waitForElement(getContainer().check);
         getContainer().check.click();
 
