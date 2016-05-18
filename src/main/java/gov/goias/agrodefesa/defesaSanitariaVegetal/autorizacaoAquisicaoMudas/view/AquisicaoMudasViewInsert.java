@@ -78,7 +78,6 @@ public class AquisicaoMudasViewInsert extends BaseViewInsertImpl {
         BrowserDriver.waitForElement(getContainer().adicionarTransportadorHome);
         BrowserDriver.selectByVisibleText(getContainer().tipoTransporte, getEntity().getTransporte().getTipoTransporte());
         getContainer().confirmar.click();
-        getContainer().confirmar.click();
         BrowserDriver.waitForElementIsNotPresent(getContainer().adicionarTransportadorHome);
     }
 
