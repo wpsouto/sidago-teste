@@ -13,6 +13,9 @@ public class TermoFiscalizacaoPageContainerInsert extends PageContainerInsert {
     @FindBy(how = How.ID, using = "tp_caracterizacao")
     public WebElement caracterizacaoFiscalizacao;
 
+    @FindBy(how = How.ID, using = "id_municipio_fiscalizado")
+    public WebElement municipioFiscalizado;
+
     @FindBy(how = How.ID, using = "bo_tipo")
     public WebElement identificao;
 

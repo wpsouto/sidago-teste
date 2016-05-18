@@ -7,5 +7,6 @@
   "longitude": "0000000",
   "localidadeLivro": "Teste Automatizado",
   "tipoUC": "UC",
-  "capacidadeArmazenamento": "10000"
+  "capacidadeArmazenamento": "10000",
+  "responsavelTecnico": "JOSÉ SALVADOR"
 }

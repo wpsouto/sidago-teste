@@ -30,6 +30,10 @@ public class TermoFiscalizacaoViewInsert extends BaseViewInsertImpl {
         log.debug(Constants.MGS_INSERIDO, "TIPO TERMO FISCALIZACAO", getEntity().getTipoTermoFiscalizacao());
         BrowserDriver.selectByVisibleText(getContainer().tipoTermoFiscalizacao, getEntity().getTipoTermoFiscalizacao());
 
+        log.debug(Constants.MGS_INSERIDO, "MUNICIPIO FISCALIZADO", getEntity().getMunicipioFiscalizado());
+        BrowserDriver.changeDisplay(getContainer().municipioFiscalizado);
+        BrowserDriver.waitForSelectByVisibleText(getContainer().municipioFiscalizado, getEntity().getMunicipioFiscalizado());
+
         log.debug(Constants.MGS_INSERIDO, "CARACTERIZACAO FISCALIZACAO", getEntity().getCaracterizacaoFiscalizacao());
         BrowserDriver.selectByVisibleText(getContainer().caracterizacaoFiscalizacao, getEntity().getCaracterizacaoFiscalizacao());
 

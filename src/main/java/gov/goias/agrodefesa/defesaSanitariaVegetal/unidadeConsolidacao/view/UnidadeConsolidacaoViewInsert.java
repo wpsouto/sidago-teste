@@ -55,6 +55,11 @@ public class UnidadeConsolidacaoViewInsert extends BaseViewInsertImpl {
         log.debug(Constants.MGS_INSERIDO, "CAPACIDADE ARMAZENAMENTO", getEntity().getCapacidadeArmazenamento());
         getContainer().capacidadeArmazenamento.sendKeys(getEntity().getCapacidadeArmazenamento());
 
+        log.debug(Constants.MGS_INSERIDO, "RESPONSAVEL TECNICO (RT)", getEntity().getResponsavelTecnico());
+        getContainer().rt.sendKeys(getEntity().getResponsavelTecnico());
+        BrowserDriver.waitForElement(getContainer().rt);
+        getContainer().rtAutoComplete.click();
+
         log.debug(Constants.MGS_SELECIONADO, "SALVAR");
         BrowserDriver.screenshot();
         getContainer().salvar.click();

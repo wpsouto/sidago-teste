@@ -31,5 +31,11 @@ public class UnidadeConsolidacaoPageContainerInsert extends PageContainerInsert 
     @FindBy(how = How.ID, using = "qt_capacidadearmazenamento")
     public WebElement capacidadeArmazenamento;
 
+    @FindBy(how = How.ID, using = "nome_rt")
+    public WebElement rt;
+
+    @FindBy(how = How.XPATH, using = "//*[@id=\"ui-id-1\"]/li[1]")
+    public WebElement rtAutoComplete;
+
 
 }

@@ -18,6 +18,15 @@ public class UnidadeConsolidacao {
     private String localidadeLivro;
     private String tipoUC;
     private String capacidadeArmazenamento;
+    private String responsavelTecnico;
+
+    public String getResponsavelTecnico() {
+        return responsavelTecnico;
+    }
+
+    public void setResponsavelTecnico(String responsavelTecnico) {
+        this.responsavelTecnico = responsavelTecnico;
+    }
 
     public Pessoa getPessoa() {
         return pessoa;

@@ -10,6 +10,7 @@ public class TermoFiscalizacao {
 
     private Propriedade propriedade = new Propriedade();
     private String tipoTermoFiscalizacao;
+    private String municipioFiscalizado;
     private String caracterizacaoFiscalizacao;
     private String identificacao;
     private Objetivo objetivo = new Objetivo();
@@ -17,6 +18,14 @@ public class TermoFiscalizacao {
     private String orientacoes;
     private String serie;
     private String numero;
+
+    public String getMunicipioFiscalizado() {
+        return municipioFiscalizado;
+    }
+
+    public void setMunicipioFiscalizado(String municipioFiscalizado) {
+        this.municipioFiscalizado = municipioFiscalizado;
+    }
 
     public String getSerie() {
         return serie;
