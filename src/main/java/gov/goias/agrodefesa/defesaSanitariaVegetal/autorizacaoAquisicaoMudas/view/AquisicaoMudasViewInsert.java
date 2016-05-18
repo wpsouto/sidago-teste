@@ -93,7 +93,6 @@ public class AquisicaoMudasViewInsert extends BaseViewInsertImpl {
         BrowserDriver.selectByVisibleText(getContainer().embalagem, getEntity().getMudas().getEmbalagem());
         BrowserDriver.selectByVisibleText(getContainer().metodoPropagacao, getEntity().getMudas().getMetodoPropaganda());
         getContainer().confirmar.click();
-        getContainer().confirmar.click();
         BrowserDriver.waitForElementIsNotPresent(getContainer().adicionarMudasHome);
     }
 
