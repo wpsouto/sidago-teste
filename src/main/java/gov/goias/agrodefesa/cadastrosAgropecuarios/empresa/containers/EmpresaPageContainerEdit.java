@@ -53,8 +53,14 @@ public class EmpresaPageContainerEdit extends PageContainerEdit {
     @FindBy(how = How.ID, using = "id_documentorequerido")
     public WebElement tipoDocumento;
 
+    @FindBy(how = How.ID, using = "vencimento")
+    public WebElement vencimento;
+
     @FindBy(how = How.ID, using = "dt_vencimento")
     public WebElement dataVencimento;
+
+    @FindBy(how = How.CSS, using = "a.ui-state-default.ui-state-highlight")
+    public WebElement now;
 
     @FindBy(how = How.ID, using = "doc_2016")
     public WebElement file;

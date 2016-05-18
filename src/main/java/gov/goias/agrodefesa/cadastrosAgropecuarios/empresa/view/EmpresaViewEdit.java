@@ -103,21 +103,18 @@ public class EmpresaViewEdit extends BaseViewEditImpl {
         JavascriptExecutor executor =  ((JavascriptExecutor) BrowserDriver.getCurrentDriver());
 
         for (int i = 1; i < tiposDoc.length; i++) {
-            //BrowserDriver.waitForElement(conteiner.adicionarAnexo);
-            //executor.executeScript("scroll(250, 0)");
             BrowserDriver.scrollUp();
             getContainer().adicionarAnexo.click();
             BrowserDriver.waitForElement(getContainer().tipoDocumento);
             BrowserDriver.selectByVisibleText(getContainer().tipoDocumento, tiposDoc[i].trim());
 
-            if (getContainer().dataVencimento.isDisplayed()) {
-                //log.debug(Constants.MGS_SELECIONADO, "DATA VENCIMENTO");
-                getContainer().dataVencimento.sendKeys("");
+            if (getContainer().vencimento.isDisplayed()) {
+                BrowserDriver.scrollUp();
+                getContainer().dataVencimento.clear();
                 getContainer().now(getContainer().dataVencimento);
             }
 
-            String js = "arguments[0].style.display ='block';";
-            executor.executeScript(js, getContainer().file);
+            executor.executeScript("arguments[0].style.display ='block';", getContainer().file);
             getContainer().file.sendKeys(fileUpload);
             getContainer().confirmar.click();
             BrowserDriver.waitForElementIsNotPresent(getContainer().tipoDocumento);
