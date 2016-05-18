@@ -24,9 +24,9 @@ public class NavigationPropriedade extends NavigationBase {
     @Override
     public void dependency() {
         super.dependency();
-        log.debug(Constants.MGS_DEPENDENCIA, NavegacaoType.PESSOA.getKey());
 
         if (!NavegacaoFactory.getNavigator().existEntity(Pessoa.class)) {
+            log.debug(Constants.MGS_DEPENDENCIA, NavegacaoType.PESSOA.getKey());
             NavegacaoFactory.getNavigator().pageLoad(Action.HOME, NavegacaoType.PESSOA.getKey());
             NavegacaoFactory.getNavigator().pageLoad(Action.INSERT, NavegacaoType.PESSOA.getKey());
             NavegacaoFactory.getNavigator().pageLoad(Action.MENSAGEM_INSERT, NavegacaoType.PESSOA.getKey());

@@ -24,9 +24,9 @@ public class NavigationUnidadeProducao extends NavigationBase {
     @Override
     public void dependency() {
         super.dependency();
-        log.debug(Constants.MGS_DEPENDENCIA, NavegacaoType.TERMO_FISCALIZACAO.getKey());
 
         if (!NavegacaoFactory.getNavigator().existEntity(TermoFiscalizacao.class)) {
+            log.debug(Constants.MGS_DEPENDENCIA, NavegacaoType.TERMO_FISCALIZACAO.getKey());
             NavegacaoFactory.getNavigator().pageLoad(Action.HOME, NavegacaoType.TERMO_FISCALIZACAO.getKey());
             NavegacaoFactory.getNavigator().pageLoad(Action.INSERT, NavegacaoType.TERMO_FISCALIZACAO.getKey());
             NavegacaoFactory.getNavigator().pageLoad(Action.MENSAGEM_INSERT, NavegacaoType.TERMO_FISCALIZACAO.getKey());

@@ -24,9 +24,9 @@ public class NavigationTermoFiscalizacao extends NavigationBase {
     @Override
     public void dependency() {
         super.dependency();
-        log.debug(Constants.MGS_DEPENDENCIA, NavegacaoType.PROPRIEDADE.getKey());
 
         if (!NavegacaoFactory.getNavigator().existEntity(Propriedade.class)) {
+            log.debug(Constants.MGS_DEPENDENCIA, NavegacaoType.PROPRIEDADE.getKey());
             NavegacaoFactory.getNavigator().pageLoad(Action.HOME, NavegacaoType.PROPRIEDADE.getKey());
             NavegacaoFactory.getNavigator().pageLoad(Action.INSERT, NavegacaoType.PROPRIEDADE.getKey());
             NavegacaoFactory.getNavigator().pageLoad(Action.MENSAGEM_INSERT, NavegacaoType.PROPRIEDADE.getKey());

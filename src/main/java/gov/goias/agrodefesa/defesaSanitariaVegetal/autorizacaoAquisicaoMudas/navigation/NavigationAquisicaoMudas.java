@@ -30,9 +30,9 @@ public class NavigationAquisicaoMudas extends NavigationBase {
     @Override
     public void dependency() {
         super.dependency();
-        log.debug(Constants.MGS_DEPENDENCIA, NavegacaoType.UNIDADE_PRODUCAO.getKey());
 
         if (!NavegacaoFactory.getNavigator().existEntity(UnidadeProducao.class)) {
+            log.debug(Constants.MGS_DEPENDENCIA, NavegacaoType.UNIDADE_PRODUCAO.getKey());
             NavegacaoFactory.getNavigator().pageLoad(Action.HOME, NavegacaoType.UNIDADE_PRODUCAO.getKey());
             NavegacaoFactory.getNavigator().pageLoad(Action.INSERT, NavegacaoType.UNIDADE_PRODUCAO.getKey());
             NavegacaoFactory.getNavigator().pageLoad(Action.MENSAGEM_INSERT, NavegacaoType.UNIDADE_PRODUCAO.getKey());

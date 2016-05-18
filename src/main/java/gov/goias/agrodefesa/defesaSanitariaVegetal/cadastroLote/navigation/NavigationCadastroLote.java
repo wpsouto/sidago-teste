@@ -24,9 +24,9 @@ public class NavigationCadastroLote extends NavigationBase {
     @Override
     public void dependency() {
         super.dependency();
-        log.debug(Constants.MGS_DEPENDENCIA, NavegacaoType.UNIDADE_CONSOLIDACAO.getKey());
 
         if (!NavegacaoFactory.getNavigator().existEntity(UnidadeConsolidacao.class)) {
+            log.debug(Constants.MGS_DEPENDENCIA, NavegacaoType.UNIDADE_CONSOLIDACAO.getKey());
             NavegacaoFactory.getNavigator().pageLoad(Action.HOME, NavegacaoType.UNIDADE_CONSOLIDACAO.getKey());
             NavegacaoFactory.getNavigator().pageLoad(Action.INSERT, NavegacaoType.UNIDADE_CONSOLIDACAO.getKey());
             NavegacaoFactory.getNavigator().pageLoad(Action.MENSAGEM_INSERT, NavegacaoType.UNIDADE_CONSOLIDACAO.getKey());

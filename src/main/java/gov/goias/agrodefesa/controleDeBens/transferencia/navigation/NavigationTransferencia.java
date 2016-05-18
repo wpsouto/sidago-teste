@@ -21,9 +21,9 @@ public class NavigationTransferencia extends NavigationBase {
     @Override
     public void dependency() {
         super.dependency();
-        log.debug(Constants.MGS_DEPENDENCIA, NavegacaoType.PATRIMONIO.getKey());
 
         if (!NavegacaoFactory.getNavigator().existEntity(Patrimonio.class)) {
+            log.debug(Constants.MGS_DEPENDENCIA, NavegacaoType.PATRIMONIO.getKey());
             NavegacaoFactory.getNavigator().pageLoad(Action.HOME, NavegacaoType.PATRIMONIO.getKey());
             NavegacaoFactory.getNavigator().pageLoad(Action.INSERT, NavegacaoType.PATRIMONIO.getKey());
             NavegacaoFactory.getNavigator().pageLoad(Action.MENSAGEM_INSERT, NavegacaoType.PATRIMONIO.getKey());
