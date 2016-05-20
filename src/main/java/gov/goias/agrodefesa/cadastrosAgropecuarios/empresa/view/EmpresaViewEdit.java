@@ -6,7 +6,6 @@ import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity.Empresa;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 import gov.goias.agrodefesa.utils.FileUtils;
-import org.openqa.selenium.JavascriptExecutor;
 
 public class EmpresaViewEdit extends BaseViewEditImpl {
 
@@ -100,21 +99,20 @@ public class EmpresaViewEdit extends BaseViewEditImpl {
 
     public void upload(String fileUpload){
         String[] tiposDoc = getContainer().arquivosFaltantes.getText().replaceAll("\\<.*?>", "").split("\\*");
-        JavascriptExecutor executor =  ((JavascriptExecutor) BrowserDriver.getCurrentDriver());
 
         for (int i = 1; i < tiposDoc.length; i++) {
-            BrowserDriver.scrollUp();
+            BrowserDriver.scrollTop();
             getContainer().adicionarAnexo.click();
             BrowserDriver.waitForElement(getContainer().tipoDocumento);
             BrowserDriver.selectByVisibleText(getContainer().tipoDocumento, tiposDoc[i].trim());
 
             if (getContainer().vencimento.isDisplayed()) {
-                BrowserDriver.scrollUp();
+                BrowserDriver.scrollTop();
                 getContainer().dataVencimento.clear();
-                getContainer().now(getContainer().dataVencimento);
+                now(getContainer().dataVencimento);
             }
 
-            executor.executeScript("arguments[0].style.display ='block';", getContainer().file);
+            BrowserDriver.executeScript("arguments[0].style.display ='block';", getContainer().file);
             getContainer().file.sendKeys(fileUpload);
             getContainer().confirmar.click();
             BrowserDriver.waitForElementIsNotPresent(getContainer().tipoDocumento);

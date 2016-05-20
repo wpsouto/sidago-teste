@@ -47,8 +47,6 @@ public class AbrirChamadoViewInsert extends BaseViewInsertImpl {
         log.debug(Constants.MGS_INSERIDO, "ADOTAR CHAMADO", getEntity().getAdotarChamado());
         BrowserDriver.selectByVisibleText(getContainer().adotarChamado, getEntity().getAdotarChamado());
 
-        log.debug(Constants.MGS_SELECIONADO, "SALVAR");
-        BrowserDriver.screenshot();
-        getContainer().salvar.click();
+        salvar();
     }
 }

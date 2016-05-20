@@ -45,7 +45,7 @@ public class BoletimProducaoViewInsert extends BaseViewInsertImpl {
         BrowserDriver.selectByVisibleText(getContainer().monitoramentoMicroOrganismos, getEntity().getMonitoramentoDeMicroOrganismos());
 
         log.debug(Constants.MGS_INSERIDO, "DATA INICIO LOTE", getEntity().getDataInicioDoLote());
-        getContainer().now(getContainer().dataInicioLote);
+        now(getContainer().dataInicioLote);
 
         log.debug(Constants.MGS_INSERIDO, "MORTALIDADE ESTIMADA", getEntity().getMortalidadeEstimada());
         getContainer().mortalidadeEstimada.clear();
@@ -62,10 +62,10 @@ public class BoletimProducaoViewInsert extends BaseViewInsertImpl {
         BrowserDriver.selectByVisibleText(getContainer().animaisArroacados, getEntity().getAnimaisArroacados());
 
         log.debug(Constants.MGS_INSERIDO, "DATA INICIO PESCA", getEntity().getDataInicioPesca());
-        getContainer().now(getContainer().dataInicioPesca);
+        now(getContainer().dataInicioPesca);
 
         log.debug(Constants.MGS_INSERIDO, "DATA FIM PESCA", getEntity().getDataFimPesca());
-        getContainer().now(getContainer().dataFimPesca);
+        now(getContainer().dataFimPesca);
 
         log.debug(Constants.MGS_INSERIDO, "APRESENTACAO MATERIA PRIMA", getEntity().getApresentacaoMateriaPrima());
         BrowserDriver.selectByVisibleText(getContainer().apresentacaoMateriaPrima, getEntity().getApresentacaoMateriaPrima());

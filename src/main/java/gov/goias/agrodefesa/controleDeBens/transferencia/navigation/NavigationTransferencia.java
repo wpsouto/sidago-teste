@@ -1,13 +1,17 @@
 package gov.goias.agrodefesa.controleDeBens.transferencia.navigation;
 
 import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
+import gov.goias.agrodefesa.base.Navigation;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
 import gov.goias.agrodefesa.constants.Action;
 import gov.goias.agrodefesa.controleDeBens.patrimonio.entity.Patrimonio;
 import gov.goias.agrodefesa.controleDeBens.transferencia.entity.Transferencia;
+import gov.goias.agrodefesa.controleDeBens.transferencia.view.TransferenciaViewHome;
+import gov.goias.agrodefesa.controleDeBens.transferencia.view.TransferenciaViewInsert;
 import gov.goias.agrodefesa.utils.Constants;
 import gov.goias.agrodefesa.utils.NavegacaoType;
 
+@Navigation(home = TransferenciaViewHome.class, insert = TransferenciaViewInsert.class, entity = Transferencia.class)
 public class NavigationTransferencia extends NavigationBase {
 
     public NavigationTransferencia(NavegacaoType type) {

@@ -46,9 +46,9 @@ public class UnidadeProducaoViewInsert extends BaseViewInsertImpl {
         BrowserDriver.waitForSelectByIndex(getContainer().cultivar, 1);
         BrowserDriver.waitForSelectByIndex(getContainer().tipoProduto, 1);
         getContainer().estimativaProducao.sendKeys(getEntity().getProduto().getEstimativaProducao());
-        getContainer().now(getContainer().dataPrevistoPlantio);
-        getContainer().now(getContainer().previsaoInicioColheita);
-        getContainer().now(getContainer().previsaoFimColheita);
+        now(getContainer().dataPrevistoPlantio);
+        now(getContainer().previsaoInicioColheita);
+        now(getContainer().previsaoFimColheita);
         getContainer().areaPlantada.sendKeys(getEntity().getProduto().getAreaPlantada());
         getContainer().confirmar.click();
         BrowserDriver.waitForElementIsNotPresent(getContainer().adicionarProdutoHome);

@@ -49,7 +49,7 @@ public class TermoFiscalizacaoViewInsert extends BaseViewInsertImpl {
         getContainer().adicionarObjetivos.click();
         BrowserDriver.waitForElement(getContainer().homeAdicionarObjetivos);
 
-        BrowserDriver.scrollUp();
+        BrowserDriver.scrollTop();
         log.debug(Constants.MGS_INSERIDO, "PROGRAMA", getEntity().getObjetivo().getPrograma());
         BrowserDriver.changeDisplay(getContainer().programa);
         BrowserDriver.waitForSelectByVisibleText(getContainer().programa, getEntity().getObjetivo().getPrograma());
@@ -76,9 +76,7 @@ public class TermoFiscalizacaoViewInsert extends BaseViewInsertImpl {
         log.debug(Constants.MGS_INSERIDO, "ORIENTACOES", getEntity().getOrientacoes());
         getContainer().orientacoes.sendKeys(getEntity().getOrientacoes());
 
-        log.debug(Constants.MGS_SELECIONADO, "SALVAR");
-        BrowserDriver.screenshot();
-        getContainer().salvar.click();
+        salvar();
         getContainer().sim.click();
     }
 

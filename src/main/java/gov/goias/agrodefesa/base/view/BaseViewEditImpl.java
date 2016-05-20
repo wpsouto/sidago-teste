@@ -7,7 +7,11 @@ import gov.goias.agrodefesa.utils.Constants;
 /**
  * Created by usuario on 26/04/16.
  */
-public class BaseViewEditImpl extends BaseView implements EditView {
+public class BaseViewEditImpl extends BaseViewImpl implements EditView {
+
+    public BaseViewEditImpl(Class<?> pageClassToProxy) {
+        super(pageClassToProxy);
+    }
 
     public BaseViewEditImpl(Object entity, Class<?> pageClassToProxy) {
         super(entity, pageClassToProxy);

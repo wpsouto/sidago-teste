@@ -72,9 +72,17 @@ public class BrowserDriver {
         }
     }
 
-    public static void scrollUp() {
-        JavascriptExecutor executor =  ((JavascriptExecutor) getCurrentDriver());
-        executor.executeScript("scroll(250, 0)");
+    public static void executeScript(String script, Object... args) {
+        JavascriptExecutor js =(JavascriptExecutor) BrowserDriver.getCurrentDriver();
+        js.executeScript(script, args);
+    }
+
+    public static void scrollTo(WebElement webElement) {
+        executeScript("window.scrollTo(0,"+webElement.getLocation().y + ")");
+    }
+
+    public static void scrollTop() {
+        executeScript("scroll(250, 0)");
     }
 
     public static void scrollDown() {

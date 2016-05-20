@@ -1,20 +1,20 @@
 package gov.goias.agrodefesa.financeiro.dare.view;
 
-import gov.goias.agrodefesa.base.view.BaseView;
+import gov.goias.agrodefesa.base.view.BaseViewImpl;
 import gov.goias.agrodefesa.base.view.EditView;
 import gov.goias.agrodefesa.financeiro.dare.containers.UnidadeProducaoPageContainerEdit;
-import gov.goias.agrodefesa.financeiro.dare.entity.UnidadeProducao;
+import gov.goias.agrodefesa.financeiro.dare.entity.Dare;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
-public class UnidadeProducaoViewEdit extends BaseView implements EditView {
+public class UnidadeProducaoViewEdit extends BaseViewImpl implements EditView {
 
     public UnidadeProducaoViewEdit(Object entity) {
         super(entity, UnidadeProducaoPageContainerEdit.class);
     }
 
-    private UnidadeProducao getEntity() {
-        return (UnidadeProducao) entity;
+    private Dare getEntity() {
+        return (Dare) entity;
 
     }
 

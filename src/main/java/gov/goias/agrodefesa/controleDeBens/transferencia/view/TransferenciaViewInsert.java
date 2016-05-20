@@ -43,9 +43,7 @@ public class TransferenciaViewInsert extends BaseViewInsertImpl {
         log.debug(Constants.MGS_INSERIDO, "OBSERVACAO", getEntity().getObservacao());
         getContainer().observacao.sendKeys(getEntity().getObservacao());
 
-        log.debug(Constants.MGS_SELECIONADO, "SALVAR");
-        BrowserDriver.screenshot();
-        getContainer().salvar.click();
+        salvar();
     }
 
 }

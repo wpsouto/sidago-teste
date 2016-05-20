@@ -1,12 +1,12 @@
 package gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.view;
 
-import gov.goias.agrodefesa.base.view.BaseView;
+import gov.goias.agrodefesa.base.view.BaseViewImpl;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.containers.AquisicaoMudasPageContainerAprovar;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.entity.AquisicaoMudas;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
-public class AquisicaoMudasViewAprovacao extends BaseView {
+public class AquisicaoMudasViewAprovacao extends BaseViewImpl {
 
     public AquisicaoMudasViewAprovacao(Object entity) {
         super(entity, AquisicaoMudasPageContainerAprovar.class);

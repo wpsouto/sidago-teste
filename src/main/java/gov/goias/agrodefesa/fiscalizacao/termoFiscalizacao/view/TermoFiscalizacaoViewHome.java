@@ -25,7 +25,7 @@ public class TermoFiscalizacaoViewHome extends BaseViewHomeImpl {
     @Override
     public void pesquisar() {
         log.debug(Constants.MGS_INSERIDO, "DATA CRIACAO");
-        getContainer().now(getContainer().dataCriacao);
+        now(getContainer().dataCriacao);
         log.debug(Constants.MGS_SELECIONADO, "PESQUISAR");
         getContainer().pesquisar.click();
         BrowserDriver.waitForElement(getContainer().serie);

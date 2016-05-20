@@ -1,6 +1,6 @@
 # language: pt
 
-#@all @DefesaSanitariaVegetal @CadastroLote
+@all @DefesaSanitariaVegetal @CadastroLote
 
 Funcionalidade: Testando as funcionalidades do Cadastro de Lote
 

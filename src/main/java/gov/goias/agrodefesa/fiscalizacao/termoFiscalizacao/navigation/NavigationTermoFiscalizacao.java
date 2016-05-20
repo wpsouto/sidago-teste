@@ -1,16 +1,20 @@
 package gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.navigation;
 
 import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
+import gov.goias.agrodefesa.base.Navigation;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.propriedade.entity.Propriedade;
 import gov.goias.agrodefesa.constants.Action;
 import gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.entity.TermoFiscalizacao;
+import gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.view.TermoFiscalizacaoViewHome;
+import gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.view.TermoFiscalizacaoViewInsert;
 import gov.goias.agrodefesa.utils.Constants;
 import gov.goias.agrodefesa.utils.NavegacaoType;
 
 /**
  * Created by usuario on 10/03/16.
  */
+@Navigation(home = TermoFiscalizacaoViewHome.class, insert = TermoFiscalizacaoViewInsert.class, entity = TermoFiscalizacao.class)
 public class NavigationTermoFiscalizacao extends NavigationBase {
 
     public NavigationTermoFiscalizacao(NavegacaoType type) {

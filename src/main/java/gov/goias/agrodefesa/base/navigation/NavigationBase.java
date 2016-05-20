@@ -1,6 +1,7 @@
 package gov.goias.agrodefesa.base.navigation;
 
 import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
+import gov.goias.agrodefesa.base.Navigation;
 import gov.goias.agrodefesa.base.view.EditView;
 import gov.goias.agrodefesa.base.view.HomeView;
 import gov.goias.agrodefesa.base.view.InsertView;
@@ -12,6 +13,7 @@ import gov.goias.agrodefesa.utils.ResourceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 
 /**
@@ -26,25 +28,43 @@ public class NavigationBase implements NavegacaoStrategy {
     protected InsertView insert;
     protected EditView edit;
 
+
     public NavigationBase(NavegacaoType type) {
         this.type = type;
-        this.entity = ResourceFactory.init(type.getClassToProxy());
 
         try {
-            this.home = (HomeView) type.getHome().getConstructor(Object.class).newInstance(this.entity);
-
-            if (type.getInsert() != null) {
-                this.insert = (InsertView) type.getInsert().getConstructor(Object.class).newInstance(this.entity);
-            }
-
-            if (type.getEdit() != null) {
-                this.edit = (EditView) type.getEdit().getConstructor(Object.class).newInstance(this.entity);
-            }
+            initEntity();
         } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
             throw NavigationBase.error("ERRO AO INSTANCIAR CLASSE BASE", e);
         }
 
         dependency();
+    }
+
+    private void initEntity() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        Class<?> obj = this.getClass();
+        if (obj.isAnnotationPresent(Navigation.class)){
+            Annotation annotation = obj.getAnnotation(Navigation.class);
+            Navigation navigation = (Navigation) annotation;
+
+            if (!navigation.entity().equals(Navigation.None.class)) {
+                this.entity = ResourceFactory.init(navigation.entity());
+            }
+
+            this.home = (HomeView) navigation.home().getConstructor(Object.class).newInstance(this.entity);
+            //this.home.setEntity(this.entity);
+
+            if (!navigation.insert().equals(Navigation.None.class)) {
+                this.insert = (InsertView) navigation.insert().getConstructor(Object.class).newInstance(this.entity);
+                //this.insert.setEntity(this.entity);
+            }
+
+            if (!navigation.edit().equals(Navigation.None.class)) {
+                this.edit = (EditView) navigation.edit().getConstructor(Object.class).newInstance(this.entity);
+                //this.edit.setEntity(this.entity);
+            }
+
+        }
     }
 
     private static IllegalArgumentException error(String message, Throwable cause) {
@@ -105,3 +125,4 @@ public class NavigationBase implements NavegacaoStrategy {
     }
 
 }
+

@@ -36,7 +36,8 @@ public class EmpresaViewHome extends BaseViewHomeImpl {
         }
 
         log.debug(Constants.MGS_SELECIONADO, "APROVAR");
-                getContainer().comment.click();
+        BrowserDriver.scrollTo(getContainer().comment);
+        getContainer().comment.click();
 
     }
 

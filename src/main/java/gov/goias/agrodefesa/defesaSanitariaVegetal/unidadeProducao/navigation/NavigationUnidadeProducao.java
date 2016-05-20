@@ -1,9 +1,13 @@
 package gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeProducao.navigation;
 
 import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
+import gov.goias.agrodefesa.base.Navigation;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
 import gov.goias.agrodefesa.constants.Action;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeProducao.entity.UnidadeProducao;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeProducao.view.UnidadeProducaoViewEdit;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeProducao.view.UnidadeProducaoViewHome;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeProducao.view.UnidadeProducaoViewInsert;
 import gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.entity.TermoFiscalizacao;
 import gov.goias.agrodefesa.utils.Constants;
 import gov.goias.agrodefesa.utils.NavegacaoType;
@@ -11,6 +15,7 @@ import gov.goias.agrodefesa.utils.NavegacaoType;
 /**
  * Created by usuario on 10/03/16.
  */
+@Navigation(home = UnidadeProducaoViewHome.class, insert = UnidadeProducaoViewInsert.class, edit = UnidadeProducaoViewEdit.class, entity = UnidadeProducao.class)
 public class NavigationUnidadeProducao extends NavigationBase {
 
     public NavigationUnidadeProducao(NavegacaoType type) {

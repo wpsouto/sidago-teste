@@ -13,7 +13,6 @@ public class MaterialSteps {
 
     @Quando("^Eu insiro um novo registro de Material em branco$")
     public void Eu_insiro_um_novo_registro_de_Material_em_branco() {
-        LOGGER.info("Entrando: Salvo os dados do formulario de Incluir Material");
         NavigationMaterial material = (NavigationMaterial) NavegacaoFactory.getNavigator().pageLoad(NavegacaoType.MATERIAL);
         material.incluirParaValidar();
     }

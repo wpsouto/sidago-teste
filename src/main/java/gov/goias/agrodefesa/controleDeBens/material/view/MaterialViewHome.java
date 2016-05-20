@@ -11,7 +11,7 @@ public class MaterialViewHome extends BaseViewHomeImpl {
         super(entity, MaterialPageContainerHome.class);
     }
 
-    private Material getEntity() {
+    public Material getEntity() {
         return (Material) entity;
     }
 

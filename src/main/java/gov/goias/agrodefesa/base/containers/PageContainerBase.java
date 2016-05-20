@@ -1,7 +1,5 @@
 package gov.goias.agrodefesa.base.containers;
 
-import gov.goias.agrodefesa.utils.BrowserDriver;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -18,13 +16,6 @@ public class PageContainerBase {
     public WebElement concordo;
 
     @FindBy(how = How.CSS, using = "a.ui-state-default.ui-state-highlight")
-    private WebElement now;
-
-    public void now(WebElement datePicker){
-        datePicker.click();
-        BrowserDriver.waitForElement(this.now);
-        this.now.click();
-        BrowserDriver.waitForElementIsNotPresent(this.now);
-    }
+    public WebElement now;
 
 }

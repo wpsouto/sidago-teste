@@ -24,7 +24,7 @@ public class AbrirDenunciaViewHome extends BaseViewHomeImpl {
     @Override
     public void pesquisar() {
         log.debug(Constants.MGS_INSERIDO, "TIPO INFRACAO", getEntity().getTipoInfracao());
-        BrowserDriver.scrollUp();
+        BrowserDriver.scrollTop();
         getContainer().tipoInfracao.sendKeys(getEntity().getTipoInfracao().split("-")[1].trim());
         BrowserDriver.waitForElement(getContainer().tipoInfracaoAutoComplete);
         getContainer().tipoInfracaoAutoComplete.click();

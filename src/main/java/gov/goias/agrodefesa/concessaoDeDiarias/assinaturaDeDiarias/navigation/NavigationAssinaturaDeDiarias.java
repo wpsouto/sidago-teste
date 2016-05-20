@@ -1,6 +1,7 @@
 package gov.goias.agrodefesa.concessaoDeDiarias.assinaturaDeDiarias.navigation;
 
 import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
+import gov.goias.agrodefesa.base.Navigation;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
 import gov.goias.agrodefesa.concessaoDeDiarias.assinaturaDeDiarias.view.AssinaturaDeDiariasViewHome;
 import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.entity.DelegacaoAtividade;
@@ -8,6 +9,7 @@ import gov.goias.agrodefesa.constants.Action;
 import gov.goias.agrodefesa.utils.Constants;
 import gov.goias.agrodefesa.utils.NavegacaoType;
 
+@Navigation(home = AssinaturaDeDiariasViewHome.class, entity = DelegacaoAtividade.class)
 public class NavigationAssinaturaDeDiarias extends NavigationBase {
 
     public NavigationAssinaturaDeDiarias(NavegacaoType type) {

@@ -10,5 +10,7 @@ public class DarePageContainerHome extends PageContainerHome {
     @FindBy(how = How.ID, using = "cpf")
     public WebElement cpf;
 
+    @FindBy(how = How.XPATH, using = "//*[@id=\"ui-id-3\"]/li[1]")
+    public WebElement cpfAutoComplete;
 
 }

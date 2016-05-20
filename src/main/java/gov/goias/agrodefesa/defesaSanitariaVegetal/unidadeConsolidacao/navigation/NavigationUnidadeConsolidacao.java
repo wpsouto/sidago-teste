@@ -1,16 +1,21 @@
 package gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.navigation;
 
 import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
+import gov.goias.agrodefesa.base.Navigation;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.entity.Pessoa;
 import gov.goias.agrodefesa.constants.Action;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.entity.UnidadeConsolidacao;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.view.UnidadeConsolidacaoViewEdit;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.view.UnidadeConsolidacaoViewHome;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.view.UnidadeConsolidacaoViewInsert;
 import gov.goias.agrodefesa.utils.Constants;
 import gov.goias.agrodefesa.utils.NavegacaoType;
 
 /**
  * Created by usuario on 10/03/16.
  */
+@Navigation(home = UnidadeConsolidacaoViewHome.class, insert = UnidadeConsolidacaoViewInsert.class, edit = UnidadeConsolidacaoViewEdit.class, entity = UnidadeConsolidacao.class)
 public class NavigationUnidadeConsolidacao extends NavigationBase {
 
     public NavigationUnidadeConsolidacao(NavegacaoType type) {

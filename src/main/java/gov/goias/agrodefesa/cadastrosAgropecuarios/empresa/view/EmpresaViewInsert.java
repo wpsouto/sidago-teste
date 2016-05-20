@@ -5,11 +5,6 @@ import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity.Empresa;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.containers.EmpresaPageContainerInsert;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
-import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.PageFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class EmpresaViewInsert extends BaseViewInsertImpl {
 
@@ -108,7 +103,7 @@ public class EmpresaViewInsert extends BaseViewInsertImpl {
     }
 
     public void informacaoComplementar(Empresa.InformacaoComplementar informacaoComplementar){
-        BrowserDriver.scrollUp();
+        BrowserDriver.scrollTop();
 
         log.debug(Constants.MGS_SELECIONADO, "INFORMACAO COMPLEMENTAR");
         BrowserDriver.waitForClickable(getContainer().informacaoComplementar);

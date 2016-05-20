@@ -28,6 +28,7 @@ public class LavouraViewInsert  extends BaseViewInsertImpl {
         log.debug(Constants.MGS_SELECIONADO, "LISTA SEFAZ");
         BrowserDriver.waitForElement(getContainer().listaSefaz);
         getContainer().listaSefaz.click();
+        BrowserDriver.waitForElementIsNotPresent(getContainer().listaSefaz);
 
         adicionarProduto();
 
@@ -45,15 +46,18 @@ public class LavouraViewInsert  extends BaseViewInsertImpl {
 
     public void adicionarProduto() {
         log.debug(Constants.MGS_SELECIONADO, "ADICIONAR PRODUTO");
+
+        BrowserDriver.scrollTo(getContainer().adicionarProduto);
         getContainer().adicionarProduto.click();
         BrowserDriver.waitForElement(getContainer().adicionarProdutoHome);
         BrowserDriver.selectByVisibleText(getContainer().produto, getEntity().getProduto().getProduto());
         BrowserDriver.selectByVisibleText(getContainer().cultivar, getEntity().getProduto().getCultivar());
         BrowserDriver.selectByVisibleText(getContainer().tipoProduto, getEntity().getProduto().getTipoProduto());
         getContainer().estimativaProducao.sendKeys(getEntity().getProduto().getEstimativaProducao());
-        getContainer().now(getContainer().dataPrevistoPlantio);
-        getContainer().now(getContainer().previsaoInicioColheita);
-        getContainer().now(getContainer().previsaoFimColheita);
+        now(getContainer().dataPrevistoPlantio);
+        now(getContainer().dataPrevistoPlantio);
+        now(getContainer().previsaoInicioColheita);
+        now(getContainer().previsaoFimColheita);
         getContainer().areaPlantada.sendKeys(getEntity().getProduto().getAreaPlantada());
         getContainer().confirmar.click();
         BrowserDriver.waitForElementIsNotPresent(getContainer().adicionarProdutoHome);

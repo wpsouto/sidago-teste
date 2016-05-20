@@ -1,12 +1,15 @@
 package gov.goias.agrodefesa.concessaoDeDiarias.cienciaDoServidor.navigation;
 
 import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
+import gov.goias.agrodefesa.base.Navigation;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
+import gov.goias.agrodefesa.concessaoDeDiarias.cienciaDoServidor.view.CienciaDoServidorViewHome;
 import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.entity.DelegacaoAtividade;
 import gov.goias.agrodefesa.constants.Action;
 import gov.goias.agrodefesa.utils.Constants;
 import gov.goias.agrodefesa.utils.NavegacaoType;
 
+@Navigation(home = CienciaDoServidorViewHome.class, entity = DelegacaoAtividade.class)
 public class NavigationCienciaDoServidor extends NavigationBase {
 
     public NavigationCienciaDoServidor(NavegacaoType type) {

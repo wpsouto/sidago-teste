@@ -12,7 +12,7 @@ public class MaterialViewInsert extends BaseViewInsertImpl {
         super(entity, MaterialPageContainerInsert.class);
     }
 
-    private Material getEntity() {
+    public Material getEntity() {
         return (Material) entity;
     }
 
