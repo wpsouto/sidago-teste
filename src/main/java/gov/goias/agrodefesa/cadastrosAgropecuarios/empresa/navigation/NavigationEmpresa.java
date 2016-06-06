@@ -21,11 +21,8 @@ import gov.goias.agrodefesa.utils.NavegacaoType;
 public class NavigationEmpresa extends NavigationBase {
 
 /*
-    private EmpresaViewAprovacao empresaViewAprovacao;
-
-    public NavigationEmpresa() {
-        empresaViewAprovacao = new EmpresaViewAprovacao(getEntity());
-    }
+    @ViewExtension()
+    public EmpresaViewAprovacao empresaViewAprovacao;
 */
 
     public Empresa getEntity() {

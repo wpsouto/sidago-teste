@@ -1,6 +1,6 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.view;
 
-import gov.goias.agrodefesa.base.view.BaseViewEditImpl;
+import gov.goias.agrodefesa.base.view.BaseViewImpl;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.containers.EmpresaPageContainerAprovacao;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity.Empresa;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity.Grupo;
@@ -10,7 +10,7 @@ import org.junit.Assert;
 
 import java.util.Enumeration;
 
-public class EmpresaViewAprovacao extends BaseViewEditImpl {
+public class EmpresaViewAprovacao extends BaseViewImpl {
 
 
     public EmpresaViewAprovacao(Object entity) {
@@ -26,7 +26,6 @@ public class EmpresaViewAprovacao extends BaseViewEditImpl {
     }
 
 
-    @Override
     public void builder(){
         log.debug(Constants.MGS_AGUARDANDO);
         BrowserDriver.waitForElement(getContainer().home);

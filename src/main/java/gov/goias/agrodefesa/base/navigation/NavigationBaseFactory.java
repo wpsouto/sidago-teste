@@ -77,6 +77,7 @@ public class NavigationBaseFactory {
             createHomeView(navigation, ((NavigationBase) strategy));
             createInsertView(navigation, ((NavigationBase) strategy));
             createEditView(navigation, ((NavigationBase) strategy));
+//            createOtherView(((NavigationBase) strategy));
 
         } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
             throw NavigationBaseFactory.error(base, e);
@@ -129,6 +130,26 @@ public class NavigationBaseFactory {
             baseView.container = PageFactory.initElements(BrowserDriver.getCurrentDriver(), view.pageContainer());
         }
     }
+
+/*
+    private static void createOtherView(NavigationBase navegacaoBase) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
+        Field[] fields = navegacaoBase.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            if (field.isAnnotationPresent(ViewExtension.class)) {
+                Object teste = Class.forName(field.getClass().getName()).getConstructor().newInstance();
+                View view = teste.getClass().getAnnotation(View.class);
+                ((BaseViewImpl) teste).container = navegacaoBase.entity;
+                ((BaseViewImpl) teste).entity = PageFactory.initElements(BrowserDriver.getCurrentDriver(), view.pageContainer());
+
+                //View view = navegacaoBase.edit.getClass().getAnnotation(View.class);
+                //((BaseViewImpl) field).container = null;
+                //BaseViewImpl baseView = (BaseViewImpl) field;
+                // baseView.entity = navegacaoBase.entity;
+                // baseView.container = PageFactory.initElements(BrowserDriver.getCurrentDriver(), view.pageContainer());
+            }
+        }
+    }
+*/
 
     private static IllegalArgumentException error(String message) {
         return new IllegalArgumentException(message);
