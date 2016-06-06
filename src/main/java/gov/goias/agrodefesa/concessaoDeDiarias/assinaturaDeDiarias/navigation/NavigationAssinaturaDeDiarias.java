@@ -1,7 +1,7 @@
 package gov.goias.agrodefesa.concessaoDeDiarias.assinaturaDeDiarias.navigation;
 
 import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
-import gov.goias.agrodefesa.base.Navigation;
+import gov.goias.agrodefesa.base.annotation.Navigation;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
 import gov.goias.agrodefesa.concessaoDeDiarias.assinaturaDeDiarias.view.AssinaturaDeDiariasViewHome;
 import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.entity.DelegacaoAtividade;

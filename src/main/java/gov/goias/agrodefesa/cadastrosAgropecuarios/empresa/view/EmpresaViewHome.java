@@ -1,16 +1,14 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.view;
 
+import gov.goias.agrodefesa.base.annotation.View;
 import gov.goias.agrodefesa.base.view.BaseViewHomeImpl;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.containers.EmpresaPageContainerHome;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity.Empresa;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
+@View(pageContainer = EmpresaPageContainerHome.class)
 public class EmpresaViewHome extends BaseViewHomeImpl {
-
-    public EmpresaViewHome(Object entity) {
-        super(entity, EmpresaPageContainerHome.class);
-    }
 
     private Empresa getEntity() {
         return (Empresa) entity;

@@ -1,16 +1,14 @@
 package gov.goias.agrodefesa.chamado.abrirChamado.view;
 
+import gov.goias.agrodefesa.base.annotation.View;
 import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.chamado.abrirChamado.containers.AbrirChamadoPageContainerInsert;
 import gov.goias.agrodefesa.chamado.abrirChamado.entity.Chamado;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
+@View(pageContainer = AbrirChamadoPageContainerInsert.class)
 public class AbrirChamadoViewInsert extends BaseViewInsertImpl {
-
-    public AbrirChamadoViewInsert(Object entity) {
-        super(entity, AbrirChamadoPageContainerInsert.class);
-    }
 
     private Chamado getEntity() {
         return (Chamado) entity;

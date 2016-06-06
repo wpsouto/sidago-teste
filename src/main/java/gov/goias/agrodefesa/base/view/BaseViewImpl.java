@@ -9,12 +9,16 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Created by usuario on 26/04/16.
+ * *
  */
 public class BaseViewImpl implements BaseView {
 
     protected final Logger log = LoggerFactory.getLogger(this.getClass());
-    protected Object container;
-    protected Object entity;
+    public Object container;
+    public Object entity;
+
+    public BaseViewImpl() {
+    }
 
     public BaseViewImpl(Class<?> pageClassToProxy) {
         this.container = PageFactory.initElements(BrowserDriver.getCurrentDriver(), pageClassToProxy);
@@ -25,13 +29,13 @@ public class BaseViewImpl implements BaseView {
         this.entity = entity;
     }
 
-    public void autoComplete(String valor, WebElement key, WebElement complete){
+    public void autoComplete(String valor, WebElement key, WebElement complete) {
         key.sendKeys(valor);
         BrowserDriver.waitForElement(complete);
         complete.click();
     }
 
-    public void now(WebElement datePicker){
+    public void now(WebElement datePicker) {
         datePicker.click();
         BrowserDriver.waitForElement(((PageContainerBase) container).now);
         ((PageContainerBase) container).now.click();
@@ -40,6 +44,6 @@ public class BaseViewImpl implements BaseView {
 
     @Override
     public void setEntity(Object entity) {
-       this.entity = entity;
+        this.entity = entity;
     }
 }

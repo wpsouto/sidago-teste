@@ -16,6 +16,7 @@ public class BrowserDriver {
     private static final Logger log = LoggerFactory.getLogger(BrowserDriver.class);
     private static WebDriver mDriver;
     private static Scenario scenario;
+    private static final int WAIT_TIME_IN_SECONDS = 20;
 
     public synchronized static WebDriver getCurrentDriver() {
         if (mDriver == null) {
@@ -61,7 +62,9 @@ public class BrowserDriver {
 */
 
     public static WebElement waitForElement(WebElement elementToWaitFor) {
-        return waitForElement(elementToWaitFor, null);
+        WebDriverWait wait = new WebDriverWait(getCurrentDriver(), WAIT_TIME_IN_SECONDS);
+        return wait.until(ExpectedConditions.visibilityOf(elementToWaitFor));
+
     }
 
     public static void waitFor(Integer waitTimeInSeconds) {
@@ -91,38 +94,14 @@ public class BrowserDriver {
     }
 
     public static void waitForText(WebElement elementToWaitFor, String value) {
-        waitForText(elementToWaitFor, value, 10);
-    }
-
-    public static void waitForText(WebElement elementToWaitFor, String value, Integer waitTimeInSeconds) {
-        if (waitTimeInSeconds == null) {
-            waitTimeInSeconds = 10;
-        }
-
-        WebDriverWait wait = new WebDriverWait(getCurrentDriver(), waitTimeInSeconds);
+        WebDriverWait wait = new WebDriverWait(getCurrentDriver(), WAIT_TIME_IN_SECONDS);
         wait.until(ExpectedConditions.textToBePresentInElement(elementToWaitFor, value));
     }
 
     public static WebElement waitForClickable(WebElement elementToWaitFor) {
-        return waitForClickable(elementToWaitFor, 10);
-    }
-
-    public static WebElement waitForClickable(WebElement elementToWaitFor, Integer waitTimeInSeconds) {
-        if (waitTimeInSeconds == null) {
-            waitTimeInSeconds = 10;
-        }
-
-        WebDriverWait wait = new WebDriverWait(getCurrentDriver(), waitTimeInSeconds);
+        WebDriverWait wait = new WebDriverWait(getCurrentDriver(), WAIT_TIME_IN_SECONDS);
         return wait.until(ExpectedConditions.elementToBeClickable(elementToWaitFor));
-    }
 
-    public static WebElement waitForElement(WebElement elementToWaitFor, Integer waitTimeInSeconds) {
-        if (waitTimeInSeconds == null) {
-            waitTimeInSeconds = 10;
-        }
-
-        WebDriverWait wait = new WebDriverWait(getCurrentDriver(), waitTimeInSeconds);
-        return wait.until(ExpectedConditions.visibilityOf(elementToWaitFor));
     }
 
 /*    public static WebElement getParent(WebElement element) {
@@ -134,7 +113,7 @@ public class BrowserDriver {
     }
 
     public static void waitForElementIsNotPresent(WebElement webElement) {
-        WebDriverWait wait = new WebDriverWait(getCurrentDriver(), 10);
+        WebDriverWait wait = new WebDriverWait(getCurrentDriver(), WAIT_TIME_IN_SECONDS);
         wait.until((WebDriver webDriver) -> {
             try {
                 if(webElement.isDisplayed()) {
@@ -170,7 +149,7 @@ public class BrowserDriver {
     private static void waitForSelectOptions(WebElement webElement) {
         Select select = new Select(webElement);
 
-        WebDriverWait wait = new WebDriverWait(getCurrentDriver(), 10);
+        WebDriverWait wait = new WebDriverWait(getCurrentDriver(), WAIT_TIME_IN_SECONDS);
         wait.until((WebDriver webDriver) -> select.getOptions().size() > 1);
     }
 

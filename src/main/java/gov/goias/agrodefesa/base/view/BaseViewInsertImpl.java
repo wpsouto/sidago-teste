@@ -9,6 +9,9 @@ import gov.goias.agrodefesa.utils.Constants;
  */
 public class BaseViewInsertImpl extends BaseViewImpl implements InsertView {
 
+    public BaseViewInsertImpl() {
+    }
+
     public BaseViewInsertImpl(Class<?> pageClassToProxy) {
         super(pageClassToProxy);
     }

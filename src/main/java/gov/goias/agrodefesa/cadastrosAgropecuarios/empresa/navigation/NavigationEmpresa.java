@@ -1,6 +1,7 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.navigation;
 
-import gov.goias.agrodefesa.base.Navigation;
+import gov.goias.agrodefesa.base.annotation.Navigation;
+import gov.goias.agrodefesa.base.annotation.NavigationType;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity.Empresa;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.view.EmpresaViewAprovacao;
@@ -13,16 +14,19 @@ import gov.goias.agrodefesa.utils.NavegacaoType;
 
 /**
  * Created by usuario on 10/03/16.
+ * *
  */
 @Navigation(home = EmpresaViewHome.class, insert = EmpresaViewInsert.class, edit = EmpresaViewEdit.class, entity = Empresa.class)
+@NavigationType(label = "Empresa", modulo = NavegacaoType.CADASTROS_AGROPECUARIOS, url = "empresas")
 public class NavigationEmpresa extends NavigationBase {
 
+/*
     private EmpresaViewAprovacao empresaViewAprovacao;
 
-    public NavigationEmpresa(NavegacaoType type) {
-        super(type);
+    public NavigationEmpresa() {
         empresaViewAprovacao = new EmpresaViewAprovacao(getEntity());
     }
+*/
 
     public Empresa getEntity() {
         return (Empresa) entity;
@@ -30,6 +34,7 @@ public class NavigationEmpresa extends NavigationBase {
 
     private void aprovar() {
         ((EmpresaViewHome) home).aprovar();
+        EmpresaViewAprovacao empresaViewAprovacao = new EmpresaViewAprovacao(getEntity());
         empresaViewAprovacao.builder();
     }
 

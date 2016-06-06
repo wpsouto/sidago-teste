@@ -22,7 +22,7 @@ public class TermoFiscalizacaoPageContainerInsert extends PageContainerInsert {
     @FindBy(how = How.ID, using = "codigo")
     public WebElement cpfCnpj;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"ui-id-4\"]/li[1]")
+    @FindBy(how = How.XPATH, using = "//*[@id=\"ui-id-5\"]/li[1]")
     public WebElement cpfCnpjAutoComplete;
 
     @FindBy(how = How.LINK_TEXT, using = "Adicionar Objetivos da Fiscalização")

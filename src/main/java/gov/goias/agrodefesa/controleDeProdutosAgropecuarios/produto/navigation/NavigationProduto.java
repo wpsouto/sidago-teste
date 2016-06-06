@@ -1,6 +1,6 @@
 package gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.navigation;
 
-import gov.goias.agrodefesa.base.Navigation;
+import gov.goias.agrodefesa.base.annotation.Navigation;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
 import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.entity.ProdutoAnimal;
 import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.view.ProdutoViewEdit;

@@ -1,6 +1,6 @@
 package gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.navigation;
 
-import gov.goias.agrodefesa.base.Navigation;
+import gov.goias.agrodefesa.base.annotation.Navigation;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
 import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.entity.Ingrediente;
 import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.view.IngredienteAtivoViewEdit;

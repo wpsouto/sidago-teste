@@ -1,6 +1,6 @@
 package gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.navigation;
 
-import gov.goias.agrodefesa.base.Navigation;
+import gov.goias.agrodefesa.base.annotation.Navigation;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
 import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.entity.DelegacaoAtividade;
 import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.view.DelegacaoDeAtividadesViewHome;

@@ -10,5 +10,3 @@ Funcionalidade: Testando as funcionalidade de Almoxarifado
     Então Eu recebo a mensagem "inserido" do "Almoxarifado"
     Quando Eu "altero" um registro de "Almoxarifado"
     Então Eu recebo a mensagem "alterado" do "Almoxarifado"
-
-

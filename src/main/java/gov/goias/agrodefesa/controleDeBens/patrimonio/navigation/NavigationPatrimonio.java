@@ -1,6 +1,7 @@
 package gov.goias.agrodefesa.controleDeBens.patrimonio.navigation;
 
-import gov.goias.agrodefesa.base.Navigation;
+import gov.goias.agrodefesa.base.annotation.Navigation;
+import gov.goias.agrodefesa.base.annotation.NavigationType;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
 import gov.goias.agrodefesa.controleDeBens.patrimonio.entity.Patrimonio;
 import gov.goias.agrodefesa.controleDeBens.patrimonio.view.PatrimonioViewEdit;
@@ -12,11 +13,8 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Navigation(home = PatrimonioViewHome.class, insert = PatrimonioViewInsert.class, edit = PatrimonioViewEdit.class, entity = Patrimonio.class)
+@NavigationType(label = "patrimonio", modulo = NavegacaoType.CONTROLE_BENS, url = "patrimonio")
 public class NavigationPatrimonio extends NavigationBase {
-
-    public NavigationPatrimonio(NavegacaoType type) {
-        super(type);
-    }
 
     public Patrimonio getEntity() {
         return (Patrimonio) entity;

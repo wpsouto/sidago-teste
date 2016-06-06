@@ -1,16 +1,13 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.view;
 
+import gov.goias.agrodefesa.base.annotation.View;
 import gov.goias.agrodefesa.base.view.BaseViewHomeImpl;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.containers.PessoaPageContainerHome;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.entity.Pessoa;
 import gov.goias.agrodefesa.utils.Constants;
 
+@View(pageContainer = PessoaPageContainerHome.class)
 public class PessoaViewHome  extends BaseViewHomeImpl {
-
-
-	public PessoaViewHome(Object entity) {
-		super(entity, PessoaPageContainerHome.class);
-	}
 
 	private Pessoa getEntity() {
 		return (Pessoa) entity;

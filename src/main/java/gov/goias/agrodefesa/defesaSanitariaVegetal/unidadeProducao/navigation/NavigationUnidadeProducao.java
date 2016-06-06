@@ -1,7 +1,7 @@
 package gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeProducao.navigation;
 
 import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
-import gov.goias.agrodefesa.base.Navigation;
+import gov.goias.agrodefesa.base.annotation.Navigation;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
 import gov.goias.agrodefesa.constants.Action;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeProducao.entity.UnidadeProducao;

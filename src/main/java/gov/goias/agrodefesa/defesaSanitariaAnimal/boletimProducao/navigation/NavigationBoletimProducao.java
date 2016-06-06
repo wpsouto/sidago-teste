@@ -6,7 +6,6 @@ import gov.goias.agrodefesa.cadastrosAgropecuarios.propriedade.entity.Propriedad
 import gov.goias.agrodefesa.constants.Action;
 import gov.goias.agrodefesa.defesaSanitariaAnimal.boletimProducao.entity.BoletimProducao;
 import gov.goias.agrodefesa.defesaSanitariaAnimal.boletimProducao.view.BoletimProducaoViewHome;
-import gov.goias.agrodefesa.utils.Constants;
 import gov.goias.agrodefesa.utils.NavegacaoType;
 
 /**
@@ -26,6 +25,7 @@ public class NavigationBoletimProducao extends NavigationBase {
     @Override
     public void dependency() {
         super.dependency();
+/*
         log.debug(Constants.MGS_DEPENDENCIA, NavegacaoType.PROPRIEDADE.getKey());
 
         if (!NavegacaoFactory.getNavigator().existEntity(Propriedade.class)) {
@@ -33,6 +33,7 @@ public class NavigationBoletimProducao extends NavigationBase {
             NavegacaoFactory.getNavigator().pageLoad(Action.INSERT, NavegacaoType.PROPRIEDADE.getKey());
             NavegacaoFactory.getNavigator().pageLoad(Action.MENSAGEM_INSERT, NavegacaoType.PROPRIEDADE.getKey());
         }
+*/
 
         getEntity().setPropriedade((Propriedade) NavegacaoFactory.getNavigator().getEntity(Propriedade.class));
     }

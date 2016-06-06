@@ -1,14 +1,23 @@
 package gov.goias.agrodefesa.utils;
 
+import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.navigation.NavigationEmpresa;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.navigation.NavigationPessoa;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.propriedade.navigation.NavigationPropriedade;
+import gov.goias.agrodefesa.chamado.abrirChamado.navigation.NavigationAbrirChamado;
+import gov.goias.agrodefesa.controleDeBens.almoxarifado.navigation.NavigationAlmoxarifado;
+import gov.goias.agrodefesa.controleDeBens.material.navigation.NavigationMaterial;
+import gov.goias.agrodefesa.controleDeBens.patrimonio.navigation.NavigationPatrimonio;
+import gov.goias.agrodefesa.controleDeBens.transferencia.navigation.NavigationTransferencia;
+import gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.navigation.NavigationTermoFiscalizacao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by usuario on 10/03/16.
+ * *
  */
 public class NavegacaoContext {
 
@@ -16,26 +25,28 @@ public class NavegacaoContext {
 
     private static List<NavegacaoType> _strategies = new ArrayList<>();
 
+    public static List<Class<?>> _strategies1 = new ArrayList<>();
+
     static {
 
         //CONTROLE_BENS
-        _strategies.add(NavegacaoType.ALMOXARIFADO);
-        _strategies.add(NavegacaoType.MATERIAL);
-        _strategies.add(NavegacaoType.PATRIMONIO);
-        _strategies.add(NavegacaoType.TRANSFERENCIA_BENS);
+        _strategies1.add(NavigationAlmoxarifado.class);
+        _strategies1.add(NavigationMaterial.class);
+        _strategies1.add(NavigationPatrimonio.class);
+        _strategies1.add(NavigationTransferencia.class);
 
         //FISCALIZACAO
-        _strategies.add(NavegacaoType.TERMO_FISCALIZACAO);
+        _strategies1.add(NavigationTermoFiscalizacao.class);
 
         //CHAMADO
-        _strategies.add(NavegacaoType.ABRIR_CHAMADO);
+        _strategies1.add(NavigationAbrirChamado.class);
 
         //CADASTROS_AGROPECUARIOS
-        _strategies.add(NavegacaoType.EMPRESA);
+        _strategies1.add(NavigationEmpresa.class);
         _strategies.add(NavegacaoType.EMPRESA_CLASSIFICACAO);
         _strategies.add(NavegacaoType.EMPRESA_FORA_GOIAS);
-        _strategies.add(NavegacaoType.PESSOA);
-        _strategies.add(NavegacaoType.PROPRIEDADE);
+        _strategies1.add(NavigationPessoa.class);
+        _strategies1.add(NavigationPropriedade.class);
         _strategies.add(NavegacaoType.LAVOURA);
 
         //CONTROLE_DE_PRODUTOS_AGROPECUARIOS
@@ -60,32 +71,6 @@ public class NavegacaoContext {
         _strategies.add(NavegacaoType.ASSINATURA_DE_DIARIAS);
         _strategies.add(NavegacaoType.PRESTACAO_DE_CONTAS);
 
-    }
-
-    public static NavegacaoStrategy parce(String key, NavegacaoStrategy strategy) {
-        for (NavegacaoType type : _strategies) {
-            if (type.getKey().equalsIgnoreCase(key)) {
-                try {
-                    if (strategy != null && type.getNavegacaoStrategy().equals(strategy.getClass())) {
-                        return strategy;
-                    } else {
-                        return (NavegacaoStrategy) (type.getNavegacaoStrategy()).getConstructor(NavegacaoType.class).newInstance(type);
-                    }
-                } catch (InstantiationException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
-                    throw NavegacaoContext.error("ERRO AO INSTANCIAR CLASSE STRATEGY", e);
-                }
-            }
-        }
-
-        throw navegacaoType(key);
-    }
-
-    private static IllegalArgumentException navegacaoType(String type) {
-        return new IllegalArgumentException(("Invalid NavegacaoTYpe [" + type + "]"));
-    }
-
-    private static IllegalArgumentException error(String message, Throwable cause) {
-        return new IllegalArgumentException(message, cause);
     }
 
 }

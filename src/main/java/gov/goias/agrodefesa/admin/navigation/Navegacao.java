@@ -2,9 +2,9 @@ package gov.goias.agrodefesa.admin.navigation;
 
 import gov.goias.agrodefesa.admin.view.HomeView;
 import gov.goias.agrodefesa.admin.view.LoginView;
+import gov.goias.agrodefesa.base.navigation.NavigationBaseFactory;
 import gov.goias.agrodefesa.constants.Action;
 import gov.goias.agrodefesa.utils.BrowserDriver;
-import gov.goias.agrodefesa.utils.NavegacaoContext;
 import gov.goias.agrodefesa.utils.NavegacaoStrategy;
 import gov.goias.agrodefesa.utils.NavegacaoType;
 import org.slf4j.Logger;
@@ -18,7 +18,6 @@ public class Navegacao {
     public static final String PASSWORD = "admin";
     private static Hashtable<Class<?>, Object> entities = new Hashtable<>();
     public boolean autentaticado;
-    private NavegacaoStrategy page;
 
     public Navegacao() {
         autentaticado = false;
@@ -37,7 +36,7 @@ public class Navegacao {
     }
 
     public void pageLoad(Action action, String key) {
-        page = NavegacaoContext.parce(key, this.page);
+        NavegacaoStrategy page = NavigationBaseFactory.createNavigation(key);
 
         switch (action) {
             case HOME:
@@ -62,7 +61,7 @@ public class Navegacao {
     }
 
     public NavegacaoStrategy pageLoad(NavegacaoType type) {
-        return  NavegacaoContext.parce(type.getKey(), this.page);
+        return  NavigationBaseFactory.createNavigation(type.getKey());
     }
 
     private void loginPage() {

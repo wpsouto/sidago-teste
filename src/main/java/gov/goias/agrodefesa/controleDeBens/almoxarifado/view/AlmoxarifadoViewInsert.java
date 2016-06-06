@@ -1,16 +1,14 @@
 package gov.goias.agrodefesa.controleDeBens.almoxarifado.view;
 
+import gov.goias.agrodefesa.base.annotation.View;
 import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.controleDeBens.almoxarifado.containers.AlmoxarifadoPageContainerInsert;
 import gov.goias.agrodefesa.controleDeBens.almoxarifado.entity.Almoxarifado;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
+@View(pageContainer = AlmoxarifadoPageContainerInsert.class)
 public class AlmoxarifadoViewInsert extends BaseViewInsertImpl {
-
-    public AlmoxarifadoViewInsert(Object entity) {
-        super(entity, AlmoxarifadoPageContainerInsert.class);
-    }
 
     private Almoxarifado getEntity() {
         return (Almoxarifado) entity;

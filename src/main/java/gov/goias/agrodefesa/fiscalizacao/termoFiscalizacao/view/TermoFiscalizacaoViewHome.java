@@ -1,16 +1,14 @@
 package gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.view;
 
+import gov.goias.agrodefesa.base.annotation.View;
 import gov.goias.agrodefesa.base.view.BaseViewHomeImpl;
 import gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.containers.TermoFiscalizacaoPageContainerHome;
 import gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.entity.TermoFiscalizacao;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
+@View(pageContainer = TermoFiscalizacaoPageContainerHome.class)
 public class TermoFiscalizacaoViewHome extends BaseViewHomeImpl {
-
-    public TermoFiscalizacaoViewHome(Object entity) {
-        super(entity, TermoFiscalizacaoPageContainerHome.class);
-    }
 
     private TermoFiscalizacao getEntity() {
         return (TermoFiscalizacao) entity;

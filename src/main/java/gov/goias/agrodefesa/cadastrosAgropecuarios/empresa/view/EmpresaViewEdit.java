@@ -1,5 +1,6 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.view;
 
+import gov.goias.agrodefesa.base.annotation.View;
 import gov.goias.agrodefesa.base.view.BaseViewEditImpl;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.containers.EmpresaPageContainerEdit;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.entity.Empresa;
@@ -7,12 +8,8 @@ import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 import gov.goias.agrodefesa.utils.FileUtils;
 
+@View(pageContainer = EmpresaPageContainerEdit.class)
 public class EmpresaViewEdit extends BaseViewEditImpl {
-
-
-    public EmpresaViewEdit(Object entity) {
-        super(entity, EmpresaPageContainerEdit.class);
-    }
 
     private Empresa getEntity() {
         return (Empresa) entity;

@@ -1,16 +1,14 @@
 package gov.goias.agrodefesa.controleDeBens.patrimonio.view;
 
+import gov.goias.agrodefesa.base.annotation.View;
 import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.controleDeBens.patrimonio.containers.PatrimonioPageContainerInsert;
 import gov.goias.agrodefesa.controleDeBens.patrimonio.entity.Patrimonio;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
+@View(pageContainer =  PatrimonioPageContainerInsert.class)
 public class PatrimonioViewInsert extends BaseViewInsertImpl {
-
-    public PatrimonioViewInsert(Object entity) {
-        super(entity, PatrimonioPageContainerInsert.class);
-    }
 
     private Patrimonio getEntity() {
         return (Patrimonio) entity;

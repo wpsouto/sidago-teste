@@ -1,16 +1,14 @@
 package gov.goias.agrodefesa.controleDeBens.material.view;
 
+import gov.goias.agrodefesa.base.annotation.View;
 import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.controleDeBens.material.containers.MaterialPageContainerInsert;
 import gov.goias.agrodefesa.controleDeBens.material.entity.Material;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
+@View(pageContainer = MaterialPageContainerInsert.class)
 public class MaterialViewInsert extends BaseViewInsertImpl {
-
-    public MaterialViewInsert(Object entity) {
-        super(entity, MaterialPageContainerInsert.class);
-    }
 
     public Material getEntity() {
         return (Material) entity;

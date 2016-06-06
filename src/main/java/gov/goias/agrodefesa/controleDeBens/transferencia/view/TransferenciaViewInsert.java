@@ -1,16 +1,14 @@
 package gov.goias.agrodefesa.controleDeBens.transferencia.view;
 
+import gov.goias.agrodefesa.base.annotation.View;
 import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.controleDeBens.transferencia.containers.TransferenciaPageContainerInsert;
 import gov.goias.agrodefesa.controleDeBens.transferencia.entity.Transferencia;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
+@View(pageContainer = TransferenciaPageContainerInsert.class)
 public class TransferenciaViewInsert extends BaseViewInsertImpl {
-
-    public TransferenciaViewInsert(Object entity) {
-        super(entity, TransferenciaPageContainerInsert.class);
-    }
 
     private Transferencia getEntity() {
         return (Transferencia) entity;

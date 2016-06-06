@@ -9,6 +9,9 @@ import gov.goias.agrodefesa.utils.Constants;
  */
 public class BaseViewEditImpl extends BaseViewImpl implements EditView {
 
+    public BaseViewEditImpl() {
+    }
+
     public BaseViewEditImpl(Class<?> pageClassToProxy) {
         super(pageClassToProxy);
     }
