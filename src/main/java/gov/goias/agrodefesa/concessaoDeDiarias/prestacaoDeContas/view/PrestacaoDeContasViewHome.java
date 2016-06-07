@@ -1,16 +1,14 @@
 package gov.goias.agrodefesa.concessaoDeDiarias.prestacaoDeContas.view;
 
+import gov.goias.agrodefesa.base.annotation.View;
 import gov.goias.agrodefesa.base.view.BaseViewHomeImpl;
 import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.entity.DelegacaoAtividade;
 import gov.goias.agrodefesa.concessaoDeDiarias.prestacaoDeContas.containers.PrestacaoDeContasPageContainerHome;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
+@View(pageContainer = PrestacaoDeContasPageContainerHome.class)
 public class PrestacaoDeContasViewHome extends BaseViewHomeImpl {
-
-    public PrestacaoDeContasViewHome(Object entity) {
-        super(entity, PrestacaoDeContasPageContainerHome.class);
-    }
 
     private DelegacaoAtividade getEntity() {
         return (DelegacaoAtividade) entity;

@@ -1,16 +1,14 @@
 package gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.view;
 
+import gov.goias.agrodefesa.base.annotation.View;
 import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.containers.UnidadeConsolidacaoPageContainerInsert;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.entity.UnidadeConsolidacao;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
+@View(pageContainer = UnidadeConsolidacaoPageContainerInsert.class)
 public class UnidadeConsolidacaoViewInsert extends BaseViewInsertImpl {
-
-    public UnidadeConsolidacaoViewInsert(Object entity) {
-        super(entity, UnidadeConsolidacaoPageContainerInsert.class);
-    }
 
     private UnidadeConsolidacao getEntity() {
         return (UnidadeConsolidacao) entity;
@@ -21,9 +19,9 @@ public class UnidadeConsolidacaoViewInsert extends BaseViewInsertImpl {
         return (UnidadeConsolidacaoPageContainerInsert) container;
 
     }
-    
+
     @Override
-    public void builder(){
+    public void builder() {
         log.debug(Constants.MGS_AGUARDANDO);
         BrowserDriver.waitForElement(getContainer().home);
         getContainer().home.isDisplayed();

@@ -6,19 +6,9 @@ import gov.goias.agrodefesa.utils.Constants;
 
 /**
  * Created by usuario on 26/04/16.
+ * *
  */
 public class BaseViewEditImpl extends BaseViewImpl implements EditView {
-
-    public BaseViewEditImpl() {
-    }
-
-    public BaseViewEditImpl(Class<?> pageClassToProxy) {
-        super(pageClassToProxy);
-    }
-
-    public BaseViewEditImpl(Object entity, Class<?> pageClassToProxy) {
-        super(entity, pageClassToProxy);
-    }
 
     private PageContainerEdit getContainer() {
         return (PageContainerEdit) container;
@@ -29,8 +19,12 @@ public class BaseViewEditImpl extends BaseViewImpl implements EditView {
         log.debug(Constants.MGS_AGUARDANDO);
         BrowserDriver.waitForElement(getContainer().home);
 
+        salvar();
+    }
+
+    public void salvar(){
         log.debug(Constants.MGS_SELECIONADO, "SALVAR");
-        BrowserDriver.waitForElement(getContainer().salvar);
+        BrowserDriver.scrollTo(getContainer().salvar);
         getContainer().salvar.click();
     }
 

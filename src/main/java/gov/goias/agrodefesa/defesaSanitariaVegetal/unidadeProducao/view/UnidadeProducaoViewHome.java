@@ -1,15 +1,13 @@
 package gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeProducao.view;
 
+import gov.goias.agrodefesa.base.annotation.View;
 import gov.goias.agrodefesa.base.view.BaseViewHomeImpl;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeProducao.containers.UnidadeProducaoPageContainerHome;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeProducao.entity.UnidadeProducao;
 import gov.goias.agrodefesa.utils.Constants;
 
+@View(pageContainer = UnidadeProducaoPageContainerHome.class)
 public class UnidadeProducaoViewHome extends BaseViewHomeImpl {
-
-    public UnidadeProducaoViewHome(Object entity) {
-        super(entity, UnidadeProducaoPageContainerHome.class);
-    }
 
     private UnidadeProducao getEntity() {
         return (UnidadeProducao) entity;

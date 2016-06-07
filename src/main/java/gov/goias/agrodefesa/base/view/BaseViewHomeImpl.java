@@ -10,18 +10,6 @@ import gov.goias.agrodefesa.utils.Constants;
  */
 public class BaseViewHomeImpl extends BaseViewImpl implements HomeView {
 
-
-    public BaseViewHomeImpl() {
-    }
-
-    public BaseViewHomeImpl(Class<?> pageClassToProxy) {
-        super(pageClassToProxy);
-    }
-
-    public BaseViewHomeImpl(Object entity, Class<?> pageClassToProxy) {
-        super(entity, pageClassToProxy);
-    }
-
     private PageContainerHome getContainer() {
         return (PageContainerHome) container;
     }

@@ -2,8 +2,12 @@ package gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.navigati
 
 import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
 import gov.goias.agrodefesa.base.annotation.Navigation;
+import gov.goias.agrodefesa.base.annotation.NavigationDependence;
+import gov.goias.agrodefesa.base.annotation.NavigationType;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.entity.Pessoa;
+import gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.navigation.NavigationPessoa;
+import gov.goias.agrodefesa.constants.Action;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.entity.UnidadeConsolidacao;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.view.UnidadeConsolidacaoViewEdit;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.view.UnidadeConsolidacaoViewHome;
@@ -12,13 +16,12 @@ import gov.goias.agrodefesa.utils.NavegacaoType;
 
 /**
  * Created by usuario on 10/03/16.
+ * *
  */
 @Navigation(home = UnidadeConsolidacaoViewHome.class, insert = UnidadeConsolidacaoViewInsert.class, edit = UnidadeConsolidacaoViewEdit.class, entity = UnidadeConsolidacao.class)
+@NavigationType(label = "Unidade Consolidação", modulo = NavegacaoType.DEFESA_SANITARIA_VEGETAL, url = "unidade-consolidacao")
+@NavigationDependence(dependence = NavigationPessoa.class, actions = {Action.HOME, Action.INSERT, Action.MENSAGEM_INSERT})
 public class NavigationUnidadeConsolidacao extends NavigationBase {
-
-    public NavigationUnidadeConsolidacao(NavegacaoType type) {
-        super(type);
-    }
 
     public UnidadeConsolidacao getEntity() {
         return (UnidadeConsolidacao) entity;
@@ -27,15 +30,6 @@ public class NavigationUnidadeConsolidacao extends NavigationBase {
     @Override
     public void dependency() {
         super.dependency();
-
-/*
-        if (!NavegacaoFactory.getNavigator().existEntity(Pessoa.class)) {
-            log.debug(Constants.MGS_DEPENDENCIA, NavegacaoType.PESSOA.getKey());
-            NavegacaoFactory.getNavigator().pageLoad(Action.HOME, NavegacaoType.PESSOA.getKey());
-            NavegacaoFactory.getNavigator().pageLoad(Action.INSERT, NavegacaoType.PESSOA.getKey());
-            NavegacaoFactory.getNavigator().pageLoad(Action.MENSAGEM_INSERT, NavegacaoType.PESSOA.getKey());
-        }
-*/
 
         getEntity().setPessoa((Pessoa) NavegacaoFactory.getNavigator().getEntity(Pessoa.class));
     }

@@ -1,16 +1,14 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.lavoura.view;
 
+import gov.goias.agrodefesa.base.annotation.View;
 import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.lavoura.containers.LavouraPageContainerInsert;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.lavoura.entity.Lavoura;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
-public class LavouraViewInsert  extends BaseViewInsertImpl {
-
-    public LavouraViewInsert(Object entity) {
-        super(entity, LavouraPageContainerInsert.class);
-    }
+@View(pageContainer = LavouraPageContainerInsert.class)
+public class LavouraViewInsert extends BaseViewInsertImpl {
 
     private Lavoura getEntity() {
         return (Lavoura) entity;
@@ -21,7 +19,7 @@ public class LavouraViewInsert  extends BaseViewInsertImpl {
     }
 
     @Override
-    public void builder(){
+    public void builder() {
         log.debug(Constants.MGS_AGUARDANDO);
         BrowserDriver.waitForElement(getContainer().home);
 

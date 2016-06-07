@@ -1,16 +1,14 @@
 package gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.view;
 
+import gov.goias.agrodefesa.base.annotation.View;
 import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.containers.AquisicaoMudasPageContainerInsert;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.entity.AquisicaoMudas;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
+@View(pageContainer = AquisicaoMudasPageContainerInsert.class)
 public class AquisicaoMudasViewInsert extends BaseViewInsertImpl {
-
-    public AquisicaoMudasViewInsert(Object entity) {
-        super(entity, AquisicaoMudasPageContainerInsert.class);
-    }
 
     private AquisicaoMudas getEntity() {
         return (AquisicaoMudas) entity;
@@ -21,7 +19,7 @@ public class AquisicaoMudasViewInsert extends BaseViewInsertImpl {
     }
 
     @Override
-    public void builder(){
+    public void builder() {
         log.debug(Constants.MGS_AGUARDANDO);
         BrowserDriver.waitForElement(getContainer().home);
 
@@ -67,9 +65,7 @@ public class AquisicaoMudasViewInsert extends BaseViewInsertImpl {
         adicionarTransportador();
         adicionarMudas();
 
-        log.debug(Constants.MGS_SELECIONADO, "SALVAR");
-        BrowserDriver.screenshot();
-        getContainer().salvar.click();
+        salvar();
     }
 
     public void adicionarTransportador() {

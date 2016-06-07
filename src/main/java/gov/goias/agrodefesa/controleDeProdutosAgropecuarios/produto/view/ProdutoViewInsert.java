@@ -1,16 +1,14 @@
 package gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.view;
 
+import gov.goias.agrodefesa.base.annotation.View;
 import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.containers.ProdutoPageContainerInsert;
 import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.entity.ProdutoAnimal;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
+@View(pageContainer = ProdutoPageContainerInsert.class)
 public class ProdutoViewInsert extends BaseViewInsertImpl {
-
-    public ProdutoViewInsert(Object entity) {
-        super(entity, ProdutoPageContainerInsert.class);
-    }
 
     private ProdutoAnimal getEntity() {
         return (ProdutoAnimal) entity;
@@ -21,7 +19,7 @@ public class ProdutoViewInsert extends BaseViewInsertImpl {
     }
 
     @Override
-    public void builder(){
+    public void builder() {
         log.debug(Constants.MGS_AGUARDANDO);
         BrowserDriver.waitForElement(getContainer().home);
 

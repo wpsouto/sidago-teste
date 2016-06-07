@@ -1,5 +1,6 @@
 package gov.goias.agrodefesa.denuncia.abrirDenuncia.view;
 
+import gov.goias.agrodefesa.base.annotation.View;
 import gov.goias.agrodefesa.base.view.BaseViewHomeImpl;
 import gov.goias.agrodefesa.denuncia.abrirDenuncia.containers.AbrirDenunciaPageContainerHome;
 import gov.goias.agrodefesa.denuncia.abrirDenuncia.entity.AbrirDenuncia;
@@ -7,11 +8,8 @@ import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 import org.openqa.selenium.JavascriptExecutor;
 
+@View(pageContainer = AbrirDenunciaPageContainerHome.class)
 public class AbrirDenunciaViewHome extends BaseViewHomeImpl {
-
-    public AbrirDenunciaViewHome(Object entity) {
-        super(entity, AbrirDenunciaPageContainerHome.class);
-    }
 
     private AbrirDenuncia getEntity() {
         return (AbrirDenuncia) entity;

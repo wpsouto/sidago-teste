@@ -1,16 +1,14 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.empresaClassificacao.view;
 
+import gov.goias.agrodefesa.base.annotation.View;
 import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaClassificacao.containers.EmpresaClassificacaoPageContainerInsert;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaClassificacao.entity.Classificacao;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
+@View(pageContainer = EmpresaClassificacaoPageContainerInsert.class)
 public class EmpresaClassificacaoViewInsert extends BaseViewInsertImpl {
-
-    public EmpresaClassificacaoViewInsert(Object entity) {
-        super(entity, EmpresaClassificacaoPageContainerInsert.class);
-    }
 
     private Classificacao getEntity() {
         return (Classificacao) entity;
@@ -31,8 +29,9 @@ public class EmpresaClassificacaoViewInsert extends BaseViewInsertImpl {
         log.debug(Constants.MGS_INSERIDO, "CLASSIFICACAO", getEntity().getDescricao());
         getContainer().classificacao.sendKeys(getEntity().getDescricao());
 
-        log.debug(Constants.MGS_SELECIONADO, "SALVAR");
-        BrowserDriver.screenshot();
-        getContainer().salvar.click();
+        log.debug(Constants.MGS_INSERIDO, "IDENTIFICACAO", getEntity().getIdentificacao());
+        BrowserDriver.selectByVisibleText(getContainer().identificao, getEntity().getIdentificacao());
+
+        salvar();
     }
 }

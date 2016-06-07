@@ -1,16 +1,14 @@
 package gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.view;
 
+import gov.goias.agrodefesa.base.annotation.View;
 import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.containers.DelegacaoDeAtividadesPageContainerInsert;
 import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.entity.DelegacaoAtividade;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
+@View(pageContainer = DelegacaoDeAtividadesPageContainerInsert.class)
 public class DelegacaoDeAtividadesViewInsert extends BaseViewInsertImpl {
-
-    public DelegacaoDeAtividadesViewInsert(Object entity) {
-        super(entity, DelegacaoDeAtividadesPageContainerInsert.class);
-    }
 
     private DelegacaoAtividade getEntity() {
         return (DelegacaoAtividade) entity;
@@ -21,7 +19,7 @@ public class DelegacaoDeAtividadesViewInsert extends BaseViewInsertImpl {
     }
 
     @Override
-    public void builder(){
+    public void builder() {
         log.debug(Constants.MGS_AGUARDANDO);
         BrowserDriver.waitForElement(getContainer().home);
 

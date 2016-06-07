@@ -20,10 +20,6 @@ public class BaseViewImpl implements BaseView {
     public BaseViewImpl() {
     }
 
-    public BaseViewImpl(Class<?> pageClassToProxy) {
-        this.container = PageFactory.initElements(BrowserDriver.getCurrentDriver(), pageClassToProxy);
-    }
-
     public BaseViewImpl(Object entity, Class<?> pageClassToProxy) {
         this.container = PageFactory.initElements(BrowserDriver.getCurrentDriver(), pageClassToProxy);
         this.entity = entity;

@@ -1,16 +1,14 @@
 package gov.goias.agrodefesa.defesaSanitariaAnimal.boletimProducao.view;
 
+import gov.goias.agrodefesa.base.annotation.View;
 import gov.goias.agrodefesa.base.view.BaseViewHomeImpl;
 import gov.goias.agrodefesa.defesaSanitariaAnimal.boletimProducao.containers.BoletimProducaoPageContainerHome;
 import gov.goias.agrodefesa.defesaSanitariaAnimal.boletimProducao.entity.BoletimProducao;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
+@View(pageContainer = BoletimProducaoPageContainerHome.class)
 public class BoletimProducaoViewHome extends BaseViewHomeImpl {
-
-    public BoletimProducaoViewHome(Object entity) {
-        super(entity, BoletimProducaoPageContainerHome.class);
-    }
 
     private BoletimProducao getEntity() {
         return (BoletimProducao) entity;

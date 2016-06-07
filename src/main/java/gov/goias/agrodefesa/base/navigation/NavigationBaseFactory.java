@@ -25,7 +25,7 @@ public class NavigationBaseFactory {
     private static NavegacaoStrategy strategy;
 
     public static NavegacaoStrategy createNavigation(String label) {
-        for (Class<?> base : NavegacaoContext._strategies1) {
+        for (Class<?> base : NavegacaoContext._strategies) {
             if (!base.isAnnotationPresent(Navigation.class)) {
                 throw error(base.getName(), Navigation.class.getSimpleName());
             }

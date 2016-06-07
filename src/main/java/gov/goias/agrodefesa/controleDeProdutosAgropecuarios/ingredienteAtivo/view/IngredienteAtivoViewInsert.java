@@ -1,16 +1,14 @@
 package gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.view;
 
+import gov.goias.agrodefesa.base.annotation.View;
 import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.containers.IngredienteAtivoPageContainerInsert;
 import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.ingredienteAtivo.entity.Ingrediente;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
+@View(pageContainer = IngredienteAtivoPageContainerInsert.class)
 public class IngredienteAtivoViewInsert extends BaseViewInsertImpl {
-
-    public IngredienteAtivoViewInsert(Object entity) {
-        super(entity, IngredienteAtivoPageContainerInsert.class);
-    }
 
     private Ingrediente getEntity() {
         return (Ingrediente) entity;

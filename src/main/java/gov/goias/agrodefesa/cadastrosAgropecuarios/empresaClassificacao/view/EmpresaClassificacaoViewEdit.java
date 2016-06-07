@@ -1,16 +1,14 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.empresaClassificacao.view;
 
+import gov.goias.agrodefesa.base.annotation.View;
 import gov.goias.agrodefesa.base.view.BaseViewEditImpl;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaClassificacao.containers.EmpresaClassificacaoPageContainerEdit;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.empresaClassificacao.entity.Classificacao;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
+@View(pageContainer = EmpresaClassificacaoPageContainerEdit.class)
 public class EmpresaClassificacaoViewEdit extends BaseViewEditImpl {
-
-    public EmpresaClassificacaoViewEdit(Object entity) {
-        super(entity, EmpresaClassificacaoPageContainerEdit.class);
-    }
 
     private Classificacao getEntity() {
         return (Classificacao) entity;

@@ -1,20 +1,14 @@
 package gov.goias.agrodefesa.denuncia.abrirDenuncia.view;
 
+import gov.goias.agrodefesa.base.annotation.View;
 import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.denuncia.abrirDenuncia.containers.AbrirDenunciaPageContainerInsert;
 import gov.goias.agrodefesa.denuncia.abrirDenuncia.entity.AbrirDenuncia;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
-import org.junit.Assert;
-import org.openqa.selenium.support.PageFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+@View(pageContainer = AbrirDenunciaPageContainerInsert.class)
 public class AbrirDenunciaViewInsert extends BaseViewInsertImpl {
-
-    public AbrirDenunciaViewInsert(Object entity) {
-        super(entity, AbrirDenunciaPageContainerInsert.class);
-    }
 
     private AbrirDenuncia getEntity() {
         return (AbrirDenuncia) entity;

@@ -1,29 +1,25 @@
 package gov.goias.agrodefesa.defesaSanitariaVegetal.cadastroLote.view;
 
+import gov.goias.agrodefesa.base.annotation.View;
 import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.cadastroLote.containers.CadastroLotePageContainerInsert;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.cadastroLote.entity.CadastroLote;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
+@View(pageContainer = CadastroLotePageContainerInsert.class)
 public class CadastroLoteViewInsert extends BaseViewInsertImpl {
-
-    public CadastroLoteViewInsert(Object entity) {
-        super(entity, CadastroLotePageContainerInsert.class);
-    }
 
     private CadastroLote getEntity() {
         return (CadastroLote) entity;
-
     }
 
     private CadastroLotePageContainerInsert getContainer() {
         return (CadastroLotePageContainerInsert) container;
-
     }
-    
+
     @Override
-    public void builder(){
+    public void builder() {
         log.debug(Constants.MGS_AGUARDANDO);
         BrowserDriver.waitForElement(getContainer().home);
         getContainer().home.isDisplayed();

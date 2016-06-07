@@ -1,20 +1,14 @@
 package gov.goias.agrodefesa.concessaoDeDiarias.assinaturaDeDiarias.view;
 
+import gov.goias.agrodefesa.base.annotation.View;
 import gov.goias.agrodefesa.base.view.BaseViewHomeImpl;
 import gov.goias.agrodefesa.concessaoDeDiarias.assinaturaDeDiarias.containers.AssinaturaDeDiariasPageContainerHome;
 import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.entity.DelegacaoAtividade;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
-import org.junit.Assert;
-import org.openqa.selenium.support.PageFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+@View(pageContainer = AssinaturaDeDiariasPageContainerHome.class)
 public class AssinaturaDeDiariasViewHome extends BaseViewHomeImpl {
-
-    public AssinaturaDeDiariasViewHome(Object entity) {
-        super(entity, AssinaturaDeDiariasPageContainerHome.class);
-    }
 
     private DelegacaoAtividade getEntity() {
         return (DelegacaoAtividade) entity;

@@ -9,7 +9,6 @@ import gov.goias.agrodefesa.base.view.InsertView;
 import gov.goias.agrodefesa.constants.Action;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.NavegacaoStrategy;
-import gov.goias.agrodefesa.utils.NavegacaoType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,13 +26,6 @@ public class NavigationBase implements NavegacaoStrategy {
     public String url;
     public Class<?> dependencia;
     public Action[] actions;
-
-    public NavigationBase() {
-    }
-
-    public NavigationBase(NavegacaoType type) {
-        type.getKey();
-    }
 
     @Override
     public void home() {

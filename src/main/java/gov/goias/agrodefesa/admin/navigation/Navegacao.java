@@ -60,10 +60,6 @@ public class Navegacao {
         }
     }
 
-    public NavegacaoStrategy pageLoad(NavegacaoType type) {
-        return  NavigationBaseFactory.createNavigation(type.getKey());
-    }
-
     private void loginPage() {
         BrowserDriver.loadPage(NavegacaoType.HTTP_BASE);
         LoginView.isDisplayedCheck();

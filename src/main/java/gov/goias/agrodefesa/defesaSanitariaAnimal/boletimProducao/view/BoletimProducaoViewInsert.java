@@ -1,16 +1,14 @@
 package gov.goias.agrodefesa.defesaSanitariaAnimal.boletimProducao.view;
 
+import gov.goias.agrodefesa.base.annotation.View;
 import gov.goias.agrodefesa.base.view.BaseViewInsertImpl;
 import gov.goias.agrodefesa.defesaSanitariaAnimal.boletimProducao.containers.BoletimProducaoPageContainerInsert;
 import gov.goias.agrodefesa.defesaSanitariaAnimal.boletimProducao.entity.BoletimProducao;
 import gov.goias.agrodefesa.utils.BrowserDriver;
 import gov.goias.agrodefesa.utils.Constants;
 
+@View(pageContainer = BoletimProducaoPageContainerInsert.class)
 public class BoletimProducaoViewInsert extends BaseViewInsertImpl {
-
-    public BoletimProducaoViewInsert(Object entity) {
-        super(entity, BoletimProducaoPageContainerInsert.class);
-    }
 
     private BoletimProducao getEntity() {
         return (BoletimProducao) entity;
@@ -21,7 +19,7 @@ public class BoletimProducaoViewInsert extends BaseViewInsertImpl {
     }
 
     @Override
-    public void builder(){
+    public void builder() {
         log.debug(Constants.MGS_AGUARDANDO);
         BrowserDriver.waitForElement(getContainer().home);
 
@@ -70,9 +68,7 @@ public class BoletimProducaoViewInsert extends BaseViewInsertImpl {
         log.debug(Constants.MGS_INSERIDO, "APRESENTACAO MATERIA PRIMA", getEntity().getApresentacaoMateriaPrima());
         BrowserDriver.selectByVisibleText(getContainer().apresentacaoMateriaPrima, getEntity().getApresentacaoMateriaPrima());
 
-        log.debug(Constants.MGS_SELECIONADO, "SALVAR");
-        BrowserDriver.screenshot();
-        getContainer().salvar.click();
+        salvar();
     }
 
 }

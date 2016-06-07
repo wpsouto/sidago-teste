@@ -13,5 +13,7 @@ public class EmpresaClassificacaoPageContainerInsert extends PageContainerInsert
     @FindBy(how = How.ID, using = "ds_classificacao")
     public WebElement classificacao;
 
+    @FindBy(how = How.ID, using = "tp_identificacao")
+    public WebElement identificao;
 
 }

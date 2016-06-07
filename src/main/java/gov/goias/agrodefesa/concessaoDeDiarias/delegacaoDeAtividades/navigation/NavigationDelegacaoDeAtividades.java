@@ -1,6 +1,7 @@
 package gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.navigation;
 
 import gov.goias.agrodefesa.base.annotation.Navigation;
+import gov.goias.agrodefesa.base.annotation.NavigationType;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
 import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.entity.DelegacaoAtividade;
 import gov.goias.agrodefesa.concessaoDeDiarias.delegacaoDeAtividades.view.DelegacaoDeAtividadesViewHome;
@@ -11,11 +12,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @Navigation(home = DelegacaoDeAtividadesViewHome.class, insert = DelegacaoDeAtividadesViewInsert.class, entity = DelegacaoAtividade.class)
+@NavigationType(label = "Delegação de Atividades", modulo = NavegacaoType.CONCESSAO_DE_DIARIAS, url = "diaria")
 public class NavigationDelegacaoDeAtividades extends NavigationBase {
-
-    public NavigationDelegacaoDeAtividades(NavegacaoType type) {
-        super(type);
-    }
 
     public DelegacaoAtividade getEntity() {
         return (DelegacaoAtividade) entity;

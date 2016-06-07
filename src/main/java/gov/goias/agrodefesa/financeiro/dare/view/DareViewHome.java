@@ -9,7 +9,7 @@ import gov.goias.agrodefesa.utils.Constants;
 public class DareViewHome extends BaseViewHomeImpl {
 
     public DareViewHome(Object entity) {
-        super(entity, DarePageContainerHome.class);
+        //super(entity, DarePageContainerHome.class);
     }
 
     private Dare getEntity() {
