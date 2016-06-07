@@ -6,9 +6,9 @@ package gov.goias.agrodefesa.utils;
  */
 public class NavegacaoType {
     public static final String HTTP_BASE = "http://qa.agrodefesa.go.gov.br/";
-    //public static final String HTTP_BASE = "http://10.50.1.15/";
 
     public static final String CHAMADO = "chamado/";
+
     public static final String CONTROLE_BENS = "controle-bens/";
 
     public static final String CONCESSAO_DE_DIARIAS = "diaria/";
