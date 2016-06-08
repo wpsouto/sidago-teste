@@ -100,8 +100,8 @@ public class EmpresaViewEdit extends BaseViewEditImpl {
         for (int i = 1; i < tiposDoc.length; i++) {
             BrowserDriver.scrollTop();
             getContainer().adicionarAnexo.click();
-            BrowserDriver.waitForElement(getContainer().tipoDocumento);
-            BrowserDriver.selectByVisibleText(getContainer().tipoDocumento, tiposDoc[i].trim());
+            BrowserDriver.waitForElement(getContainer().adicionarAnexoHome);
+            BrowserDriver.waitForSelectByVisibleText(getContainer().tipoDocumento, tiposDoc[i].trim());
 
             if (getContainer().vencimento.isDisplayed()) {
                 BrowserDriver.scrollTop();
@@ -112,7 +112,7 @@ public class EmpresaViewEdit extends BaseViewEditImpl {
             BrowserDriver.executeScript("arguments[0].style.display ='block';", getContainer().file);
             getContainer().file.sendKeys(fileUpload);
             getContainer().confirmar.click();
-            BrowserDriver.waitForElementIsNotPresent(getContainer().tipoDocumento);
+            BrowserDriver.waitForElementIsNotPresent(getContainer().adicionarAnexoHome);
         }
     }
 

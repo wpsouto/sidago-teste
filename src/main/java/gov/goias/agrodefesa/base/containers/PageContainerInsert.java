@@ -1,6 +1,5 @@
 package gov.goias.agrodefesa.base.containers;
 
-import gov.goias.agrodefesa.utils.BrowserDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;

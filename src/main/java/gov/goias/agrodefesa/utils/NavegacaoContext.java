@@ -23,6 +23,7 @@ import gov.goias.agrodefesa.defesaSanitariaVegetal.cadastroLote.navigation.Navig
 import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.navigation.NavigationUnidadeConsolidacao;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeProducao.navigation.NavigationUnidadeProducao;
 import gov.goias.agrodefesa.denuncia.abrirDenuncia.navigation.NavigationAbrirDenuncia;
+import gov.goias.agrodefesa.financeiro.dare.navigation.NavigationDare;
 import gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.navigation.NavigationTermoFiscalizacao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -83,6 +84,9 @@ public class NavegacaoContext {
         _strategies.add(NavigationCienciaDoServidor.class);
         _strategies.add(NavigationAssinaturaDeDiarias.class);
         _strategies.add(NavigationPrestacaoDeContas.class);
+
+        //FINANCEIRO
+        _strategies.add(NavigationDare.class);
 
     }
 

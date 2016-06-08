@@ -25,4 +25,6 @@ public class NavegacaoType {
 
     public static final String FISCALIZACAO = "fiscalizacao/";
 
+    public static final String FINANCEIRO = "financeiro/";
+
 }

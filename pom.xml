@@ -17,9 +17,16 @@
         <selenium-java.version>2.53.0</selenium-java.version>
         <logback-classic.version>1.1.7</logback-classic.version>
         <maven.compiler.version>3.5.1</maven.compiler.version>
+        <postgresql.version>9.4.1208.jre7</postgresql.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>

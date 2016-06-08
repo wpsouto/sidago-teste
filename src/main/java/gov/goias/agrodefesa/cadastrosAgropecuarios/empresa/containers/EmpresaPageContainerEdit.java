@@ -1,7 +1,6 @@
 package gov.goias.agrodefesa.cadastrosAgropecuarios.empresa.containers;
 
 import gov.goias.agrodefesa.base.containers.PageContainerEdit;
-import gov.goias.agrodefesa.utils.BrowserDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -49,6 +48,9 @@ public class EmpresaPageContainerEdit extends PageContainerEdit {
 
     @FindBy(how = How.LINK_TEXT, using = "Adicionar Anexo")
     public WebElement adicionarAnexo;
+
+    @FindBy(how = How.ID, using = "div_id_anexo_2016")
+    public WebElement adicionarAnexoHome;
 
     @FindBy(how = How.ID, using = "id_documentorequerido")
     public WebElement tipoDocumento;
