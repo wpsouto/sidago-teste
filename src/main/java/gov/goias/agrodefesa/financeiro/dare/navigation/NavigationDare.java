@@ -2,7 +2,7 @@ package gov.goias.agrodefesa.financeiro.dare.navigation;
 
 import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
 import gov.goias.agrodefesa.base.annotation.Navigation;
-import gov.goias.agrodefesa.base.annotation.NavigationDependence;
+import gov.goias.agrodefesa.base.annotation.NavigationDependency;
 import gov.goias.agrodefesa.base.annotation.NavigationType;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.entity.Pessoa;
@@ -19,7 +19,7 @@ import gov.goias.agrodefesa.utils.NavegacaoType;
  */
 @Navigation(home = DareViewHome.class, insert = DareViewInsert.class, entity = Dare.class)
 @NavigationType(label = "DARE", modulo = NavegacaoType.FINANCEIRO, url = "dare")
-@NavigationDependence(dependence = NavigationPessoa.class, actions = {Action.HOME, Action.INSERT, Action.MENSAGEM_INSERT})
+@NavigationDependency(dependence = NavigationPessoa.class, actions = {Action.HOME, Action.INSERT, Action.MENSAGEM_INSERT})
 public class NavigationDare extends NavigationBase {
 
     public Dare getEntity() {

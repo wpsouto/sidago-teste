@@ -2,7 +2,7 @@ package gov.goias.agrodefesa.defesaSanitariaVegetal.cadastroLote.navigation;
 
 import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
 import gov.goias.agrodefesa.base.annotation.Navigation;
-import gov.goias.agrodefesa.base.annotation.NavigationDependence;
+import gov.goias.agrodefesa.base.annotation.NavigationDependency;
 import gov.goias.agrodefesa.base.annotation.NavigationType;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
 import gov.goias.agrodefesa.constants.Action;
@@ -19,7 +19,7 @@ import gov.goias.agrodefesa.utils.NavegacaoType;
  */
 @Navigation(home = CadastroLoteViewHome.class, insert = CadastroLoteViewInsert.class, edit = CadastroLoteViewEdit.class, entity = CadastroLote.class)
 @NavigationType(label = "Cadastro de Lote", modulo = NavegacaoType.DEFESA_SANITARIA_VEGETAL, url = "lote")
-@NavigationDependence(dependence = NavigationUnidadeConsolidacao.class, actions = {Action.HOME, Action.INSERT, Action.MENSAGEM_INSERT})
+@NavigationDependency(dependence = NavigationUnidadeConsolidacao.class, actions = {Action.HOME, Action.INSERT, Action.MENSAGEM_INSERT})
 public class NavigationCadastroLote extends NavigationBase {
 
     public CadastroLote getEntity() {

@@ -2,6 +2,7 @@ package gov.goias.agrodefesa.base.navigation;
 
 import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
 import gov.goias.agrodefesa.base.annotation.Navigation;
+import gov.goias.agrodefesa.base.annotation.NavigationDependency;
 import gov.goias.agrodefesa.base.annotation.NavigationType;
 import gov.goias.agrodefesa.base.view.EditView;
 import gov.goias.agrodefesa.base.view.HomeView;
@@ -24,8 +25,7 @@ public class NavigationBase implements NavegacaoStrategy {
     public InsertView insert;
     public EditView edit;
     public String url;
-    public Class<?> dependencia;
-    public Action[] actions;
+    public NavigationDependency[] dependencies;
 
     @Override
     public void home() {
@@ -60,14 +60,17 @@ public class NavigationBase implements NavegacaoStrategy {
 
     @Override
     public void dependency() {
-        Navigation navigation = dependencia.getAnnotation(Navigation.class);
-        NavigationType navigationType = dependencia.getAnnotation(NavigationType.class);
+        for (NavigationDependency dependency : this.dependencies) {
+            Navigation navigation = dependency.dependence().getAnnotation(Navigation.class);
+            NavigationType navigationType = dependency.dependence().getAnnotation(NavigationType.class);
 
-        if (!NavegacaoFactory.getNavigator().existEntity(navigation.entity())) {
-            log.debug("Executando Dependencia {}", dependencia.getName());
-            for (Action action : this.actions) {
-                NavegacaoFactory.getNavigator().pageLoad(action, navigationType.label());
+            if (!NavegacaoFactory.getNavigator().existEntity(navigation.entity())) {
+                log.debug("Executando Dependencia {}", dependency.dependence().getName());
+                for (Action action : dependency.actions()) {
+                    NavegacaoFactory.getNavigator().pageLoad(action, navigationType.label());
+                }
             }
+
         }
     }
 

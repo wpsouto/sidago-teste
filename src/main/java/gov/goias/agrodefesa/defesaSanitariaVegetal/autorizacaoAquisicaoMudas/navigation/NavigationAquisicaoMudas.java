@@ -2,7 +2,7 @@ package gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.na
 
 import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
 import gov.goias.agrodefesa.base.annotation.Navigation;
-import gov.goias.agrodefesa.base.annotation.NavigationDependence;
+import gov.goias.agrodefesa.base.annotation.NavigationDependency;
 import gov.goias.agrodefesa.base.annotation.NavigationType;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
 import gov.goias.agrodefesa.constants.Action;
@@ -19,7 +19,7 @@ import gov.goias.agrodefesa.utils.NavegacaoType;
  */
 @Navigation(home = AquisicaoMudasViewHome.class, insert = AquisicaoMudasViewInsert.class, entity = AquisicaoMudas.class)
 @NavigationType(label = "Autorização para Aquisição de Mudas", modulo = NavegacaoType.DEFESA_SANITARIA_VEGETAL, url = "autorizacao-aquisicao-mudas")
-@NavigationDependence(dependence = NavigationUnidadeProducao.class, actions = {Action.HOME, Action.INSERT, Action.MENSAGEM_INSERT})
+@NavigationDependency(dependence = NavigationUnidadeProducao.class, actions = {Action.HOME, Action.INSERT, Action.MENSAGEM_INSERT})
 public class NavigationAquisicaoMudas extends NavigationBase {
 
     private AquisicaoMudasViewAprovacao viewAprovacao;

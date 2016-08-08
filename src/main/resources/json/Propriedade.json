@@ -2,10 +2,7 @@
   "nomePropriedade": "Teste Automatizado",
   "tipoContribuinte": "Comerciante",
   "condicaoPropriedade": "Proprietário Único",
-  "responsavelTecnico": "WEMBLEY ALEXSANDER RODRIGUES PEREIRA",
-  "pessoa": {
-    "cpfCnpj": null
-  },
+  "responsavelTecnico": "LUDIMAR SOARES DOS SANTOS",
   "endereco": {
     "tipoEndereco": "Pessoal",
     "endereco": "TESTE",

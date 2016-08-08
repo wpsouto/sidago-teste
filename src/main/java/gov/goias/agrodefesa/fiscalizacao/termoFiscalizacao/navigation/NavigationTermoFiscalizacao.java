@@ -2,7 +2,7 @@ package gov.goias.agrodefesa.fiscalizacao.termoFiscalizacao.navigation;
 
 import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
 import gov.goias.agrodefesa.base.annotation.Navigation;
-import gov.goias.agrodefesa.base.annotation.NavigationDependence;
+import gov.goias.agrodefesa.base.annotation.NavigationDependency;
 import gov.goias.agrodefesa.base.annotation.NavigationType;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.propriedade.entity.Propriedade;
@@ -19,7 +19,7 @@ import gov.goias.agrodefesa.utils.NavegacaoType;
  */
 @Navigation(home = TermoFiscalizacaoViewHome.class, insert = TermoFiscalizacaoViewInsert.class, entity = TermoFiscalizacao.class)
 @NavigationType(label = "Termo de Fiscalização", modulo = NavegacaoType.FISCALIZACAO, url = "termo-fiscalizacao")
-@NavigationDependence(dependence = NavigationPropriedade.class, actions = {Action.HOME, Action.INSERT, Action.MENSAGEM_INSERT})
+@NavigationDependency(dependence = NavigationPropriedade.class, actions = {Action.HOME, Action.INSERT, Action.MENSAGEM_INSERT})
 public class NavigationTermoFiscalizacao extends NavigationBase {
 
     public TermoFiscalizacao getEntity() {

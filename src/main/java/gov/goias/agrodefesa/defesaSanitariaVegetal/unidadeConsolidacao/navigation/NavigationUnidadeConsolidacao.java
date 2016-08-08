@@ -2,7 +2,7 @@ package gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.navigati
 
 import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
 import gov.goias.agrodefesa.base.annotation.Navigation;
-import gov.goias.agrodefesa.base.annotation.NavigationDependence;
+import gov.goias.agrodefesa.base.annotation.NavigationDependency;
 import gov.goias.agrodefesa.base.annotation.NavigationType;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.pessoa.entity.Pessoa;
@@ -20,7 +20,7 @@ import gov.goias.agrodefesa.utils.NavegacaoType;
  */
 @Navigation(home = UnidadeConsolidacaoViewHome.class, insert = UnidadeConsolidacaoViewInsert.class, edit = UnidadeConsolidacaoViewEdit.class, entity = UnidadeConsolidacao.class)
 @NavigationType(label = "Unidade Consolidação", modulo = NavegacaoType.DEFESA_SANITARIA_VEGETAL, url = "unidade-consolidacao")
-@NavigationDependence(dependence = NavigationPessoa.class, actions = {Action.HOME, Action.INSERT, Action.MENSAGEM_INSERT})
+@NavigationDependency(dependence = NavigationPessoa.class, actions = {Action.HOME, Action.INSERT, Action.MENSAGEM_INSERT})
 public class NavigationUnidadeConsolidacao extends NavigationBase {
 
     public UnidadeConsolidacao getEntity() {

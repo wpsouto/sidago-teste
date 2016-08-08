@@ -1,9 +1,6 @@
 package gov.goias.agrodefesa.base.navigation;
 
-import gov.goias.agrodefesa.base.annotation.Navigation;
-import gov.goias.agrodefesa.base.annotation.NavigationDependence;
-import gov.goias.agrodefesa.base.annotation.NavigationType;
-import gov.goias.agrodefesa.base.annotation.View;
+import gov.goias.agrodefesa.base.annotation.*;
 import gov.goias.agrodefesa.base.view.BaseViewImpl;
 import gov.goias.agrodefesa.base.view.EditView;
 import gov.goias.agrodefesa.base.view.HomeView;
@@ -63,21 +60,16 @@ public class NavigationBaseFactory {
                 ((NavigationBase) strategy).entity = ResourceFactory.init(navigation.entity());
             }
 
-            if (base.isAnnotationPresent(NavigationDependence.class)) {
-                NavigationDependence dependence = base.getAnnotation(NavigationDependence.class);
-
-                ((NavigationBase) strategy).dependencia = dependence.dependence();
-                ((NavigationBase) strategy).actions = dependence.actions();
+            if (base.isAnnotationPresent(NavigationDependency.class) || base.isAnnotationPresent(NavigationDependencies.class)) {
+                ((NavigationBase) strategy).dependencies = base.getAnnotationsByType(NavigationDependency.class);
                 strategy.dependency();
             }
-
 
             ((NavigationBase) strategy).url = NavegacaoType.HTTP_BASE + navigationType.modulo() + navigationType.url();
 
             createHomeView(navigation, ((NavigationBase) strategy));
             createInsertView(navigation, ((NavigationBase) strategy));
             createEditView(navigation, ((NavigationBase) strategy));
-//            createOtherView(((NavigationBase) strategy));
 
         } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
             throw NavigationBaseFactory.error(base, e);

@@ -2,7 +2,7 @@ package gov.goias.agrodefesa.defesaSanitariaAnimal.boletimProducao.navigation;
 
 import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
 import gov.goias.agrodefesa.base.annotation.Navigation;
-import gov.goias.agrodefesa.base.annotation.NavigationDependence;
+import gov.goias.agrodefesa.base.annotation.NavigationDependency;
 import gov.goias.agrodefesa.base.annotation.NavigationType;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
 import gov.goias.agrodefesa.cadastrosAgropecuarios.propriedade.entity.Propriedade;
@@ -20,7 +20,7 @@ import gov.goias.agrodefesa.utils.NavegacaoType;
 
 @Navigation(home = BoletimProducaoViewHome.class, insert = BoletimProducaoViewInsert.class, entity = BoletimProducao.class)
 @NavigationType(label = "Boletim de Produção", modulo = NavegacaoType.DEFESA_SANITARIA_ANIMAL, url = "boletim-producao")
-@NavigationDependence(dependence = NavigationPropriedade.class, actions = {Action.HOME, Action.INSERT, Action.MENSAGEM_INSERT})
+@NavigationDependency(dependence = NavigationPropriedade.class, actions = {Action.HOME, Action.INSERT, Action.MENSAGEM_INSERT})
 public class NavigationBoletimProducao extends NavigationBase {
 
     public BoletimProducao getEntity() {

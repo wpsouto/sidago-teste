@@ -20,6 +20,7 @@ import gov.goias.agrodefesa.controleDeProdutosAgropecuarios.produto.navigation.N
 import gov.goias.agrodefesa.defesaSanitariaAnimal.boletimProducao.navigation.NavigationBoletimProducao;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.autorizacaoAquisicaoMudas.navigation.NavigationAquisicaoMudas;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.cadastroLote.navigation.NavigationCadastroLote;
+import gov.goias.agrodefesa.defesaSanitariaVegetal.certificadoFitossanitarioOrigem.navigation.NavigationCertificadoFitossanitarioOrigem;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeConsolidacao.navigation.NavigationUnidadeConsolidacao;
 import gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeProducao.navigation.NavigationUnidadeProducao;
 import gov.goias.agrodefesa.denuncia.abrirDenuncia.navigation.NavigationAbrirDenuncia;
@@ -75,6 +76,7 @@ public class NavegacaoContext {
         _strategies.add(NavigationUnidadeProducao.class);
         _strategies.add(NavigationUnidadeConsolidacao.class);
         _strategies.add(NavigationCadastroLote.class);
+        _strategies.add(NavigationCertificadoFitossanitarioOrigem.class);
 
         //DENUNCIA
         _strategies.add(NavigationAbrirDenuncia.class);

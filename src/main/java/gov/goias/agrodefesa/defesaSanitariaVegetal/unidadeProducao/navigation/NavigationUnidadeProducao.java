@@ -2,7 +2,7 @@ package gov.goias.agrodefesa.defesaSanitariaVegetal.unidadeProducao.navigation;
 
 import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
 import gov.goias.agrodefesa.base.annotation.Navigation;
-import gov.goias.agrodefesa.base.annotation.NavigationDependence;
+import gov.goias.agrodefesa.base.annotation.NavigationDependency;
 import gov.goias.agrodefesa.base.annotation.NavigationType;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
 import gov.goias.agrodefesa.constants.Action;
@@ -20,7 +20,7 @@ import gov.goias.agrodefesa.utils.NavegacaoType;
  */
 @Navigation(home = UnidadeProducaoViewHome.class, insert = UnidadeProducaoViewInsert.class, edit = UnidadeProducaoViewEdit.class, entity = UnidadeProducao.class)
 @NavigationType(label = "Unidade de Produção", modulo = NavegacaoType.DEFESA_SANITARIA_VEGETAL, url = "unidade-producao")
-@NavigationDependence(dependence = NavigationTermoFiscalizacao.class, actions = {Action.HOME, Action.INSERT, Action.MENSAGEM_INSERT, Action.SEARCH})
+@NavigationDependency(dependence = NavigationTermoFiscalizacao.class, actions = {Action.HOME, Action.INSERT, Action.MENSAGEM_INSERT, Action.SEARCH})
 public class NavigationUnidadeProducao extends NavigationBase {
 
     public UnidadeProducao getEntity() {

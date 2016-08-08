@@ -2,7 +2,7 @@ package gov.goias.agrodefesa.controleDeBens.transferencia.navigation;
 
 import gov.goias.agrodefesa.admin.navigation.NavegacaoFactory;
 import gov.goias.agrodefesa.base.annotation.Navigation;
-import gov.goias.agrodefesa.base.annotation.NavigationDependence;
+import gov.goias.agrodefesa.base.annotation.NavigationDependency;
 import gov.goias.agrodefesa.base.annotation.NavigationType;
 import gov.goias.agrodefesa.base.navigation.NavigationBase;
 import gov.goias.agrodefesa.constants.Action;
@@ -15,7 +15,7 @@ import gov.goias.agrodefesa.utils.NavegacaoType;
 
 @Navigation(home = TransferenciaViewHome.class, insert = TransferenciaViewInsert.class, entity = Transferencia.class)
 @NavigationType(label = "transferencia", modulo = NavegacaoType.CONTROLE_BENS, url = "controle-movimentacao")
-@NavigationDependence(dependence = NavigationPatrimonio.class, actions = {Action.HOME, Action.INSERT, Action.MENSAGEM_INSERT})
+@NavigationDependency(dependence = NavigationPatrimonio.class, actions = {Action.HOME, Action.INSERT, Action.MENSAGEM_INSERT})
 public class NavigationTransferencia extends NavigationBase {
 
     public Transferencia getEntity() {
